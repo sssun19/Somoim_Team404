@@ -1,7 +1,6 @@
 # Somoim_Team404
 멀티캠퍼스 파이널 프로젝트
 
-======================깃허브 명령어 =========================
 
 1. 초기화
 ```
@@ -28,3 +27,12 @@ git commit -m "Commit Name"
 git push origin 브랜치명
 ```
 
+6. 브랜치 스위치
+```
+git checkout 브랜치명
+```
+<span style="color:red">
+1. .xml 파일 추가/수정 금지
+2. 충돌 및 오류 발생 시 리뷰
+</span>
+```
