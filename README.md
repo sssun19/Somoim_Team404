@@ -1,7 +1,7 @@
 # Somoim_Team404
 멀티캠퍼스 파이널 프로젝트
 
-## `주의 사항
+## 주의 사항
 
 ```
 1. .xml 파일 추가/수정 금지
@@ -13,7 +13,6 @@
 ```ruby
 $git config --global core.autocrlf true
 ```
-
 
 1. 초기화
 ```ruby
