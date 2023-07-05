@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+@lombok
 @Controller
 public class HomeController {
 	
@@ -19,6 +19,7 @@ public class HomeController {
 	@RequestMapping(value = {"/","home.do"}, method = RequestMethod.GET)
 	public String home() {
 		
+		log.info("테스트중입니다.");
 		
 		return "home";
 	}
