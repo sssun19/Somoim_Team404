@@ -1,6 +1,17 @@
 # Somoim_Team404
 멀티캠퍼스 파이널 프로젝트
 
+###주의 사항
+<span style="color:red">
+1. .xml 파일 추가/수정 금지
+2. 충돌 및 오류 발생 시 리뷰
+</span>
+
+#필수
+```
+$git config --global core.autocrlf true
+```
+
 
 1. 초기화
 ```
@@ -30,9 +41,6 @@ git push origin 브랜치명
 6. 브랜치 스위치
 ```
 git checkout 브랜치명
-```
-<span style="color:red">
-1. .xml 파일 추가/수정 금지
-2. 충돌 및 오류 발생 시 리뷰
-</span>
-```
+
+
+
