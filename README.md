@@ -24,12 +24,12 @@ git init
 git add.
 ```
 
-3.상태 확인 (선택사항)
+3. 상태 확인 (선택사항)
 ```ruby
 git status
 ```
 
-4.Commit
+4. Commit
 ```ruby
 git commit -m "Commit Name"
 ```
