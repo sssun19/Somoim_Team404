@@ -20,7 +20,7 @@
     <jsp:include page="../top_menu.jsp"></jsp:include>
 
 
-
+<form action="som_member_insertOK.do" method="POST">
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -138,6 +138,7 @@
         </div>
         <button type="button" id="som_register">모임 가입하기</button>
     </div>
+</form>
     <div class="footer">
         <div>
             <strong>온앤오프</strong>
