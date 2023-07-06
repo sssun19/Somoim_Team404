@@ -18,11 +18,8 @@
     <jsp:include page="../top_menu.jsp"></jsp:include>
 
 
-<<<<<<< HEAD
-<form action="som_member_insertOK.do" method="post">
-=======
+
 <form action="som_member_insertOK.do" method="POST">
->>>>>>> branch 'sssun' of https://git@github.com/BeomV/Somoim_Team404.git
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
