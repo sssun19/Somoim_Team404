@@ -105,6 +105,10 @@ public class BoardController {
         model.addAttribute("vo2",vo2);
 
 
+
+
+
+
         return "board/join_selectOne";
     }
 
@@ -142,11 +146,15 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
-    public String join_schedule(Model model) {
+    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
         log.info("join_schedule.do().....{}");
 
-        List<Somoim_ScheduleVO> vos = service.sch_selelctList();
+        List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 
+
+        for (Somoim_ScheduleVO vo2 : vos) {
+            log.info(vo2.toString());
+        }
 
         model.addAttribute("vos", vos);
 

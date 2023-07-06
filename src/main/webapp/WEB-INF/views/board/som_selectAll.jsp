@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 
-    <script src="resources/js/board.js"></script>
+
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
+
          $(function() { 
         	 $("input[name='category']").on('click', function() {
                  console.log("onload..."); 
@@ -33,18 +34,19 @@
                          console.log('이게 데이터', data); 
                          console.log('category', category); 
 
-                         $('body').html(data); 
-                     }, 
-                     error : function(xhr, status, error){ 
-                         console.log('xhr.status : ', xhr.status); 
-                     } 
+                        $('body').html(data);
+                    },
+                    error : function(xhr, status, error){
+                        console.log('xhr.status : ', xhr.status);
+                    }
 
 
 
-                 });//end ajax 
-             });//end click 
+                });//end ajax
+            });//end click
 
         });//end ready
+
 
         // 	function som_searchList(){
 
@@ -125,7 +127,7 @@
             <div class="board_list_category_detail">
                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a>
                 <!-- 				<a href="som_selectAll.do?category=local"><button type="button" name="local">국내여행</button></a> -->
-                <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>--> 
+                <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>-->
                 <select name="searchKey">
                     <option>소모임 이름</option>
                     <option>지역</option>
@@ -239,4 +241,5 @@
 
 </div>
 </body>
+<script src="resources/js/board.js"></script>
 </html>

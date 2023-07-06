@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -19,7 +18,11 @@
     <jsp:include page="../top_menu.jsp"></jsp:include>
 
 
+<<<<<<< HEAD
 <form action="som_member_insertOK.do" method="post">
+=======
+<form action="som_member_insertOK.do" method="POST">
+>>>>>>> branch 'sssun' of https://git@github.com/BeomV/Somoim_Team404.git
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -135,13 +138,16 @@
 
             </div>
         </div>
-         <input type="hidden" name="user_id" value="${user_id}">
+
+        <input type="hidden" name="user_id" value="${user_id}">
         <input type="hidden" name="num" value="${vo2.num}">
         <input type="hidden" name="som_title" value="${vo2.som_title}">
         <input type="hidden" name="save_name" value="${vo2.save_name}">
-        <input type="submit" id="som_register">모임 가입하기
+        <input type="submit" id="som_register" value="모임 가입하기">
+
     </div>
-   </form>
+
+</form>
     <div class="footer">
         <div>
             <strong>온앤오프</strong>

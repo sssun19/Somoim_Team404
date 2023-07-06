@@ -47,6 +47,7 @@ public class MemberRestController {
 		log.info("{}", vo.getSom_title());
 		
 		return "OK";
+
 	}
 	
 }
