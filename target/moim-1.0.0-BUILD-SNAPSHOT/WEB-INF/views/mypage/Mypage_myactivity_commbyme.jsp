@@ -51,7 +51,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
@@ -91,7 +91,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
@@ -131,7 +131,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
@@ -171,7 +171,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
