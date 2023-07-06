@@ -32,7 +32,7 @@
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
 
 <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sapiente necessitatibus illum sint unde ad fugit, voluptatum commodi repudiandae laboriosam. Aperiam possimus, eius tenetur temporibus dolorum laudantium beatae quibusdam fuga?</p>
+             <p>${vo2.som_content}</p>
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
