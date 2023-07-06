@@ -43,7 +43,7 @@ public class som_com_comments_controller {
 	public String som_dcomm_insertOK(som_comm_commentsVO vo) {
 		
 		
-		log.info("³Ñ¾î¿Â VOVOVOVOVOOVOVOVOVO....{}", vo);
+		log.info("ï¿½Ñ¾ï¿½ï¿½ VOVOVOVOVOOVOVOVOVO....{}", vo);
 		int result = commService.insert(vo);
 		
 		log.info("result...{}", result);
