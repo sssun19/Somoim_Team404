@@ -25,6 +25,7 @@
 		<property name="mapperLocations">
 			<list>
 				<!--Mapper 추가 한줄 씩-->
+				<value>classpath:jdbc/sqlMapper_community.xml</value>
 			</list>
 		</property>
 	</bean>
