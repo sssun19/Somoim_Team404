@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="test.com.moim.somoim_member">
+	<select id="MEMBER_SELECT_ALL" resultType="test.com.moim.member.model.MemberVO">
+		select * from somoim_member order by num desc
+	</select>
+	
+	<select id="MEMBER_SEARCH_LIST_USERID" resultType="test.com.moim.member.model.MemberVO">
+		select * from somoim_member where user_id like #{searchWord}
+	</select>
+	
+	<select id="MEMBER_SEARCH_LIST_SOMTITLE" resultType="test.com.moim.member.model.MemberVO">
+		select * from somoim_member where som_title like #{searchWord}
+	</select>
+	
+	<insert id="MEMBER_INSERT" parameterType="test.com.moim.member.model.MemberVO">
+		insert into somoim_member (num,user_id,som_title,join_date,position,save_name) 
+		values(seq_somoim_member.nextval,#{user_id},#{som_title},sysdate,#{position},#{save_name})
+	</insert>
+	
+	<delete id="MEMBER_DELETE">
+		delete from somoim_member where num = #{num}
+	</delete>
+
+</mapper>

@@ -1,3 +1,15 @@
+.community_section{
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: auto;
+    margin-bottom: 200px;
+}
+
+
+
 .community_section_top{
     width: 100%;
     margin: 0 auto;
@@ -76,4 +88,330 @@
 
 /*community_selectOne*/
 
+.c_top_func{
+    text-align: right;
+    padding: 10px;
+}
 
+.c_top_func button{
+    border: none;
+    border-radius: 5px;
+    padding: 2px 20px;
+    background-color: #1785F2;
+    color: white;
+    font-weight: 600;
+}
+
+.c_view_content{
+    width: 100%;
+    text-align: left;
+    padding-bottom: 30px;
+    height: auto;
+}
+
+.c_view_content ul{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+}
+
+.c_view_content ul li{
+    padding: 20px;
+    width: 1000px;
+    margin: 0 auto;
+    border: solid 1px #c9c9c9;
+    border-radius: 10px;
+}
+
+.c_user_info{
+    display: flex;
+    padding: 20px;
+}
+
+.c_profile{
+    width: 40px;
+    height: 40px;
+    background-color: #c9c9c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.c_profile i{
+    font-size: 20px;
+}
+
+.c_user_info span{
+    margin-left: 20px;
+}
+
+.c_content_text{
+    margin: 20px 0px 20px 60px;
+}
+
+.c_content_text p{
+    margin-top: 20px;
+
+}
+
+.c_user_info span p{
+    font-size: 12px;
+    color: #666;
+}
+
+.community_top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.c_bbs_func{
+
+    text-align: right;
+    width: 40%;
+}
+
+.c_bbs_func button{
+    border: none;
+    background: transparent;
+}
+
+.c_bbs_func button i {
+    font-size: 16px;
+    color: #1785F2;
+    font-weight: 600;
+}
+
+/*insert.html*/
+
+.c_insert_func {
+    margin-top: 40px;
+    width: 100%;
+    text-align: left;
+    border-bottom: #ccc solid 1px;
+}
+
+.c_insert_func i {
+    font-size: 18px;
+    padding: 20px;
+    color: #1785F2;
+}
+
+.c_insert_func a {
+    padding: 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.community_insert_section {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+}
+
+.community_insert_section {
+    text-align: left;
+}
+
+.community_insert_section h2,
+.community_insert_section h3 {
+    margin-top: 30px;
+}
+
+.community_insert_section input[type="text"],
+.community_insert_section textarea {
+    width: 99%;
+    border: #ccc solid 1px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+#content-container {
+    height: 600px;
+    text-align: center;
+}
+
+#content-container input[type="text"] {
+    width: 99%;
+    border: #ccc solid 1px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+.community_insert_secction input[type="submit"] {
+    width: 50%;
+    margin-bottom: 50px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #1785F2;
+    outline: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.num {
+    margin-top: 30px;
+}
+
+
+
+#insert_content{
+    height: 600px;
+    text-align: center;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.center input[type="submit"] {
+    width: 50%;
+    margin-top: 50px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #1785F2;
+    outline: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.c_comments_sec{
+    text-align: left;
+    padding: 20px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.c_comments_sec h3{
+    margin-bottom: 50px;
+}
+
+.c_user_info_profile_tooltip{
+    width: 100%;
+}
+
+.c_com_func{
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+}
+
+.c_com_func input{
+    width: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#com_insert{
+    width: 10%;
+    margin-left: 12px;
+    color: white;
+    background-color: #1785F2;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.c_com_top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.c_com_top button{
+    border: none;
+    background-color: transparent;
+}
+
+.c_com_top button i{
+    font-size: 16px;
+    color: #1785F2;
+}
+
+.c_com_grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 30px;
+}
+
+.c_user_info_profile_{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.c_user_info_profile_ .c_profile{
+    margin-right: 10px;
+}
+
+.community_imgbox .img_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    width: 90%;
+    background-color: #1785F2;
+    margin: 40px auto;
+}
+
+.community_commnets_insert_section{
+    width: 75%;
+    margin: 50px auto 0px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.c_comments_user_profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.c_commnets_user_profile_img{
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.community_commnets_insert_section input{
+    width: 80%;
+    padding: 8px 12px;
+}
+
+.community_commnets_insert_section button{
+    padding: 8px 24px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1785F2;
+    color: white;
+}
+
+.c_insert_func{
+
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    border-bottom: #ccc solid 1px;
+}
+
+.c_insert_func i{
+    font-size: 18px;
+    padding: 20px;
+    color: #1785F2;
+}
+
+.c_insert_func span a{
+    padding: 20px;
+    font-weight: 600;
+    font-size: 16px;
+}
