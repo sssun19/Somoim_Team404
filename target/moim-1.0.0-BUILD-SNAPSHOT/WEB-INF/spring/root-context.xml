@@ -26,6 +26,12 @@
 			<list>
 				<!--Mapper 추가 한줄 씩-->
 				<value>classpath:jdbc/sqlMapper_community.xml</value>
+				<value>classpath:jdbc/sqlMapper_board.xml</value>
+				<value>classpath:jdbc/sqlMapper_somoim_board.xml</value>
+				<value>classpath:jdbc/sqlMapper_comments.xml</value>
+				<value>classpath:jdbc/sqlMapper_d_comments.xml</value>
+				<value>classpath:jdbc/sqlMapper_userinfo.xml</value>
+				<value>classpath:jdbc/sqlMapper_CS.xml</value>
 			</list>
 		</property>
 	</bean>
