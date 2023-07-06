@@ -58,7 +58,7 @@
               html += '</div>';
               html += '</li>';
               html += '</ul>';
-              html += '<li class="notice_img_enter"><a href="#"><img src="resources/img/rightArrow.png"></a></li>';
+              html += '<li class="notice_img_enter"><a href="#"><img src="resources/uploadimg/rightArrow.png"></a></li>';
               html += '</ul>';
               html += '</div>';
               html += '</div>';
@@ -111,7 +111,7 @@
                       </div>
                     </li>
                   </ul>
-                  <li class="notice_img_enter"><a href="#"> <img src="resources/img/rightArrow.png"></a></li>
+                  <li class="notice_img_enter"><a href="#"> <img src="resources/uploadimg/rightArrow.png"></a></li>
                 </li>
               </ul>
             </div>

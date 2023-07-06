@@ -49,7 +49,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
@@ -63,9 +63,9 @@
                 <a href="#">사진</a>
                 <hr>
                 <div class="photo_list">
-                    <a href="#"><img src="/Img/banner_test.png" alt="사진 1"></a>
-                    <a href="#"><img src="/Img/blue_car.png" alt="사진 2"></a>
-                    <a href="#"><img src="/Img/green_car.png" alt="사진 3"></a>
+                    <a href="#"><img src="/uploadimg/banner_test.png" alt="사진 1"></a>
+                    <a href="#"><img src="/uploadimg/blue_car.png" alt="사진 2"></a>
+                    <a href="#"><img src="/uploadimg/green_car.png" alt="사진 3"></a>
                   </div>
               </div>
             </li>
@@ -89,7 +89,7 @@
 
                 <div class="profile">
                     <div class="circle">
-                      <img src="/Img/아이유.png" alt="프로필 이미지">
+                      <img src="/uploadimg/아이유.png" alt="프로필 이미지">
                     </div>
                   </div>
                 
@@ -103,9 +103,9 @@
                 <a href="#">사진</a>
                 <hr>
                 <div class="photo_list">
-                    <a href="#"><img src="/Img/banner_test.png" alt="사진 1"></a>
-                    <a href="#"><img src="/Img/blue_car.png" alt="사진 2"></a>
-                    <a href="#"><img src="/Img/green_car.png" alt="사진 3"></a>
+                    <a href="#"><img src="/uploadimg/banner_test.png" alt="사진 1"></a>
+                    <a href="#"><img src="/uploadimg/blue_car.png" alt="사진 2"></a>
+                    <a href="#"><img src="/uploadimg/green_car.png" alt="사진 3"></a>
                   </div>
               </div>
             </li>

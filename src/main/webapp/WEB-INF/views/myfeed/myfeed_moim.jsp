@@ -17,7 +17,7 @@
     <div class="header">
         <div class="gnb">
             <div class="logo">
-                <img src="/Img/logo.png">
+                <img src="/uploadimg/logo.png">
             </div>
             <nav>
                 <ul>
@@ -79,49 +79,49 @@
             <ul class="moim_grid">
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">해외여행</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 2</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 3</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 4</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 5</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 6</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 7</div>
                 </li>
                 <li>
                     <div>
-                        <img src="../Img/0112.png" alt="이미지">
+                        <img src="../uploadimg/0112.png" alt="이미지">
                     </div>
                     <div class="moim_name">모임 이름 8</div>
                 </li>
