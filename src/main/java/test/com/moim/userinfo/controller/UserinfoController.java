@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import test.com.moim.userinfo.controller.Email;
-import test.com.moim.userinfo.controller.EmailSender;
+//import test.com.moim.userinfo.controller.Email;
+//import test.com.moim.userinfo.controller.EmailSender;
 import test.com.moim.userinfo.model.UserinfoVO;
 import test.com.moim.userinfo.service.UserinfoService;
 
@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.AddressException;
+//import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
