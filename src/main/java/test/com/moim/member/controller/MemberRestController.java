@@ -24,14 +24,29 @@ public class MemberRestController {
 	@RequestMapping(value = "/som_member_insertOK.do", method = RequestMethod.POST)
 	public String som_member_insertOK(MemberVO vo) {
 		log.info("som_member_insertOK.do().....{}", vo);
-		log.info("==========="+ vo.getNum() + vo.getSom_title() + vo.getSave_name());
+		log.info("==========="+ vo.getSom_title() + vo.getSave_name());
+		log.info("{}", vo.getUser_id());
+		log.info("{}", vo.getNum());
 		
 		int result = service.insert(vo);
+		log.info("result : {}", result);
+		log.info("된거야?");
 		
 		if(result==1)
-			return "가입완료!"+vo.getNum()+vo.getSom_title();
+			return "OK!";
 		else
-			return "가입실패..."+vo.getNum()+vo.getSom_title();
+			return "FALSE...";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/som_member_insert.do", method = RequestMethod.GET)
+	public String som_member_insert(MemberVO vo) {
+		log.info("som_member_insertOK.do().....{}", vo);
+		log.info("==========="+ vo.getUser_id());
+		log.info("{}", vo.getSave_name());
+		log.info("{}", vo.getSom_title());
+		
+		return "OK";
 	}
 	
 }
