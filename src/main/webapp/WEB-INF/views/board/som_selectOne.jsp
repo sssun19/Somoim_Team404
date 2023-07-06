@@ -32,7 +32,11 @@
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
 
 <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
+<<<<<<< HEAD
             <p>${vo2.som_content}</p>
+=======
+             <p>${vo2.som_content}</p>
+>>>>>>> branch 'master' of https://git@github.com/BeomV/Somoim_Team404.git
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
