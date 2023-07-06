@@ -11,15 +11,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailSender {
 
-    @Autowired
-    protected JavaMailSender mailSender;
+	@Autowired
+	protected JavaMailSender mailSender;
 
-    public void SendEmail(Email email) throws Exception {
-        MimeMessage msg = mailSender.createMimeMessage();
-        msg.setSubject(email.getSubject());
-        msg.setText(email.getContent());
-        msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciver()));
+	public void SendEmail(Email email) throws Exception {
+		MimeMessage msg = mailSender.createMimeMessage();
+		msg.setSubject(email.getSubject());
+		msg.setText(email.getContent());
+		msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciver()));
 
-        mailSender.send(msg);
-    }
+		mailSender.send(msg);
+	}
 }

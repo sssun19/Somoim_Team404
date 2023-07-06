@@ -5,13 +5,13 @@ public class Email {
     private String subject;
     private String content;
     private String regdate;
-    private String reciver;
+    private String receiver;
      
     public String getReciver() {
-        return reciver;
+        return receiver;
     }
-    public void setReciver(String reciver) {
-        this.reciver = reciver;
+    public void setReciver(String email) {
+        this.receiver = email;
     }
 
     public String getSubject() {
