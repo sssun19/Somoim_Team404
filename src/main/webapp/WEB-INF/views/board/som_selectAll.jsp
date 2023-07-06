@@ -108,7 +108,7 @@
                             <span>
 									<p class="hashtag">${vo.category}</p>
 									<h1>${vo.som_title}</h1>
-									<p class="sub_tit">소셜링 ${vo.area} ${vo.create_date }</p>
+									<p class="sub_tit"> 소셜링 ${vo.area} ${vo.create_date }</p>
 								</span>
 
                         </div>
