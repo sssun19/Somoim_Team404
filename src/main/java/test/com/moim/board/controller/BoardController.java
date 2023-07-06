@@ -105,6 +105,10 @@ public class BoardController {
         model.addAttribute("vo2",vo2);
 
 
+
+
+
+
         return "board/join_selectOne";
     }
 
