@@ -1,3 +1,4 @@
+
 package test.com.moim.userinfo.controller;
 
 import java.util.Random;
@@ -14,9 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class UserinfoRestController {
 
-//	@Autowired
-//    private EmailSender emailSender;
-	
 //	@ResponseBody
 //	@RequestMapping(value = "/sendEmail.do", method = RequestMethod.GET)
 //	public String sendEmail(String input_email) {
@@ -70,7 +68,7 @@ public class UserinfoRestController {
 //	    }
 //	}
 
-	
+
 
 
 }
