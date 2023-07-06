@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -136,7 +135,11 @@
 
             </div>
         </div>
-        <button type="button" id="som_register">모임 가입하기</button>
+        <input type="hidden" name="user_id" value="${user_id}">
+        <input type="hidden" name="num" value="${vo2.num}">
+        <input type="hidden" name="som_title" value="${vo2.som_title}">
+        <input type="hidden" name="save_name" value="${vo2.save_name}">
+        <input type="submit" id="som_register" value="모임 가입하기">
     </div>
 </form>
     <div class="footer">
