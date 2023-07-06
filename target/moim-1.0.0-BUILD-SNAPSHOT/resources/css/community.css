@@ -1,0 +1,79 @@
+.community_section_top{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.community_title{
+    padding: 100px 0px;
+}
+
+.community_title p{
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.community_navigation{
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.community_navigation_func a{
+    padding: 12px 36px;
+}
+
+.community_navigation_func{
+    display: flex;
+    justify-content: center;
+}
+.community_navigation_upload{
+    width: 100%;
+    text-align: right;
+    padding: 5px;
+}
+
+.community_navigation_upload button{
+    margin-top: 10px;
+    margin-right: 20px;
+    border: none;
+    background-color: #1785F2;
+    padding: 8px 24px;
+    color: white;
+    border-radius: 5px;
+}
+
+.community_review_section{
+    width: 100%;
+    margin: 30px auto 100px auto;
+
+}
+
+.community_review_view{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+}
+
+.community_review_img{
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #5f2b2b;
+}
+
+.review_grid li{
+    width: 95%;
+}
+
+.review_grid{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3,1fr);
+}
+
+
+/*community_selectOne*/
+
+
