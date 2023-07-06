@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
 import test.com.moim.board.service.BoardService;
+import test.com.moim.com_comments.model.som_comm_commentsVO;
+import test.com.moim.com_comments.service.som_comm_comments_Service;
+import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.comments.service.som_comments_Service;
 
 import javax.servlet.http.HttpSession;
+import java.time.Clock;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +35,14 @@ public class BoardController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    som_comm_comments_Service c_commService;
+    @Autowired
+    som_comments_Service commService;
+
+
+
 
 
 //    @RequestMapping(value = "/som_selectAll.do", method = RequestMethod.GET)
@@ -97,16 +111,54 @@ public class BoardController {
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
     public String join_selectOne(Somoim_BoardVO vo, Model model) {
         log.info("join_selectOne.do().....");
+        String userId = (String) session.getAttribute("user_id");
 
+        model.addAttribute("user_id", userId);
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}",vo2);
-
         model.addAttribute("vo2",vo2);
 
+        som_commentsVO cvo = new som_commentsVO();
+
+        System.out.println("******vo.getNum()*******:"+vo2.getNum());
+        System.out.println("******vo.getSomoim_num()*******:"+vo2.getSomoim_num());
+        cvo.setSom_board_num(vo2.getNum());
+        cvo.setSomoim_num(vo2.getSomoim_num());
+        System.out.println("cvo:"+cvo.toString());
+        List<som_commentsVO> coms = commService.selectAll(cvo);
+        System.out.println("coms:"+coms.toString());
+
+//
+        som_comm_commentsVO c_cvo = new som_comm_commentsVO();
+        c_cvo.setSom_board_num(cvo.getSom_board_num());
+        c_cvo.setSomoim_num(cvo.getSomoim_num());
+        log.info("cvo.getnum..{}", cvo.getNum());
+        List<som_comm_commentsVO> c_coms=new ArrayList<som_comm_commentsVO>();
+        c_coms= c_commService.selectAll(c_cvo);
 
 
 
+
+        System.out.println("c_cvo:"+c_cvo);
+
+
+        System.out.println("c_cvo.getSom_board_num:"+c_cvo.getSom_board_num());
+		System.out.println("c_coms:"+c_coms.toString());
+//		System.out.println("coms:"+c_cvo.getSom_board_num());
+//
+
+        model.addAttribute("coms", coms);
+        model.addAttribute("c_coms", c_coms);
+
+//		System.out.println("coms:::"+coms);
+//
+//		System.out.println("c_coms:::"+c_coms);
+//
+
+
+        model.addAttribute("coms", coms);
+        model.addAttribute("c_coms", c_coms);
 
 
         return "board/join_selectOne";
