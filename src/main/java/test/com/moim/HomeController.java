@@ -20,9 +20,6 @@ public class HomeController {
 	public String home() {
 		
 
-		log.info("테스트중입니다.");
-		
-    log.info(저는 테스트 중입니다.);
 		return "home";
 	}
 	
