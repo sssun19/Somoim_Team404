@@ -14,14 +14,14 @@
 $(document).ready(function() {
     $("#mail_check_button").click(function() {
     	console.log("mail_check_button...click");
-        var input_email = $("input[name='input_email']").val();
-        console.log(input_email);
+        var email = $("input[name='email']").val();
+        console.log(email);
 
         // 서버에 이메일 주소를 전송하는 Ajax 요청
         $.ajax({
             url: 'sendEmail.do',
             method: 'GET',
-            data: { input_email: input_email },
+            data: { email: email },
             dataType:"json",
             success: function(response) {
             	console.log("response:",response);
@@ -42,8 +42,8 @@ $(document).ready(function() {
     
  $("#btn_email_token").click(function() {
         	console.log("btn_email_token...click");
-        	var input_email = $("input[name='input_email']").val();
-            console.log(input_email);
+        	var email = $("input[name='email']").val();
+            console.log(email);
             var email_token = $("input[name='email_token']").val();
             console.log(email_token);
 
@@ -52,7 +52,7 @@ $(document).ready(function() {
                 url: 'send_email_token.do',
                 method: 'GET',
                 data: {
-                	input_email: input_email,
+                	email: email,
                 	email_token: email_token
                 },
                 dataType: "json",
@@ -60,7 +60,8 @@ $(document).ready(function() {
                 	console.log("response:", response);
                     if (response.result === 'OK') {
                         alert('인증이 완료되었습니다.');
-                        // 인증 성공한 경우 추가로 수행할 로직 작성
+                     	// 인증 성공한 경우 회원가입 버튼 활성화
+                        $("#register").prop('disabled', false);  
                     } else {
                         alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
                     }
@@ -71,7 +72,17 @@ $(document).ready(function() {
             });
             return false;
         });
-    });
+
+	$("#register").click(function() {
+   	 // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
+   	 window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
+	});
+    // 이메일 값을 저장하는 함수
+    function saveEmail() {
+        var email = $("input[name='email']").val();
+        localStorage.setItem("email", email);
+    }
+});
 
 </script>
 </head>
@@ -136,7 +147,7 @@ $(document).ready(function() {
     <label for="user_email">이메일</label>
     <br>
     <div class="register_input_flex">
-        <input type="email" placeholder="이메일을 입력하세요" name="input_email" class="mail_check_input">
+        <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" onchange="saveEmail()">
         <button type="button" class="mail_check_button" id="mail_check_button">인증번호</button>
     </div>
     <br>

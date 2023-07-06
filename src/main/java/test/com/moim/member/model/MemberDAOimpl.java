@@ -18,8 +18,17 @@ public class MemberDAOimpl implements MemberDAO {
 	@Override
 	public int insert(MemberVO vo) {
 		log.info("insert()...{}", vo);
-		log.info("insert");
-		return session.insert("MEMBER_INSERT", vo);
+		log.info("======={}", vo.getUser_id());
+		log.info("======={}", vo.getNum());
+		
+		MemberVO vo2 = session.selectOne("MEMBER_CHECK", vo);
+		
+		if(vo2==null) {
+			log.info("가입가능함");
+			return session.insert("MEMBER_INSERT", vo);
+		}
+		else
+			return 0;
 	}
 
 	@Override
