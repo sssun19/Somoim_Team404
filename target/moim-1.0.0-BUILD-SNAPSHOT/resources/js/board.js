@@ -1,8 +1,5 @@
 $(document).ready(function() {
-
-
-
-
+    console.log("board.js()....");
 
     $('.category_more a').click(function(event){
         $('.category_more').hide();
@@ -125,16 +122,19 @@ function join_updateOK() {
 function join_schedule_insertOK() {
 console.log("join_schedule_insert....");
 
+    console.log($('#Schedule_Somoim_num').val());
 
 $.ajax({
     url: "join_schedule_insertOK.do",
     data: {
+        somoim_num: $('#Schedule_Somoim_num').val(),
         schedule_title: $('#sch_insert_title').val(),
         schedule_date: $('#shc_insert_date').val(),
         schedule_time: $('#shc_insert_time').val(),
         place: $('#sch_insert_place').val(),
         max_participant: $('#sch_insert_max_member').val(),
         user_id: $('#user_id').val(),
+        participant: $('#user_id').val(),
         money: $('#sch_insert_money').val(),
 
 
@@ -143,7 +143,7 @@ $.ajax({
     dataType: 'text',
     success: function(response) {
         console.log('ajax....success', response);
-        location.href="join_schedule.do";
+        location.href="join_schedule.do?somoim_num="+$('#Schedule_Somoim_num').val();
 
     },
     error:function(xhr,status,error){

@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class UserinfoRestController {
 
-
 //	@ResponseBody
 //	@RequestMapping(value = "/sendEmail.do", method = RequestMethod.GET)
 //	public String sendEmail(String input_email) {
@@ -51,7 +50,7 @@ public class UserinfoRestController {
 //
 //	    return "{\"result\":\"OK\"}"; // 이메일 전송 성공 시 성공 결과 반환
 //	}
-
+//	
 //	@ResponseBody
 //	@RequestMapping(value = "/send_email_token.do", method = RequestMethod.GET)
 //	public String compareEmailToken(String input_email, String email_token) {

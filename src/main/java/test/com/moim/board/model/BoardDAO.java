@@ -9,7 +9,7 @@ public interface BoardDAO {
 
     Somoim_BoardVO selectJoin(Somoim_BoardVO vo);
 
-    List<Somoim_ScheduleVO> sch_selectList();
+    List<Somoim_ScheduleVO> sch_selectList(Somoim_ScheduleVO vo);
 
     int update(Somoim_BoardVO vo);
 
