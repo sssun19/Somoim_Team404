@@ -1,16 +1,15 @@
 package test.com.moim.cs.controller;
 
-import javax.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import lombok.extern.slf4j.Slf4j;
 import test.com.moim.cs.Service.bug_Service;
 import test.com.moim.cs.model.BugVO;
+
+import javax.servlet.http.HttpSession;
 
 
 @Slf4j
