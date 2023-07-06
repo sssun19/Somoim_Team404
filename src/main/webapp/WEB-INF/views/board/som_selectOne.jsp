@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="resources/js/board.js"></script>
 </head>
@@ -20,7 +19,7 @@
     <jsp:include page="../top_menu.jsp"></jsp:include>
 
 
-
+<form action="som_member_insertOK.do" method="post">
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -136,8 +135,12 @@
 
             </div>
         </div>
-        <button type="button" id="som_register">모임 가입하기</button>
+        <input type="text" id="title" name="title" value="title1">
+        <input type="text" id="title" name="title" value="title1">
+        <input type="text" id="title" name="title" value="title1">
+        <input type="submit" id="som_register">모임 가입하기
     </div>
+   </form>
     <div class="footer">
         <div>
             <strong>온앤오프</strong>
