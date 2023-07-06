@@ -22,7 +22,7 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
         <div class="top_func">
             <button type="button"><a href="/join_insert.do">글쓰기</a></button>
-        </div> 
+        </div>
         <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
             
                     <div class="join_top">
