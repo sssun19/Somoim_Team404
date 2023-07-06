@@ -30,6 +30,7 @@ public class MemberRestController {
 		
 		int result = service.insert(vo);
 		log.info("result : {}", result);
+		log.info("된거야?");
 		
 		if(result==1)
 			return "OK!";
