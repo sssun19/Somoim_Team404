@@ -15,7 +15,7 @@
 <jsp:include page="top_menu.jsp"></jsp:include>
 <div class="main_container">
     <div class="img_banner">
-       <img src="resources/img/banner_test.png">
+       <img src="resources/uploadimg/banner_test.png">
     </div>
     <div class="main_pictogram">
        <ul>
@@ -34,7 +34,7 @@
        <ul>
           <li>
              <div class="moimst_list_01_img_box">
-                <img src="resources/img/아이유.png">
+                <img src="resources/uploadimg/아이유.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -44,7 +44,7 @@
           </li>
           <li>
              <div class="moimst_list_01_img_box">
-                <img src="resources/img/아이유.png">
+                <img src="resources/uploadimg/아이유.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -54,7 +54,7 @@
           </li>
           <li>
              <div class="moimst_list_01_img_box">
-                <img src="/img/0112.png">
+                <img src="/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -64,7 +64,7 @@
           </li>
           <li>
              <div class="moimst_list_01_img_box">
-                <img src="resources/img/아이유.png">
+                <img src="resources/uploadimg/아이유.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -80,7 +80,7 @@
        <ul>
           <li>
              <div>
-                <img src="/img/0112.png">
+                <img src="/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -90,7 +90,7 @@
           </li>
           <li>
              <div>
-                <img src="/img/0112.png">
+                <img src="/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -100,7 +100,7 @@
           </li>
           <li>
              <div>
-                <img src="/img/0112.png">
+                <img src="/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -110,7 +110,7 @@
           </li>
           <li>
              <div>
-                <img src="/img/0112.png">
+                <img src="/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
