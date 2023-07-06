@@ -3,33 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="test.com.board">
-
-
-	<insert id="B_INSERT">
-		insert into somoim(num,som_title,category,max_member,create_date)
-		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate)
-	</insert>
-
-
-	<select id="Sch_SELECT_ALL"
-			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
-		select * from somoim_schedule
+<mapper namespace="test.com.moim.cs">
+	<select id="CS_SELECT_ALL"
+		resultType="test.com.moim.cs.model.CsVO">
+		select * from notice
 	</select>
 
-	<insert id="Sch_INSERT">
-		INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money,max_participant, som_member_num)
-		VALUES (
-				   seq_somoim_schedule.nextval,
-				   #{schedule_date},
-				   #{schedule_time},
-				   #{schedule_title},
-				   #{place},
-				   #{money},
-				   #{max_participant},
-				   (SELECT num FROM somoim_member WHERE user_id = #{user_id})
-			   )
+
+	<insert id="CS_INSERT">
+		insert into notice (num, user_id, title, content) 
+	values (seq_notice.nextval, #{user_id, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR})
 	</insert>
+	
+		<select id="BUG_SELECT_ALL"
+		resultType="test.com.moim.cs.model.BugVO">
+		select * from CS_BUG
+	</select>
+
+
+	<insert id="BUG_INSERT">
+		insert into CS_BUG (num, user_id, title, content) 
+	values (seq_notice.nextval, #{user_id, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR})
+	</insert>
+	
+
+<!-- 	<select id="B_SELECT_ONE" -->
+<!-- 			resultType="test.com.moim.board.model.BoardVO"> -->
+<!-- 			select * from somoim where num = #{num} -->
+<!-- 	</select> -->
+
 
 	<!--
 	<select id="b_SELECT_ONE"

@@ -14,7 +14,7 @@
                     <li><a href="som_selectAll.do">소모임</a></li>
                     <li><a>이벤트</a></li>
                     <li><a href="community_selectAll.do">커뮤니티</a></li>
-                    <li><a>고객센터</a></li>
+                    <li><a href="cs_notice.do">고객센터</a></li>
                 </ul>
             </nav>
             <div class="main_search">
