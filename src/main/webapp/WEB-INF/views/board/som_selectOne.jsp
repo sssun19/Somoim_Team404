@@ -13,6 +13,50 @@
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="resources/js/board.js"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+    	console.log('onload.......');
+    	$.ajax({
+    		url:'som_member_profileCheck.do',
+    		method:'GET',
+    		data: {
+    			num:${param.num}
+    		},
+    		success: function(data){
+    			console.log('ajax successed...');
+    			console.log('data : ', data);
+    			
+    			let tag_vo = '';
+    			$.each(data,function(index,vo){
+    				console.log(index,vo);
+	    			console.log('save_name : ', vo.save_name);
+    				tag_vo += `
+                        <li>
+                            <div class="round_box">
+                                <img src="resources/uploadimg/\${vo.save_name}" width="50" height="50">
+                            </div>
+                        </li>
+        			`;
+    			});
+    			
+    			
+    			
+    			$('#img_members').html(tag_vo);
+    		},
+    		error : function(xhr, status, error){
+    			console.log('xhr.status : ', xhr.status);
+    		}
+    		
+    		
+    		
+    		
+    	});//end ajax...
+    });//end onload..
+    
+    
+    </script>
+    
 </head>
 <body>
     <jsp:include page="../top_menu.jsp"></jsp:include>
@@ -35,38 +79,14 @@
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
-            <ul>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-                <li>
-                    <div class="round_box">
-                        <i class="far fa-user"></i>
-                    </div>
-                </li>
-            </ul>
+            <ul id="img_members">            
+<!--                 <li> -->
+<!--                     <div class="round_box"> -->
+<!--                         <i class="far fa-user"></i> -->
+<!--                     </div> -->
+<!--                 </li> -->
+            </ul>           
+            
         </div>
         <div class="join_cal">
             <h1>일정</h1>
@@ -139,7 +159,7 @@
         <input type="hidden" name="user_id" value="${user_id}">
         <input type="hidden" name="num" value="${vo2.num}">
         <input type="hidden" name="som_title" value="${vo2.som_title}">
-        <input type="hidden" name="save_name" value="${vo2.save_name}">
+        <input type="hidden" name="save_name" value="${uvo2.save_name}">
         <input type="submit" id="som_register" value="모임 가입하기">
 
     </div>
