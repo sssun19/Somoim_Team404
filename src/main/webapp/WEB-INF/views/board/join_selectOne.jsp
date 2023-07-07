@@ -68,14 +68,23 @@
                                     <div class="com_top">
                                         <strong>${com.user_id}</strong>
                                         <span>
+                                            <form action="som_comm_updateOK.do">
+                                                <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+
                                             <button type="submit">
                                                 <i class="fas fa-edit"></i>
                                                 <%-- 수정 --%>
+
                                             </button>
-                                            <button type="button">
+                                                </form>
+                                            </form >
+                                            <form action="som_comm_deleteOK.do">
+                                                <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                            <button type="submit">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <%-- 삭제 --%>
                                             </button>
+                                            </form>
                                         </span>
                                     </div>
                                     <p>${com.write_date}</p>
