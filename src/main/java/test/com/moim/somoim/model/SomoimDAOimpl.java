@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 @Slf4j
 @Repository
@@ -70,5 +71,17 @@ public class SomoimDAOimpl implements SomoimDAO {
 		log.info("delete()...{}", vo);
 		return session.delete("SOMOIM_DELETE", vo);
 	}
+
+	public UserinfoVO searchSavename(UserinfoVO uvo) {
+		log.info("제발돼라...{}", uvo.getUser_id());
+		return session.selectOne("SEARCH_SAVENAME", uvo);
+	}
+
+//	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
+//		log.info("profilesearch()....{}", uvo);
+//		log.info("이건  mapper 에 있음");
+//		
+//		return session.selectOne("PROFILE_SEARCH", uvo); 
+//	}
 
 }
