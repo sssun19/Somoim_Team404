@@ -22,7 +22,7 @@
         <div class="mypage_top_sec">
             <div class="mypage_left_profile">
                 <div class="mypage_myprofile">
-                    <img src="resources/uploadimg/${vo2.save_name }">
+                    <img src="resources/uploadimg/${vo2.save_name }" width="220" height="220">
                     
                 </div>
                 <button type="button" id="update_profile">프로필 편집</button>
