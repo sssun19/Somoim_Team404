@@ -46,6 +46,7 @@
 	</bean>
 	<!-- 이메일 보내기 -->
 	<!-- gmail 로그인 후 로그인 &보안 ====보안 수준이 낮은 앱 허용: 사용으로 변경 -->
+
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -57,4 +58,6 @@
 			</props>
 		</property>
 	</bean>
+
+
 </beans>

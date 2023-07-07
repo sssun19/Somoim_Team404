@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class UserinfoRestController {
 
+
+
 	@Autowired
 	private EmailSender emailSender;
 
@@ -89,3 +91,4 @@ public class UserinfoRestController {
 
 
 }
+
