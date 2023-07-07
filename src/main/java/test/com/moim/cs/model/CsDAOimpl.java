@@ -46,8 +46,8 @@ public class CsDAOimpl implements CsDAO {
 
 	@Override
 	public CsVO selectOne(CsVO vo) {
-		log.info("abc");
-		return null;
+		log.info("selectOne impl....{}", vo);
+		return sqlSession.selectOne("CS_SELECT_ONE", vo);
 	}
 
 }

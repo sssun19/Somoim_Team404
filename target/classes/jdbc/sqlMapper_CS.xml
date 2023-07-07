@@ -27,10 +27,10 @@
 	</insert>
 	
 
-<!-- 	<select id="B_SELECT_ONE" -->
-<!-- 			resultType="test.com.moim.board.model.BoardVO"> -->
-<!-- 			select * from somoim where num = #{num} -->
-<!-- 	</select> -->
+ 	<select id="CS_SELECT_ONE"
+			resultType="test.com.moim.cs.model.CsVO">
+ 			select * from notice where num = #{num}
+ 	</select>
 
 
 	<!--

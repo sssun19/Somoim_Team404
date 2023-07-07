@@ -67,7 +67,9 @@ public class CsController {
 	public String cs_notice_selectOne(CsVO vo, Model model) {
 		log.info("cs_notice_selectOne.do().....");
 
+		log.info("vo.getnum..{}", vo.getNum());
 		CsVO vo2 = service.selectOne(vo);
+
 		log.info("test...{}",vo2);
 
 		model.addAttribute("vo2",vo2);

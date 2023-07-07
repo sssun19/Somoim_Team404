@@ -105,14 +105,17 @@
                     <li>
                       <div>
                         <h3>
-                          <a href="#">${vo.title}</a>
+                          <a href="cs_notice_selectOne.do?num=${vo.num}">${vo.title}</a>
+                            <input type="hidden" name="num" value="${vo.num}">
                         </h3>
                         <h5 style="height: 5px; margin-top: 10px;">${vo.write_date}</h5>
                       </div>
                     </li>
                   </ul>
-                  <li class="notice_img_enter"><a href="#"> <img src="resources/uploadimg/rightArrow.png"></a></li>
-                </li>
+                  <li class="notice_img_enter"><a href="cs_notice_selectOne.do?num=${vo.num}"> <img src="resources/uploadimg/rightArrow.png"></a></li>
+                  <input type="hidden" name="num" value="${vo.num}">
+
+                  </li>
               </ul>
             </div>
           </div>
