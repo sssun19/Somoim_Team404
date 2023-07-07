@@ -52,5 +52,11 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 		return null;
 	}
 
+	@Override
+	public UserinfoVO mypageSelectOne(UserinfoVO vo) {
+		log.info("mypageSelectOne....{}", vo);
+		return sqlSession.selectOne("U_SELECT_ID", vo);
+	}
+
 		
 }
