@@ -27,6 +27,7 @@
 
         <div class="schedule_insert_section" style="margin-top: 50px;">
             <div class="schedule_insert_section_box">
+                <input type="text" value="${num}" id="Schedule_Somoim_num"}>
                 <h2>제목</h2>
                 <input type="text" placeholder="모임 제목을 입력하세요." id="sch_insert_title">
                 <h2>날짜</h2>

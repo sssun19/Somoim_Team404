@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="resources/js/board.js"></script>
 </head>
@@ -21,6 +19,7 @@
 
 
 
+<form action="som_member_insertOK.do" method="POST">
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -32,7 +31,7 @@
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
 
 <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab sapiente necessitatibus illum sint unde ad fugit, voluptatum commodi repudiandae laboriosam. Aperiam possimus, eius tenetur temporibus dolorum laudantium beatae quibusdam fuga?</p>
+             <p>${vo2.som_content}</p>
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
@@ -136,8 +135,16 @@
 
             </div>
         </div>
-        <button type="button" id="som_register">모임 가입하기</button>
+
+        <input type="hidden" name="user_id" value="${user_id}">
+        <input type="hidden" name="num" value="${vo2.num}">
+        <input type="hidden" name="som_title" value="${vo2.som_title}">
+        <input type="hidden" name="save_name" value="${vo2.save_name}">
+        <input type="submit" id="som_register" value="모임 가입하기">
+
     </div>
+
+</form>
     <div class="footer">
         <div>
             <strong>온앤오프</strong>
