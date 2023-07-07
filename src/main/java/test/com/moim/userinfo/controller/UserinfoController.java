@@ -5,12 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-//import test.com.moim.userinfo.controller.Email;
-//import test.com.moim.userinfo.controller.EmailSender;
-import test.com.moim.userinfo.model.UserinfoVO;
 import test.com.moim.userinfo.service.UserinfoService;
 
 import java.awt.Graphics2D;
@@ -20,8 +16,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-//import javax.mail.internet.AddressException;
-//import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -152,11 +146,11 @@ public class UserinfoController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout() {
 		log.info("/logout.do");
-		
+
 		session.invalidate();
 
 		return "redirect:home.do";
@@ -169,28 +163,28 @@ public class UserinfoController {
 
 		return "userinfo/findId";
 	}
-	
+
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
 	public String findPassword() {
 		log.info("/findPassword.do");
-		
+
 		return "userinfo/findPassword";
 	}
-	
+
 	@RequestMapping(value = "/findPassword2.do", method = RequestMethod.GET)
 	public String findPassword2() {
 		log.info("/findPassword2.do");
-		
+
 		return "userinfo/findPassword2";
 	}
-	
+
 	@RequestMapping(value = "/findPassword3.do", method = RequestMethod.GET)
 	public String findPassword3() {
 		log.info("/findPassword3.do");
-		
+
 		return "userinfo/findPassword3";
 	}
-	
+
 }
 
 

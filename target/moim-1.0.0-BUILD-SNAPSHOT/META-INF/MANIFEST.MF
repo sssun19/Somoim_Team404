@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: 유동원
 Build-Jdk: Oracle OpenJDK version 11.0.2
 =======
@@ -12,4 +13,8 @@ Build-Jdk: version 11.0.2
 Built-By: Jun
 Build-Jdk: Oracle OpenJDK version 11.0.2
 >>>>>>> ac987e53a17be2065d6d4907fd6c806965ca19ba
+=======
+Built-By: Computer
+Build-Jdk: 11.0.2
+>>>>>>> 8aaf63f8b2b21a5a9f1357df807c9d95c9895e9e
 
