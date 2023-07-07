@@ -56,7 +56,7 @@ public class SomoimService {
 
 
 	public UserinfoVO searchSavename(UserinfoVO uvo) {
-		log.info("제발돼라...{}", uvo);
+		log.info("searchSavename...{}", uvo);
 		return dao.searchSavename(uvo);
 	}
 	

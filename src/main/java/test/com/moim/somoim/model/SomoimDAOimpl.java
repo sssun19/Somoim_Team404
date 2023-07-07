@@ -73,7 +73,7 @@ public class SomoimDAOimpl implements SomoimDAO {
 	}
 
 	public UserinfoVO searchSavename(UserinfoVO uvo) {
-		log.info("제발돼라...{}", uvo.getUser_id());
+		log.info("searchSavename...{}", uvo.getUser_id());
 		return session.selectOne("SEARCH_SAVENAME", uvo);
 	}
 

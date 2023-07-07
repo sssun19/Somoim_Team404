@@ -13,10 +13,6 @@
 		select * from somoim_member where user_id=#{user_id} and somoim_num=#{num}
 	</select>
 	
-<!-- 	<select id="PROFILE_SEARCH" resultType="test.com.moim.member.model.MemberVO"> -->
-<!-- 		select * from userinfo a join somoim_member b on a.user_id=b.user_id where b.somoim_num=40; -->
-<!-- 	</select> -->
-	
 	<select id="MEMBER_SEARCH_LIST_USERID" resultType="test.com.moim.member.model.MemberVO">
 		select * from somoim_member where user_id like #{searchWord}
 	</select>

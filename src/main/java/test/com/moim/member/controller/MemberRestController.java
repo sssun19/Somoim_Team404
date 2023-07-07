@@ -42,7 +42,7 @@ public class MemberRestController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/som_member_profileCheck.do", method = RequestMethod.GET)
-	public List<MemberVO> som_member_insert(MemberVO vo) {
+	public List<MemberVO> som_member_profileCheck(MemberVO vo) {
 		log.info("잘 넘어옴");
 		log.info("num : {}", vo.getNum());
 		
