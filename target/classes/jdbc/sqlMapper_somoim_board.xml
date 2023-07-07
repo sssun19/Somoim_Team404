@@ -87,6 +87,17 @@
 
 	</update>
 
+	<update id="SCH_CANCEL_UPDATE">
+		update somoim_schedule
+		SET
+		    participant = #{participant},
+			participant_count = participant_count -1
+		where
+		    num = #{num}
+
+
+	</update>
+
 
 	<!--
 	<select id="b_SELECT_ONE"

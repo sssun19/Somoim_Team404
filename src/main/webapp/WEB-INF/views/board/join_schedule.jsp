@@ -33,10 +33,11 @@
                     <div class="sch_func">
                             <span>
                                 <input type="hidden" value="${vo.num}" class="PART_UPDATE_NUM">
+                                <input type="hidden" value="${vo.somoim_num}" id="somoim_num">
                                 <input type="hidden" value="${vo.participant}" class="PART_UPDATE_Participant">
                                 <input type="hidden" value="${user_id}" class="PART_UPDATE_USER_ID">
                                 <button type="button" class="participant_btn" onclick="Participant_UpdateOK(this)">참석</button>
-                                <button type="button" class="participant_cancle_btn">취소</button>
+                                <button type="button" class="participant_cancle_btn" onclick="Participant_Cancle(this)">취소</button>
                             </span>
                         <span>
                                 <button type="button">
@@ -50,7 +51,6 @@
                     </div>
                     <div class="sch_content">
                         <div class="sch_info" style="text-align: left">
-
 
                             <h2>${vo.schedule_date}</h2>
                             <strong style="font-size: 20px;" >${vo.schedule_title}</strong>
@@ -107,11 +107,7 @@
 </body>
 
 <script>
-    var message = "${message}"; // Model에서 전달된 메시지 가져오기
 
-    if (message) {
-        alert(message); // 메시지가 존재할 경우 알림 표시
-    }
 </script>
 
 </html>

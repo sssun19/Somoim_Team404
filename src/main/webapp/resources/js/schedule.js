@@ -4,9 +4,16 @@ function Participant_UpdateOK(btn) {
     var numField = $(btn).closest('li').find('.PART_UPDATE_NUM');
     var num2Field = $(btn).closest('li').find('.PART_UPDATE_Participant');
 
-    console.log(numField.val());
     console.log(num2Field.val());
-    console.log($('.PART_UPDATE_USER_ID').val());
+    var AlreadyCheck = num2Field.val().split("/");
+    var UserCheck = $('.PART_UPDATE_USER_ID').val();
+    for (var i = 0; i < AlreadyCheck.length; i++) {
+        if (AlreadyCheck[i] == UserCheck) {
+            console.log(AlreadyCheck[i]);
+            alert("이미 참석하신 일정입니다.");
+            return;
+        }
+    }
 
     $.ajax({
         url: "Participant_UpdateOK.do",
@@ -19,10 +26,58 @@ function Participant_UpdateOK(btn) {
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
         },
-        error:function(xhr,status,error){
+        error: function(xhr, status, error) {
             console.log('xhr.status:', xhr.status);
         }
     });
+}
 
-} //end function()
+
+function Participant_Cancle(btn){
+    console.log("Participant_Cancle....");
+    var num2Field = $(btn).closest('li').find('.PART_UPDATE_Participant');
+
+    console.log(num2Field.val());
+    var AlreadyCheck = num2Field.val().split("/");
+    var UserCheck = $('.PART_UPDATE_USER_ID').val();
+    var validParticipants = [];
+
+    for (var i = 0; i < AlreadyCheck.length; i++) {
+        if (AlreadyCheck[i] != UserCheck) {
+            validParticipants.push(AlreadyCheck[i]);
+        } else {
+
+        }
+    }
+
+    var numField = $(btn).closest('li').find('.PART_UPDATE_NUM');
+    var result = validParticipants.join('/');
+    console.log(result); // This will output the new string joined with '/'
+
+    var CheckMessage = confirm("참석을 취소하시겠습니까?");
+    if (CheckMessage){
+        $.ajax({
+            url: "Participant_CancleOK.do",
+            data: {
+                num: numField.val(),
+                participant: result,
+            },
+            method: 'POST',
+            dataType: 'text',
+            success: function(response) {
+                console.log('ajax....success', response);
+                location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
+            },
+            error: function(xhr, status, error) {
+                console.log('xhr.status:', xhr.status);
+            }
+        });
+
+    }else{
+
+    }
+
+
+}

@@ -26,4 +26,6 @@ public interface BoardDAO {
     int join_insert(Somoim_BoardVO vo);
 
     int SCH_PART_UPDATE(Somoim_ScheduleVO vo);
+
+    int SCH_Part_Cancle(Somoim_ScheduleVO vo);
 }

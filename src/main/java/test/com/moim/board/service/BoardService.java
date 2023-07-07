@@ -61,4 +61,8 @@ public class BoardService {
     }
 
     public int SCH_Part_Update(Somoim_ScheduleVO vo) { return dao.SCH_PART_UPDATE(vo);    }
+
+    public int SCH_Part_Cancle(Somoim_ScheduleVO vo) {
+        return dao.SCH_Part_Cancle(vo);
+    }
 }

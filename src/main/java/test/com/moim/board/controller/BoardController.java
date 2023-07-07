@@ -332,15 +332,38 @@ public class BoardController {
 
         if (result==1){
             log.info("업데이트 완료");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
 
         }else{
             log.info("업데이트 X");
-            model.addAttribute("message", "업데이트에 실패했습니다.");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
         }
 
 
 
-        return "redirect:join_schedule.do";
+
+
+
+
+    }
+    @RequestMapping(value = "/Participant_CancleOK.do", method = RequestMethod.POST)
+    public String Participant_CancleOK(Somoim_ScheduleVO vo) {
+        log.info("Participant_CancleOK.do().....{}",vo);
+
+        int result = service.SCH_Part_Cancle(vo);
+
+        if (result==1){
+            log.info("업데이트 완료");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+
+        }else{
+            log.info("업데이트 X");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+        }
+
+
+
+
 
 
 
