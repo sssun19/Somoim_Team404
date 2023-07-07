@@ -14,4 +14,7 @@
     <select id="LOGIN" resultType="test.com.moim.userinfo.model.UserinfoVO">
         select * from userinfo where user_id = #{user_id} and pw = #{pw}
     </select>
+    <select id="SEARCH_SAVENAME" resultType="test.com.moim.userinfo.model.UserinfoVO">
+        select save_name from userinfo where user_id=#{user_id}
+    </select>
 </mapper>
