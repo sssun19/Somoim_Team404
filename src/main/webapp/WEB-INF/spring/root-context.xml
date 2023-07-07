@@ -36,6 +36,7 @@
 				<value>classpath:jdbc/sqlMapper_comments.xml</value>
 				<value>classpath:jdbc/sqlMapper_d_comments.xml</value>
 				<value>classpath:jdbc/sqlMapper_userinfo.xml</value>
+				<value>classpath:jdbc/sqlMapper_events.xml</value>
 			</list>
 		</property>
 	</bean>
