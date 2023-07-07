@@ -34,14 +34,14 @@ public class CsDAOimpl implements CsDAO {
 
 	@Override
 	public int update(CsVO vo) {
-		log.info("abc");
-		return 0;
+		log.info("update");
+		return sqlSession.update("CS_UPDATE",vo);
 	}
 
 	@Override
 	public int delete(CsVO vo) {
-		log.info("abc");
-		return 0;
+		log.info("delete");
+		return sqlSession.delete("CS_DELETE", vo);
 	}
 
 	@Override

@@ -40,6 +40,13 @@
 
     </div>
 
+
+    <c:if test="${user_id eq 'tester'}">
+    <a href="cs_notice_update.do?num=${vo2.num}&title=${vo2.title}&content=${vo2.content}&user_id=${user_id}"><button>수정</button></a>
+    <a href="cs_notice_deleteOK.do?num=${vo2.num}"><button>삭제</button></a>
+
+    </c:if>
+
     <div class="footer">
         <div>
             <strong>온앤오프</strong>

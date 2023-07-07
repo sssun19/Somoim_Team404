@@ -33,6 +33,15 @@
  	</select>
 
 
+	<update id="CS_UPDATE">
+		update notice set title=#{title},content=#{content}
+		where num=#{num}
+	</update>
+
+	<delete id="CS_DELETE">
+		delete from notice where num=#{num}
+	</delete>
+
 	<!--
 	<select id="b_SELECT_ONE"
 		resultType="test.com.semi.board.model.BoardVO">

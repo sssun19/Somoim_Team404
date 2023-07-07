@@ -53,12 +53,12 @@
               html += '<ul class="boarding">';
               html += '<li>';
               html += '<div>';
-              html += '<h3><a href="#">' + vo.title + '</a></h3>';
+              html += '<h3><a href="cs_notice_selectOne.do?num=' + vo.num + '">' + vo.title + '</a></h3>';
               html += '<h5 style="height: 5px; margin-top: 10px;">' + vo.write_date + '</h5>';
               html += '</div>';
               html += '</li>';
               html += '</ul>';
-              html += '<li class="notice_img_enter"><a href="#"><img src="resources/uploadimg/rightArrow.png"></a></li>';
+              html += '<li class="notice_img_enter"><a href="cs_notice_selectOne.do?num=' + vo.num + '"><img src="resources/uploadimg/rightArrow.png"></a></li>';
               html += '</ul>';
               html += '</div>';
               html += '</div>';
@@ -87,7 +87,6 @@
 <body >
 	<jsp:include page="../top_menu.jsp"></jsp:include>
 	<jsp:include page="./notice_top_menu.jsp"></jsp:include>
-
 
 
 
@@ -128,13 +127,15 @@
         <button class="more_but">더 보기 ></button>
       </div>
 
-      <c:if test="${user_id eq 'tester'}">
-        <a href="cs_notice_insert.do">Write</a>
-      </c:if>
+
     </div>
+      <c:if test="${user_id eq 'tester'}">
+          <a href="cs_notice_insert.do"><button>Write</button></a>
+      </c:if>
+
   </div>
 
-  
+
 </body>
 
 
