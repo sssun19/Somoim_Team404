@@ -39,8 +39,9 @@ public class som_comments_controller {
 		int result = commService.delete(vo);
 
 		log.info("result...{}", result);
-		
-		return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
+
+			return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
+
 	}
 	
 	@RequestMapping(value = "/som_comm_insertOK.do", method = RequestMethod.GET)
@@ -50,7 +51,7 @@ public class som_comments_controller {
 		
 		log.info("result...{}", result);
 		
-		return "redirect:join_selectOne.do?num="+vo.getNum();
+		return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
 		
 	}
 	
