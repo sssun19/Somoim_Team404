@@ -15,4 +15,3 @@
         select * from userinfo where user_id = #{user_id} and pw = #{pw}
     </select>
 </mapper>
-
