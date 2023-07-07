@@ -45,6 +45,7 @@
 	</bean>
 	<!-- 이메일 보내기 -->
 	<!-- gmail 로그인 후 로그인 &보안 ====보안 수준이 낮은 앱 허용: 사용으로 변경 -->
+<<<<<<< HEAD
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
@@ -56,4 +57,17 @@
 			</props>
 		</property>
 	</bean>
+=======
+	    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	       <property name="host" value="smtp.gmail.com" />
+	       <property name="port" value="587" />
+	       <property name="username" value="wendy3302@gmail.com" />
+	       <property name="password" value="ftbesifkhssazmgz" />
+	       <property name="javaMailProperties">
+	          <props>
+	             <prop key="mail.smtp.starttls.enable">true</prop>
+	          </props>
+	       </property>
+	    </bean>
+>>>>>>> 3beb3b8139112dba8cfeb05a3b7b06ee3a20f4b0
 </beans>
