@@ -15,47 +15,7 @@
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 
 
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script type="text/javascript">
 
-         $(function() { 
-        	 $("input[name='category']").on('click', function() {
-                 console.log("onload..."); 
-                 var category = $(this).val(); 
-                 console.log($(this).val()); 
-                 $.ajax({ 
-                     url : 'som_selectAll.do', 
-                     method:'GET', 
-                     data : { 
-                         'category':category 
-                     }, 
-                     success : function(data){ 
-                         console.log('이게 데이터', data); 
-                         console.log('category', category); 
-
-                        $('body').html(data);
-                    },
-                    error : function(xhr, status, error){
-                        console.log('xhr.status : ', xhr.status);
-                    }
-
-
-
-                });//end ajax
-            });//end click
-
-        });//end ready
-
-
-        // 	function som_searchList(){
-
-
-
-        // 	}
-
-
-    </script>
 
 </head>
 <body>
@@ -242,4 +202,5 @@
 </div>
 </body>
 <script src="resources/js/board.js"></script>
+
 </html>

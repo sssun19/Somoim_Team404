@@ -310,11 +310,33 @@ public class BoardController {
 
     }
 
-    @RequestMapping(value = "/join_schedule_delete.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/d.do", method = RequestMethod.GET)
     public String join_schedule_delete(Somoim_ScheduleVO vo) {
         log.info("join_schedule_delete.do().....{}",vo);
 
         int result = service.Sch_delete(vo);
+
+
+
+        return "redirect:join_schedule.do";
+
+
+
+    }
+
+    @RequestMapping(value = "/Participant_UpdateOK.do", method = RequestMethod.POST)
+    public String Participant_UpdateOk(Somoim_ScheduleVO vo,Model model) {
+        log.info("Participant_UpdateOk.do().....{}",vo);
+
+        int result = service.SCH_Part_Update(vo);
+
+        if (result==1){
+            log.info("업데이트 완료");
+
+        }else{
+            log.info("업데이트 X");
+            model.addAttribute("message", "업데이트에 실패했습니다.");
+        }
 
 
 

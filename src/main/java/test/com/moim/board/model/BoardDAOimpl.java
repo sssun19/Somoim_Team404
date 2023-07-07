@@ -73,4 +73,9 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.insert("JOIN_INSERT",vo);
     }
 
+    @Override
+    public int SCH_PART_UPDATE(Somoim_ScheduleVO vo) {
+        return sqlSession.update("SCH_PART_UPDATE",vo);
+    }
+
 }
