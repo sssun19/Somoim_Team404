@@ -1,12 +1,15 @@
 package test.com.moim.com_comments.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.somoim.model.SomoimVO;
 
 @Slf4j
 @Repository
@@ -23,42 +26,52 @@ public class som_comm_commentsDAOimpl implements som_comm_commentsDAO {
 	}
 	@Override
 	public int insert(som_comm_commentsVO vo) {
-		log.info(" ´ë´ñ±ÛÀÔ´Ï´Ù. dao.inserct().... {}", vo );
-		log.info("µî·ÏµË´Ï´Ù");
+		log.info(" ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½. dao.inserct().... {}", vo );
+		log.info("ï¿½ï¿½ÏµË´Ï´ï¿½");
 		
 		return sqlsession.update("SOM_D_C_INSERT",vo);
 	}
 
 	@Override
 	public int update(som_comm_commentsVO vo) {
-		log.info(" ´ë´ñ±ÛÀÔ´Ï´Ù   update()...{}",vo);
+		log.info(" ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½   update()...{}",vo);
 		return sqlsession.update("SOM_D_C_UPDATE",vo);
 	}
 
 	@Override
 	public int delete(som_comm_commentsVO vo) {
-		log.info("´ë´ñ±ÛÀÔ´Ï´Ù   delete()...{}",vo);
+		log.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½   delete()...{}",vo);
 		return sqlsession.delete("SOM_D_C_DELETE",vo);
 	}
 
 	@Override
 	public List<som_comm_commentsVO> selectAll(som_comm_commentsVO vo) {
-		log.info("´ë´ñ±ÛÀÔ´Ï´Ù selectAll()...{}",vo);
+		log.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½ selectAll()...{}",vo);
 		return sqlsession.selectList("SOM_D_C_SELECT_ALL", vo);
 	}
 	@Override
 	public void good_count_up(som_comm_commentsVO vo) {
 //		log.info("vcountUp()....{}",vo);
 //		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("¿Ã¶ó°©´Ï´Ù");
+		log.info("ï¿½Ã¶ó°©´Ï´ï¿½");
 		
 	}
 	@Override
 	public void som_board_num_down(som_comm_commentsVO vo) {
-//		log.info("vcountUp()....{}",vo);
-//		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("³»·Á°©´Ï´Ù");
+//
 
 	}
+
+//	@Override
+//	public List<SomoimVO> searchList(int searchKey, int searchWord) {
+//
+//
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("searchWord",  "%"+searchWord+"%");
+//		map.put("category", category);
+//
+//
+//		return null;
+//	}
 
 }

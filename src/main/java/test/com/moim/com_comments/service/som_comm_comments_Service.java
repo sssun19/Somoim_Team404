@@ -2,11 +2,14 @@ package test.com.moim.com_comments.service;
 
 import java.util.List;
 
+import lombok.extern.slf4j.XSlf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import test.com.moim.com_comments.model.som_comm_commentsDAO;
 import test.com.moim.com_comments.model.som_comm_commentsVO;
+import test.com.moim.somoim.model.SomoimVO;
+
 
 @Service
 public class som_comm_comments_Service {
@@ -38,6 +41,15 @@ public class som_comm_comments_Service {
 	public void som_board_num_down(som_comm_commentsVO vo) {
 		
 	}
+
+
+//	public List<SomoimVO> searchList(int searchKey, int searchWord) {
+//
+//		return dao.searchList(searchKey, searchWord);
+//	}
+
+
+
 	
 
 }
