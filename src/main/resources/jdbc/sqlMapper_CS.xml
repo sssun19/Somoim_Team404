@@ -6,13 +6,13 @@
 <mapper namespace="test.com.moim.cs">
 	<select id="CS_SELECT_ALL"
 		resultType="test.com.moim.cs.model.CsVO">
-		select * from notice
+		select * from notice order by num desc
 	</select>
 
 
 	<insert id="CS_INSERT">
-		insert into notice (num, user_id, title, content) 
-	values (seq_notice.nextval, #{user_id, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR})
+		insert into notice (num, user_id, title, content, save_name)
+	values (seq_notice.nextval, #{user_id, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},#{save_name})
 	</insert>
 	
 		<select id="BUG_SELECT_ALL"
@@ -34,7 +34,7 @@
 
 
 	<update id="CS_UPDATE">
-		update notice set title=#{title},content=#{content}
+		update notice set title=#{title},content=#{content}, save_name=#{save_name}
 		where num=#{num}
 	</update>
 
