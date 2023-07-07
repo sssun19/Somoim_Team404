@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.somoim.model.SomoimDAOimpl;
 import test.com.moim.somoim.model.SomoimVO;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 @Service
 @Slf4j
@@ -52,7 +53,17 @@ public class SomoimService {
 		log.info("delete().....{}", vo);
 		return dao.delete(vo);
 	}
+
+
+	public UserinfoVO searchSavename(UserinfoVO uvo) {
+		log.info("searchSavename...{}", uvo);
+		return dao.searchSavename(uvo);
+	}
 	
+//	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
+//		log.info(".....!!{}", uvo);
+//		return dao.selectprofileOne(uvo);
+//	}
 
 	
 }
