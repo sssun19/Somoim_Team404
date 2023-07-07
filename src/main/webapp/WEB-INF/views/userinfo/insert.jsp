@@ -147,7 +147,7 @@ $(document).ready(function() {
     <label for="user_email">이메일</label>
     <br>
     <div class="register_input_flex">
-        <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" onchange="saveEmail()">
+        <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" onchange="saveEmail()" style="width: 75%;">
         <button type="button" class="mail_check_button" id="mail_check_button">인증번호</button>
     </div>
     <br>

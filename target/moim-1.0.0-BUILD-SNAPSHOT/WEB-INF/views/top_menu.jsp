@@ -22,8 +22,18 @@
                 <input type="search" placeholder="검색">
             </div>
             <div class="login">
-                <a href="login.do">로그인</a>
-                <a href="logout.do">로그아웃</a>
+                <c:choose>
+                    <c:when test="${empty sessionScope.user_id}">
+                        <!-- 로그인이 안되어있을 경우 -->
+                        <a href="login.do">로그인</a>
+                        <a href="u_insert.do">회원가입</a>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- 로그인이 되어있을 경우 -->
+                        <a href="mypage.do">마이페이지</a>
+                        <a href="logout.do">로그아웃</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
         </div>
