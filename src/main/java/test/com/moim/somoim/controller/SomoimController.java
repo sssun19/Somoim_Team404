@@ -72,6 +72,7 @@ public class SomoimController {
 	
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)
 	public String som_insert() {
+
 		log.info("som_insert.do().....");
 		
 		return "board/som_insert";
@@ -79,6 +80,7 @@ public class SomoimController {
 	
 	@RequestMapping(value = "/som_insertOK.do", method = RequestMethod.POST)
 	public String som_insertOK(SomoimVO vo) throws IllegalStateException, IOException {
+
 		log.info("som_insertOK.do().....{}", vo);
 		
 		int fileNameLength = vo.getFile().getOriginalFilename().length();

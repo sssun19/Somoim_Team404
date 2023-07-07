@@ -220,7 +220,7 @@
 
 .community_insert_section input[type="text"],
 .community_insert_section textarea {
-    width: 99%;
+    width: 96%;
     border: #ccc solid 1px;
     border-radius: 5px;
     outline: none;
@@ -257,11 +257,15 @@
     margin-top: 30px;
 }
 
+#insert_content {
+    height: 600px; /* div의 최대 높이를 설정합니다 */
+    max-height: 600px; /* 높이가 600px를 초과하지 않도록 이 줄을 추가합니다 */
+    overflow: auto;
+}
 
-
-#insert_content{
-    height: 600px;
-    text-align: center;
+div#insert_content {
+    border: 1px solid #D6D6D6;
+    border-radius: 4px;
 }
 
 .center {
@@ -414,4 +418,24 @@
     padding: 20px;
     font-weight: 600;
     font-size: 16px;
+}
+
+/* toolbar */
+div#editor {
+    padding: 16px 24px;
+    border: 1px solid #D6D6D6;
+    border-radius: 4px;
+}
+
+#img-selector {
+    display: none;
+}
+
+#editor img {
+    max-width: 100%;
+}
+
+button.active {
+    background-color: purple;
+    color: #FFF;
 }
