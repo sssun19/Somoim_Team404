@@ -22,6 +22,7 @@
                 <input type="search" placeholder="검색">
             </div>
             <div class="login">
+           		<a href="mypage.do">${user_id } 님</a> 
                 <a href="login.do">로그인</a>
                 <a href="logout.do">로그아웃</a>
             </div>
@@ -29,3 +30,16 @@
         </div>
 
     </div>
+    
+    <script type="text/javascript">
+	if('${user_id}'===''){
+		console.log('로그인풀림');
+// 		$('.loginCheck').hide();
+		$("a[href='mypage.do']").hide();
+		$("a[href='logout.do']").hide();
+		
+	}else{
+		$("a[href='login.do']").hide();
+	}
+    </script>
+    

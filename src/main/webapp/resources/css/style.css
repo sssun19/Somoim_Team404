@@ -11,9 +11,19 @@ ul{
     list-style: none;
 }
 
+
+
+
+
+
 @media only screen and (min-width: 767px) {
     /* 스타일 작성 */
- 
+body {
+        min-height: 100vh;
+        position: relative;
+        padding-bottom: 131px; /* footer의 높이만큼의 여백을 추가해야합니다. 예를 들어 footer의 높이가 80px라면 이 값으로 설정 */
+        box-sizing: border-box;
+}
   
 
 .gnb{
@@ -152,9 +162,13 @@ nav > ul > li{
     text-align: center;
 }
 
-.footer{
-    width: 1440px;
-    margin: 0 auto;
+.footer {
+        width: 1440px;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        height: 80px; /* footer의 높이를 지정합니다 */
 }
 
 
@@ -484,6 +498,7 @@ form{
     border-radius: 5px;
     outline: none;
 }
+
 
 .register_section #user_email,
 .register_section #email_token{
