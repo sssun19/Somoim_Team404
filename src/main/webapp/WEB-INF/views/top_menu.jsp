@@ -22,6 +22,7 @@
                 <input type="search" placeholder="검색">
             </div>
             <div class="login">
+            <h>${user_id } 님</h>
                 <a href="login.do">로그인</a>
                 <a href="logout.do">로그아웃</a>
             </div>
