@@ -79,41 +79,13 @@
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
-            <ul id="img_members">
-            
-            </ul>
-<!--             <div class="frofile_img"> <ul> -->
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<%--                         <img src="resources/uploadimg/${vo2.save_name}" width="50" height="50"> --%>
-<!--                     </div> -->
-<!--                 </li> -->
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<%--                         <img src="resources/uploadimg/${vo2.save_name}" width="50" height="50"> --%>
-<!--                     </div> -->
-<!--                 </li> -->
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<%--                         <img src="resources/uploadimg/${vo2.save_name}" width="50" height="50"> --%>
-<!--                     </div> -->
-<!--                 </li> -->
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<%--                         <img src="resources/uploadimg/${vo2.save_name}" width="50" height="50"> --%>
-<!--                     </div> -->
-<!--                 </li> -->
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<%--                         <img src="resources/uploadimg/${vo2.save_name}" width="50" height="50"> --%>
-<!--                     </div> -->
-<!--                 </li> -->
+            <ul id="img_members">            
 <!--                 <li> -->
 <!--                     <div class="round_box"> -->
 <!--                         <i class="far fa-user"></i> -->
 <!--                     </div> -->
 <!--                 </li> -->
-<!--             </ul></div> -->
+            </ul>           
             
         </div>
         <div class="join_cal">
