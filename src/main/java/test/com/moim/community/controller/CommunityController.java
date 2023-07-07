@@ -155,20 +155,20 @@ public class CommunityController {
 
 		return "community/update";
 	}
-	
+
 	@RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
 	public String community_updateOK(CommunityVO vo) {
 		log.info("/community_updateOK.do...{}", vo);
-		
+
 		int result = service.update(vo);
 		log.info("result...{}", result);
-		
+
 		if(result==1) {
 			return "redirect:community_selectOne.do?num="+vo.getNum();
 		}else {
 			return "redirect:community_update.do?num="+vo.getNum();
 		}
-		
+
 	}
 	
 	@RequestMapping(value = "/community_deleteOK.do", method = RequestMethod.GET)

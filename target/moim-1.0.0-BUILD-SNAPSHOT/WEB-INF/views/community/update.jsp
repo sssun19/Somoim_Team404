@@ -69,9 +69,10 @@
                     <button type="button" id="btn-image">IMG</button>
                     <input id="img-selector" type="file" accept="image/*"/>
                 </div>
-                <div id="insert_content" contenteditable="true">${vo2.content}</div>
+                <div id="insert_content" contenteditable="true">${vo2.content}
                 <input type="hidden" id="hidden_content" name="content"
                        value="${vo2.content}">
+                <img src="resources/uploadimg/${vo2.save_name}"></div>
                 <!-- Hidden input field to store the content -->
             </div>
             <div class="center">
