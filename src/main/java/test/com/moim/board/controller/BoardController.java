@@ -1,11 +1,17 @@
 package test.com.moim.board.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import lombok.extern.slf4j.Slf4j;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
 import test.com.moim.board.service.BoardService;
@@ -13,11 +19,6 @@ import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
-
-import javax.servlet.http.HttpSession;
-import java.time.Clock;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Handles requests for the application home page.
@@ -203,7 +204,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
     public String join_schedule(Model model, Somoim_ScheduleVO vo) {
-        log.info("join_schedule.do().....{}");
+        log.info("join_schedule.do().....{}", vo);
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 

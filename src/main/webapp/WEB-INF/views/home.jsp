@@ -73,7 +73,7 @@
              </div>
           </li>
        </ul>
-       <button id="more_info">더보기 ></button>
+       <a href="som_selectAll.do"><button id="more_info">더보기 ></button></a>
     </div>
     <div class="moim_list02">
        <strong>원데이</strong>
