@@ -66,7 +66,7 @@
 			seq_somoim_board.nextval,
 		    #{title},
 			#{content},
-			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num}),
+			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
 			#{somoim_num},
 			sysdate
 
@@ -74,6 +74,30 @@
 
 		)
 	</insert>
+
+	<update id="SCH_PART_UPDATE">
+		UPDATE somoim_schedule
+		SET
+			participant = participant || '/' || #{user_id},
+			participant_count = participant_count + 1
+		WHERE
+			num = #{num}
+		  	AND INSTR(participant, '/' || #{user_id}) = 0
+
+
+	</update>
+
+	<update id="SCH_CANCEL_UPDATE">
+		update somoim_schedule
+		SET
+		    participant = #{participant},
+			participant_count = participant_count -1
+		where
+		    num = #{num}
+
+
+	</update>
+
 
 	<!--
 	<select id="b_SELECT_ONE"

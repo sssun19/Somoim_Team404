@@ -1,3 +1,4 @@
+
 package test.com.moim.userinfo.controller;
 
 import javax.mail.internet.InternetAddress;
@@ -23,3 +24,4 @@ public class EmailSender {
 		mailSender.send(msg);
 	}
 }
+

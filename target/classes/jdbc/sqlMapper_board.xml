@@ -30,9 +30,11 @@
 				   #{money},
 				   #{max_participant},
 				   (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-				   #{somoim_num},
-				   #{participant},
-				   1
+		        	#{somoim_num},
+		        	#{participant},
+		        	1
+
+
 
 
 			   )

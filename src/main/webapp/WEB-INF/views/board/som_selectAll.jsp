@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          language="java"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -19,20 +18,20 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
 
-         $(function() { 
-        	 $("input[name='category']").on('click', function() {
-                 console.log("onload..."); 
-                 var category = $(this).val(); 
-                 console.log($(this).val()); 
-                 $.ajax({ 
-                     url : 'som_selectAll.do', 
-                     method:'GET', 
-                     data : { 
-                         'category':category 
-                     }, 
-                     success : function(data){ 
-                         console.log('이게 데이터', data); 
-                         console.log('category', category); 
+        $(function() {
+            $("input[name='category']").on('click', function() {
+                console.log("onload...");
+                var category = $(this).val();
+                console.log($(this).val());
+                $.ajax({
+                    url : 'som_selectAll.do',
+                    method:'GET',
+                    data : {
+                        'category':category
+                    },
+                    success : function(data){
+                        console.log('이게 데이터', data);
+                        console.log('category', category);
 
                         $('body').html(data);
                     },

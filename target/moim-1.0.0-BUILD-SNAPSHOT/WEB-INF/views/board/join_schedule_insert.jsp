@@ -41,7 +41,7 @@
                 <h2>참여 인원</h2>
                 <input type="range" value="150" min="1" max="300" id="sch_insert_max_member">
 
-                <input type="hidden" value="${user_id}" id="user_id">
+                <input type="text" value="${user_id}" id="user_id">
                 <span>
                 <p>0명</p>
                 <p id="range_text">100명</p>
@@ -85,8 +85,10 @@
 
         </div>
 
+    <scirt>
 
 
+    </scirt>
 
 </body>
 </html>

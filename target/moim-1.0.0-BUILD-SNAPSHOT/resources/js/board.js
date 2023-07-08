@@ -6,12 +6,12 @@ $(document).ready(function() {
         event.preventDefault();
         var listItems = [
             "운동", "야구관람", "게임/오락", "아웃도어", "반려동물", "문화/공연", "카페/맛집", "공예",
-            "도서", "사진/영상", "사교/인맥", "음악/악기", "업종/직무", "해외/언어", "요리", "배이커리",
+            "도서", "사진/영상", "야구", "음악/악기", "업종/직무", "해외/언어", "요리", "배이커리",
             "자유주제","자유주제"
         ];
         $.each(listItems, function(index, item) {
             var li = $('<li/>');
-            var input = $('<input/>', {type: 'button', value: item});
+            var input = $('<input/>', {type: 'button',name: 'category',value: item});
             li.append(input);
             $('.board_grid').append(li);
         });
@@ -97,7 +97,7 @@ function join_insertOK() {
 
 function join_updateOK() {
     console.log("join_updateOK....");
-
+    console.log($('#somoim_num').val());
     $.ajax({
         url: "join_updateOK.do",
         data: {
@@ -110,6 +110,7 @@ function join_updateOK() {
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
+            alert("성공");
             location.href="join_selectAll.do?somoim_num="+$('#somoim_num').val();
 
         },
@@ -173,7 +174,7 @@ function join_schedule_updateOK() {
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
-            location.href="join_schedule.do";
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
 
         },
         error:function(xhr,status,error){
@@ -181,3 +182,5 @@ function join_schedule_updateOK() {
         }
     });
 }//end function()
+
+
