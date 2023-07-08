@@ -41,8 +41,6 @@ m
 s
 Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
 b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-b
 2src/main/webapp/WEB-INF/views/board/som_insert.jsp,1\6\168672a77d788750ab8c4fd85b9221b1c466b317
 f
 6src/main/java/test/com/moim/somoim/model/SomoimVO.java,6\9\69da2d0219c362faf1af64f7231c1bb01f77342b
