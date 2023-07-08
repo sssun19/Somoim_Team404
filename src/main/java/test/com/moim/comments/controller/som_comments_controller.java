@@ -46,7 +46,8 @@ public class som_comments_controller {
 	
 	@RequestMapping(value = "/som_comm_insertOK.do", method = RequestMethod.GET)
 	public String som_comm_insertOK(som_commentsVO vo) {
-		
+
+		log.info("somcommcommcommcommcommcommcomm...{}", vo);
 		int result = commService.insert(vo);
 		
 		log.info("result...{}", result);
