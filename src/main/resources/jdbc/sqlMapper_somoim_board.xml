@@ -69,9 +69,6 @@
 			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
 			#{somoim_num},
 			sysdate
-
-
-
 		)
 	</insert>
 

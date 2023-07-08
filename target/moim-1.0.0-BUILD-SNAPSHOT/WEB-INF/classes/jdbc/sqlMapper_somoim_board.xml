@@ -66,16 +66,9 @@
 			seq_somoim_board.nextval,
 		    #{title},
 			#{content},
-<<<<<<< HEAD
-			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num}),
-=======
 			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
->>>>>>> 65c2e4e5dca002dda6d49c9f31c3f0c45e4ccea0
 			#{somoim_num},
 			sysdate
-
-
-
 		)
 	</insert>
 
