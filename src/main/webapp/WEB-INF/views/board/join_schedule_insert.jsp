@@ -27,6 +27,7 @@
 
         <div class="schedule_insert_section" style="margin-top: 50px;">
             <div class="schedule_insert_section_box">
+                <input type="text" value="${num}" id="Schedule_Somoim_num"}>
                 <h2>제목</h2>
                 <input type="text" placeholder="모임 제목을 입력하세요." id="sch_insert_title">
                 <h2>날짜</h2>
@@ -40,7 +41,7 @@
                 <h2>참여 인원</h2>
                 <input type="range" value="150" min="1" max="300" id="sch_insert_max_member">
 
-                <input type="hidden" value="${user_id}" id="user_id">
+                <input type="text" value="${user_id}" id="user_id">
                 <span>
                 <p>0명</p>
                 <p id="range_text">100명</p>
@@ -84,8 +85,10 @@
 
         </div>
 
+    <scirt>
 
 
+    </scirt>
 
 </body>
 </html>

@@ -14,4 +14,6 @@ public interface UserinfoDAO {
 
 	UserinfoVO idCheck(UserinfoVO vo);
 
+	UserinfoVO mypageSelectOne(UserinfoVO vo);
+
 }

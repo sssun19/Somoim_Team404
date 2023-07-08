@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -54,7 +53,7 @@
 		<div class="moim_insert">
 			<h1>지역</h1>
 			<button type="button" id="moim_location">
-				<i class="fas fa-map-marker-alt"></i>지역설정 </button>
+				<i class="fas fa-map-marker-alt"></i>지역 설정 </button>
 			
 				<input type="text" id="area" name="area" placeholder="위치를 입력하세요"
 					style="margin-top: 10px;">

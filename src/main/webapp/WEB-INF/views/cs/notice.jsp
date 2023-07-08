@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/board.css">
 <link rel="stylesheet" href="resources/css/board_min.css">
+<link rel="stylesheet" href="resources/css/CS_FAQ.do.css">
 <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -31,7 +32,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="/uploadimg/Qimg.png" alt="프로필 이미지">
+										<img src="resources/img/Qimg.png" alt="프로필 이미지">
 									</div>
 								</div>
 
@@ -41,7 +42,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="/uploadimg/Aimg.png" alt="프로필 이미지">
+										<img src="resources/img/Aimg.png" alt="프로필 이미지">
 									</div>
 								</div>
 

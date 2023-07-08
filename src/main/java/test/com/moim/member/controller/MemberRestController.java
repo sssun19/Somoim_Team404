@@ -1,6 +1,8 @@
 package test.com.moim.member.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +23,36 @@ public class MemberRestController {
 	MemberService service;
 
 	@ResponseBody
-	@RequestMapping(value = "/som_member_insertOK.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/som_member_insertOK.do", method = RequestMethod.POST)
 	public String som_member_insertOK(MemberVO vo) {
 		log.info("som_member_insertOK.do().....{}", vo);
-		log.info("==========="+ vo.getNum() + vo.getSom_title() + vo.getSave_name());
+		log.info("==========="+ vo.getSom_title() + vo.getSave_name());
+		log.info("{}", vo.getUser_id());
+		log.info("{}", vo.getNum());
 		
 		int result = service.insert(vo);
+		log.info("result : {}", result);
+		log.info("된거야?");
 		
 		if(result==1)
-			return "가입완료!"+vo.getNum()+vo.getSom_title();
+			return "OK!";
 		else
-			return "가입실패..."+vo.getNum()+vo.getSom_title();
+			return "FALSE...";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/som_member_profileCheck.do", method = RequestMethod.GET)
+	public List<MemberVO> som_member_profileCheck(MemberVO vo) {
+		log.info("잘 넘어옴");
+		log.info("num : {}", vo.getNum());
+		
+		List<MemberVO> vos = service.profileCheck(vo);
+		for (MemberVO vo2 : vos) {
+			log.info("..!!{}", vo2.getSave_name());
+		}
+		
+		return vos;
+
 	}
 	
 }

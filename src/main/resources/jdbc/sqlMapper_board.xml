@@ -15,10 +15,12 @@
 	<select id="Sch_SELECT_ALL"
 			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
 		select * from somoim_schedule
+		where somoim_num = #{somoim_num}
+		Order by num desc
 	</select>
 
 	<insert id="Sch_INSERT">
-		INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money,max_participant, som_member_num)
+		INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money,max_participant, som_member_num,somoim_num,participant,participant_count)
 		VALUES (
 				   seq_somoim_schedule.nextval,
 				   #{schedule_date},
@@ -27,7 +29,14 @@
 				   #{place},
 				   #{money},
 				   #{max_participant},
-				   (SELECT num FROM somoim_member WHERE user_id = #{user_id})
+				   (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
+		        	#{somoim_num},
+		        	#{participant},
+		        	1
+
+
+
+
 			   )
 	</insert>
 

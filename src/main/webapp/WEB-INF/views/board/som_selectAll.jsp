@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          language="java"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -14,37 +13,39 @@
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 
-    <script src="resources/js/board.js"></script>
+
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
-         $(function() { 
-             $(".button").on('click', function(category) { 
-                 console.log("onload..."); 
-                 var category = $(this).val(); 
-                 console.log($(this).val()); 
-                 $.ajax({ 
-                     url : 'som_selectAll.do', 
-                     method:'GET', 
-                     data : { 
-                         'category':category 
-                     }, 
-                     success : function(data){ 
-                         console.log('이게 데이터', data); 
-                         console.log('category', category); 
 
-                         $('body').html(data); 
-                     }, 
-                     error : function(xhr, status, error){ 
-                         console.log('xhr.status : ', xhr.status); 
-                     } 
+        $(function() {
+            $("input[name='category']").on('click', function() {
+                console.log("onload...");
+                var category = $(this).val();
+                console.log($(this).val());
+                $.ajax({
+                    url : 'som_selectAll.do',
+                    method:'GET',
+                    data : {
+                        'category':category
+                    },
+                    success : function(data){
+                        console.log('이게 데이터', data);
+                        console.log('category', category);
+
+                        $('body').html(data);
+                    },
+                    error : function(xhr, status, error){
+                        console.log('xhr.status : ', xhr.status);
+                    }
 
 
 
-                 });//end ajax 
-             });//end click 
+                });//end ajax
+            });//end click
 
-//         });//end ready
+        });//end ready
+
 
         // 	function som_searchList(){
 
@@ -64,24 +65,24 @@
 <div class="board_section">
     <div class="board_category">
         <ul class="board_grid">
-            <li><input type="button" name="category" value="여행" class="button"></li>
-            <li><input type="button" name="category" value="운동" class="button"></li>
-            <li><input type="button" name="category" value="야구" class="button"></li>
-            <li><input type="button" name="category" value="게임/오락" class="button"></li>
-            <li><input type="button" name="category" value="아웃도어" class="button"></li>
-            <li><input type="button" name="category" value="반려동물" class="button"></li>
-            <li><input type="button" name="category" value="문화/공연" class="button"></li>
-            <li><input type="button" name="category" value="카페/맛집" class="button"></li>
-            <li><input type="button" name="category" value="공예" class="button"></li>
-            <li><input type="button" name="category" value="도서" class="button"></li>
-            <li><input type="button" name="category" value="사진/영상" class="button"></li>
-            <li><input type="button" name="category" value="사교/인맥" class="button"></li>
-            <li><input type="button" name="category" value="음악/악기" class="button"></li>
-            <li><input type="button" name="category" value="업종/직무" class="button"></li>
-            <li><input type="button" name="category" value="해외/언어" class="button"></li>
-            <li><input type="button" name="category" value="요리" class="button"></li>
-            <li><input type="button" name="category" value="베이커리" class="button"></li>
-            <li><input type="button" name="category" value="자유주제" class="button"></li>
+            <li><input type="button" name="category" value="여행" class="category_active"></li>
+            <li><input type="button" name="category" value="운동"></li>
+            <li><input type="button" name="category" value="야구"></li>
+            <li><input type="button" name="category" value="게임/오락"></li>
+            <li><input type="button" name="category" value="아웃도어"></li>
+            <li><input type="button" name="category" value="반려동물"></li>
+            <li><input type="button" name="category" value="문화/공연"></li>
+            <li><input type="button" name="category" value="카페/맛집"></li>
+            <li><input type="button" name="category" value="공예"></li>
+            <li><input type="button" name="category" value="도서"></li>
+            <li><input type="button" name="category" value="사진/영상"></li>
+            <li><input type="button" name="category" value="사교/인맥"></li>
+            <li><input type="button" name="category" value="음악/악기"></li>
+            <li><input type="button" name="category" value="업종/직무"></li>
+            <li><input type="button" name="category" value="해외/언어"></li>
+            <li><input type="button" name="category" value="요리"></li>
+            <li><input type="button" name="category" value="베이커리"></li>
+            <li><input type="button" name="category" value="자유주제"></li>
 
 
         </ul>
@@ -125,7 +126,7 @@
             <div class="board_list_category_detail">
                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a>
                 <!-- 				<a href="som_selectAll.do?category=local"><button type="button" name="local">국내여행</button></a> -->
-                <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>--> 
+                <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>-->
                 <select name="searchKey">
                     <option>소모임 이름</option>
                     <option>지역</option>
@@ -239,4 +240,5 @@
 
 </div>
 </body>
+<script src="resources/js/board.js"></script>
 </html>

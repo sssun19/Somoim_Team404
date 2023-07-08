@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
 import test.com.moim.board.service.BoardService;
+import test.com.moim.com_comments.model.som_comm_commentsVO;
+import test.com.moim.com_comments.service.som_comm_comments_Service;
+import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.comments.service.som_comments_Service;
 
 import javax.servlet.http.HttpSession;
+import java.time.Clock;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +35,14 @@ public class BoardController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    som_comm_comments_Service c_commService;
+    @Autowired
+    som_comments_Service commService;
+
+
+
 
 
 //    @RequestMapping(value = "/som_selectAll.do", method = RequestMethod.GET)
@@ -97,12 +111,58 @@ public class BoardController {
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
     public String join_selectOne(Somoim_BoardVO vo, Model model) {
         log.info("join_selectOne.do().....");
+        String userId = (String) session.getAttribute("user_id");
 
+        model.addAttribute("user_id", userId);
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}",vo2);
-
         model.addAttribute("vo2",vo2);
+
+        som_commentsVO cvo = new som_commentsVO();
+
+        cvo.setSom_board_num(vo2.getNum());
+        System.out.println("vo2.getNum!!!!!!!!!!!!:"+vo2.getNum());
+
+        cvo.setSomoim_num(vo2.getSomoim_num());
+        System.out.println("cvo:"+cvo.toString());
+        List<som_commentsVO> coms = commService.selectAll(cvo);
+        System.out.println("coms:"+coms.toString());
+
+//
+        som_comm_commentsVO c_cvo = new som_comm_commentsVO();
+        c_cvo.setSom_board_num(cvo.getSom_board_num());
+        c_cvo.setSomoim_num(cvo.getSomoim_num());
+        log.info("cvo.getnum..{}", cvo.getNum());
+        List<som_comm_commentsVO> c_coms=new ArrayList<som_comm_commentsVO>();
+        c_coms= c_commService.selectAll(c_cvo);
+
+
+
+
+        System.out.println("c_cvo:"+c_cvo);
+
+
+        System.out.println("c_cvo.getSom_board_num:"+c_cvo.getSom_board_num());
+		System.out.println("c_coms:"+c_coms.toString());
+//		System.out.println("coms:"+c_cvo.getSom_board_num());
+//
+
+        model.addAttribute("coms", coms);
+        model.addAttribute("c_coms", c_coms);
+
+//		System.out.println("coms:::"+coms);
+//
+//		System.out.println("c_coms:::"+c_coms);
+//
+
+
+        model.addAttribute("coms", coms);
+        model.addAttribute("c_coms", c_coms);
+
+
+
+
 
 
         return "board/join_selectOne";
@@ -142,11 +202,15 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
-    public String join_schedule(Model model) {
+    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
         log.info("join_schedule.do().....{}");
 
-        List<Somoim_ScheduleVO> vos = service.sch_selelctList();
+        List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 
+
+        for (Somoim_ScheduleVO vo2 : vos) {
+            log.info(vo2.toString());
+        }
 
         model.addAttribute("vos", vos);
 
@@ -246,7 +310,7 @@ public class BoardController {
 
     }
 
-    @RequestMapping(value = "/join_schedule_delete.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/d.do", method = RequestMethod.GET)
     public String join_schedule_delete(Somoim_ScheduleVO vo) {
         log.info("join_schedule_delete.do().....{}",vo);
 
@@ -258,6 +322,51 @@ public class BoardController {
 
 
 
+    }
+
+    @RequestMapping(value = "/Participant_UpdateOK.do", method = RequestMethod.POST)
+    public String Participant_UpdateOk(Somoim_ScheduleVO vo,Model model) {
+        log.info("Participant_UpdateOk.do().....{}",vo);
+
+        int result = service.SCH_Part_Update(vo);
+
+        if (result==1){
+            log.info("업데이트 완료");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+
+        }else{
+            log.info("업데이트 X");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+        }
+
+
+
+
+
+
+
+    }
+    @RequestMapping(value = "/Participant_CancleOK.do", method = RequestMethod.POST)
+    public String Participant_CancleOK(Somoim_ScheduleVO vo) {
+        log.info("Participant_CancleOK.do().....{}",vo);
+
+        int result = service.SCH_Part_Cancle(vo);
+
+        if (result==1){
+            log.info("업데이트 완료");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+
+        }else{
+            log.info("업데이트 X");
+            return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
+        }
+    }
+
+    @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
+    public String join_pay() {
+
+
+        return "board/join_pay";
     }
 
 

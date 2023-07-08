@@ -29,8 +29,8 @@ public class BoardService {
         return dao.selectJoin(vo);
     }
 
-    public List<Somoim_ScheduleVO> sch_selelctList() {
-        return dao.sch_selectList();
+    public List<Somoim_ScheduleVO> sch_selelctList(Somoim_ScheduleVO vo) {
+        return dao.sch_selectList(vo);
     }
 
     public int update(Somoim_BoardVO vo) {
@@ -58,5 +58,11 @@ public class BoardService {
 
     public int join_insert(Somoim_BoardVO vo) {
         return dao.join_insert(vo);
+    }
+
+    public int SCH_Part_Update(Somoim_ScheduleVO vo) { return dao.SCH_PART_UPDATE(vo);    }
+
+    public int SCH_Part_Cancle(Somoim_ScheduleVO vo) {
+        return dao.SCH_Part_Cancle(vo);
     }
 }

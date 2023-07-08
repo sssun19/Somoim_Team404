@@ -1,22 +1,27 @@
 package test.com.moim.somoim.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import lombok.extern.slf4j.Slf4j;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.somoim.service.SomoimService;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 
 @Slf4j
@@ -50,9 +55,25 @@ public class SomoimController {
 		log.info("som_selectOne.do().....{}", vo);
 		
 		SomoimVO vo2 = service.selectOne(vo);
+		String user_id = (String)session.getAttribute("user_id")==null?"tester":(String)session.getAttribute("user_id");
+		
+		log.info("user_id : {}", user_id);
+		
+		UserinfoVO uvo = new UserinfoVO();
+		uvo.setUser_id(user_id);
+		
+		log.info("이걸확인해!!{}", uvo.getUser_id());
+		UserinfoVO uvo2 = service.searchSavename(uvo);
+		
+		log.info("이것도{}", uvo2.getSave_name());
+		log.info("profile!!!:{}", uvo2.getSave_name());
 
 		session.setAttribute("num",vo.getNum());
-		model.addAttribute("vo2", vo2);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo2", vo2);
+		map.put("uvo2", uvo2);
+		model.addAllAttributes(map);
 		
 		return "board/som_selectOne";
 	}
@@ -72,6 +93,7 @@ public class SomoimController {
 	
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)
 	public String som_insert() {
+
 		log.info("som_insert.do().....");
 		
 		return "board/som_insert";
@@ -79,6 +101,7 @@ public class SomoimController {
 	
 	@RequestMapping(value = "/som_insertOK.do", method = RequestMethod.POST)
 	public String som_insertOK(SomoimVO vo) throws IllegalStateException, IOException {
+
 		log.info("som_insertOK.do().....{}", vo);
 		
 		int fileNameLength = vo.getFile().getOriginalFilename().length();

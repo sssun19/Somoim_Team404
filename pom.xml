@@ -199,12 +199,26 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+<<<<<<< HEAD
 	<dependency>
     <groupId>javax.mail</groupId>
     <artifactId>javax.mail-api</artifactId>
     <version>1.6.2</version>
 </dependency>
 
+=======
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>3.1.1.RELEASE</version>
+		</dependency>
+>>>>>>> ed28d3fd10806fbccae064f4facd6f7375277d9e
 	</dependencies>
     <build>
         <plugins>

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="resources/js/board.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -38,7 +37,7 @@
              <span>
 
                  <input type="hidden" value="${vo2.num}" id="update_num">
-                 <input type="text" value="${num}" id="somoim_num">
+                 <input type="hidden" value="${num}" id="somoim_num">
                 <h2>제목</h2>
                 <input type="text" placeholder="제목을 입력하세요" value="${vo2.title}" id="update_title">
                 <h3>내용</h3>
@@ -96,4 +95,5 @@
 
 
 </body>
+<script src="resources/js/board.js"></script>
 </html>
