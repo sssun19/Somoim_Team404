@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="/resources/js/schedule.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -43,8 +43,8 @@
                                 <button type="button">
                                     <a href="join_schedule_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
                                 </button>
-                                <button type="button">
-                                    <a href="join_schedule_delete.do?num=${vo.num}"><i class="fas fa-trash-alt"></i></a>
+                                 <button type="button" onclick="join_schedule_deleteOK()">
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </span>
 
@@ -63,11 +63,14 @@
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
                                 <c:forEach var="participant" items="${fn:split(vo.participant, '/')}" varStatus="status">
+
                                     <li>
-                                        <i class="far fa-user"></i> <input type="hidden" value="${participant}" class="update_participant">
+                                        <i class="fas fa-edit"></i></a>
+                                        <input type="hidden" value="${participant}" class="update_participant">
                                     </li>
+
                                 </c:forEach>
-                            </ul>
+
 
                         </div>
 
@@ -105,9 +108,6 @@
     </div>
 </div>
 </body>
-
-<script>
-
-</script>
+<script src="/resources/js/schedule.js"></script>
 
 </html>

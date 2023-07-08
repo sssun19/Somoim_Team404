@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -41,10 +41,16 @@
                     <i class="far fa-heart"></i>
                 </button>
                 <button type="button">
-                    <i class="fas fa-edit"></i>
+                    <a href="join_update.do?num=${vo2.num}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
                 </button>
                 <button type="button">
-                    <i class="fas fa-trash-alt"></i>
+                    <a href="join_deleteOK.do?num=${vo2.num}">
+                            <i class="fas fa-trash-alt"></i>
+                    </a>
+
                 </button>
             </div>
         </div>
@@ -56,6 +62,8 @@
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
+
+
             <span>
                 <ul class="com_grid">
                     <li>
@@ -105,9 +113,10 @@
                                     <div class="join_commnets_insert_section">
                                         <input type="text" placeholder="댓글 작성" name="content" value="${com.content}">
                                         <input type="hidden" name="parent_com" value="${com.num}">
+                                        <input type="hidden" name="user_id" value="${user_id}">
+
                                         <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                         <input type="hidden" name="somoim_num" value="${com.somoim_num}">
-                                        <input type="hidden" name="num" value="${com.som_board_num}">
                                         <button type="submit">댓글 작성</button>
                                     </div>
                                 </form>
@@ -130,6 +139,8 @@
                 <input type="hidden" name="num" value="${vo2.num}">
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="text" placeholder="댓글 작성" name="content">
+<%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
+
                 <button type="submit">댓글 작성</button>
        </div>
         </form>

@@ -81,3 +81,25 @@ function Participant_Cancle(btn){
 
 
 }
+
+function join_schedule_deleteOK() {
+    console.log("join_schedule_deleteOK....");
+
+    $.ajax({
+        url: "join_schedule_deleteOK.do",
+        data: {
+            num: $('.PART_UPDATE_NUM').val(),
+            somoim_num: $('#somoim_num').val(),
+
+        },
+        method: 'POST',
+        dataType: 'text',
+        success: function(response) {
+            console.log('ajax....success', response);
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
+        },
+        error:function(xhr,status,error){
+            console.log('xhr.status:', xhr.status);
+        }
+    });
+}//end function()

@@ -11,6 +11,11 @@
 		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate)
 	</insert>
 
+	<select id="Find_UserInfo"
+			resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select * from userinfo
+
+	</select>
 
 	<select id="Sch_SELECT_ALL"
 			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
@@ -30,7 +35,6 @@
 				   #{money},
 				   #{max_participant},
 				   (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-
 		        	#{somoim_num},
 		        	#{participant},
 		        	1
