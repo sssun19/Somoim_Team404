@@ -11,13 +11,13 @@
 		som_board_num=#{som_board_num} and som_comment_depth=0 order by num
 	</select>
 
-	<insert id="SOM_C_INSERT"
+<insert id="SOM_C_INSERT"
 		parameterType="test.com.moim.comments.model.som_commentsVO">
 		insert into somoim_board_comments (num, som_member_num,
-		content, good_count, som_board_num, som_comment_depth)
-		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, 1 , #{content,
+		content, good_count, som_board_num, som_comment_depth, somoim_num)
+		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num}) , #{content,
 		jdbcType=VARCHAR
-		},0,#{som_board_num, jdbcType=VARCHAR}, 0)
+		},0,#{som_board_num, jdbcType=VARCHAR}, 0, #{somoim_num})
 	</insert>
 
 	<update id="SOM_C_UPDATE">
