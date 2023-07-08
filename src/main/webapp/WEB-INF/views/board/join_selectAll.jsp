@@ -30,7 +30,7 @@
                     <li>
                         <input type="hidden" value="${vo.som_member_num}">
 
-                        <a href="/join_selectOne.do?num=${vo.num}">
+                        <a href="join_selectOne.do?num=${vo.num}">
                             <input type="hidden" value="${vo.somoim_num}">
                             <div class="join_top">
                                 <div class="user_info">
