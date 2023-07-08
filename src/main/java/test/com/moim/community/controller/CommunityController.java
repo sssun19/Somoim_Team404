@@ -70,9 +70,8 @@ public class CommunityController {
 	}
 	
 	@RequestMapping(value = "/community_insert.do", method = RequestMethod.GET)
-	public String community_insert(Model model) {
-		String userId = (String) session.getAttribute("user_id");
-		model.addAttribute("user_id", userId);
+	public String community_insert() {
+
 
 		log.info("community_insert.do().....");
 
@@ -81,9 +80,8 @@ public class CommunityController {
 	}
 
 	@RequestMapping(value = "/community_insertOK.do", method = RequestMethod.POST)
-	public String community_insertOK(Model model, CommunityVO vo) throws IllegalStateException, IOException {
-		String userId = (String) session.getAttribute("user_id");
-		model.addAttribute("user_id", userId);
+	public String community_insertOK(CommunityVO vo) throws IllegalStateException, IOException {
+
 		log.info("community_insertOK.do().....{}", vo);
 
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
