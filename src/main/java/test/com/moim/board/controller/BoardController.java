@@ -196,11 +196,6 @@ public class BoardController {
     public String join_schedule(Model model, Somoim_ScheduleVO vo, UserinfoVO U_vo) {
         log.info("join_schedule.do().....{}", vo);
 
-//        List<UserinfoVO> uvo = service.select_userinfo(U_vo);
-//
-//        for (UserinfoVO U_vo2 : uvo) {
-//            log.info(U_vo2.toString());
-//        }
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 

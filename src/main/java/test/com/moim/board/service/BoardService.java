@@ -67,7 +67,4 @@ public class BoardService {
         return dao.SCH_Part_Cancle(vo);
     }
 
-    public List<UserinfoVO> select_userinfo(UserinfoVO uVo) {
-        return dao.select_userinfo(uVo);
-    }
 }

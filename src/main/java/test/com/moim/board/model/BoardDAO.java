@@ -1,7 +1,5 @@
 package test.com.moim.board.model;
 
-import test.com.moim.userinfo.model.UserinfoVO;
-
 import java.util.List;
 
 public interface BoardDAO {
@@ -30,6 +28,4 @@ public interface BoardDAO {
     int SCH_PART_UPDATE(Somoim_ScheduleVO vo);
 
     int SCH_Part_Cancle(Somoim_ScheduleVO vo);
-
-    List<UserinfoVO> select_userinfo(UserinfoVO uVo);
 }

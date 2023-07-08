@@ -84,9 +84,5 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.update("SCH_CANCEL_UPDATE",vo);
     }
 
-    @Override
-    public List<UserinfoVO> select_userinfo(UserinfoVO uVo) {
-        return sqlSession.selectList("Find_UserInfo",uVo);
-    }
 
 }

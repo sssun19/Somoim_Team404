@@ -19,6 +19,7 @@ public class UserinfoRestController {
 
 
 
+
 	@Autowired
 	private EmailSender emailSender;
 
@@ -43,6 +44,7 @@ public class UserinfoRestController {
 		Random random = new Random();
 		int verificationCode = random.nextInt(900000) + 100000; // 100000부터 999999까지의 난수 생성
 		String content = "이메일 내용입니다. 인증번호: " + verificationCode;
+		log.info("email content...{}", content);
 		email1.setContent(content); // 이메일 내용 설정
 
 		try {
