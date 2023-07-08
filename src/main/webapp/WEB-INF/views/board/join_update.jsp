@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="resources/js/board.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -96,4 +95,5 @@
 
 
 </body>
+<script src="resources/js/board.js"></script>
 </html>
