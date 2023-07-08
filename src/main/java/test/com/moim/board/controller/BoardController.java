@@ -360,13 +360,13 @@ public class BoardController {
             log.info("업데이트 X");
             return "redirect:join_schedule.do?somoim_num="+vo.getSomoim_num();
         }
+    }
+
+    @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
+    public String join_pay() {
 
 
-
-
-
-
-
+        return "board/join_pay";
     }
 
 
