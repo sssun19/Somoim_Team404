@@ -56,6 +56,8 @@
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
+
+
             <span>
                 <ul class="com_grid">
                     <li>
@@ -105,9 +107,10 @@
                                     <div class="join_commnets_insert_section">
                                         <input type="text" placeholder="댓글 작성" name="content" value="${com.content}">
                                         <input type="hidden" name="parent_com" value="${com.num}">
+                                        <input type="hidden" name="user_id" value="${user_id}">
+
                                         <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                         <input type="hidden" name="somoim_num" value="${com.somoim_num}">
-                                        <input type="hidden" name="num" value="${com.som_board_num}">
                                         <button type="submit">댓글 작성</button>
                                     </div>
                                 </form>
@@ -130,6 +133,8 @@
                 <input type="hidden" name="num" value="${vo2.num}">
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="text" placeholder="댓글 작성" name="content">
+<%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
+
                 <button type="submit">댓글 작성</button>
        </div>
         </form>

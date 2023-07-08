@@ -121,9 +121,9 @@ public class BoardController {
 
         som_commentsVO cvo = new som_commentsVO();
 
-        System.out.println("******vo.getNum()*******:"+vo2.getNum());
-        System.out.println("******vo.getSomoim_num()*******:"+vo2.getSomoim_num());
         cvo.setSom_board_num(vo2.getNum());
+        System.out.println("vo2.getNum!!!!!!!!!!!!:"+vo2.getNum());
+
         cvo.setSomoim_num(vo2.getSomoim_num());
         System.out.println("cvo:"+cvo.toString());
         List<som_commentsVO> coms = commService.selectAll(cvo);
