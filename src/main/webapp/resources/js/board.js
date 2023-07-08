@@ -97,7 +97,7 @@ function join_insertOK() {
 
 function join_updateOK() {
     console.log("join_updateOK....");
-
+    console.log($('#somoim_num').val());
     $.ajax({
         url: "join_updateOK.do",
         data: {
@@ -110,6 +110,7 @@ function join_updateOK() {
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
+            alert("성공");
             location.href="join_selectAll.do?somoim_num="+$('#somoim_num').val();
 
         },
@@ -173,7 +174,7 @@ function join_schedule_updateOK() {
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
-            location.href="join_schedule.do";
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
 
         },
         error:function(xhr,status,error){
