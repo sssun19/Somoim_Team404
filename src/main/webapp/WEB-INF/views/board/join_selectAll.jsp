@@ -22,14 +22,14 @@
             이미지
         </div>
         <div class="top_func">
-            <button type="button"><a href="/join_insert.do" style="color: white">글쓰기</a></button>
+            <button type="button"><a href="join_insert.do" style="color: white">글쓰기</a></button>
         </div> 
         <div class="view_content">
             <ul>
                 <c:forEach var="vo" items="${vos}">
                     <li>
-                        <input type="hidden" value="${vo.somoim_num}">
-                        <a href="/join_selectOne.do?num=${vo.num}">
+                        <input type="hidden" value="${vo.som_member_num}">
+                        <a href="join_selectOne.do?num=${vo.num}">
                             <input type="hidden" value="${vo.somoim_num}">
                             <div class="join_top">
                                 <div class="user_info">
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="bbs_func">
                                     <button type="button">
-                                        <a href="/join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
+                                        <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
                                     </button>
                                     <button type="button">
                                         <a href="join_deleteOK.do?num=${vo.num}"><i class="fas fa-trash-alt"></i></a>

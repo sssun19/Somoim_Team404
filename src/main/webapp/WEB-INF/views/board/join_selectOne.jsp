@@ -20,7 +20,7 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="top_func">
-        <button type="button"><a href="/join_insert.do">글쓰기</a></button>
+        <button type="button"><a href="join_insert.do">글쓰기</a></button>
     </div>
     <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
         <div class="join_top">
@@ -101,7 +101,7 @@
                                         </div>
                                     </c:if>
                                 </c:forEach>
-                                <form action="som_dcomm_insertOK.do">
+                                <form action="som_dcomm_insertOK.do" method="post">
                                     <div class="join_commnets_insert_section">
                                         <input type="text" placeholder="댓글 작성" name="content" value="${com.content}">
                                         <input type="hidden" name="parent_com" value="${com.num}">
@@ -157,7 +157,7 @@
         <ul>
             <li>대표: 팀404 개인정보관리책임자: 팀404</li>
             <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-            <```html
+            
             <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
         </ul>
     </div>

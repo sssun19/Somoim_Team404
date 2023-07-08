@@ -39,7 +39,7 @@ public class som_com_comments_controller {
 		return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
 	}
 	
-	@RequestMapping(value = "/som_dcomm_insertOK.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/som_dcomm_insertOK.do", method = RequestMethod.POST)
 	public String som_dcomm_insertOK(som_comm_commentsVO vo) {
 		log.info("som_dcomm_insertOK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", vo);
 		
