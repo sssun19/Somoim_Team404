@@ -53,4 +53,10 @@ public class MemberDAOimpl implements MemberDAO {
 			return session.selectList("MEMBER_SEARCH_LIST_SOMTITLE", "%"+searchWord+"%");
 	}
 
+	@Override
+	public List<MemberVO> profileCheck(MemberVO vo) {
+		log.info("this.....{}", vo);
+		return session.selectList("PROFILE_CHECK", vo);
+	}
+
 }

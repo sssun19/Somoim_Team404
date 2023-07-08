@@ -67,7 +67,9 @@ public class CsController {
 	public String cs_notice_selectOne(CsVO vo, Model model) {
 		log.info("cs_notice_selectOne.do().....");
 
+		log.info("vo.getnum..{}", vo.getNum());
 		CsVO vo2 = service.selectOne(vo);
+
 		log.info("test...{}",vo2);
 
 		model.addAttribute("vo2",vo2);
@@ -81,10 +83,42 @@ public class CsController {
 		log.info("home.do().....");
 		return "cs/notice";
 
-	
 }
-	
-	
-	
-	
+
+	@RequestMapping(value = "/cs_notice_deleteOK.do", method = RequestMethod.GET)
+	public String cs_notice_deleteOK(Model model, CsVO vo) {
+		log.info("cs_notice_deleteOK.do().....{}", vo);
+		String userId = (String) session.getAttribute("user_id");
+
+		model.addAttribute("user_id", userId);
+		int result = service.delete(vo);
+		return "redirect:cs_notice.do";
+	}
+
+
+	@RequestMapping(value = "/cs_notice_update.do", method = RequestMethod.GET)
+	public String cs_notice_update(Model model, CsVO vo) {
+		log.info("cs_notice_update.do().....{}", vo);
+		String userId = (String) session.getAttribute("user_id");
+		log.info("update num...{}", vo.getNum());
+		model.addAttribute("user_id", userId);
+		model.addAttribute("vo", vo);
+		return "cs/Cs_update";
+	}
+
+
+
+
+	@RequestMapping(value = "/cs_notice_updateOK.do", method = RequestMethod.GET)
+	public String cs_notice_updateOK(Model model, CsVO vo) {
+		log.info("cs_notice_updateOK.do().....{}", vo);
+		String userId = (String) session.getAttribute("user_id");
+		log.info("update num...{}", vo.getNum());
+		model.addAttribute("user_id", userId);
+		int result = service.update(vo);
+		return "redirect:cs_notice.do";
+	}
+
+
+
 }

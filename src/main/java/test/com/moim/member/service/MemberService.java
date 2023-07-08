@@ -33,4 +33,8 @@ public class MemberService {
 		log.info("searchList...{},{}", searchKey, searchWord);
 		return dao.searchList(searchKey, searchWord);
 	}
+	public List<MemberVO> profileCheck(MemberVO vo) {
+		log.info("this is ... : {}", vo.getNum());
+		return dao.profileCheck(vo);
+	}
 }

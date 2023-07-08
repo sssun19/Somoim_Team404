@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-         language="java" %>
-<%@ page session="false" %>
+
+	language="java"%>
+>>>>>>> ed2ce77e0f1c1547b9b7c013b4f58290edf54ba5
 <!DOCTYPE html>
 <html lang="en">
 <head>
