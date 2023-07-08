@@ -28,7 +28,7 @@ public class som_comm_commentsDAOimpl implements som_comm_commentsDAO {
 	public int insert(som_comm_commentsVO vo) {
 		log.info("dao.inserct().... {}", vo );
 		
-		return sqlsession.update("SOM_D_C_INSERT",vo);
+		return sqlsession.insert("SOM_D_C_INSERT",vo);
 	}
 
 	@Override
