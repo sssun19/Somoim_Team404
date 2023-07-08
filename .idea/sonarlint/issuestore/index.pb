@@ -38,8 +38,6 @@ m
 =src/main/java/test/com/moim/community/model/CommunityDAO.java,c\4\c4d13ea49725091316c22c0a475b5465be348319
 m
 =src/main/java/test/com/moim/somoim/service/SomoimService.java,8\a\8a24f85923dbc4796aa4256677d8a1ae85c92b9e
-s
-Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
 b
 2src/main/webapp/WEB-INF/views/board/som_insert.jsp,1\6\168672a77d788750ab8c4fd85b9221b1c466b317
 f
