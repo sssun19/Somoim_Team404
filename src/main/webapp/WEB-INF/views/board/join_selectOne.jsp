@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -20,7 +19,7 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="top_func">
-        <button type="button"><a href="join_insert.do">글쓰기</a></button>
+        <button type="button"><a href="/join_insert.do">글쓰기</a></button>
     </div>
     <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
         <div class="join_top">
@@ -56,6 +55,8 @@
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
+
+
             <span>
                 <ul class="com_grid">
                     <li>
@@ -101,13 +102,14 @@
                                         </div>
                                     </c:if>
                                 </c:forEach>
-                                <form action="som_dcomm_insertOK.do" method="post">
+                                <form action="som_dcomm_insertOK.do">
                                     <div class="join_commnets_insert_section">
                                         <input type="text" placeholder="댓글 작성" name="content" value="${com.content}">
                                         <input type="hidden" name="parent_com" value="${com.num}">
+                                        <input type="hidden" name="user_id" value="${user_id}">
+
                                         <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                         <input type="hidden" name="somoim_num" value="${com.somoim_num}">
-                                        <input type="hidden" name="num" value="${com.som_board_num}">
                                         <button type="submit">댓글 작성</button>
                                     </div>
                                 </form>
@@ -130,6 +132,8 @@
                 <input type="hidden" name="num" value="${vo2.num}">
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="text" placeholder="댓글 작성" name="content">
+<%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
+
                 <button type="submit">댓글 작성</button>
        </div>
         </form>
@@ -157,7 +161,7 @@
         <ul>
             <li>대표: 팀404 개인정보관리책임자: 팀404</li>
             <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-            
+            <```html
             <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
         </ul>
     </div>
