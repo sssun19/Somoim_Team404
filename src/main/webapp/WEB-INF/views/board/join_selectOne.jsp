@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -41,10 +41,16 @@
                     <i class="far fa-heart"></i>
                 </button>
                 <button type="button">
-                    <i class="fas fa-edit"></i>
+                    <a href="join_update.do?num=${vo2.num}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
                 </button>
                 <button type="button">
-                    <i class="fas fa-trash-alt"></i>
+                    <a href="join_deleteOK.do?num=${vo2.num}">
+                            <i class="fas fa-trash-alt"></i>
+                    </a>
+
                 </button>
             </div>
         </div>

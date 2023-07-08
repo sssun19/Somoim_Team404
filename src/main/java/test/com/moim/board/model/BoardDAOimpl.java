@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -82,5 +83,6 @@ public class BoardDAOimpl implements BoardDAO{
     public int SCH_Part_Cancle(Somoim_ScheduleVO vo) {
         return sqlSession.update("SCH_CANCEL_UPDATE",vo);
     }
+
 
 }

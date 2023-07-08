@@ -16,6 +16,7 @@ public class Somoim_ScheduleVO {
     private int somoim_num;
     private int max_participant;
     private String user_id;
+    private String save_name;
 
 
 

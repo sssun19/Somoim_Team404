@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -65,4 +66,5 @@ public class BoardService {
     public int SCH_Part_Cancle(Somoim_ScheduleVO vo) {
         return dao.SCH_Part_Cancle(vo);
     }
+
 }
