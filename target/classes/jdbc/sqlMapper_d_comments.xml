@@ -6,7 +6,7 @@
 <mapper namespace="test.com.moim.com_comments">
 	<select id="SOM_D_C_SELECT_ALL"
 		resultType="test.com.moim.com_comments.model.som_comm_commentsVO">
-        SELECT c.*, m.*
+        SELECT c.*, m.user_id
         FROM somoim_Board_comments c
                  JOIN somoim_member m ON c.som_member_num = m.num
         where c.som_comment_depth = 1
@@ -17,9 +17,15 @@
 	<insert id="SOM_D_C_INSERT"
 			parameterType="test.com.moim.com_comments.model.som_comm_commentsVO">
 		insert into somoim_board_comments (num, som_member_num,
+<<<<<<< HEAD
+		content, good_count, som_board_num, som_comment_depth, parent_com, somoim_num)
+		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num}) , #{content, jdbcType=VARCHAR
+		},0,#{som_board_num, jdbcType=VARCHAR}, 1, #{parent_com, jdbcType=VARCHAR}, #{somoim_num, jdbcType=VARCHAR})
+=======
 										   content, good_count, som_board_num, som_comment_depth, parent_com, somoim_num)
 		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num}) , #{content, jdbcType=VARCHAR
 		},0,#{som_board_num, jdbcType=VARCHAR}, 1, #{parent_com, jdbcType=VARCHAR}, #{somoim_num})
+>>>>>>> 65c2e4e5dca002dda6d49c9f31c3f0c45e4ccea0
 	</insert>
 
 	<update id="SOM_D_C_UPDATE">

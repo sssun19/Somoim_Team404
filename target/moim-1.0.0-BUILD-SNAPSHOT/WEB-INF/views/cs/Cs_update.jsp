@@ -44,6 +44,7 @@
                 <input type="text" name="content" placeholder=" 공지를 입력해주세요." id="insert_content" value="${vo.content}">
 
                 <input type="hidden" name="user_id" value="${user_id}">
+                <input type="file" name="save_name" value="${vo.save_name}">
             </span>
             
             <button type="submit">작성완료</button>
