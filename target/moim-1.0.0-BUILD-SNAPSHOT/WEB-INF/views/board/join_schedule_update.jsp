@@ -28,6 +28,7 @@
         <div class="schedule_insert_section" style="margin-top: 50px;">
             <div class="schedule_insert_section_box">
                 <input type="hidden" value="${vo2.num}" id="update_num">
+                <input type="hidden" value="${vo2.somoim_num}" id="somoim_num">
                 <h2>제목</h2>
                 <input type="text" placeholder="모임 제목을 입력하세요." id="sch_insert_title" value="${vo2.schedule_title}">
                 <h2>날짜</h2>
