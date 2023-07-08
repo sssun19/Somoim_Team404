@@ -48,7 +48,7 @@ public class som_com_comments_controller {
 		
 		log.info("result...{}", result);
 		
-		return "redirect:join_selectOne.do?num="+vo.getNum();
+		return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
 		
 	}
 	
