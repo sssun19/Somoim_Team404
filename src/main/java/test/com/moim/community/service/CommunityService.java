@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.community.model.CommunityDAO;
 import test.com.moim.community.model.CommunityVO;
+import test.com.moim.somoim.model.SomoimVO;
 
 @Service
 @Slf4j
@@ -17,38 +18,40 @@ public class CommunityService {
     CommunityDAO dao;
 
     public CommunityService() {
-		log.info("CommunityService...");
-	}
+        log.info("CommunityService...");
+    }
 
-	public int insert(CommunityVO vo) {
-		return dao.insert(vo);
-	}
 
-	public int update(CommunityVO vo) {
-		return dao.update(vo);
-	}
+    public int insert(CommunityVO vo) {
+        log.info("insert()....{}", vo);
+        return dao.insert(vo);
+    }
 
-	public int delete(CommunityVO vo) {
-		return dao.delete(vo);
-	}
+    public int update(CommunityVO vo) {
+        return dao.update(vo);
+    }
 
-	public List<CommunityVO> selectAll() {
-		return dao.selectAll();
-	}
+    public int delete(CommunityVO vo) {
+        return dao.delete(vo);
+    }
 
-	public CommunityVO selectOne(CommunityVO vo) {
-		return dao.selectOne(vo);
-	}
+    public List<CommunityVO> selectAll() {
+        return dao.selectAll();
+    }
 
-	public List<CommunityVO> searchList(String searchKey, String searchWord) {
-		return dao.searchList(searchKey, searchWord);
-	}
+    public CommunityVO selectOne(CommunityVO vo) {
+        return dao.selectOne(vo);
+    }
 
-	public void view_countUp(CommunityVO vo) {
-		dao.view_countUp(vo);
-	}
-	
-	public void good_countUp(CommunityVO vo) {
-		dao.good_countUp(vo);
-	}
+    public List<CommunityVO> searchList(String searchKey, String searchWord) {
+        return dao.searchList(searchKey, searchWord);
+    }
+
+    public void view_countUp(CommunityVO vo) {
+        dao.view_countUp(vo);
+    }
+
+    public void good_countUp(CommunityVO vo) {
+        dao.good_countUp(vo);
+    }
 }
