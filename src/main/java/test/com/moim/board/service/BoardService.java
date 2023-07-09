@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
+import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
@@ -69,5 +70,15 @@ public class BoardService {
 
     public List<Somoim_ScheduleVO> sch_selectList_part(Somoim_ScheduleVO vo) {
         return dao.sch_selectList_part(vo);
+    }
+
+
+    public Somoim_ScheduleVO selectPay(Somoim_ScheduleVO vo) {
+        return dao.selectPay(vo);
+    }
+
+
+    public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
+        return dao.selectMember(mvo);
     }
 }

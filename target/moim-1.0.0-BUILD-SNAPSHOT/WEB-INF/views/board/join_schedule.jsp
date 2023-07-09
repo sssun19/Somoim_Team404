@@ -63,12 +63,10 @@
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
                                 <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
-                                <c:forEach items="${saveNamesMap[participant]}" var="participantDetails">
                                 <li>
                                     <input type="hidden" value="${participant}" class="participant_mine">
-                                    <img src="/resources/uploadimg/${participantDetails.save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
-                                </c:forEach>
                                 </c:forEach>
 
 
@@ -118,8 +116,9 @@
             var participantName = $(this).val();
 
             if (participantName === userId) {
-                $(this).closest('li').css('border', '2px solid #1785F2');
-                $(this).parent().prependTo('.schm_grid');
+                var $this = $(this);
+                $this.closest('li').css('border', '2px solid #1785F2');
+                $this.closest('ul').prepend($this.closest('li'));
             }
         });
     });
