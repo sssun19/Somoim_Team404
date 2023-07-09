@@ -67,4 +67,7 @@ public class BoardService {
         return dao.SCH_Part_Cancle(vo);
     }
 
+    public List<Somoim_ScheduleVO> sch_selectList_part(Somoim_ScheduleVO vo) {
+        return dao.sch_selectList_part(vo);
+    }
 }

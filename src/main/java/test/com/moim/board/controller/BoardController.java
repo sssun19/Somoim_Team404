@@ -18,7 +18,9 @@ import test.com.moim.userinfo.model.UserinfoVO;
 import javax.servlet.http.HttpSession;
 import java.time.Clock;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Handles requests for the application home page.
@@ -196,18 +198,34 @@ public class BoardController {
     public String join_schedule(Model model, Somoim_ScheduleVO vo, UserinfoVO U_vo) {
         log.info("join_schedule.do().....{}", vo);
 
-
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 
+        Map<String, List<Somoim_ScheduleVO>> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+
         for (Somoim_ScheduleVO vo2 : vos) {
-            log.info(vo2.toString());
+            log.info("각자의 vos 값"+vo2.toString());
+
+            String[] Splits = vo2.getParticipant().split("/");
+
+            for (String s : Splits) {
+                log.info("스플릿한 값"+s);
+                vo.setUser_id(s);
+
+                List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
+                saveNamesMap.put(s, vos2); // Save name을 담습니다.
+
+                for (Somoim_ScheduleVO t : vos2){
+                    log.info("저장된 세이브 네임"+t.getSave_name());
+                }
+            }
         }
 
         model.addAttribute("vos", vos);
-
+        model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 
         return "board/join_schedule";
     }
+
 
     @RequestMapping(value = "/join_update.do", method = RequestMethod.GET)
     public String join_update(Model model, Somoim_BoardVO vo) {
@@ -349,6 +367,33 @@ public class BoardController {
 
 
         return "board/join_pay";
+    }
+
+    @RequestMapping(value = "/test_func.do", method = RequestMethod.POST)
+    public String test_func(Somoim_ScheduleVO vo,Model model) {
+//        log.info("Test_func.do....{}",vo);
+
+        String[] splits = vo.getParticipant().split("/");
+        List<Somoim_ScheduleVO> saveName = new ArrayList<>();
+
+        for(String s : splits){
+
+            vo.setUser_id(s);
+            log.info("유저 아이디"+vo.getUser_id());
+
+            List<Somoim_ScheduleVO> vos = service.sch_selectList_part(vo);
+            saveName.addAll(vos);
+            for(Somoim_ScheduleVO vo2 : vos){
+                log.info("ㅇㅇㅇ"+vo2.toString());
+            }
+
+
+        }
+        log.info("리스트 ADD 부분"+saveName.toString());
+        model.addAttribute("vos2",saveName);
+
+
+        return "redirect:join_schedule.do?somoim_num=" + vo.getSomoim_num();
     }
 
 

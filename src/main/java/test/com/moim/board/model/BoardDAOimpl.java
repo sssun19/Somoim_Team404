@@ -84,5 +84,10 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.update("SCH_CANCEL_UPDATE",vo);
     }
 
+    @Override
+    public List<Somoim_ScheduleVO> sch_selectList_part(Somoim_ScheduleVO vo) {
+        return sqlSession.selectList("Sch_SELECT_PART",vo);
+    }
+
 
 }

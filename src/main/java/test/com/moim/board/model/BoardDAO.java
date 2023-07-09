@@ -28,4 +28,6 @@ public interface BoardDAO {
     int SCH_PART_UPDATE(Somoim_ScheduleVO vo);
 
     int SCH_Part_Cancle(Somoim_ScheduleVO vo);
+
+    List<Somoim_ScheduleVO> sch_selectList_part(Somoim_ScheduleVO vo);
 }
