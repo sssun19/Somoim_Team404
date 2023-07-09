@@ -62,13 +62,12 @@
                         <div class="sch_member">
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
-                                <c:forEach var="participant" items="${fn:split(vo.participant, '/')}" varStatus="status">
-
+                                <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
+                                    <c:forEach items="${saveNamesMap[participant]}" var="participantDetails">
                                     <li>
-                                        <i class="fas fa-edit"></i></a>
-                                        <input type="hidden" value="${participant}" class="update_participant">
+                                        <img src="/resources/uploadimg/${participantDetails.save_name}" style="width: 50px; height: 50px;">
                                     </li>
-
+                                    </c:forEach>
                                 </c:forEach>
 
 
