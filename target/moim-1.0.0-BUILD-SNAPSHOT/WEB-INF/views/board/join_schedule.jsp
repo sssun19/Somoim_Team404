@@ -63,11 +63,12 @@
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
                                 <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
-                                    <c:forEach items="${saveNamesMap[participant]}" var="participantDetails">
-                                    <li>
-                                        <img src="/resources/uploadimg/${participantDetails.save_name}" style="width: 50px; height: 50px;">
-                                    </li>
-                                    </c:forEach>
+                                <c:forEach items="${saveNamesMap[participant]}" var="participantDetails">
+                                <li>
+                                    <input type="hidden" value="${participant}" class="participant_mine">
+                                    <img src="/resources/uploadimg/${participantDetails.save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                </li>
+                                </c:forEach>
                                 </c:forEach>
 
 
@@ -108,5 +109,21 @@
 </div>
 </body>
 <script src="/resources/js/schedule.js"></script>
+<script>
+    $(document).ready(function() {
+        var userId = $('#login_user_id').val();
+        console.log(userId);
+
+        $('.participant_mine').each(function() {
+            var participantName = $(this).val();
+
+            if (participantName === userId) {
+                $(this).siblings('img').css('border', '2px solid #1785F2');
+                $(this).parent().prependTo('.schm_grid');
+            }
+        });
+    });
+
+</script>
 
 </html>

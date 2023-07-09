@@ -1,134 +1,134 @@
 .board_section{
-    text-align: center;
-    width: 75%;
-    margin: 0 auto;
+  text-align: center;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .board_category{
-    display: flex;
-    width: 60%;
-    margin: 0 auto;
-    justify-content: center;
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .board_grid {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-gap: 10px;
-    list-style-type: none;
-    padding: 0;
-    margin: 30px 0 0 0;
-  }
-  
-  .board_grid li input{
-    width: 90px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    border: 1px solid #e6e6e6;
-    font-size: 14px;
-    padding: 5px 10px;
-    margin: 2px 16px;
-    text-align: center;
-  }
-
-  .category_more{
-    margin-top: 20px;
-    font-size: 12px;
-    text-align: center;
-  }
-
-  .category_more a{
-    color: rgb(165, 165, 165);
-  }
-
-  .category_active{
-    color: #1785F2;
-    font-weight: 600;
-  }
-
-  .rec_list{
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 100px;
-  }
-
-  .rec_list .rec_list_top{
-    
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    
-  }
-
-  .rec_list_top button{
-    background-color: #1785F2;
-    outline: none;
-    border:none;
-    color: white;
-    padding: 0px 25px;
-    border-radius: 5px;
-  }
-
-  .rec_list h1{
-    font-size: 24px;
-  }
-
-  .rec_list_grid{
-    width: 100%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 100px;
-  }
-
-  .rec_list_grid .moim_img{
-    margin: 10px;
-    width: 420px;
-    height: 150px;
-    display: flex;
-    border: 1px solid #e6e6e6;
-    border-radius: 20px;
-
-  }
-
-  .img_box{
-    width: 130px;
-    height: 130px;
-    margin-left: 10px;
-    border-radius: 15px;
-    margin-top: 10px;
-    overflow: hidden;
-    background-color: white;
-
-  }
-
-  .img_box img{
-    width: 100%;
-    height: auto;
-    
-  }
-
-  .moim_img span{
-    text-align: left;
-    margin: 10px;
-  }
-
-  .moim_img .hashtag {
-    width: 80px;
-    border-radius: 10px;
-    background-color: #d1d1d1;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  margin: 30px 0 0 0;
 }
 
-  .moim_img h1{
+.board_grid li input{
+  width: 90px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e6e6e6;
+  font-size: 14px;
+  padding: 5px 10px;
+  margin: 2px 16px;
+  text-align: center;
+}
+
+.category_more{
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.category_more a{
+  color: rgb(165, 165, 165);
+}
+
+.category_active{
+  color: #1785F2;
+  font-weight: 600;
+}
+
+.rec_list{
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.rec_list .rec_list_top{
+
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.rec_list_top button{
+  background-color: #1785F2;
+  outline: none;
+  border:none;
+  color: white;
+  padding: 0px 25px;
+  border-radius: 5px;
+}
+
+.rec_list h1{
+  font-size: 24px;
+}
+
+.rec_list_grid{
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.rec_list_grid .moim_img{
+  margin: 10px;
+  width: 420px;
+  height: 150px;
+  display: flex;
+  border: 1px solid #e6e6e6;
+  border-radius: 20px;
+
+}
+
+.img_box{
+  width: 130px;
+  height: 130px;
+  margin-left: 10px;
+  border-radius: 15px;
+  margin-top: 10px;
+  overflow: hidden;
+  background-color: white;
+
+}
+
+.img_box img{
+  width: 100%;
+  height: auto;
+
+}
+
+.moim_img span{
+  text-align: left;
+  margin: 10px;
+}
+
+.moim_img .hashtag {
+  width: 80px;
+  border-radius: 10px;
+  background-color: #d1d1d1;
+  text-align: center;
+}
+
+.moim_img h1{
   padding-top: 20px;
   font-size: 18px;
 
 }
 
-  .moim_img .sub_tit{
+.moim_img .sub_tit{
   font-size: 12px;
   color: #666;
 }
@@ -147,7 +147,7 @@
 .board_list_category_detail{
   width: 75%;
   margin: 0 auto;
-  
+
 }
 
 
@@ -171,7 +171,7 @@
   padding: 2px 10px;
   border: solid 1px #c9c9c9;
   outline: none;
-  
+
 }
 
 .list_grid{
@@ -214,7 +214,7 @@
 
 .list_grid{
   margin-top: 20px;
-} 
+}
 
 
 /* board_insert 모임 만들기*/
@@ -224,7 +224,7 @@
   text-align: left;
   margin: 30px auto;
   width: 43.5%;
-  height: auto;  
+  height: auto;
 }
 
 .moim_insert h1{
@@ -315,7 +315,7 @@
 
 .som_tit h1{
   font-size: 24px;
-  
+
 }
 
 .som_tit p{
@@ -324,7 +324,7 @@
 .join_member{
   margin-top: 100px;
   text-align: left;
-  
+
 }
 
 .join_member h1{
@@ -361,8 +361,8 @@
   text-align: left;
   margin-top: 200px;
   width: 100%;
-  
-  
+
+
 }
 
 .join_cal h1{
@@ -378,14 +378,14 @@
   border-radius: 20px;
   border: solid 1px #e6e6e6;
   padding: 30px
-  
 
-  
+
+
 }
 
 .cal_detail h1{
   font-size: 22px;
-  
+
 }
 
 
@@ -486,8 +486,8 @@
 
 .content_text p{
   margin-top: 20px;
-  
-  
+
+
 }
 
 .user_info span p{
@@ -501,7 +501,7 @@
 }
 
 .bbs_func{
-  
+
   text-align: right;
   width: 40%;
 }
@@ -519,7 +519,7 @@
 /*join_insert.html*/
 
 .insert_func{
-  
+
   margin-top: 40px;
   width: 100%;
   text-align: left;
@@ -565,7 +565,7 @@
 #insert_content{
   height: 600px;
   text-align: center;
-  
+
 }
 
 .join_insert_secction button{
@@ -584,7 +584,7 @@
   padding: 20px;
   margin: 0 auto;
   width: 100%;
-  
+
 }
 
 .comments_sec h3{
@@ -637,9 +637,9 @@
 }
 
 .com_grid{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 30px;
 }
 
 .user_info_profile_{
@@ -653,29 +653,37 @@
 }
 
 .join_imgbox{
+
   width: 100%;
   margin: 0 auto;
 
 }
 .join_imgbox .img_grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    width: 90%;
-    margin: 40px auto;
 
-    
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+
+  margin: 40px auto;
+
+
 }
 
 .img_grid li{
-  
-  width: 550px;
-  height: 550px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #d4d4d4;
 }
+
+.img_grid li img {
+  width: 100%;
+  height: 100%;
+}
+
+
 
 .join_commnets_insert_section{
   width: 75%;
@@ -703,7 +711,7 @@
 .join_commnets_insert_section input{
   width: 80%;
   padding: 8px 12px;
-  
+
 }
 
 .join_commnets_insert_section button{
@@ -721,7 +729,7 @@
 .schedule_box{
   width: 100%;
   margin: 0 auto;
-  
+
 
 }
 
@@ -831,14 +839,14 @@
   border-bottom: solid 1px #ccc;
   padding: 10px 0px 10px 0px;
   outline: none;
-  
+
 }
 
 .schedule_insert_section_box{
   width: 60%;
   text-align: left;
   margin: 0 auto;
-  
+
 }
 
 .schedule_insert_section_box span{
