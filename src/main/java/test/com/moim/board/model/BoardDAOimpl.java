@@ -89,5 +89,15 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.selectList("Sch_SELECT_PART",vo);
     }
 
+    @Override
+    public Somoim_ScheduleVO selectPay(Somoim_ScheduleVO vo) {
+        return sqlSession.selectOne("SCHEDULE_PAYMENT",vo);
+    }
+
+    @Override
+    public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
+        return sqlSession.selectOne("PAYMENT_USER_CHECK",mvo);
+    }
+
 
 }

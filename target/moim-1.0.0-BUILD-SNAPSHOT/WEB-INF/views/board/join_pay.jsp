@@ -29,25 +29,28 @@
                 <li>
                     <div class="payment_left">
                     <span>
-                        <h3>일정 제목: </h3>
-                        <p>총 금액: ${vo.money}</p>
+                        <input type="hidden" value="${vo.num}" id="pay_num">
+                        <input type="hidden" value="${vo.som_member_num}" id="pay_som_num">
+                        <h3>일정 제목: ${vo.schedule_title}</h3>
+                        <p>총 금액:  <fmt:formatNumber value="${vo.money}" maxFractionDigits="0" /></p>
                         <c:set var="participantCount" value="${fn:length(fn:split(vo.participant, '/'))}" />
                         <c:set var="moneyPerPerson" value="${vo.money / participantCount}" />
                         <p>1인당 금액: <fmt:formatNumber value="${moneyPerPerson}" maxFractionDigits="0" /></p>
-                        <button type="button" id="payment_btn">정산하기</button>
+                        <button type="button" id="payment_btn" onclick="schedule_payment(this)">
+                            <img src="/resources/uploadimg/btn_request_tiny.png">
+                        </button>
                     </span>
                     </div>
                     <div class="payment_right">
                         <h3>참여 멤버</h3>
                         <ul id="member-list">
                             <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
-                                <c:forEach items="${saveNamesMap[participant]}" var="participantDetails">
-                                    <li>
-                                        <input type="hidden" value="${participant}" class="participant_mine">
-                                        <img src="/resources/uploadimg/${participantDetails.save_name}" style="width: 50px; height: 50px; border-radius: 25px">
-                                    </li>
-                                </c:forEach>
+                                <li>
+                                    <input type="hidden" value="${participant}" class="participant_mine">
+                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                </li>
                             </c:forEach>
+
 
 
                         </ul>

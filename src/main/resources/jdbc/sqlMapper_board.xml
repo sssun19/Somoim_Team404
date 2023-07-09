@@ -48,6 +48,24 @@
 
 	</select>
 
+	<select id="SCHEDULE_PAYMENT"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+
+		SELECT m.num,s.som_member_num
+		FROM somoim_schedule s
+		INNER JOIN somoim_member m ON s.Som_member_num = m.num
+		WHERE m.num = #{som_member_num} AND s.num = #{num}
+
+	</select>
+
+	<select id="PAYMENT_USER_CHECK"
+			resultType="test.com.moim.board.model.Somoim_MemberVO">
+
+			select num from somoim_member
+			where user_id = #{user_id} and somoim_num = #{somoim_num}
+
+	</select>
+
 
 
 

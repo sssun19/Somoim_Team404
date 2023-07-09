@@ -6,21 +6,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.moim.board.model.Somoim_BoardVO;
+import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
 import test.com.moim.board.service.BoardService;
 import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
+import test.com.moim.userinfo.controller.Email;
 import test.com.moim.userinfo.model.UserinfoVO;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.Clock;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Handles requests for the application home page.
@@ -200,7 +201,8 @@ public class BoardController {
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 
-        Map<String, List<Somoim_ScheduleVO>> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+        Map<String, Somoim_ScheduleVO> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+        Set<String> participantSet = new HashSet<>(); // 중복되는 participant를 제거하기 위한 Set을 생성합니다.
 
         for (Somoim_ScheduleVO vo2 : vos) {
             log.info("각자의 vos 값"+vo2.toString());
@@ -208,15 +210,21 @@ public class BoardController {
             String[] Splits = vo2.getParticipant().split("/");
 
             for (String s : Splits) {
-                log.info("스플릿한 값"+s);
-                vo.setUser_id(s);
+                participantSet.add(s); // 중복되는 participant를 제거하기 위해 Set에 추가합니다.
+            }
+        }
 
-                List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
-                saveNamesMap.put(s, vos2); // Save name을 담습니다.
+        for (String participant : participantSet) { // 중복을 제거한 participant에 대해 반복합니다.
+            log.info("스플릿한 값"+participant);
+            vo.setUser_id(participant);
 
-                for (Somoim_ScheduleVO t : vos2){
-                    log.info("저장된 세이브 네임"+t.getSave_name());
-                }
+            List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
+            if(!vos2.isEmpty()) {
+                saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
+            }
+
+            for (Somoim_ScheduleVO t : vos2){
+                log.info("저장된 세이브 네임"+t.getSave_name());
             }
         }
 
@@ -364,34 +372,80 @@ public class BoardController {
 
     @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
     public String join_pay(Somoim_ScheduleVO vo,Model model) {
-        log.info("join_pay()......{}",vo);
+
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
 
-        Map<String, List<Somoim_ScheduleVO>> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+        Map<String, Somoim_ScheduleVO> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+        Set<String> participantSet = new HashSet<>(); // 중복되는 participant를 제거하기 위한 Set을 생성합니다.
 
         for (Somoim_ScheduleVO vo2 : vos) {
-            log.info("각자의 vos 값"+vo2.toString());
+            log.info(vo2.toString());
 
             String[] Splits = vo2.getParticipant().split("/");
 
             for (String s : Splits) {
-                log.info("스플릿한 값"+s);
-                vo.setUser_id(s);
-
-                List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
-                saveNamesMap.put(s, vos2); // Save name을 담습니다.
-
-                for (Somoim_ScheduleVO t : vos2){
-                    log.info("저장된 세이브 네임"+t.getSave_name());
-                }
+                participantSet.add(s); // 중복되는 participant를 제거하기 위해 Set에 추가합니다.
             }
         }
+
+        for (String participant : participantSet) { // 중복을 제거한 participant에 대해 반복합니다.
+
+            vo.setUser_id(participant);
+
+            List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
+            if(!vos2.isEmpty()) {
+                saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
+            }
+
+            for (Somoim_ScheduleVO t : vos2){
+
+            }
+        }
+
+
 
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 
         return "board/join_pay";
+    }
+
+
+
+    @RequestMapping(value = "/schedule_payment.do", method = RequestMethod.POST)
+    public String schedule_payment(Somoim_ScheduleVO vo,Somoim_MemberVO mvo) {
+
+        log.info("schedule_payment.do().....{}",vo);
+
+//        String userId = (String) request.getSession().getAttribute("user_id");
+
+
+        log.info("세션 아이디"+vo.getSomoim_num());
+
+        Somoim_ScheduleVO vo2 = service.selectPay(vo);
+
+        Somoim_MemberVO mvo2 = service.selectMember(mvo);
+
+
+
+
+        log.info("vo2 스트링"+vo2.toString());
+
+        log.info("mvo2 스트링"+mvo2.toString());
+
+        if (vo2.getSom_member_num() == mvo2.getNum()) {
+            log.info("같음");
+            return "redirect:join_pay.do?somoium_num="+vo.getSomoim_num();
+        }else{
+            log.info("다름");
+            return "redirect:join_pay.do?somoium_num="+vo.getSomoim_num();
+        }
+
+
+
+
+
     }
 
 
