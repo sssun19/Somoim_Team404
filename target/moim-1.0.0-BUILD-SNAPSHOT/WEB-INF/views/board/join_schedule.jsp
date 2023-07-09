@@ -118,7 +118,7 @@
             var participantName = $(this).val();
 
             if (participantName === userId) {
-                $(this).siblings('img').css('border', '2px solid #1785F2');
+                $(this).closest('li').css('border', '2px solid #1785F2');
                 $(this).parent().prependTo('.schm_grid');
             }
         });

@@ -48,6 +48,13 @@
 
 	</select>
 
+	<select id="SCHEDULE_PAYMENT"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+
+			select
+
+	</select>
+
 
 
 
