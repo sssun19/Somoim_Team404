@@ -21,33 +21,36 @@
 
 
 <div class="event">
-    <div class="event_top">
-        <h1>${vo2.title}</h1>
-    </div>
+
 
     <div class="event_content">
-        <img src="resources/uploadimg/${vo2.save_name}" alt="이벤트 사진">
+        <form action="updateOKEvents.do?num=${vo2.num}" >
+            작성자 :${user_id}<br><br>
+        <h1>대표 사진</h1>
+        <input  type="file"  name="save_name" value="${vo2.save_name}"><br><br>
+        <input  type="hidden"  name="num" value="${vo2.num}"><br><br>
 
-        <p>${vo2.content}
-            <br><br>
-            <span>참여기간</span> : ${vo2.start_events} ~ ${vo2.end_date}
-            <br><br>
-            <span>당첨자 발표</span> : ${vo2.end_date}
-            <br><br>
-            <span>이벤트 대상</span> : ${vo2.event_target}
-            <br><br>
-            <span>상품 및 당첨인원</span> :${vo2.present} / ${vo2.winner}
-        </p>
-        <br>
-        <br>
-        <br>
-        <c:if test="${user_id eq 'tester'}">
-            <a href="InsertEvents.do"><button>작성</button></a>
-            <a href="updateEvents.do?num=${vo2.num}"><button>수정</button></a>
-            <a href="deleteOKEvents.do?num=${vo2.num}"><button>삭제</button></a>
-            관리자 계정 "tester"만 보이는 메뉴
-        </c:if>
-    </div>
+        <input  type="hidden"  name="user_id" value="${user_id}"><br><br>
+
+            <span>이벤트 제목</span>:
+            <input type="text"  name="title" value="${vo2.title}"><br><br>
+            <label for="content">콘텐츠 내용:</label>
+            <textarea name="content" id="content" rows="5" cols="50" value="${vo2.content}">${vo2.content}</textarea>
+
+        <span>이벤트 시작기간</span>:
+            <input type="date" id="start_events" name="start_events" value="${vo2.start_events}"><br><br>
+        <span>이벤트 종료일자</span>:
+            <input type="date" id="end_date" name="end_date" value="${vo2.end_date}"><br><br>
+        <span>이벤트 대상</span>:
+            <input type="text"  name="event_target" value="${vo2.event_target}"><br><br>
+        <span>상품 </span>:
+            <input type="text"  name="present" value="${vo2.present}"><br><br>
+        <span>당첨인원</span>:
+            <input type="text"  name="winner" value="${vo2.winner}"><br><br>
+        <button type="submit"> 작성완료</button>
+
+
+        </form>
 
     <div class="footer">
         <div>
