@@ -39,12 +39,11 @@ public class MemberRestController {
 		log.info("result : {}", result);
 		
 		UserinfoVO vo2 = new UserinfoVO();
-		vo2.setSom_title(vo.getSom_title());
 		vo2.setUser_id(vo.getUser_id());
+		vo2.setSom_title("/"+vo.getSom_title());
 		
 		UserinfoVO vo3 = service2.selectUser(vo2);
-		log.info("이게머게...{}", vo3.getSom_title());
-		log.info("이건 또 머게...{}", vo3.getUser_id());
+		log.info("vo3...{}", vo3);
 		
 		
 		if(result==1)
