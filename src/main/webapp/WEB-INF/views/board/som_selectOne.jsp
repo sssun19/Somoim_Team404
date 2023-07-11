@@ -148,7 +148,7 @@
                     </ul>
                 </div>
                 <div class="detail_status">
-                    <button type="button">참석</button>
+                    <a href="join_schedule.do?somoim_num=${vo2.num }"><button type="button">참석</button></a>
                     <button type="button">취소</button>
                 </div>
 
