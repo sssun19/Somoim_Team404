@@ -94,6 +94,7 @@ public class SomoimController {
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)
 	public String som_insert() {
 
+
 		log.info("som_insert.do().....");
 		
 		return "board/som_insert";
