@@ -47,15 +47,6 @@
 	<insert id="JOIN_INSERT">
 		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date)
 		values(
-<<<<<<< HEAD
-			seq_somoim_board.nextval,
-		    #{title},
-			#{content},
-			(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-			#{somoim_num},
-			sysdate
-		)
-=======
 				  seq_somoim_board.nextval,
 				  #{title},
 				  #{content},
@@ -63,7 +54,6 @@
 				  #{somoim_num},
 				  sysdate
 			  )
->>>>>>> 562cbdcdd77e462cce25b6312c467803b817444a
 	</insert>
 	<update id="SCH_PART_UPDATE">
 		UPDATE somoim_schedule

@@ -150,14 +150,14 @@ public class CommunityController {
 		CommunityVO vo2 = service.selectOne(vo);
 
 		model.addAttribute("vo2", vo2);
-		/*log.info("vo2...{}", vo2);*/
+		log.info("vo2...{}", vo2);
 
 		return "community/update";
 	}
 
 	@RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
 	public String community_updateOK(CommunityVO vo) {
-		log.info("/community_updateOK.do...{}", vo);
+		log.info("/++++++++++++++++++++community_updateOK.do...{}", vo);
 
 		int result = service.update(vo);
 		log.info("result...{}", result);
