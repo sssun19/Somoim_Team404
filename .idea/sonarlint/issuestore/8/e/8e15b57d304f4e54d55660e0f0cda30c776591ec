@@ -1,0 +1,28 @@
+
+m	java:S117n"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ€î­8öº•ú’1
+r	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘áöÑýÿÿÿÿ8÷º•ú’1
+r	java:S117r"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ž€¿ þÿÿÿÿ8÷º•ú’1
+o	java:S100."NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Ž‚òÿÿÿÿÿ8üº•ú’1
+e
+java:S4488-"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ŠÈÁÿ8ýº•ú’1
+j	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…õ‘á8ÿº•ú’1
+e
+java:S4488<"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ó«Öµ8ÿº•ú’1
+i	java:S100I"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ‰ì8€»•ú’1
+j
+java:S4488H"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(í”Èûÿÿÿÿ8€»•ú’1
+j	java:S100S"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(íÔ£¸8€»•ú’1
+g
+java:S4488R"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÓèÜØ8»•ú’1
+H
+java:S1075i"&Remove this hard-coded path-delimiter.(À¿­øÿÿÿÿ8„»•ú’1
+k	java:S100“"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ«†°8ˆ»•ú’1
+f
+java:S4488’"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(áð£Ú8ˆ»•ú’1
+^	java:S125ƒ"<This block of commented-out lines of code should be removed.(¾ÏÎ´üÿÿÿÿ8ˆ»•ú’1
+p	java:S100Ÿ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’Œêýÿÿÿÿ8¹™Û…“1
+m
+java:S4488ž"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ý›“âüÿÿÿÿ8‰»•ú’1
+p	java:S100®"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÊÙùÿÿÿÿ8Š»•ú’1
+k
+java:S4488­"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¬°’ëûÿÿÿÿ8Š»•ú’1

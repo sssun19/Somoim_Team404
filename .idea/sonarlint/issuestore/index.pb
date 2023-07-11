@@ -84,3 +84,5 @@ e
 5src/main/webapp/WEB-INF/views/community/selectOne.jsp,5\1\51d8064ad082f95155e66087138df63876e5b41f
 |
 Lsrc/main/java/test/com/moim/comments/controller/som_comments_controller.java,3\8\384958517b4966a5d6159c5d8e246c5a6997bee0
+y
+Isrc/main/java/test/com/moim/community/controller/CommunityController.java,8\e\8e15b57d304f4e54d55660e0f0cda30c776591ec
