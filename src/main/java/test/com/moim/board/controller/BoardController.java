@@ -42,7 +42,7 @@ public class BoardController {
     @Autowired
     som_comments_Service commService;
 
-
+    
 
 
 
@@ -98,6 +98,7 @@ public class BoardController {
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
     public String join_selectAll(Model model,Somoim_BoardVO vo) {
         log.info("join_selectAll().....");
+        log.info("저장");
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
 
