@@ -150,6 +150,7 @@ public class CommunityController {
 		CommunityVO vo2 = service.selectOne(vo);
 
 		model.addAttribute("vo2", vo2);
+		/*log.info("vo2...{}", vo2);*/
 
 		return "community/update";
 	}

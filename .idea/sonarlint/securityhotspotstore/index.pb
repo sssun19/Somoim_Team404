@@ -32,12 +32,8 @@ b
 2src/main/webapp/WEB-INF/views/board/som_insert.jsp,1\6\168672a77d788750ab8c4fd85b9221b1c466b317
 f
 6src/main/java/test/com/moim/somoim/model/SomoimVO.java,6\9\69da2d0219c362faf1af64f7231c1bb01f77342b
-s
-Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
 q
 Asrc/main/java/test/com/moim/community/model/CommunityDAOimpl.java,e\9\e9b0f8ef7f618fd7fba4c6d7b7ec020e568b852a
-l
-<src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
 s
 Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
 e
@@ -50,8 +46,6 @@ j
 :src/main/java/test/com/moim/userinfo/controller/Email.java,c\f\cf117f056b066226e13ec9d98e3f90d8d0c5ff18
 w
 Gsrc/main/java/test/com/moim/userinfo/controller/UserinfoController.java,a\d\ad329835b636e658462d3e7f8f7391d9b07283dc
-_
-/src/main/webapp/WEB-INF/spring/root-context.xml,5\2\528c08e315052712c6de729d808bc541b1c5b506
 `
 0src/main/webapp/WEB-INF/views/userinfo/login.jsp,c\2\c226bbb5718a889c231d6f80bf2b4457da50c1dd
 a
