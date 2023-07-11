@@ -47,9 +47,11 @@ function Participant_Cancle(btn){
     for (var i = 0; i < AlreadyCheck.length; i++) {
         if (AlreadyCheck[i] != UserCheck) {
             validParticipants.push(AlreadyCheck[i]);
-        } else {
-
         }
+    }
+    if (validParticipants.length == 0) {
+        join_schedule_deleteOK();
+        return; // End the function here to avoid further actions
     }
 
     var numField = $(btn).closest('li').find('.PART_UPDATE_NUM');
@@ -81,3 +83,49 @@ function Participant_Cancle(btn){
 
 
 }
+
+function join_schedule_deleteOK() {
+    console.log("join_schedule_deleteOK....");
+
+    $.ajax({
+        url: "join_schedule_deleteOK.do",
+        data: {
+            num: $('.PART_UPDATE_NUM').val(),
+            somoim_num: $('#somoim_num').val(),
+
+        },
+        method: 'POST',
+        dataType: 'text',
+        success: function(response) {
+            console.log('ajax....success', response);
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
+        },
+        error:function(xhr,status,error){
+            console.log('xhr.status:', xhr.status);
+        }
+    });
+}//end function()
+
+function test_func() {
+
+
+    $.ajax({
+        url: "test_func.do",
+        data: {
+            num: $('.PART_UPDATE_NUM').val(),
+            somoim_num: $('#somoim_num').val(),
+            participant: $('.PART_UPDATE_Participant').val(),
+
+        },
+        method: 'POST',
+        dataType: 'json',
+        success: function(response) {
+            console.log('ajax....success', response);
+            location.href="join_schedule.do?somoim_num="+$('#somoim_num').val();
+
+        },
+        error:function(xhr,status,error){
+            console.log('xhr.status:', xhr.status);
+        }
+    });
+}//end function()

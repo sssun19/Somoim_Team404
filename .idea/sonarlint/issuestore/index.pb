@@ -12,14 +12,6 @@ k
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 i
 9src/main/java/test/com/moim/board/model/BoardDAOimpl.java,f\d\fde46bfd42c896eee5bf51cc7b96d1286fbe8428
-j
-:src/main/java/test/com/moim/userinfo/controller/Email.java,c\f\cf117f056b066226e13ec9d98e3f90d8d0c5ff18
-{
-Ksrc/main/java/test/com/moim/userinfo/controller/UserinfoRestController.java,e\a\ea7607faa2940e80f129fa3b017bef80ed6efff2
-p
-@src/main/java/test/com/moim/userinfo/controller/EmailSender.java,d\0\d03d5f5c06f21e6eba3f357e84b10b0485463c4c
-w
-Gsrc/main/java/test/com/moim/userinfo/controller/UserinfoController.java,a\d\ad329835b636e658462d3e7f8f7391d9b07283dc
 „
 Tsrc/main/java/test/com/moim/com_comments/controller/som_com_comments_controller.java,3\f\3f730573c5093dae8a0a778644555037d6c14046
 k
@@ -32,8 +24,6 @@ _
 /src/main/java/test/com/moim/HomeController.java,1\9\192fb33ea8e944b01bcf86c8e7c3ad4e4aaa3b54
 O
 src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
-_
-/src/main/webapp/WEB-INF/spring/root-context.xml,5\2\528c08e315052712c6de729d808bc541b1c5b506
 m
 =src/main/java/test/com/moim/community/model/CommunityDAO.java,c\4\c4d13ea49725091316c22c0a475b5465be348319
 m
