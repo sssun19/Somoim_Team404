@@ -14,10 +14,6 @@
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
-    <div class="header">
-       
-​
-    </div>
     <div class="mypage_sec">
         <div class="mypage_top_sec">
             <div class="mypage_left_profile">

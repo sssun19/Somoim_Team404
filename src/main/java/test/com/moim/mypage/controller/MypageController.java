@@ -25,7 +25,7 @@ public class MypageController {
 	MypageService service;
 
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String mypage(Model model) {
 		log.info("mypage open....");
 		UserinfoVO vo = new UserinfoVO();
 		String user_id = (String)session.getAttribute("user_id");
@@ -48,6 +48,14 @@ public class MypageController {
 
 		return "mypage/mypage";
 	}
+	
+	@RequestMapping(value = "/mypage_update.do", method = RequestMethod.GET)
+	public String mypage_update(Model model) {
+		log.info("mypage_update open....");
+		
+		return "mypage/mypage_update";
+	}
+	
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)
 	public String mypage_myactivity_good() {
 		log.info("mypage_myactivity_good.do().....");

@@ -67,7 +67,7 @@
                                 <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
                                 <li>
                                     <input type="hidden" value="${participant}" class="participant_mine">
-                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                    <img src="resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
                                 </c:forEach>
 
