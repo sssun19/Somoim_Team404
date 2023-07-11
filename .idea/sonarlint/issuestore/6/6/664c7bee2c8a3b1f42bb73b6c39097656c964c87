@@ -1,0 +1,29 @@
+
+g	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õ€î­
+l	java:S117ƒ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘áöÑıÿÿÿÿ
+l	java:S117†"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¿ şÿÿÿÿ
+h	java:S100R"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı®¹Ûøÿÿÿÿ
+c
+java:S4488Q"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¤ÕÂÀşÿÿÿÿ
+h	java:S100_"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëæÄ°ıÿÿÿÿ
+^
+java:S4488^"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÃÛâß
+c	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Ã¿¦
+e
+java:S4488f"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(òš÷ëùÿÿÿÿ
+A
+java:S1075}"&Remove this hard-coded path-delimiter.(À¿­øÿÿÿÿ
+i	java:S100˜"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œêö½ûÿÿÿÿ
+Q
+java:S1854›":Remove this useless assignment to local variable "result".(áÄúù
+^
+java:S4488—"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¾ÍÃY
+B
+java:S1481›"+Remove this unused "result" local variable.(áÄúù
+i	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—øµ¼ÿÿÿÿÿ
+V
+java:S1854¥":Remove this useless assignment to local variable "result".(ÀœÃæşÿÿÿÿ
+_
+java:S4488¡"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¼ïÛÆ
+G
+java:S1481¥"+Remove this unused "result" local variable.(ÀœÃæşÿÿÿÿ

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -62,11 +64,13 @@
                         <div class="sch_member">
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
+
                                 <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
                                 <li>
                                     <input type="hidden" value="${participant}" class="participant_mine">
                                     <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
+
                                 </c:forEach>
 
 
@@ -106,6 +110,7 @@
     </div>
 </div>
 </body>
+
 <script src="/resources/js/schedule.js"></script>
 <script>
     $(document).ready(function() {
