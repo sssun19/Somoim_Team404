@@ -83,80 +83,11 @@
 
 									<div class="c_com_func">
 										<input type="text" placeholder="댓글 목록" id="community_comments">
-
-
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 					</li>
-					<li>
-						<div class="c_user_info">
-							<div class="c_user_info_profile_">
-								<div class="c_profile">
-									<i class="far fa-user"></i>
-								</div>
-								<div class="c_user_info_profile_tooltip">
-									<div class="c_com_top">
-										<strong>닉네임</strong> <span>
-											<button type="button">
-												<i class="fas fa-edit"></i>
-											</button>
-											<button type="button">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</span>
-									</div>
-
-									<p>YYYY-MMMM-DDDD</p>
-
-									<div class="c_com_func">
-										<input type="text" placeholder="댓글 목록" id="community_comments">
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-					</li>
-					<li>
-						<div class="c_user_info">
-							<div class="c_user_info_profile_">
-								<div class="c_profile">
-									<i class="far fa-user"></i>
-								</div>
-								<div class="c_user_info_profile_tooltip">
-									<div class="c_com_top">
-										<strong>닉네임</strong> <span>
-											<button type="button">
-												<i class="fas fa-edit"></i>
-											</button>
-											<button type="button">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</span>
-									</div>
-
-									<p>YYYY-MMMM-DDDD</p>
-
-									<div class="c_com_func">
-										<input type="text" placeholder="댓글 목록" id="community_comments">
-
-
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-					</li>
-
-
-
 				</ul>
 				<div class="community_commnets_insert_section">
 					<div class="c_comments_user_profile">

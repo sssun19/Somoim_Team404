@@ -26,6 +26,7 @@
 				<value>classpath:jdbc/sqlMapper_somoim.xml</value>
 				<value>classpath:jdbc/sqlMapper_member.xml</value>
 				<value>classpath:jdbc/sqlMapper_community.xml</value>
+				<value>classpath:jdbc/sqlMapper_community_comments.xml</value>
 				<value>classpath:jdbc/sqlMapper_board.xml</value>
 				<value>classpath:jdbc/sqlMapper_somoim_board.xml</value>
 				<value>classpath:jdbc/sqlMapper_CS.xml</value>
@@ -51,7 +52,7 @@
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="wendy3302@gmail.com" />
-		<property name="password" value="ftbesifkhssazmgz" />
+		<property name="password" value="yccavwvdkvlzcrlu" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.starttls.enable">true</prop>
