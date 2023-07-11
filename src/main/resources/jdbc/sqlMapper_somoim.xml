@@ -13,6 +13,10 @@
 		select * from somoim where num = #{num}
 	</select>
 	
+	<select id="SELECT_SOMOIM" resultType="test.com.moim.somoim.model.SomoimVO">
+		select * from somoim_member a join somoim b on a.somoim_num=b.num where somoim_num=#{somoim_num}
+	</select>
+	
 	<select id="SOMOIM_SEARCH_LIST_TITLE" resultType="test.com.moim.somoim.model.SomoimVO" parameterType="HashMap">
 		select * from somoim where som_title like #{searchWord} and category=#{category}
 	</select>

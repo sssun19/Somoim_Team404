@@ -1,6 +1,11 @@
 package test.com.moim.mypage.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.member.model.MemberVO;
 import test.com.moim.mypage.service.MypageService;
+import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 
@@ -43,8 +50,14 @@ public class MypageController {
 		log.info(mypageBirth);
 		
 		vo2.setBirthday(mypageBirth);
+		
+	
 
-		model.addAttribute("vo2", vo2);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("vo2", vo2);
+		
+		model.addAllAttributes(map);
 
 		return "mypage/mypage";
 	}

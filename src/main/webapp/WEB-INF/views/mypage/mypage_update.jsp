@@ -8,6 +8,7 @@
 
     <script>
         $(document).ready(function() {
+        	console.log('hi');
           $('.datepicker').datepicker();
         });
       </script>
@@ -19,6 +20,7 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/mypage.css">
     <link rel="stylesheet" href="resources/css/mypage_min.css">
+        <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.somoim.model.SomoimVO;
 
 @Slf4j
 @Repository
@@ -58,5 +59,6 @@ public class MemberDAOimpl implements MemberDAO {
 		log.info("this.....{}", vo);
 		return session.selectList("PROFILE_CHECK", vo);
 	}
+
 
 }

@@ -21,7 +21,7 @@
                     <img src="resources/uploadimg/${vo2.save_name }" width="220" height="220">
                     
                 </div>
-                <button type="button" id="update_profile">프로필 편집</button>
+                <button type="button" id="update_profile"><a href="mypage_update.do">프로필 편집</a></button>
 ​
             </div>
             <div class="mypage_right_info">

@@ -58,5 +58,11 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 		return sqlSession.selectOne("U_SELECT_ID", vo);
 	}
 
+	@Override
+	public UserinfoVO selectUser(UserinfoVO vo2) {
+		log.info("selectUserID....{}", vo2);
+		return sqlSession.selectOne("SELECT_USER", vo2);
+	}
+
 		
 }

@@ -7,6 +7,9 @@
     <select id="U_SELECT_ONE" resultType="test.com.moim.userinfo.model.UserinfoVO">
         select * from userinfo where num = #{num}
     </select>
+    <update id="U_SELECT_ONE" parameterType="test.com.moim.userinfo.model.UserinfoVO">
+        update userinfo set som_title=som_title||/#{som_title} where user_id=#{user_id};
+    </update>
     <insert id="U_INSERT" parameterType="test.com.moim.userinfo.model.UserinfoVO">
         insert into userinfo(num,user_id,pw,name,email,save_name,point,birthday)
         values(seq_userinfo.nextval,#{user_id},#{pw},#{name},#{email},#{save_name},#{point},#{birthday})
