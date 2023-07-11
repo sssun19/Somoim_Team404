@@ -8,4 +8,6 @@ public interface MongoBoardDAO {
     int insert(MongoBoardVO vo);
 
     MongoBoardVO findOne(MongoBoardVO vo);
+
+    int delete(MongoBoardVO vo);
 }

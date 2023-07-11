@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +28,11 @@
         <ul class="img_grid">
             <c:forEach items="${list}" var="list">
                 <li class="gallery_img_top" style="background-color: transparent; border: solid 1px #eee">
+                    <input type="hidden" value="${list.num}">
                     <img src="/resources/uploadimg/${list.image_name}">
                     <span>
-                        <a><i class="fas fa-trash-alt"></i> 삭제</a>
+                        <p>${ErrorMessage}</p>
+                        <a href="join_gallery_deleteOK.do?num=${list.num}&user_id=${list.user_id}&somoim_num=${list.somoim_num}"><i class="fas fa-trash-alt"></i> 삭제</a>
                     </span>
                 </li>
 
@@ -94,6 +96,13 @@
                 $(this).height(width);
             });
         }
+
+        var message = "${param.message}";
+        if (message) {
+            alert(message);
+        }
+
+
     });
 </script>
 </html>

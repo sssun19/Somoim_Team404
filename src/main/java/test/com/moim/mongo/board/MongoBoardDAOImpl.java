@@ -3,6 +3,7 @@ package test.com.moim.mongo.board;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -82,6 +83,27 @@ public class MongoBoardDAOImpl implements MongoBoardDAO {
 
         return vo2;
 
+    }
+
+    @Override
+    public int delete(MongoBoardVO vo) {
+        log.info("delete()....{}", vo);
+        int flag = 0;
+
+        try {
+            Bson filter = new Document("num",vo.getNum());
+//			Bson filter = new Document("_id",vo.getMid()==null?"":new ObjectId(vo.getMid()));
+
+            DeleteResult result =  gallery.deleteOne(filter);
+
+            log.info("getDeletedCount():{}",result.getDeletedCount());
+
+            flag = (int)result.getDeletedCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return flag;
     }
 
 }

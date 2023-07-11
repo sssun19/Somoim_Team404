@@ -20,4 +20,7 @@ public class MongoBoardService {
 
     public MongoBoardVO findOne(MongoBoardVO vo) { return dao.findOne(vo);
     }
+
+    public int delete(MongoBoardVO vo) { return dao.delete(vo);
+    }
 }
