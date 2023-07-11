@@ -1,9 +1,7 @@
 package test.com.moim.mypage.controller;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,11 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import test.com.moim.member.model.MemberVO;
 import test.com.moim.mypage.service.MypageService;
-import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 
@@ -44,12 +41,12 @@ public class MypageController {
 		log.info(vo2.getSave_name());
 		log.info(vo2.getName());
 		log.info(vo2.getEmail());
-		log.info(vo2.getBirthday());
+		log.info(vo2.getSom_title());
 		
 		String mypageBirth = vo2.getBirthday().substring(0, 10);
 		log.info(mypageBirth);
-		
 		vo2.setBirthday(mypageBirth);
+		
 		
 	
 
@@ -65,6 +62,17 @@ public class MypageController {
 	@RequestMapping(value = "/mypage_update.do", method = RequestMethod.GET)
 	public String mypage_update(Model model) {
 		log.info("mypage_update open....");
+		
+		return "mypage/mypage_update";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/mypageSelectSomoim.do", method = RequestMethod.GET)
+	public String mypageSelectSomoim(UserinfoVO vo) {
+		log.info("mypageSelectSomoim.do....{}");
+		
+//		UserinfoVO vo2 = service.mypageSelectSomoim(vo);
 		
 		return "mypage/mypage_update";
 	}

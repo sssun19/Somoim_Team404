@@ -11,6 +11,28 @@
     <link rel="stylesheet" href="resources/css/mypage.css">
     <link rel="stylesheet" href="resources/css/mypage_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+    	console.log('onload....mypage');
+    	
+    	$.ajax({
+    		url:'mypageSelectSomoim.do',
+    		data:{
+    			
+    		},
+    		success: function(arr){
+    			console.log('ajax successed...');
+    		},
+    		error: function(xhr, status, error){
+    			console.log('xhr.status:', xhr.status);
+    		}
+    		
+    	});
+    });
+    
+    </script>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>

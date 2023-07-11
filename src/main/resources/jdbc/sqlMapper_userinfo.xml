@@ -7,9 +7,6 @@
     <select id="U_SELECT_ONE" resultType="test.com.moim.userinfo.model.UserinfoVO">
         select * from userinfo where num = #{num}
     </select>
-    <insert id="INSERT_USER" parameterType="test.com.moim.userinfo.model.UserinfoVO">
-        
-    </insert>
     <update id="UPDATE_USER">
         update userinfo set som_title=concat(som_title, #{som_title}) where user_id=#{user_id}
     </update>
