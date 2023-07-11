@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
+    <link rel="stylesheet" href="resources/css/gallery.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -19,25 +21,24 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
-    <div class="top_func">
-        <button type="button" style="padding: 5px 12px;"><a href="join_gallery_insert.do" style="color: white">이미지 업로드</a></button>
-    </div>
 
 
-    <div class="join_imgbox">
-        <ul class="img_grid">
-            <c:forEach items="${list}" var="list">
-                <li class="gallery_img_top" style="background-color: transparent; border: solid 1px #eee">
-                    <img src="/resources/uploadimg/${list.image_name}">
-                    <span>
-                        <a><i class="fas fa-trash-alt"></i> 삭제</a>
-                    </span>
-                </li>
+    <div class="gallery_insert_section">
+        <form action="join_gallery_insertOK.do" enctype="multipart/form-data" method="post">
+            <div class="gallery_insert_top_func">
+                <h2>
+                    <i class="far fa-image"></i>
+                    이미지
+                </h2>
+                <input type="hidden" value="${num}" name="somoim_num">
+                <input type="file" name="file" id="imageUpload" accept="image/*" onchange="previewImage();" />
+            </div>
+            <div class="gallery_img_box">
+                <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
 
-            </c:forEach>
-
-        </ul>
-
+            </div>
+            <input type="submit" id="image_btn">
+        </form>
     </div>
 
 
@@ -81,19 +82,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function(){
-        adjustImageHeight();
+    function previewImage() {
+        var file = document.querySelector('#imageUpload').files[0];
+        var reader = new FileReader();
 
-        $(window).resize(function() {
-            adjustImageHeight();
-        });
+        reader.addEventListener("load", function () {
+            // 변환된 이미지 URL을 img 태그의 src 속성에 할당
+            document.querySelector('#imagePreview').src = reader.result;
+            document.querySelector('#imagePreview').style.display = 'block';
+        }, false);
 
-        function adjustImageHeight() {
-            $(".img_grid li").each(function() {
-                let width = $(this).width();
-                $(this).height(width);
-            });
+        if (file) {
+            reader.readAsDataURL(file);
         }
-    });
+    }
 </script>
 </html>
