@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
@@ -109,6 +110,30 @@ public class MongoBoardController {
 
         map.put("result", result);
 
+        return "redirect:/join_gallery.do?somoim_num=" + vo.getSomoim_num();
+    }
+
+    @RequestMapping(value = "/join_gallery_deleteOK.do", method = RequestMethod.GET)
+    public String join_gallery_deleteOK(HttpServletRequest request, MongoBoardVO vo, RedirectAttributes attributes) {
+        log.info("join_gallery_deleteOK()......{}",vo);
+
+        String userId = (String) request.getSession().getAttribute("user_id");
+        log.info(userId);
+
+
+
+        if(userId.equals(vo.getUser_id())){
+            int result = service.delete(vo);
+            if(result ==1){
+                return "redirect:join_gallery.do?somoim_num=" + vo.getSomoim_num();
+            }
+
+        }
+        else
+        {
+            attributes.addAttribute("message","권한이 거부 되었습니다.");
+
+        }
         return "redirect:/join_gallery.do?somoim_num=" + vo.getSomoim_num();
     }
 
