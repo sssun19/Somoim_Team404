@@ -28,17 +28,17 @@
 
         <insert id="E_INSERT">
 			INSERT INTO events (num, USER_ID, TITLE, CONTENT, SAVE_NAME, START_EVENTS, END_DATE, WINNER, EVENT_TARGET, PRESENT)
-			VALUES (seq_events.nextval, #{user_id}, #{title}, #{content , jdbcType=VARCHAR}, #{save_name},  TO_DATE(#{start_events}, 'YYYY-MM-DD'), TO_DATE(#{end_date}, 'YYYY-MM-DD'),  #{winner}, #{event_target}, #{present})
+			VALUES (seq_events.nextval, #{user_id}, #{title}, #{content}, #{save_name},  TO_DATE(#{start_events}, 'YYYY-MM-DD'),
+			        TO_DATE(#{end_date}, 'YYYY-MM-DD'),  #{winner}, #{event_target}, #{present})
         </insert>
-	<!--
-            <update id="b_UPDATE">
-                update board set title=#{title},writer=#{writer},content=#{content}
-                where wnum=#{wnum}
-            </update>
 
-            <delete id="b_DELETE">
-                delete from board where wnum=#{wnum}
-            </delete>
-            -->
+            <update id="E_UPDATE">
+                update events set title=#{title},content=#{content}, save_name=#{save_name}, start_events=#{start_events}, end_date=#{end_date}, winner=#{winner},
+                                  event_target=#{event_target}, present=#{present}
+                where num=#{num}
+            </update>
+                <delete id="E_DELETE">
+                    delete from events where num=#{num}
+                </delete>
 
 </mapper>

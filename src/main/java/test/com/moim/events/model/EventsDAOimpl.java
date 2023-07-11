@@ -35,13 +35,15 @@ public class EventsDAOimpl implements EventsDAO {
         return sqlSession.insert("E_INSERT", vo);
     }
 
+
+
     @Override
     public int delete(EventsVO vo) {
-        return 0;
+        return sqlSession.delete("E_DELETE", vo);
     }
 
     @Override
     public int update(EventsVO vo) {
-        return 0;
+        return sqlSession.update("E_UPDATE", vo);
     }
 }
