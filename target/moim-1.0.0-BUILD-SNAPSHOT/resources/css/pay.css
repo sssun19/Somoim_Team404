@@ -1,5 +1,5 @@
 .payment_section {
-    width: 80%;
+    width: 100%;
     margin: 50px auto;
 }
 
@@ -86,7 +86,7 @@
     border-radius: 5px;
     outline: none;
     border: none;
-    background-color: #1785F2;
+    background-color: transparent;
     color: white;
     padding: 5px 0px;
 }

@@ -26,7 +26,7 @@
     </div>
 
     <div class="event_content">
-        <img src="resources/uploadimg/출석.jpg" alt="이벤트 사진">
+        <img src="resources/uploadimg/${vo2.save_name}" alt="이벤트 사진">
 
         <p>${vo2.content}
             <br><br>
@@ -43,7 +43,8 @@
         <br>
         <c:if test="${user_id eq 'tester'}">
             <a href="InsertEvents.do"><button>작성</button></a>
-            <a href="InsertEvents.do"><button>수정</button></a>
+            <a href="updateEvents.do?num=${vo2.num}"><button>수정</button></a>
+            <a href="deleteOKEvents.do?num=${vo2.num}"><button>삭제</button></a>
             관리자 계정 "tester"만 보이는 메뉴
         </c:if>
     </div>

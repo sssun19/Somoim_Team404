@@ -11,6 +11,11 @@
 		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate)
 	</insert>
 
+	<select id="Find_UserInfo"
+			resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select * from userinfo
+
+	</select>
 
 	<select id="Sch_SELECT_ALL"
 			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
@@ -20,65 +25,49 @@
 	</select>
 
 	<insert id="Sch_INSERT">
-		INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money,max_participant, som_member_num,somoim_num,participant,participant_count)
-		VALUES (
-				   seq_somoim_schedule.nextval,
-				   #{schedule_date},
-				   #{schedule_time},
-				   #{schedule_title},
-				   #{place},
-				   #{money},
-				   #{max_participant},
-				   (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-		        	#{somoim_num},
-		        	#{participant},
-		        	1
+        INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money, max_participant,
+                                    som_member_num, somoim_num, participant, participant_count)
+        VALUES (seq_somoim_schedule.nextval,
+                #{schedule_date},
+                #{schedule_time},
+                #{schedule_title},
+                #{place},
+                #{money},
+                #{max_participant},
+                (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
+                #{somoim_num},
+                #{participant},
+                1)
+    </insert>
 
+	<select id="Sch_SELECT_PART"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
 
+		select save_name from userinfo
+		where user_id = #{user_id}
 
-
-			   )
-	</insert>
-
-	<!--
-	<select id="b_SELECT_ONE"
-		resultType="test.com.semi.board.model.BoardVO">
-		select * from board where wnum = #{wnum}
 	</select>
 
-	<select id="b_ID_CHECK"
-		resultType="test.com.semi.board.model.BoardVO">
-		select * from board where id = #{id}
+	<select id="SCHEDULE_PAYMENT"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+
+		SELECT m.num,s.som_member_num
+		FROM somoim_schedule s
+		INNER JOIN somoim_member m ON s.Som_member_num = m.num
+		WHERE m.num = #{som_member_num} AND s.num = #{num}
+
 	</select>
 
-	<select id="b_LOGIN"
-		resultType="test.com.semi.board.model.BoardVO">
-		select * from board where id = #{id} and pw = #{pw}
+	<select id="PAYMENT_USER_CHECK"
+			resultType="test.com.moim.board.model.Somoim_MemberVO">
+
+			select num from somoim_member
+			where user_id = #{user_id} and somoim_num = #{somoim_num}
+
 	</select>
 
-	<select id="b_SEARCH_LIST_NAME"
-		resultType="test.com.semi.board.model.BoardVO">
-		select * from board where name like #{searchWord}
-	</select>
 
-	<select id="b_SEARCH_LIST_TEL"
-		resultType="test.com.semi.board.model.BoardVO">
-		select * from board where tel like #{searchWord}
-	</select>
 
-	<insert id="b_INSERT">
-		insert into board(wnum,title,writer,content,wdate)
-		values(seq_board.nextval,#{title},#{writer},#{content},sysdate)
-	</insert>
 
-	<update id="b_UPDATE">
-		update board set title=#{title},writer=#{writer},content=#{content}
-		where wnum=#{wnum}
-	</update>
-
-	<delete id="b_DELETE">
-		delete from board where wnum=#{wnum}
-	</delete>
-	-->
 
 </mapper>

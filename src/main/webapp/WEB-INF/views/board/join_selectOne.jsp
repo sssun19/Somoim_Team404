@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -40,10 +41,16 @@
                     <i class="far fa-heart"></i>
                 </button>
                 <button type="button">
-                    <i class="fas fa-edit"></i>
+                    <a href="join_update.do?num=${vo2.num}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+
                 </button>
                 <button type="button">
-                    <i class="fas fa-trash-alt"></i>
+                    <a href="join_deleteOK.do?num=${vo2.num}">
+                            <i class="fas fa-trash-alt"></i>
+                    </a>
+
                 </button>
             </div>
         </div>
@@ -69,8 +76,11 @@
                                     <div class="com_top">
                                         <strong>${com.user_id}</strong>
                                         <span>
-                                            <form action="som_comm_updateOK.do">
+                                            <form action="som_comm_updateOK.do?num=${com.som_board_num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                                <input type="hidden" name="num" value = "${com.num}">
+                                                <input type="hidden" name="content" value = "${com.content}">
+
 
                                             <button type="submit">
                                                 <i class="fas fa-edit"></i>
@@ -79,8 +89,9 @@
                                             </button>
                                                 </form>
                                             </form >
-                                            <form action="som_comm_deleteOK.do">
+                                            <form action="som_comm_deleteOK.do?num=${com.num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                                <input type="hidden" name="num" value="${com.num}">
                                             <button type="submit">
                                                 <i class="fas fa-trash-alt"></i>
                                                 <%-- 삭제 --%>
@@ -104,7 +115,7 @@
                                 </c:forEach>
                                 <form action="som_dcomm_insertOK.do">
                                     <div class="join_commnets_insert_section">
-                                        <input type="text" placeholder="댓글 작성" name="content" value="${com.content}">
+                                        <input type="text" placeholder="댓글 작성" name="content" value="${c_com.content}">
                                         <input type="hidden" name="parent_com" value="${com.num}">
                                         <input type="hidden" name="user_id" value="${user_id}">
 

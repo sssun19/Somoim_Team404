@@ -82,7 +82,70 @@ public class EventsController {
         }
 
     }
+    @RequestMapping(value = "/updateEvents.do", method = RequestMethod.GET)
+    public String updateEvents(EventsVO vo, Model model){
+        log.info("update********* vo..{}", vo);
+        String userId = (String) session.getAttribute("user_id");
+        model.addAttribute("user_id", userId);
 
+        log.info("userId..{}", userId);
+
+        EventsVO vo2 =new EventsVO();
+        vo2 = service.selectOne(vo);
+model.addAttribute("vo2", vo2);
+log.info("new vo2!!!!!!!!!!..{}", vo2);
+
+        return "event/updateEvents";
+    }
+
+
+
+    @RequestMapping(value = "/updateOKEvents.do", method = RequestMethod.GET)
+    public String updateOKEvents(EventsVO vo, Model model){
+        String userId = (String) session.getAttribute("user_id");
+
+        model.addAttribute("user_id", userId);
+        log.info("userId..{}", userId);
+        log.info("update vovovovo..{}", vo);
+
+        EventsVO vo2 = new EventsVO();
+        vo2.setNum(vo.getNum());
+        vo2 = service.selectOne(vo2);
+        log.info("new vo2 vo2 vo2..{}",vo2 );
+        if (vo.getSave_name() == null || vo.getSave_name().equals("")) {
+            vo.setSave_name(vo2.getSave_name());
+        }
+log.info("vo..{}", vo);
+        int result = service.update(vo);
+
+        if(result==1){
+            log.info("작성완 ㅋ");
+            return "redirect:eventSelectAll.do";
+
+        }else{
+            return "redirect:updateEvents.do?num="+vo.getNum();
+        }
+
+    }
+
+    @RequestMapping(value = "/deleteOKEvents.do", method = RequestMethod.GET)
+    public String deleteOKEvents(EventsVO vo, Model model){
+        String userId = (String) session.getAttribute("user_id");
+
+        model.addAttribute("user_id", userId);
+        log.info("userId..{}", userId);
+        log.info("update vovovovo..{}", vo);
+        int result = service.delete(vo);
+
+        if(result==1){
+            log.info("삭제완 ㅋ");
+            return "redirect:eventSelectAll.do";
+
+        }else{
+            return "redirect:eventSelectAll.do?num="+vo.getNum();
+        }
+
+    }
 
 }
 
