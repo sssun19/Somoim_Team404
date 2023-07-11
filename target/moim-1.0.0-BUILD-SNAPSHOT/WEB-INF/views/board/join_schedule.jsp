@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
+=======
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+>>>>>>> 429a9bb3978bc51ae5fb22a7ca9c305e685c07f2
     <title>Document</title>
 </head>
 <body>
@@ -42,8 +46,8 @@
                                 <button type="button">
                                     <a href="join_schedule_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
                                 </button>
-                                <button type="button">
-                                    <a href="join_schedule_delete.do?num=${vo.num}"><i class="fas fa-trash-alt"></i></a>
+                                 <button type="button" onclick="join_schedule_deleteOK()">
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </span>
 
@@ -61,6 +65,7 @@
                         <div class="sch_member">
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
+<<<<<<< HEAD
                                 <c:forEach var="participant" items="${fn:split(vo.participant, '/')}" varStatus="status">
 
                                 <li>
@@ -68,6 +73,13 @@
                                     <input type="hidden" value="${participant}" class="update_participant">
                                 </li>
 
+=======
+                                <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
+                                <li>
+                                    <input type="hidden" value="${participant}" class="participant_mine">
+                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                </li>
+>>>>>>> 429a9bb3978bc51ae5fb22a7ca9c305e685c07f2
                                 </c:forEach>
 
 
@@ -107,9 +119,26 @@
     </div>
 </div>
 </body>
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+=======
+>>>>>>> 429a9bb3978bc51ae5fb22a7ca9c305e685c07f2
 <script src="/resources/js/schedule.js"></script>
 <script>
+    $(document).ready(function() {
+        var userId = $('#login_user_id').val();
+        console.log(userId);
+
+        $('.participant_mine').each(function() {
+            var participantName = $(this).val();
+
+            if (participantName === userId) {
+                var $this = $(this);
+                $this.closest('li').css('border', '2px solid #1785F2');
+                $this.closest('ul').prepend($this.closest('li'));
+            }
+        });
+    });
 
 </script>
 

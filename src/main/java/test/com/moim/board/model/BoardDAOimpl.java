@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -82,5 +83,21 @@ public class BoardDAOimpl implements BoardDAO{
     public int SCH_Part_Cancle(Somoim_ScheduleVO vo) {
         return sqlSession.update("SCH_CANCEL_UPDATE",vo);
     }
+
+    @Override
+    public List<Somoim_ScheduleVO> sch_selectList_part(Somoim_ScheduleVO vo) {
+        return sqlSession.selectList("Sch_SELECT_PART",vo);
+    }
+
+    @Override
+    public Somoim_ScheduleVO selectPay(Somoim_ScheduleVO vo) {
+        return sqlSession.selectOne("SCHEDULE_PAYMENT",vo);
+    }
+
+    @Override
+    public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
+        return sqlSession.selectOne("PAYMENT_USER_CHECK",mvo);
+    }
+
 
 }
