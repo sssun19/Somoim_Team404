@@ -72,7 +72,8 @@ public class MypageController {
 	public String mypageSelectSomoim(UserinfoVO vo) {
 		log.info("mypageSelectSomoim.do....{}");
 		
-//		UserinfoVO vo2 = service.mypageSelectSomoim(vo);
+		String user_id = (String) session.getAttribute("user_id");
+		log.info("user_id 가져오지? : {}", user_id);
 		
 		return "mypage/mypage_update";
 	}
