@@ -25,6 +25,7 @@
     		},
     		success: function(arr){
     			console.log('ajax successed...');
+    			console.log('data arr:{}', arr);
     		},
     		error: function(xhr, status, error){
     			console.log('xhr.status:', xhr.status);

@@ -78,15 +78,15 @@ public class MypageController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/mypageSelectSomoim.do", method = RequestMethod.GET)
-	public String mypageSelectSomoim() {
+	public List<SomoimVO> mypageSelectSomoim(Model model) {
 		log.info("mypageSelectSomoim.do....{}");
 		
 		String user_id = (String) session.getAttribute("user_id");
 		
-		List<SomoimVO> vo = service.mypageSelectSomoim(user_id);
-		log.info("vo....!!{}", vo);
+		List<SomoimVO> vos = service.mypageSelectSomoim(user_id);
+		log.info("vo....!!{}", vos);
 		
-		return "mypage/mypage";
+		return vos;
 	}
 	
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)
