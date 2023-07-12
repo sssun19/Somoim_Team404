@@ -32,7 +32,7 @@
     				tag_vos += `
                         
     					<a href="som_selectOne.do?num=\${vo.somoim_num}"> <li>
-                        <div class="mypage_moim_profile">
+                        <div>
                             <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%;">
     ​
                         </div>
@@ -40,6 +40,12 @@
                   	    </li> </a>
     				
         			`;
+        			
+        			if(index>=3) {
+	    				console.log('3보다 많다.');
+	    				return false;
+    				}
+        			        			
     			});
     			
     			
@@ -107,13 +113,13 @@
 <!--                     <p>카테고리</p> -->
 <!-- ​ -->
 <!--                 </li> -->
-                <li>
-                    <div class="mypage_moim_profile">
-                        <i class="fas fa-plus"></i>
-​
-                    </div>
-                   <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a>
-                   </li>
+<!--                 <li> -->
+<!--                     <div class="mypage_moim_profile"> -->
+<!--                         <i class="fas fa-plus"></i> -->
+<!-- ​ -->
+<!--                     </div> -->
+<!--                    <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a> -->
+<!--                    </li> -->
 ​
 ​
             </ul>
