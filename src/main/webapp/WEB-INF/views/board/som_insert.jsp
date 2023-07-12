@@ -60,6 +60,7 @@
 
 			<h1>모임 이름</h1>
 			<input type="text" placeholder="모임 이름" id="som_title" name="som_title">
+			<input type="hidden" name="somoim_master" value="${user_id }">
 			<h1>모임 소개</h1>
 <!-- 			<input type="text" placeholder="모임 내용" id="moim_content" name="som_content"> <span> -->
 			<textarea style="width: 100%; height:500px; border: solid 1px #ccc; border-radius: 5px; resize: none; outline: none;"
@@ -90,7 +91,7 @@
 				</select>
 				<h1>대표 사진</h1> <input type="file" id="moim_profile" name="file">
 			</span>
-			<button type="submit" id="moim_btn">모임 만들기</button>
+			<input type="submit" id="moim_btn" value="모임 만들기">
 <!-- 			<a href="som_insertOK.do" enctype="multipart/form-data" method="get">개설하기</a> -->
 
 

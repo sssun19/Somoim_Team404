@@ -37,8 +37,8 @@
 	</select>
 	
 	<insert id="SOMOIM_INSERT" parameterType="test.com.moim.somoim.model.SomoimVO">
-		insert into somoim (num,som_title,category,max_member,create_date,area, som_content, somoim_img) 
-		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area}, #{som_content}, #{somoim_img})
+		insert into somoim (num,som_title,category,max_member,create_date,area, som_content, somoim_img, somoim_master) 
+		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area}, #{som_content}, #{somoim_img}, #{somoim_master})
 	</insert>
 	
 	<update id="SOMOIM_UPDATE" parameterType="test.com.moim.somoim.model.SomoimVO">

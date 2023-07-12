@@ -73,6 +73,7 @@
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 10px;">${vo2.som_title}</h1>
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
+            <p style="font-weight: 600; color: #999";>모임장: </p>
 
 <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
              <p>${vo2.som_content}</p>
