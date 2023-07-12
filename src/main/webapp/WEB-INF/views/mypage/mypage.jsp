@@ -19,13 +19,33 @@
     	
     	$.ajax({
     		url:'mypageSelectSomoim.do',
-    		data:{
-    			
-    			
-    		},
-    		success: function(arr){
+    		success: function(vos){
     			console.log('ajax successed...');
-    			console.log('data arr:{}', arr);
+    			console.log('data vos:{}', vos);
+    			
+    			let tag_vos = '';
+    			
+    			$.each(vos,function(index,vo){
+    				console.log(index,vo);
+	    			console.log('somoim_img : ', vo.somoim_img);
+	    			
+    				tag_vos += `
+                        
+    					<a href="som_selectOne.do?num=\${vo.somoim_num}"> <li>
+                        <div class="mypage_moim_profile">
+                            <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%;">
+    ​
+                        </div>
+  						  <p>\${vo.som_title}</p>
+                  	    </li> </a>
+    				
+        			`;
+    			});
+    			
+    			
+    			
+    			$('#img_somoim').html(tag_vos);
+    			
     		},
     		error: function(xhr, status, error){
     			console.log('xhr.status:', xhr.status);
@@ -78,40 +98,24 @@
         </div>
         <div class="mypage_center_sec">
             <h2>나의 모임</h2>
-            <ul class="mypage_grid02">
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
+            <ul id="img_somoim" class="mypage_grid02">
+<!--                 <li> -->
+<!--                     <div class="mypage_moim_profile"> -->
+<!--                         dgdgdg -->
+<!-- ​ -->
+<!--                     </div> -->
+<!--                     <p>카테고리</p> -->
+<!-- ​ -->
+<!--                 </li> -->
                 <li>
                     <div class="mypage_moim_profile">
                         <i class="fas fa-plus"></i>
 ​
                     </div>
-                   <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a> 
+                   <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a>
+                   </li>
 ​
 ​
-                </li>
             </ul>
         </div>
         <div class="mypage_bottom_sec">

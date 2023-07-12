@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="SELECT_MYPAGE" resultType="test.com.moim.somoim.model.SomoimVO">
-		select somoim_img from somoim a join somoim_member b on a.som_title=b.som_title where user_id=#{user_id}
+		select * from somoim a join somoim_member b on a.som_title=b.som_title where user_id=#{user_id}
 	</select>
 	
 	<select id="SELECT_SOMOIM" resultType="test.com.moim.somoim.model.SomoimVO">
@@ -38,7 +38,7 @@
 	
 	<insert id="SOMOIM_INSERT" parameterType="test.com.moim.somoim.model.SomoimVO">
 		insert into somoim (num,som_title,category,max_member,create_date,area, som_content, somoim_img) 
-		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area}, #{som_content}, #{save_name})
+		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area}, #{som_content}, #{somoim_img})
 	</insert>
 	
 	<update id="SOMOIM_UPDATE" parameterType="test.com.moim.somoim.model.SomoimVO">
