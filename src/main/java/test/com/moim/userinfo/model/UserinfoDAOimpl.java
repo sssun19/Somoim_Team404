@@ -67,7 +67,7 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 	@Override
 	public int mypage_update(UserinfoVO vo) {
 		log.info("mypage_update....{}", vo);
-		return sqlSession.update("MYPAGE_UPDATE", vo);
+		return sqlSession.update("MYPAGE_UPDATE_OK", vo);
 	}
 
 		

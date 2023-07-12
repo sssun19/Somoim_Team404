@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,9 +10,53 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script>
+// 	$(document).ready(function() {
+// 		$('.datepicker').datepicker();
+		
+// 	});
+	
 	$(document).ready(function() {
-		$('.datepicker').datepicker();
+	    const dataValue = '${vo2.save_name}';  // JSP 표현식을 JavaScript 변수에 할당
+	    handleImageSelect(dataValue);
 	});
+
+
+function handleImageSelect(dataValue) {
+	const input = document.getElementById('moim_profile');
+	const file = input.files[0];
+	
+	console.log('data...{}', dataValue);
+	console.log('input....{}', input);
+	console.log('file....{}', file);
+	
+	var tag_vo = '';
+	
+	
+	if (file) {
+		console.log('ok 너 사진 변경하지?');
+		
+	    console.log('Selected file:', file);
+	    console.log('File name:', file.name);
+	    console.log('File type:', file.type);
+	    console.log('File size:', file.size, 'bytes');
+	    
+	    tag_vo = `
+	    	<input type="text" name="file" value=\${file.name}>
+	    	<input type="text" name="save_name" value=\${file.name}>
+	    `;
+	    
+	} else {
+		alert('감지 안됨');
+		console.log('감지 안됨');
+		tag_vo = `
+			<input type="text" name="file" value="\${dataValue}">
+			<input type="text" name="save_name" value="\${dataValue}">
+		`;
+		}
+	    $('#file_savename').html(tag_vo);
+	}
+	
+	
 </script>
 <head>
 <meta charset="UTF-8">
@@ -39,7 +84,10 @@
 									src="resources/uploadimg/${vo2.save_name }" alt="프로필 이미지"></li>
 								<li class="profile_fix_but">
 <!-- 									<button type="button" href="#">편집</button> -->
-									<input type="file" id="moim_profile" name="file" value="편집">
+									<input type="file" id="moim_profile" name="file" onchange="handleImageSelect('${vo2.save_name }')"> 
+									<div id="file_savename">
+									</div>
+									
 								</li>
 							</ul>
 						</div>
@@ -51,7 +99,8 @@
 									<h2 class="mem_info">이름</h2>
 									<input type="text" name="name" placeholder="아이디를 입력하세요" id="find"
 										value="${vo2.name }">
-										<input type="text" name="user_id" value="${vo2.user_id }">
+										<input type="hidden" name="user_id" value="${vo2.user_id }">
+										<input type="hidden" name="num" value="${vo2.num }">
 								</div>
 								<!-- 닉네임 -->
 								<div class="insert_area_id">
@@ -148,7 +197,7 @@
 <!-- 			</form> -->
 		</li>
 		</ul>
-		<input type="submit" value="수정하기">
+		<input type="submit" value="수정하기" name="submit_btn">
 	</div>
 	</form>
 

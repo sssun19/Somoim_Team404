@@ -19,6 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.mypage.service.MypageService;
@@ -96,10 +98,14 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/mypage_updateOK.do", method = RequestMethod.POST)
-	public String mypage_updateOK(UserinfoVO vo) throws IllegalStateException, IOException {
+	public String mypage_updateOK(UserinfoVO vo, MultipartHttpServletRequest request) throws IllegalStateException, IOException {
 		log.info("mypage_updateOK.do....{}", vo);
 		
+		
+		
 		log.info("변경사항.....{}", vo.getName());
+		log.info("프로필사진 변경...{}", vo.getFile());
+		
 		
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
 		String getOriginalFileName = vo.getFile().getOriginalFilename();
@@ -136,11 +142,9 @@ public class MypageController {
 		} // end else
 		
 		int result = service.mypage_update(vo);
+		log.info("result : {}", result);
 		
-		if(result==1)
-			return "redirect:mypage.do";
-		else
-			return "redirect:mypage_update.do";
+		return "redirect:mypage.do";
 	}
 	
 	
