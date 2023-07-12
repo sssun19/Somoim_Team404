@@ -33,7 +33,7 @@ function handleImageSelect(dataValue) {
 	
 	
 	if (file) {
-		console.log('ok 너 사진 변경하지?');
+		console.log('감지');
 		
 	    console.log('Selected file:', file);
 	    console.log('File name:', file.name);
@@ -41,16 +41,15 @@ function handleImageSelect(dataValue) {
 	    console.log('File size:', file.size, 'bytes');
 	    
 	    tag_vo = `
-	    	<input type="text" name="file" value=\${file.name}>
-	    	<input type="text" name="save_name" value=\${file.name}>
+	    	<input type="hidden" name="file" value=\${file.name}>
+	    	<input type="hidden" name="save_name" value=\${file.name}>
 	    `;
 	    
 	} else {
-		alert('감지 안됨');
 		console.log('감지 안됨');
 		tag_vo = `
-			<input type="text" name="file" value="\${dataValue}">
-			<input type="text" name="save_name" value="\${dataValue}">
+			<input type="hidden" name="file" value="\${dataValue}">
+			<input type="hidden" name="save_name" value="\${dataValue}">
 		`;
 		}
 	    $('#file_savename').html(tag_vo);
