@@ -68,7 +68,7 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
         <div class="img_info">
-            <img src="resources/uploadimg/${vo2.save_name}">
+            <img src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 10px;">${vo2.som_title}</h1>

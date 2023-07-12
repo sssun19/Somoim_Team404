@@ -26,9 +26,9 @@ public class MypageService {
 	}
 
 
-	public SomoimVO mypageSelectSomoim(SomoimVO vo3) {
-		log.info("mypageSelectSomoim...{}", vo3);
-		return dao2.mypageSelectSomoim(vo3);
+	public SomoimVO mypageSelectSomoim(String user_id) {
+		log.info("mypageSelectSomoim...{}", user_id);
+		return dao2.mypageSelectSomoim(user_id);
 	}
 
 

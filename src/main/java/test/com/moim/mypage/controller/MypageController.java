@@ -48,23 +48,17 @@ public class MypageController {
 		log.info(mypageBirth);
 		vo2.setBirthday(mypageBirth);
 		
-		SomoimVO vo3 = new SomoimVO();
-		vo3.setSom_title(vo2.getSom_title());
-		
-		String som_title = vo3.getSom_title();
-		for(int i=0; i<som_title.length(); i++) {
-			if(som_title.charAt(i)=='/') {
-				log.info("몇번쨰? :{}", i);
-				
-			}
-		}
-		
-		
-//		SomoimVO vo4 = service.mypageSelectSomoim(vo3);
-		
-		
+//		SomoimVO vo3 = new SomoimVO();
+//		vo3.setSom_title(vo2.getSom_title());
+//		
+//		String som_title = vo3.getSom_title();
+//		for(int i=0; i<som_title.length(); i++) {
+//			if(som_title.charAt(i)=='/') {
+//				log.info("몇번쨰? :{}", i);
+//				
+//			}
+//		}
 
-		
 		Map<String, Object> map = new HashMap<>();
 		map.put("vo2", vo2);
 		
@@ -83,14 +77,15 @@ public class MypageController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/mypageSelectSomoim.do", method = RequestMethod.GET)
-	public String mypageSelectSomoim(UserinfoVO vo) {
+	public String mypageSelectSomoim() {
 		log.info("mypageSelectSomoim.do....{}");
 		
 		String user_id = (String) session.getAttribute("user_id");
-		vo.setUser_id(user_id);
+		
+		SomoimVO vo = service.mypageSelectSomoim(user_id);
 		
 		
-		return "mypage/mypage_update";
+		return "mypage/mypage";
 	}
 	
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)

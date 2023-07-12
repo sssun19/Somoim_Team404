@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="SELECT_MYPAGE" resultType="test.com.moim.somoim.model.SomoimVO">
-		select * from somoim where num = #{num}
+		select somoim_img from somoim a join somoim_member b on a.som_title=b.som_title where user_id=#{user_id}
 	</select>
 	
 	<select id="SELECT_SOMOIM" resultType="test.com.moim.somoim.model.SomoimVO">

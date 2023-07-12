@@ -78,9 +78,9 @@ public class SomoimDAOimpl implements SomoimDAO {
 	}
 
 	@Override
-	public SomoimVO mypageSelectSomoim(SomoimVO vo3) {
-		log.info("mypageSelectSomoim....{}", vo3);
-		return session.selectOne("SELECT_MYPAGE", vo3);
+	public SomoimVO mypageSelectSomoim(String user_id) {
+		log.info("mypageSelectSomoim....user_id:{}", user_id);
+		return session.selectOne("SELECT_MYPAGE", user_id);
 	}
 
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
