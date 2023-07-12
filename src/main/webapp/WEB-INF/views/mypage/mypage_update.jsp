@@ -51,6 +51,7 @@
 									<h2 class="mem_info">이름</h2>
 									<input type="text" name="name" placeholder="아이디를 입력하세요" id="find"
 										value="${vo2.name }">
+										<input type="text" name="user_id" value="${vo2.user_id }">
 								</div>
 								<!-- 닉네임 -->
 								<div class="insert_area_id">

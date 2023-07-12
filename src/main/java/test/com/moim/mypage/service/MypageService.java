@@ -34,4 +34,10 @@ public class MypageService {
 	}
 
 
+	public int mypage_update(UserinfoVO vo) {
+		log.info("update.....{}", vo);
+		return dao.mypage_update(vo);
+	}
+
+
 }

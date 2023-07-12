@@ -18,4 +18,6 @@ public interface UserinfoDAO {
 
 	UserinfoVO selectUser(UserinfoVO vo2);
 
+	int mypage_update(UserinfoVO vo);
+
 }

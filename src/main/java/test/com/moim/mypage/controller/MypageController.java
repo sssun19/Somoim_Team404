@@ -1,10 +1,16 @@
 package test.com.moim.mypage.controller;
 
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +39,9 @@ public class MypageController {
 	
 	@Autowired
 	UserinfoService userService;
+	
+	@Autowired
+	ServletContext sContext;
 
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public String mypage(Model model) {
@@ -87,12 +96,51 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/mypage_updateOK.do", method = RequestMethod.POST)
-	public String mypage_updateOK(UserinfoVO vo) {
+	public String mypage_updateOK(UserinfoVO vo) throws IllegalStateException, IOException {
 		log.info("mypage_updateOK.do....{}", vo);
 		
 		log.info("변경사항.....{}", vo.getName());
 		
-		return "mypage/mypage_update";
+		int fileNameLength = vo.getFile().getOriginalFilename().length();
+		String getOriginalFileName = vo.getFile().getOriginalFilename();
+
+		log.info("getOriginalFilename : {}", getOriginalFileName);
+		log.info("fileNameLength : {}", fileNameLength);
+		
+		vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+		
+		if (getOriginalFileName.length() == 0) {
+			vo.setSave_name("아이유.png");
+			
+		} else {
+			vo.setSave_name(getOriginalFileName);
+			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+			String realPath = sContext.getRealPath("resources/uploadimg");
+			
+			log.info("realPath : {}", realPath);
+
+			File f = new File(realPath + "\\" + vo.getSave_name());
+
+			vo.getFile().transferTo(f);
+
+			//// create thumbnail image/////////
+			BufferedImage original_buffer_img = ImageIO.read(f);
+			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+			Graphics2D graphic = thumb_buffer_img.createGraphics();
+			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
+			File thumb_file = new File(realPath + "/thumb_" + vo.getSave_name());
+			String formatName = vo.getSave_name().substring(vo.getSave_name().lastIndexOf(".")+1);
+			log.info("formatName : {}", formatName);
+			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
+
+		} // end else
+		
+		int result = service.mypage_update(vo);
+		
+		if(result==1)
+			return "redirect:mypage.do";
+		else
+			return "redirect:mypage_update.do";
 	}
 	
 	
