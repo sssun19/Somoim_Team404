@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.mypage.service.MypageService;
+import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 
@@ -47,8 +48,21 @@ public class MypageController {
 		log.info(mypageBirth);
 		vo2.setBirthday(mypageBirth);
 		
+		SomoimVO vo3 = new SomoimVO();
+		vo3.setSom_title(vo2.getSom_title());
 		
-	
+		String som_title = vo3.getSom_title();
+		for(int i=0; i<som_title.length(); i++) {
+			if(som_title.charAt(i)=='/') {
+				log.info("몇번쨰? :{}", i);
+				
+			}
+		}
+		
+		
+//		SomoimVO vo4 = service.mypageSelectSomoim(vo3);
+		
+		
 
 		
 		Map<String, Object> map = new HashMap<>();
@@ -73,7 +87,8 @@ public class MypageController {
 		log.info("mypageSelectSomoim.do....{}");
 		
 		String user_id = (String) session.getAttribute("user_id");
-		log.info("user_id 가져오지? : {}", user_id);
+		vo.setUser_id(user_id);
+		
 		
 		return "mypage/mypage_update";
 	}

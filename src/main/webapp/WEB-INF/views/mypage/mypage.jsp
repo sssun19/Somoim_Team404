@@ -21,6 +21,7 @@
     		url:'mypageSelectSomoim.do',
     		data:{
     			
+    			
     		},
     		success: function(arr){
     			console.log('ajax successed...');

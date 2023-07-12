@@ -110,19 +110,19 @@ public class SomoimController {
 		log.info("getOriginalFilename : {}", getOriginalFileName);
 		log.info("fileNameLength : {}", fileNameLength);
 		
-		vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+		vo.setSomoim_img(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
 		
 		if (getOriginalFileName.length() == 0) {
-			vo.setSave_name("아이유.png");
+			vo.setSomoim_img("아이유.png");
 			
 		} else {
-			vo.setSave_name(getOriginalFileName);
+			vo.setSomoim_img(getOriginalFileName);
 			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
 			String realPath = sContext.getRealPath("resources/uploadimg");
 			
 			log.info("realPath : {}", realPath);
 
-			File f = new File(realPath + "\\" + vo.getSave_name());
+			File f = new File(realPath + "\\" + vo.getSomoim_img());
 
 			vo.getFile().transferTo(f);
 
@@ -131,8 +131,8 @@ public class SomoimController {
 			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
 			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
-			File thumb_file = new File(realPath + "/thumb_" + vo.getSave_name());
-			String formatName = vo.getSave_name().substring(vo.getSave_name().lastIndexOf(".")+1);
+			File thumb_file = new File(realPath + "/thumb_" + vo.getSomoim_img());
+			String formatName = vo.getSomoim_img().substring(vo.getSomoim_img().lastIndexOf(".")+1);
 			log.info("formatName : {}", formatName);
 			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
 

@@ -14,5 +14,6 @@ public interface SomoimDAO {
 	public List<SomoimVO> searchList(String searchKey, String searchWord, String category);
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo);
 	public UserinfoVO searchSavename(UserinfoVO uvo);
+	public SomoimVO mypageSelectSomoim(SomoimVO vo3);
 	
 }
