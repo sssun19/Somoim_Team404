@@ -17,6 +17,7 @@ public class UserinfoVO {
 	private String birthday_month;
 	private String birthday_day;
 	private String som_title;
+	private String interest;
 	
 	private String save_name;
 	private MultipartFile file;

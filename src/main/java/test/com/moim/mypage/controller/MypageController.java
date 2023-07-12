@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import test.com.moim.mypage.service.MypageService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
+import test.com.moim.userinfo.service.UserinfoService;
 
 
 @Slf4j
@@ -29,6 +30,9 @@ public class MypageController {
 	
 	@Autowired
 	MypageService service;
+	
+	@Autowired
+	UserinfoService userService;
 
 	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
 	public String mypage(Model model) {
@@ -69,8 +73,24 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value = "/mypage_update.do", method = RequestMethod.GET)
-	public String mypage_update(Model model) {
-		log.info("mypage_update open....");
+	public String mypage_update(UserinfoVO vo, Model model) {
+		log.info("mypage_update open....{}", vo);
+		String user_id =(String) session.getAttribute("user_id");
+		vo.setUser_id(user_id);
+		
+		UserinfoVO vo2 = service.mypageSelectOne(vo);
+		log.info("편집할 유저의 정보입니다.....{}", vo2);
+		
+		model.addAttribute("vo2", vo2);
+		
+		return "mypage/mypage_update";
+	}
+	
+	@RequestMapping(value = "/mypage_updateOK.do", method = RequestMethod.POST)
+	public String mypage_updateOK(UserinfoVO vo) {
+		log.info("mypage_updateOK.do....{}", vo);
+		
+		log.info("변경사항.....{}", vo.getName());
 		
 		return "mypage/mypage_update";
 	}

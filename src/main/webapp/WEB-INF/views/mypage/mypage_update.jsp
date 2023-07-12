@@ -27,6 +27,7 @@
 
 	<hr style="margin-bottom: 10px;">
 	<jsp:include page="../top_menu.jsp"></jsp:include>
+	<form action="mypage_updateOK.do" method="post" enctype="multipart/form-data">
 	<div class="total_area">
 		<div class="total_position">
 			<ul>
@@ -35,9 +36,10 @@
 						<div class="profile_area">
 							<ul>
 								<li class="profile_img_sec"><img
-									src="resources/uploadimg/아이유.png" alt="프로필 이미지"></li>
+									src="resources/uploadimg/${vo2.save_name }" alt="프로필 이미지"></li>
 								<li class="profile_fix_but">
-									<button type="button" href="#">편집</button>
+<!-- 									<button type="button" href="#">편집</button> -->
+									<input type="file" id="moim_profile" name="file" value="편집">
 								</li>
 							</ul>
 						</div>
@@ -47,39 +49,58 @@
 								<!-- 아이디 -->
 								<div class="insert_area_id">
 									<h2 class="mem_info">이름</h2>
-									<input type="text" placeholder="아이디를 입력하세요" id="find"
-										value=" 이형주">
+									<input type="text" name="name" placeholder="아이디를 입력하세요" id="find"
+										value="${vo2.name }">
 								</div>
 								<!-- 닉네임 -->
 								<div class="insert_area_id">
-									<h2 class="mem_info">닉네임</h2>
-									<input type="text" placeholder="닉네임를 입력하세요" id="nickname"
-										value=" 낄낄낄">
+									<h2 class="mem_info">이메일</h2>
+									<input type="text" name="email" placeholder="닉네임를 입력하세요" id="nickname"
+										value="${vo2.email }">
 								</div class="insert_area_id">
 								<!-- 비밀번호 -->
 								<div class="insert_area_id">
 									<h2 class="mem_info">비밀번호</h2>
-									<input type="password" placeholder="비밀번호를 입력하세요" id="password"
-										value=" 이형주">
+									<input type="text" name="pw" placeholder="비밀번호를 입력하세요" id="password"
+										value="${vo2.pw }">
 								</div>
 								<!-- 나의 주소 -->
 								<div class="insert_area_id">
-									<h2 class="mem_info">나의 주소</h2>
-									<input style="width: 32%;" type="text"
-										placeholder="나의 주소를 입력하세요" id="address" value="서울특별시 성북구">
-									<button type="button" id="juso">변경</button>
+									<h2 class="mem_info">관심 태그</h2>
+									<p style="font-size:12px;">현재 나의 관심 태그 : ${vo2.interest } </p>
+									<br>
+									<select name="interest" size="5">
+										<option value="야구">야구</option>
+										<option value="독서">독서</option>
+										<option value="요리">요리</option>
+										<option value="운동">운동</option>
+										<option value="게임/오락">게임/오락</option>
+										<option value="아웃도어">아웃도어</option>
+										<option value="반려동물">반려동물</option>
+										<option value="문화/공연">문화/공연</option>
+										<option value="카페/맛집">카페/맛집</option>
+										<option value="공예">공예</option>
+										<option value="사진/영상">사진/영상</option>
+										<option value="사교/인맥">사교/인맥</option>
+										<option value="음악/악기">음악/악기</option>
+										<option value="업종/직무">업종/직무</option>
+										<option value="해외/언어">해외/언어</option>
+										<option value="베이커리">베이커리</option>
+										<option value="여행">여행</option>
+									</select>
+<!-- 									<button type="button" id="juso">변경</button> -->
 
 								</div>
 								<!-- 휴대폰 번호 -->
-								<div class="insert_area_id">
-									<h2 class="mem_info">휴대폰 번호</h2>
-									<div class="insert_area_Tel">
-										<input type="text" placeholder="아이디를 입력하세요" id="tel"
-											value=" 01066389914">
+<!-- 								<div class="insert_area_id"> -->
+<!-- 									<h2 class="mem_info">휴대폰 번호</h2> -->
+<!-- 									<div class="insert_area_Tel"> -->
+<!-- 										<input type="text" placeholder="아이디를 입력하세요" id="tel" -->
+<!-- 											value=" 01066389914"> -->
 
-									</div>
+<!-- 									</div> -->
 
-								</div>
+<!-- 								</div> -->
 
 							</div>
 						</div>
@@ -87,47 +108,48 @@
 		</div>
 		</li>
 		<li>
-			<form action="#">
-				<!-- 각 항목별로 css 설정되어 있으므로, 필요한 위치에 form 태그 작성해도 무방-->
-				<div class="email_area">
-					<div class="mypage_insert_email_footer">
-						<!-- 이메일 -->
-						<div class="email_footer_head">
-							<h2>이메일</h2>
-						</div>
-						<!-- 이메일 입력 -->
-						<div class="email_footer_body">
-							<div class="input_with_button">
-								<input type="text" placeholder="이메일을 입력하세요" id="email">
-								<button type="button">인증 번호 전송</button>
-							</div>
-							<p style="font-size: 1px;">인증번호 입력 필요</p>
-							<!-- 인증번호 입력 -->
-							<div class="input_with_button">
-								<input type="text" placeholder="인증번호" id="number_autho_"
-									class="datepicker">
-								<button type="button">인증 번호 전송</button>
-							</div>
-						</div>
+<!-- 			<form action="#"> -->
+<!-- 				각 항목별로 css 설정되어 있으므로, 필요한 위치에 form 태그 작성해도 무방 -->
+<!-- 				<div class="email_area"> -->
+<!-- 					<div class="mypage_insert_email_footer"> -->
+<!-- 						이메일 -->
+<!-- 						<div class="email_footer_head"> -->
+<!-- 							<h2>이메일</h2> -->
+<!-- 						</div> -->
+<!-- 						이메일 입력 -->
+<!-- 						<div class="email_footer_body"> -->
+<!-- 							<div class="input_with_button"> -->
+<!-- 								<input type="text" placeholder="이메일을 입력하세요" id="email"> -->
+<!-- 								<button type="button">인증 번호 전송</button> -->
+<!-- 							</div> -->
+<!-- 							<p style="font-size: 1px;">인증번호 입력 필요</p> -->
+<!-- 							인증번호 입력 -->
+<!-- 							<div class="input_with_button"> -->
+<!-- 								<input type="text" placeholder="인증번호" id="number_autho_" -->
+<!-- 									class="datepicker"> -->
+<!-- 								<button type="button">인증 번호 전송</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 
-						<!-- 생년월일 -->
-						<div class="birth_part">
-							<div class="email_footer_head">
-								<h2>생년월일</h2>
-							</div>
-							<div class="input_with_button">
-								<input type="text" placeholder="1999.12.12" id="birth">
+<!-- 						생년월일 -->
+<!-- 						<div class="birth_part"> -->
+<!-- 							<div class="email_footer_head"> -->
+<!-- 								<h2>생년월일</h2> -->
+<!-- 							</div> -->
+<!-- 							<div class="input_with_button"> -->
+<!-- 								<input type="text" placeholder="1999.12.12" id="birth"> -->
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</form> -->
 		</li>
 		</ul>
-		<button type="submit">수정하기</button>
+		<input type="submit" value="수정하기">
 	</div>
+	</form>
 
 
 

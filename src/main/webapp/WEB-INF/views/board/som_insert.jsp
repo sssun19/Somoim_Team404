@@ -21,34 +21,7 @@
 
 
 	<div class="board_section">
-		<div class="board_category">
-
-			<ul class="board_grid">
-				<li><input type="button" value="여행" class="category_active"></li>
-				<li><input type="button" value="운동"></li>
-				<li><input type="button" value="야구관람"></li>
-				<li><input type="button" value="게임/오락"></li>
-				<li><input type="button" value="아웃도어"></li>
-				<li><input type="button" value="반려동물"></li>
-				<li><input type="button" value="문화/공연"></li>
-				<li><input type="button" value="카페/맛집"></li>
-				<li><input type="button" value="공예"></li>
-				<li><input type="button" value="도서"></li>
-				<li><input type="button" value="사진/영상"></li>
-				<li><input type="button" value="사교/인맥"></li>
-				<li><input type="button" value="음악/악기"></li>
-				<li><input type="button" value="업종/직무"></li>
-				<li><input type="button" value="해외/언어"></li>
-				<li><input type="button" value="요리"></li>
-				<li><input type="button" value="배이커리"></li>
-				<li><input type="button" value="자유주제"></li>
-
-
-			</ul>
-		</div>
-		<div class="category_more">
-			<a>카테고리 더보기</a>
-		</div>
+	
 		<form action="som_insertOK.do" enctype="multipart/form-data" method="post">
 		<div class="moim_insert">
 			<h1>지역</h1>
