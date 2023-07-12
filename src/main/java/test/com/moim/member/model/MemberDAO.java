@@ -9,5 +9,6 @@ public interface MemberDAO {
 	public List<MemberVO> selectAll();
 	public List<MemberVO> searchList(String searchKey, String searchWord);
 	public List<MemberVO> profileCheck(MemberVO vo);
+	public List<MemberVO> searchSavename(String user_id);
 
 }

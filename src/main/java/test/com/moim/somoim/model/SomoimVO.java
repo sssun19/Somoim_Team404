@@ -18,7 +18,6 @@ public class SomoimVO {
 	private String som_content;
 	private String somoim_img;
 	private MultipartFile file;
-	private int somoim_num;
 	private String somoim_master;
 
 }

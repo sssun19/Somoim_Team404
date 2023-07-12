@@ -31,7 +31,7 @@
 	    			
     				tag_vos += `
                         
-    					<a href="som_selectOne.do?num=\${vo.somoim_num}"> <li>
+    					<a href="som_selectOne.do?num=\${vo.num}"> <li>
                         <div>
                             <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%;">
     ​

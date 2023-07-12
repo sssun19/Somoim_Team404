@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.member.model.MemberVO;
+import test.com.moim.member.service.MemberService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.somoim.service.SomoimService;
 import test.com.moim.userinfo.model.UserinfoVO;
@@ -30,6 +32,9 @@ public class SomoimController {
 	
 	@Autowired
 	SomoimService service;
+	
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	ServletContext sContext;
@@ -140,6 +145,24 @@ public class SomoimController {
 		
 		log.info("{}", vo);
 		int result = service.insert(vo);
+		
+		MemberVO vo2 = new MemberVO();
+		vo2.setUser_id(vo.getSomoim_master());
+		vo2.setSom_title(vo.getSom_title());
+		vo2.setSomoim_num(vo.getNum());
+		log.info("==========================={}", vo.getNum());
+		
+		List<MemberVO> vos = memberService.searchSavename(vo.getSomoim_master());
+		log.info(".....save_name!!!!!!!!!!!!!!!!!!!{}", vos.get(0));
+		
+		
+//		vo2.setSave_name(vo3.getSave_name());
+		
+		int result2 = memberService.insert(vo2);
+		if(result2==1) {
+			log.info("완료!");
+		} else
+			log.info("실패....");
 		
 		log.info("result : {}", result);
 		if (result==1)

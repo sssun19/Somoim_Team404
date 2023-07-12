@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="MEMBER_CHECK" resultType="test.com.moim.member.model.MemberVO">
-		select * from somoim_member where user_id=#{user_id} and somoim_num=#{num}
+		select * from somoim_member where user_id=#{user_id} and somoim_num=#{somoim_num}
 	</select>
 
 	<select id="PROFILE_CHECK" resultType="test.com.moim.member.model.MemberVO">
@@ -27,6 +27,10 @@
 	
 	<select id="MEMBER_SEARCH_LIST_SOMTITLE" resultType="test.com.moim.member.model.MemberVO">
 		select * from somoim_member where som_title like #{searchWord}
+	</select>
+	
+	<select id="SEARCH_SAVE_NAME" resultType="test.com.moim.member.model.MemberVO">
+		select save_name from somoim_member where user_id=#{somoim_master}
 	</select>
 	
 	<insert id="MEMBER_INSERT" parameterType="test.com.moim.member.model.MemberVO">
