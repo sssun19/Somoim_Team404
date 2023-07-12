@@ -2,6 +2,7 @@ package test.com.moim.mypage.controller;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -82,8 +83,8 @@ public class MypageController {
 		
 		String user_id = (String) session.getAttribute("user_id");
 		
-		SomoimVO vo = service.mypageSelectSomoim(user_id);
-		
+		List<SomoimVO> vo = service.mypageSelectSomoim(user_id);
+		log.info("vo....!!{}", vo);
 		
 		return "mypage/mypage";
 	}

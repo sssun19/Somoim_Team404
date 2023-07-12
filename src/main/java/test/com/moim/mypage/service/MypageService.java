@@ -1,5 +1,7 @@
 package test.com.moim.mypage.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,7 @@ public class MypageService {
 	}
 
 
-	public SomoimVO mypageSelectSomoim(String user_id) {
+	public List<SomoimVO> mypageSelectSomoim(String user_id) {
 		log.info("mypageSelectSomoim...{}", user_id);
 		return dao2.mypageSelectSomoim(user_id);
 	}
