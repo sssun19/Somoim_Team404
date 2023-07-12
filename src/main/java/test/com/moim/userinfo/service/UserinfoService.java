@@ -36,5 +36,12 @@ public class UserinfoService {
 	public UserinfoVO idCheck(UserinfoVO vo) {
 		return dao.idCheck(vo);
 	}
+	
+	public UserinfoVO findId(String email) throws Exception {
+	    log.info("findId()... email: {}", email);
+	    
+	    return dao.findId(email);
+	}
+
 
 }

@@ -81,6 +81,8 @@
                     </div>
             
                     <input type="text" placeholder="자동 입력 방지 문자"  >     
+                    <img src="getCaptchaImg" alt="captcha image"> <!-- 캡차 이미지 표시 -->
+                
 
                     <button style="width: 10%;" type="button"><h>확인</h></button>
             		<button type="button" id="submitpass" onclick="location.href='login.do'" >변경하기</button>

@@ -164,6 +164,33 @@ public class UserinfoController {
 		return "userinfo/findId";
 	}
 
+
+	@RequestMapping(value = "/u_findId2.do", method = RequestMethod.GET)
+	public String u_findId2(UserinfoVO vo, Model model) {
+	    log.info("/u_findId2.do... {}", vo);
+
+	    try {
+	        String email = vo.getEmail();
+
+	        // 이메일을 가진 아이디 조회
+	        UserinfoVO userinfoVO = service.findId(email);
+
+	        if (userinfoVO != null) {
+	            // 아이디가 존재하는 경우 모델에 추가
+	            model.addAttribute("user_id", userinfoVO.getUser_id());
+	        } else {
+	            // 아이디가 존재하지 않는 경우 메시지를 출력하기 위해 모델에 추가
+	            model.addAttribute("user_id", "일치하는 회원 정보를 찾을 수 없습니다.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 아이디 조회 중 오류 발생 시 메시지를 출력하기 위해 모델에 추가
+	        model.addAttribute("user_id", "아이디 검색 중 오류가 발생했습니다.");
+	    }
+
+	    return "userinfo/findId2";
+	}
+
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
 	public String findPassword() {
 		log.info("/findPassword.do");

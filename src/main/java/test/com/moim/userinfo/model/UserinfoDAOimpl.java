@@ -58,5 +58,12 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 		return sqlSession.selectOne("U_SELECT_ID", vo);
 	}
 
+	@Override
+	public UserinfoVO findId(String email) throws Exception {
+		log.info("find_id()...{}", email);
+	        
+		return sqlSession.selectOne("U_FindId", email);
+	}
+
 		
 }

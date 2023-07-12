@@ -17,7 +17,7 @@
 
        <form action="loginOK.do" method="post">
             
-            <labal for="user_id">아이디</labal>
+            <label for="user_id">아이디</label>
             <br>
             <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="tester1"> 
             

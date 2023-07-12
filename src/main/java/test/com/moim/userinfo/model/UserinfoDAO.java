@@ -16,4 +16,7 @@ public interface UserinfoDAO {
 
 	UserinfoVO mypageSelectOne(UserinfoVO vo);
 
+	UserinfoVO findId(String email) throws Exception;
+
+
 }
