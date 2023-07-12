@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.member.model.MemberVO;
@@ -146,30 +149,32 @@ public class SomoimController {
 		log.info("{}", vo);
 		int result = service.insert(vo);
 		
-		MemberVO vo2 = new MemberVO();
-		vo2.setUser_id(vo.getSomoim_master());
-		vo2.setSom_title(vo.getSom_title());
-		vo2.setSomoim_num(vo.getNum());
-		log.info("==========================={}", vo.getNum());
-		
-		List<MemberVO> vos = memberService.searchSavename(vo.getSomoim_master());
-		log.info(".....save_name!!!!!!!!!!!!!!!!!!!{}", vos.get(0));
-		
-		
-//		vo2.setSave_name(vo3.getSave_name());
-		
-		int result2 = memberService.insert(vo2);
-		if(result2==1) {
-			log.info("완료!");
-		} else
-			log.info("실패....");
+//		MemberVO vo2 = new MemberVO();
+//		vo2.setUser_id(vo.getSomoim_master());
+//		vo2.setSom_title(vo.getSom_title());
+//		vo2.setSomoim_num(vo.getNum());
+//		log.info("==========================={}", vo.getNum());
+//		
+//		List<MemberVO> vos = memberService.searchSavename(vo.getSomoim_master());
+//		log.info(".....save_name!!!!!!!!!!!!!!!!!!!{}", vos.get(0));
+//		
+//		
+////		vo2.setSave_name(vo3.getSave_name());
+//		
+//		int result2 = memberService.insert(vo2);
+//		if(result2==1) {
+//			log.info("완료!");
+//		} else
+//			log.info("실패....");
 		
 		log.info("result : {}", result);
 		if (result==1)
 			return "redirect:som_selectAll.do";
 		else
 			return "redirect:som_insert.do";
+		
 	}
+	
 	
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
 	public String som_update(SomoimVO vo) {

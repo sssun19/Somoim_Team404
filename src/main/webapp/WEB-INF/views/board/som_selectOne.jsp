@@ -197,7 +197,7 @@
 if('${user_id}'==='${vo2.somoim_master}'){
 	console.log('${user_id}')
 	console.log('너 모임장이네!!');
-	$('#som_register').hide();
+// 	$('#som_register').hide();
 } else
 	console.log('아닌데?');
 
