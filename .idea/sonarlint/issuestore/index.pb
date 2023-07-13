@@ -28,8 +28,6 @@ b
 2src/main/webapp/WEB-INF/views/board/som_insert.jsp,1\6\168672a77d788750ab8c4fd85b9221b1c466b317
 q
 Asrc/main/java/test/com/moim/community/model/CommunityDAOimpl.java,e\9\e9b0f8ef7f618fd7fba4c6d7b7ec020e568b852a
-s
-Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
 e
 5src/main/webapp/WEB-INF/views/board/som_selectAll.jsp,e\e\ee5fb07547aae31ed484a32bfd6c3ed3cef65620
 `

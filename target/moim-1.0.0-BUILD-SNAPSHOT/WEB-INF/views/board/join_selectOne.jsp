@@ -101,13 +101,13 @@
                                     <div class="com_func">
                                         <h4>댓글${com.user_id}</h4>
                                         <input type="text" placeholder="댓글 목록" value="${com.content}"
-                                               id="join_comments">
+                                               id="join_comments" readonly>
                                     </div>
                                 <c:forEach var="c_com" items="${c_coms}">
                                     <c:if test="${c_com.parent_com eq com.num}">
                                         <div class="com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
                                             <h5>${c_com.user_id}</h5>
-                                            <input type="text" placeholder="댓글 목록" value="${c_com.content}">
+                                            <input type="text" placeholder="댓글 목록" value="${c_com.content}" readonly>
                                         </div>
                                     </c:if>
                                 </c:forEach>
