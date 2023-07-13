@@ -189,44 +189,44 @@ public class BoardController {
 
     }
 
-//    @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
-//    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
-//        log.info("join_schedule.do().....{}", vo);
-//
-//        List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
-//
-//        Map<String, Somoim_ScheduleVO> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
-//        Set<String> participantSet = new HashSet<>(); // 중복되는 participant를 제거하기 위한 Set을 생성합니다.
-//
-//        for (Somoim_ScheduleVO vo2 : vos) {
-//            log.info("각자의 vos 값"+vo2.toString());
-//
-//            String[] Splits = vo2.getParticipant().split("/");
-//
-//            for (String s : Splits) {
-//                participantSet.add(s); // 중복되는 participant를 제거하기 위해 Set에 추가합니다.
-//            }
-//        }
-//
-//        for (String participant : participantSet) { // 중복을 제거한 participant에 대해 반복합니다.
-//            log.info("스플릿한 값"+participant);
-//            vo.setUser_id(participant);
-//
-//            List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
-//            if(!vos2.isEmpty()) {
-//                saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
-//            }
-//
-//            for (Somoim_ScheduleVO t : vos2){
-//                log.info("저장된 세이브 네임"+t.getSave_name());
-//            }
-//        }
-//
-//        model.addAttribute("vos", vos);
-//        model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
-//
-//        return "board/join_schedule";
-//    }
+    @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
+    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
+        log.info("join_schedule.do().....{}", vo);
+
+        List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
+
+        Map<String, Somoim_ScheduleVO> saveNamesMap = new HashMap<>(); // Save name을 담을 Map을 생성합니다.
+        Set<String> participantSet = new HashSet<>(); // 중복되는 participant를 제거하기 위한 Set을 생성합니다.
+
+        for (Somoim_ScheduleVO vo2 : vos) {
+            log.info("각자의 vos 값"+vo2.toString());
+
+            String[] Splits = vo2.getParticipant().split("/");
+
+            for (String s : Splits) {
+                participantSet.add(s); // 중복되는 participant를 제거하기 위해 Set에 추가합니다.
+            }
+        }
+
+        for (String participant : participantSet) { // 중복을 제거한 participant에 대해 반복합니다.
+            log.info("스플릿한 값"+participant);
+            vo.setUser_id(participant);
+
+            List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
+            if(!vos2.isEmpty()) {
+                saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
+            }
+
+            for (Somoim_ScheduleVO t : vos2){
+                log.info("저장된 세이브 네임"+t.getSave_name());
+            }
+        }
+
+        model.addAttribute("vos", vos);
+        model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
+
+        return "board/join_schedule";
+    }
 
 
     @RequestMapping(value = "/join_update.do", method = RequestMethod.GET)
