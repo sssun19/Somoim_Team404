@@ -97,7 +97,7 @@
 											   id="community_comments">
 									</div>
 									<c:forEach var="c_com" items="${c_coms}">
-										<c:if test="${c_com.parent_com eq com.num}">
+										<c:if test="${c_com.parent_com eq ccoms.num}">
                                         <div class="c_com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
                                             <h5>${com.num.user_id}</h5>
                                             <input type="text" placeholder="댓글 목록" value="${c_com.content}">
