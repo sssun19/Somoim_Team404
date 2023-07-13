@@ -124,7 +124,7 @@ public class BoardController {
         List<som_commentsVO> coms = commService.selectAll(cvo);
         System.out.println("coms:" + coms.toString());
 
-//
+
         som_comm_commentsVO c_cvo = new som_comm_commentsVO();
         c_cvo.setSom_board_num(cvo.getSom_board_num());
         c_cvo.setSomoim_num(cvo.getSomoim_num());
@@ -138,8 +138,7 @@ public class BoardController {
 
         System.out.println("c_cvo.getSom_board_num:" + c_cvo.getSom_board_num());
         System.out.println("c_coms:" + c_coms.toString());
-//		System.out.println("coms:"+c_cvo.getSom_board_num());
-//
+
 
         model.addAttribute("coms", coms);
         model.addAttribute("c_coms", c_coms);

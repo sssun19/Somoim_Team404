@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class SomoimVO {
-	
+
 	private int num;
 	private String som_title;
 	private String category;

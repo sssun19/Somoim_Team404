@@ -28,16 +28,16 @@ import test.com.moim.userinfo.service.UserinfoService;
 @Slf4j
 @Controller
 public class SomoimController {
-	
+
 	@Autowired
 	SomoimService service;
-	
+
 	@Autowired
 	MemberService memberService;
-	
+
 	@Autowired
 	UserinfoService userinfoService;
-	
+
 	@Autowired
 	ServletContext sContext;
 
@@ -60,74 +60,74 @@ public class SomoimController {
 	@RequestMapping(value = "/som_selectOne.do", method = RequestMethod.GET)
 	public String som_selectOne(SomoimVO vo, Model model) {
 		log.info("som_selectOne.do().....{}", vo);
-		
+
 		SomoimVO vo2 = service.selectOne(vo);
 		String user_id = (String)session.getAttribute("user_id")==null?"tester":(String)session.getAttribute("user_id");
-		
+
 		log.info("user_id : {}", user_id);
-		
+
 		UserinfoVO uvo = new UserinfoVO();
 		uvo.setUser_id(user_id);
-		
+
 		log.info("이걸확인해!!{}", uvo.getUser_id());
 		UserinfoVO uvo2 = service.searchSavename(uvo);
-		
+
 		log.info("이것도{}", uvo2.getSave_name());
 		log.info("profile!!!:{}", uvo2.getSave_name());
 
 		session.setAttribute("num",vo.getNum());
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vo2", vo2);
 		map.put("uvo2", uvo2);
 		model.addAllAttributes(map);
-		
+
 		return "board/som_selectOne";
 	}
-	
+
 	@RequestMapping(value = "/som_searchList.do", method = RequestMethod.GET)
 	public String som_searchList(String searchKey, String searchWord, String category, Model model) {
 		log.info("som_searchList.do().....{}, {}", searchKey, searchWord);
 		log.info("------------{}", category);
-		
-		
+
+
 		List<SomoimVO> vos = service.searchList(searchKey, searchWord, category);
-		
+
 		model.addAttribute("vos", vos);
-		
+
 		return "board/som_selectAll";
 	}
-	
+
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)
 	public String som_insert() {
 
 
 		log.info("som_insert.do().....");
-		
+
 		return "board/som_insert";
 	}
-	
+
 	@RequestMapping(value = "/som_insertOK.do", method = RequestMethod.POST)
 	public String som_insertOK(SomoimVO vo) throws IllegalStateException, IOException {
 
 		log.info("som_insertOK.do().....{}", vo);
-		
+
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
 		String getOriginalFileName = vo.getFile().getOriginalFilename();
 
 		log.info("getOriginalFilename : {}", getOriginalFileName);
 		log.info("fileNameLength : {}", fileNameLength);
-		
+
 		vo.setSomoim_img(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
-		
+
 		if (getOriginalFileName.length() == 0) {
 			vo.setSomoim_img("아이유.png");
-			
+
 		} else {
 			vo.setSomoim_img(getOriginalFileName);
 			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
 			String realPath = sContext.getRealPath("resources/uploadimg");
-			
+
 			log.info("realPath : {}", realPath);
 
 			File f = new File(realPath + "\\" + vo.getSomoim_img());
@@ -145,74 +145,74 @@ public class SomoimController {
 //			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
 
 		} // end else
-		
+
 		log.info("{}", vo);
 		int result = service.insert(vo);
-		
+
 //		MemberVO vo2 = new MemberVO();
 //		vo2.setUser_id(vo.getSomoim_master());
 //		vo2.setSom_title(vo.getSom_title());
 //		vo2.setSomoim_num(vo.getNum());
 //		log.info("==========================={}", vo.getNum());
-//		
+//
 //		List<MemberVO> vos = memberService.searchSavename(vo.getSomoim_master());
 //		log.info(".....save_name!!!!!!!!!!!!!!!!!!!{}", vos.get(0));
-//		
-//		
+//
+//
 ////		vo2.setSave_name(vo3.getSave_name());
-//		
+//
 //		int result2 = memberService.insert(vo2);
 //		if(result2==1) {
 //			log.info("완료!");
 //		} else
 //			log.info("실패....");
-		
+
 		log.info("result : {}", result);
 		if (result==1)
 			return "redirect:som_selectAll.do";
 		else
 			return "redirect:som_insert.do";
-		
+
 	}
-	
+
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
 	public String som_update(SomoimVO vo) {
 		log.info("som_update.do().....{}", vo);
 		log.info("update 할 소모임의 번호 : {}", vo.getNum());
-		
+
 //		int result = service.update(vo);
-		
-		
+
+
 		return "board/som_selectAll";
 	}
-	
+
 	@RequestMapping(value = "/som_updateOK.do", method = RequestMethod.GET)
 	public String som_updateOK(SomoimVO vo) {
 		log.info("som_update.do().....{}", vo);
-		
+
 		int result = service.update(vo);
-		
-		
+
+
 		return "redirect:selectAll.do";
 	}
-	
+
 	@RequestMapping(value = "/som_delete.do", method = RequestMethod.GET)
 	public String som_delete(String message, Model model, SomoimVO vo, HttpServletRequest request) {
 		log.info("som_delete.do().....");
 		log.info("소모임 번호 잘 넘어오나? {}", vo.getNum());
 		String num = request.getParameter("num");
 		log.info("파라미터는 넘어 오나? {}", num);
-		
+
 //		session.invalidate();
-		
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("message", message);
 		map.put("num", num);
-		
+
 		if (message != null)
 			message = "아이디/비밀번호를 확인하세요";
 		model.addAllAttributes(map);
-		
+
 		return "board/deletebeforelogin";
 	}
 
@@ -222,12 +222,12 @@ public class SomoimController {
 		String num = request.getParameter("num");
 		String user_id = (String) session.getAttribute("user_id");
 		UserinfoVO vo2 = userinfoService.login(vo);
-		
-		
+
+
 		log.info("vo2..... 로그인 성공?{}", vo2);
 		log.info("num : {}", num);
 		log.info("somoim....{}", somoim.getNum());
-		
+
 		int result = service.delete(somoim);
 		String path = "";
 		if(vo2==null) {
@@ -238,14 +238,14 @@ public class SomoimController {
 			log.info("로그인 성공");
 			path = "redirect:som_selectAll.do";
 		}
-		
+
 		log.info("path......====={}", path);
-		
+
 		if (result==1)
 			return path;
 		else
 			return path;
 	}
-	
-	
+
+
 }

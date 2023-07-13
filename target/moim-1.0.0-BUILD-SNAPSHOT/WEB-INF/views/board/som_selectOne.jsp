@@ -13,53 +13,53 @@
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="resources/js/board.js"></script>
-    
+
     <script type="text/javascript">
-    $(function(){
-    	console.log('onload.......');
-    	$.ajax({
-    		url:'som_member_profileCheck.do',
-    		method:'GET',
-    		data: {
-    			num:${param.num}
-    		},
-    		success: function(data){
-    			console.log('ajax successed...');
-    			console.log('data : ', data);
-    			
-    			let tag_vo = '';
-    			$.each(data,function(index,vo){
-    				console.log(index,vo);
-	    			console.log('save_name : ', vo.save_name);
-    				tag_vo += `
+        $(function(){
+            console.log('onload.......');
+            $.ajax({
+                url:'som_member_profileCheck.do',
+                method:'GET',
+                data: {
+                    num:${param.num}
+                },
+                success: function(data){
+                    console.log('ajax successed...');
+                    console.log('data : ', data);
+
+                    let tag_vo = '';
+                    $.each(data,function(index,vo){
+                        console.log(index,vo);
+                        console.log('save_name : ', vo.save_name);
+                        tag_vo += `
                         <li>
                             <div class="round_box">
                                 <img src="resources/uploadimg/\${vo.save_name}" width="50"; height="50"; style="border-radius:25px;" >
                             </div>
                         </li>
         			`;
-    			});
-    			
-    			
-    			
-    			$('#img_members').html(tag_vo);
-    		},
-    		error : function(xhr, status, error){
-    			console.log('xhr.status : ', xhr.status);
-    		}
-    		
-    		
-    		
-    		
-    	});//end ajax...
-    });//end onload..
-    
-    
+                    });
+
+
+
+                    $('#img_members').html(tag_vo);
+                },
+                error : function(xhr, status, error){
+                    console.log('xhr.status : ', xhr.status);
+                }
+
+
+
+
+            });//end ajax...
+        });//end onload..
+
+
     </script>
-    
+
 </head>
 <body>
-    <jsp:include page="../top_menu.jsp"></jsp:include>
+<jsp:include page="../top_menu.jsp"></jsp:include>
 
 
 
@@ -75,19 +75,19 @@
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
             <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
 
-<%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
-             <p>${vo2.som_content}</p>
+            <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
+            <p>${vo2.som_content}</p>
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
-            <ul id="img_members">            
-<!--                 <li> -->
-<!--                     <div class="round_box"> -->
-<!--                         <i class="far fa-user"></i> -->
-<!--                     </div> -->
-<!--                 </li> -->
-            </ul>           
-            
+            <ul id="img_members">
+                <!--                 <li> -->
+                <!--                     <div class="round_box"> -->
+                <!--                         <i class="far fa-user"></i> -->
+                <!--                     </div> -->
+                <!--                 </li> -->
+            </ul>
+
         </div>
         <div class="join_cal">
             <h1>일정</h1>
@@ -169,34 +169,48 @@
     </div>
 
 </form>
-    <div class="footer">
-        <div>
-            <strong>온앤오프</strong>
-            <ul>
-                <li>공지사항</li>
-                <li>이벤트</li>
-                <li>자주 믿는 질문</li>
-            </ul>
-        </div>
-        <div>
-            <strong>소셜 미디어</strong>
-            <ul>
-                <li>인스타그램</li>
-                <li>네이버 블로그</li>
+<div class="footer">
+    <div>
+        <strong>온앤오프</strong>
+        <ul>
+            <li>공지사항</li>
+            <li>이벤트</li>
+            <li>자주 믿는 질문</li>
+        </ul>
+    </div>
+    <div>
+        <strong>소셜 미디어</strong>
+        <ul>
+            <li>인스타그램</li>
+            <li>네이버 블로그</li>
 
-            </ul>
-        </div>
-        <div class="footer_company">
-            <strong>온앤오프</strong>
-            <ul>
-                <li>대표: 팀404 개인정보관리책임자: 팀404</li>
-                <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-                <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
-            </ul>
-        </div>
-
+        </ul>
+    </div>
+    <div class="footer_company">
+        <strong>온앤오프</strong>
+        <ul>
+            <li>대표: 팀404 개인정보관리책임자: 팀404</li>
+            <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
+            <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
+        </ul>
     </div>
 
+<<<<<<< HEAD
+</div>
+
+<script type="text/javascript">
+    if('${user_id}'==='${vo2.somoim_master}'){
+        console.log('${user_id}')
+        console.log('너 모임장이네!!');
+        $('#som_update').show();
+        $('#som_delete').show();
+// 	$('#som_register').hide();
+    } else {
+        console.log('아닌데?');
+        $('#som_update').hide();
+        $('#som_delete').hide();
+    }
+=======
 <script type="text/javascript">
 if('${user_id}'==='${vo2.somoim_master}'){
 	console.log('${user_id}')
@@ -209,6 +223,7 @@ if('${user_id}'==='${vo2.somoim_master}'){
 	$('#som_update').hide();
 	$('#som_delete').hide();
 }
+>>>>>>> 3253539228c80cb83cc546a91c5f991f226ff484
 </script>
 
 
