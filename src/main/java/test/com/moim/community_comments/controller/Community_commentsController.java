@@ -50,7 +50,7 @@ public class Community_commentsController {
 	@RequestMapping(value = "/Community_comments_insertOK.do", method = RequestMethod.GET)
 	public String Community_comments_insertOK(Community_commentsVO vo) {
 
-		log.info("somcommcommcommcommcommcommcomm...{}", vo);
+		log.info("community_comments_insertOK...{}", vo);
 		int result = commService.insert(vo);
 		
 		log.info("result...{}", result);

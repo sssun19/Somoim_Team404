@@ -62,8 +62,6 @@
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
-
-
             <span>
                 <ul class="com_grid">
                     <li>
