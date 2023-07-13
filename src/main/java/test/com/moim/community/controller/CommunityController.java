@@ -64,7 +64,7 @@ public class CommunityController {
 
 		return "community/selectAll";
 	}
-	
+
 	@RequestMapping(value = "/community_selectOne.do", method = RequestMethod.GET)
 	public String community_selectOne(CommunityVO vo, Model model) {
 		log.info("community_selectOne.do().....");
@@ -81,16 +81,31 @@ public class CommunityController {
 		log.info("vo3...!!!!!!!!!!!!!!!!{}", vo3);
 
 		List<Community_commentsVO> ccoms = community_comservice.selectAll(vo3);
-		System.out.println("ccoms:" + ccoms.toString());
+		List<Community_commentsVO> filteredCcoms = new ArrayList<>();
 
+		for (Community_commentsVO ccom : ccoms) {
+			if (ccom.getParent_com() == 0) {
+				filteredCcoms.add(ccom);
+			}
+		}
+		log.info("filteredCcoms...{}",filteredCcoms);
+		model.addAttribute("ccoms", filteredCcoms);
 		model.addAttribute("vo3", vo3);
-		model.addAttribute("ccoms", ccoms);
 
 		Community_re_commentsVO c_cvo = new Community_re_commentsVO();
 		c_cvo.setBoard_num(vo3.getBoard_num());
 		log.info("vo3.getnum..{}", vo3.getNum());
+		List<Community_re_commentsVO> filteredcoms = new ArrayList<>();
 		List<Community_re_commentsVO> c_coms = new ArrayList<Community_re_commentsVO>();
 		c_coms = community_re_comservice.selectAll(c_cvo);
+		for (Community_re_commentsVO dcom : c_coms) {
+			if (dcom.getParent_com() != 0) {
+				filteredcoms.add(dcom);
+			}
+		}
+		log.info("filteredcoms@@@@@@@@@@@@@@@@...{}",filteredcoms);
+
+		model.addAttribute("c_coms", filteredcoms);
 		return "community/selectOne";
 	}
 	
