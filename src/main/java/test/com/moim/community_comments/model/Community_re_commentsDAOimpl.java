@@ -23,7 +23,6 @@ public class Community_re_commentsDAOimpl implements Community_re_commentsDAO {
 	@Override
 	public int insert(Community_re_commentsVO vo) {
 		log.info(" dao.inserct().... {}", vo );
-		log.info("등록됩니다");
 		
 		return sqlsession.update("COMMUNITY_RE_C_INSERT",vo);
 	}
@@ -49,7 +48,6 @@ public class Community_re_commentsDAOimpl implements Community_re_commentsDAO {
 	public void good_count_up(Community_re_commentsVO vo) {
 //		log.info("vcountUp()....{}",vo);
 //		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("올라갑니다");
 		
 	}
 

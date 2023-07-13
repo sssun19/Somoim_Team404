@@ -37,4 +37,9 @@ public class UserinfoService {
 		return dao.idCheck(vo);
 	}
 
+	public UserinfoVO selectUser(UserinfoVO vo2) {
+		log.info("selectUserID...{}", vo2);
+		return dao.selectUser(vo2);
+	}
+
 }

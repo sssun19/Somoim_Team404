@@ -59,6 +59,7 @@ public class SomoimService {
 		log.info("searchSavename...{}", uvo);
 		return dao.searchSavename(uvo);
 	}
+
 	
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info(".....!!{}", uvo);

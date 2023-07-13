@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="UTF-8">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +12,8 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="resources/js/schedule.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -68,9 +67,8 @@
                                 <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
                                 <li>
                                     <input type="hidden" value="${participant}" class="participant_mine">
-                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                    <img src="resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
-
                                 </c:forEach>
 
 

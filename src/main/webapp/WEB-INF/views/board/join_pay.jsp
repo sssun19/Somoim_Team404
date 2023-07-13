@@ -37,7 +37,7 @@
                         <c:set var="moneyPerPerson" value="${vo.money / participantCount}" />
                         <p>1인당 금액: <fmt:formatNumber value="${moneyPerPerson}" maxFractionDigits="0" /></p>
                         <button type="button" id="payment_btn" onclick="schedule_payment(this)">
-                            <img src="/resources/uploadimg/btn_request_tiny.png">
+                            <img src="resources/uploadimg/btn_request_tiny.png">
                         </button>
                     </span>
                     </div>
@@ -47,7 +47,7 @@
                             <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
                                 <li>
                                     <input type="hidden" value="${participant}" class="participant_mine">
-                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                    <img src="resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
                             </c:forEach>
 

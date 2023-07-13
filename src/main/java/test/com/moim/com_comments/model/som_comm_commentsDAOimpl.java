@@ -1,15 +1,12 @@
 package test.com.moim.com_comments.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
-import test.com.moim.somoim.model.SomoimVO;
 
 @Slf4j
 @Repository
@@ -26,34 +23,33 @@ public class som_comm_commentsDAOimpl implements som_comm_commentsDAO {
 	}
 	@Override
 	public int insert(som_comm_commentsVO vo) {
-		log.info(" �����Դϴ�. dao.inserct().... {}", vo );
-		log.info("��ϵ˴ϴ�");
+		log.info("dao.inserct().... {}", vo );
 		
-		return sqlsession.update("SOM_D_C_INSERT",vo);
+		return sqlsession.insert("SOM_D_C_INSERT",vo);
 	}
 
 	@Override
 	public int update(som_comm_commentsVO vo) {
-		log.info(" �����Դϴ�   update()...{}",vo);
+		log.info("  update()...{}",vo);
 		return sqlsession.update("SOM_D_C_UPDATE",vo);
 	}
 
 	@Override
 	public int delete(som_comm_commentsVO vo) {
-		log.info("�����Դϴ�   delete()...{}",vo);
+		log.info("delete()...{}",vo);
 		return sqlsession.delete("SOM_D_C_DELETE",vo);
 	}
 
 	@Override
 	public List<som_comm_commentsVO> selectAll(som_comm_commentsVO vo) {
-		log.info("�����Դϴ� selectAll()...{}",vo);
+		log.info("selectAll()...{}",vo);
 		return sqlsession.selectList("SOM_D_C_SELECT_ALL", vo);
 	}
 	@Override
 	public void good_count_up(som_comm_commentsVO vo) {
 //		log.info("vcountUp()....{}",vo);
 //		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("�ö󰩴ϴ�");
+		log.info("good");
 		
 	}
 	@Override

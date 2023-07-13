@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Document</title>
 </head>
 
@@ -52,7 +54,7 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="top_func">
-        <button type="button"><a href="/join_insert.do">글쓰기</a></button>
+        <button type="button"><a href="join_insert.do">글쓰기</a></button>
     </div>
     <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
         <div class="join_top">
@@ -224,7 +226,7 @@
         <ul>
             <li>대표: 팀404 개인정보관리책임자: 팀404</li>
             <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-            <```html
+            
             <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
         </ul>
     </div>

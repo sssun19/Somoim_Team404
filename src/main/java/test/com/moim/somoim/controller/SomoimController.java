@@ -108,7 +108,7 @@ public class SomoimController {
 	}
 
 	@RequestMapping(value = "/som_insertOK.do", method = RequestMethod.POST)
-	public String som_insertOK(SomoimVO vo,HttpServletRequest request) throws IllegalStateException, IOException {
+	public String som_insertOK(SomoimVO vo) throws IllegalStateException, IOException {
 
 		log.info("som_insertOK.do().....{}", vo);
 
@@ -147,10 +147,6 @@ public class SomoimController {
 		} // end else
 
 		log.info("{}", vo);
-
-		String user_id = (String) request.getSession().getAttribute("user_id");
-		vo.setSomoim_master(user_id);
-
 		int result = service.insert(vo);
 
 //		MemberVO vo2 = new MemberVO();
