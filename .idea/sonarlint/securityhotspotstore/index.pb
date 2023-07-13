@@ -70,10 +70,6 @@ k
 ;src/main/java/test/com/moim/cs/controller/CsController.java,2\7\276c61477109f3f9c3088f1b84dc5dc18e752fc5
 s
 Csrc/main/java/test/com/moim/events/controller/EventsController.java,8\4\84a3ba8a44c24d0215f0e56480ead1717b6cd4a3
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 o
 ?src/main/java/test/com/moim/comments/model/som_commentsDAO.java,d\a\daf0da646276f0646a210afcae4e420aeb25bce5
 v

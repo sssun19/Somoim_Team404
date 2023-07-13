@@ -66,10 +66,6 @@ m
 =src/main/java/test/com/moim/community/model/CommunityDAO.java,c\4\c4d13ea49725091316c22c0a475b5465be348319
 k
 ;src/main/java/test/com/moim/cs/controller/CsController.java,2\7\276c61477109f3f9c3088f1b84dc5dc18e752fc5
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 o
 ?src/main/java/test/com/moim/comments/model/som_commentsDAO.java,d\a\daf0da646276f0646a210afcae4e420aeb25bce5
 v

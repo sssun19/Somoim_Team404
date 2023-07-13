@@ -72,6 +72,7 @@
                 <div id="insert_content" contenteditable="true">${vo2.content}</div>
                 <input type="hidden" id="hidden_content" name="content"
                        value="${vo2.content}">
+
                 <!-- Hidden input field to store the content -->
             </div>
             <div class="center">

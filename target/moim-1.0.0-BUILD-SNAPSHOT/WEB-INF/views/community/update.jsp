@@ -73,6 +73,7 @@
                 <input type="hidden" id="hidden_content" name="content"
                        value="${vo2.content}">
                 <img src="resources/uploadimg/${vo2.save_name}"></div>
+
                 <!-- Hidden input field to store the content -->
             </div>
             <div class="center">
