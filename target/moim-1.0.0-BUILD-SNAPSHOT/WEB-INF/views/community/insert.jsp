@@ -53,11 +53,15 @@
                 <h3>
                     <label for="content">내용</label>
                 </h3>
-                <div class="editor-menu">
-                    <button type="button" id="btn-image">IMG</button>
-                    <input type="file" id="img-selector" name="file" accept="image/*"/>
+
+                <div class="form-group">
+                    <label for="image">IMG</label>
+                    <input type="file" id="image" name="file" accept="image/*" onchange="previewImage();" />
                 </div>
-                <div id="insert_content">${vo2.content}
+                <div class="preview_img_box">
+                    <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
+                </div>
+                <div>
                     <textarea name="content"></textarea>
                 </div>
 
@@ -99,49 +103,23 @@
     </div>
 
 </div>
-
 <script>
-    document.getElementById("btn-image").addEventListener("click",
-        function () {
-            document.getElementById("img-selector").click();
-        });
+    function previewImage() {
+        var file = document.querySelector('#image').files[0];
+        var reader = new FileReader();
 
-    document.getElementById("img-selector").addEventListener("change",
-        function () {
-            var file = this.files[0];
-            // 선택된 파일을 처리하는 로직을 추가할 수 있습니다.
-            console.log(file);
-        });
-</script>
+        reader.addEventListener("load", function () {
+            // 변환된 이미지 URL을 img 태그의 src 속성에 할당
+            document.querySelector('#imagePreview').src = reader.result;
+            document.querySelector('#imagePreview').style.display = 'block';
+        }, false);
 
-<script>
-    document.getElementById('img-selector').addEventListener(
-        'change',
-        function (e) {
-            var file = e.target.files[0];
-            var reader = new FileReader();
-
-            reader.onloadend = function () {
-                var img = document.createElement('img');
-                img.src = reader.result;
-                document.getElementById('insert_content').appendChild(
-                    img);
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                preview.innerHTML = "";
-            }
-        });
-
-    function clearContent() {
-        document.getElementById('insert_content').innerHTML = '';
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
 </script>
 
-<
-</script>
 
 
 </body>
