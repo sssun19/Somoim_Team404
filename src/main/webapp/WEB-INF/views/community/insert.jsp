@@ -43,11 +43,11 @@
             </div>
             <div>
                 <h2>
-                    <label for="title">제목</label>
+                    <label for="title">태그</label>
                 </h2>
             </div>
             <div>
-                <input type="text" id="title" name="title" value="테스트제목">
+                <input type="text" id="title" name="title" value="태그">
             </div>
             <div>
                 <h3>
@@ -62,7 +62,7 @@
                     <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
                 </div>
                 <div>
-                    <textarea name="content"></textarea>
+                    <textarea id="content" name="content" style="display: none;"></textarea>
                 </div>
 
 
@@ -103,24 +103,30 @@
     </div>
 
 </div>
+
+
 <script>
+    function showContent() {
+        var contentTextArea = document.getElementById('content');
+        contentTextArea.style.display = 'block';
+    }
+
     function previewImage() {
-        var file = document.querySelector('#image').files[0];
+        var fileInput = document.getElementById('image');
+        var imagePreview = document.getElementById('imagePreview');
+
+        var file = fileInput.files[0];
         var reader = new FileReader();
 
-        reader.addEventListener("load", function () {
-            // 변환된 이미지 URL을 img 태그의 src 속성에 할당
-            document.querySelector('#imagePreview').src = reader.result;
-            document.querySelector('#imagePreview').style.display = 'block';
-        }, false);
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+            showContent();
+        };
 
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        reader.readAsDataURL(file);
     }
 </script>
-
-
 
 </body>
 </html>

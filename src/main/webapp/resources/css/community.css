@@ -228,6 +228,17 @@
     margin-top: 20px;
 }
 
+
+.community_insert_section textarea {
+    width: 96%;
+    height: 500px;
+    border: #ccc solid 1px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
 #content-container {
     height: 600px;
     text-align: center;
