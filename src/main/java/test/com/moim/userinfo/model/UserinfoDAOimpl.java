@@ -1,6 +1,8 @@
 package test.com.moim.userinfo.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +63,17 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 	@Override
 	public UserinfoVO findId(String email) throws Exception {
 		log.info("find_id()...{}", email);
-	        
-		return sqlSession.selectOne("U_FindId", email);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("email", email);
+		return sqlSession.selectOne("U_FindId", map);
+	}
+
+	@Override
+	public UserinfoVO findPassword(String user_id) throws Exception {
+		log.info("find_password()...{}", user_id);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("user_id", user_id);
+		return sqlSession.selectOne("U_FindPassword", map);
 	}
 
 		

@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.moim.userinfo">
-    <select id="U_SELECT_ALL" resultType="test.com.moim.userinfo.model.UserinfoVO">
-        select * from userinfo order by num desc
-    </select>
-    <select id="U_SELECT_ONE" resultType="test.com.moim.userinfo.model.UserinfoVO">
-        select * from userinfo where num = #{num}
-    </select>
-    <insert id="U_INSERT" parameterType="test.com.moim.userinfo.model.UserinfoVO">
-        insert into userinfo(num,user_id,pw,name,email,save_name,point,birthday)
-        values(seq_userinfo.nextval,#{user_id},#{pw},#{name},#{email},#{save_name},#{point},#{birthday})
-    </insert>
-    <select id="LOGIN" resultType="test.com.moim.userinfo.model.UserinfoVO">
-        select * from userinfo where user_id = #{user_id} and pw = #{pw}
-    </select>
-    	<select id="U_findId" resultType="test.com.moim.userinfo.model.UserinfoVO">
-		select * from users where email=#{email}
+	<select id="U_SELECT_ALL"
+		resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select * from userinfo order by num desc
+	</select>
+	<select id="U_SELECT_ONE"
+		resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select * from userinfo where num = #{num}
+	</select>
+	<insert id="U_INSERT"
+		parameterType="test.com.moim.userinfo.model.UserinfoVO">
+		insert into userinfo(num,user_id,pw,name,email,save_name,point,birthday)
+		values(seq_userinfo.nextval,#{user_id},#{pw},#{name},#{email},#{save_name},#{point},#{birthday})
+	</insert>
+	<select id="LOGIN"
+		resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select * from userinfo where user_id = #{user_id} and pw = #{pw}
 	</select>
 	
-	<select id="U_findPassword" resultType="test.com.moim.userinfo.model.UserinfoVO">
-		select * from users where id=#{id} and name=#{name} and email=#{email}
+	
+	<select id="U_FindId"
+		resultType="test.com.moim.userinfo.model.UserinfoVO" parameterType="HashMap">
+		select * from userinfo where email=#{email}
 	</select>
-	
-	<update id="updatePassword">
-		update users set pw=#{pw} where id=#{id}
-	</update>
-	
 
-    
+	<select id="U_FindPassword"
+		resultType="test.com.moim.userinfo.model.UserinfoVO" parameterType="HashMap">
+		select * from userinfo where user_id=#{user_id, jdbcType=VARCHAR} 
+	</select>
+
+	<update id="updatePassword">
+		update userinfo set pw=#{pw} where id=#{id}
+	</update>
+
+
+
 </mapper>

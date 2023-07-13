@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
-    <script src="/resources/js/schedule.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -43,8 +45,8 @@
                                 <button type="button">
                                     <a href="join_schedule_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
                                 </button>
-                                <button type="button">
-                                    <a href="join_schedule_delete.do?num=${vo.num}"><i class="fas fa-trash-alt"></i></a>
+                                 <button type="button" onclick="join_schedule_deleteOK()">
+                                    <i class="fas fa-trash-alt"></i>
                                 </button>
                             </span>
 
@@ -62,12 +64,15 @@
                         <div class="sch_member">
                             <h2 style="padding-bottom: 10px">참석 멤버</h2>
                             <ul class="schm_grid">
-                                <c:forEach var="participant" items="${fn:split(vo.participant, '/')}" varStatus="status">
-                                    <li>
-                                        <i class="far fa-user"></i> <input type="hidden" value="${participant}" class="update_participant">
-                                    </li>
+
+                                <c:forEach items="${fn:split(vo.participant, '/')}" var="participant">
+                                <li>
+                                    <input type="hidden" value="${participant}" class="participant_mine">
+                                    <img src="/resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
+                                </li>
+
                                 </c:forEach>
-                            </ul>
+
 
                         </div>
 
@@ -106,7 +111,22 @@
 </div>
 </body>
 
+<script src="/resources/js/schedule.js"></script>
 <script>
+    $(document).ready(function() {
+        var userId = $('#login_user_id').val();
+        console.log(userId);
+
+        $('.participant_mine').each(function() {
+            var participantName = $(this).val();
+
+            if (participantName === userId) {
+                var $this = $(this);
+                $this.closest('li').css('border', '2px solid #1785F2');
+                $this.closest('ul').prepend($this.closest('li'));
+            }
+        });
+    });
 
 </script>
 

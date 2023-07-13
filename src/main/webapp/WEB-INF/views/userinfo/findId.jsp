@@ -105,7 +105,7 @@ function findID(){
         <div class="header">
         <div class="gnb">
             <div class="logo">
-                <img src="resouces/uploadimg/logo.png">
+                <img src="resources/uploadimg/logo.png">
             </div>
             <nav>
                 <ul>

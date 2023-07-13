@@ -35,8 +35,13 @@ public class som_comments_controller {
 	
 	@RequestMapping(value = "/som_comm_deleteOK.do", method = RequestMethod.GET)
 	public String som_comm_deleteOK(som_commentsVO vo) {
-		log.info("/som_comm_deleteOK.do...{}", vo);
-		int result = commService.delete(vo);
+		log.info("/-------------------------som_comm_deleteOK.-----------------o...{}", vo);
+		log.info("vo.getNum()....{}", vo.getNum());
+		som_commentsVO vo2 = new som_commentsVO();
+		vo2.setNum(vo.getNum());
+		vo2.setSom_board_num(vo.getSom_board_num());
+		log.info("vo2", vo2);
+		int result = commService.delete(vo2);
 
 		log.info("result...{}", result);
 

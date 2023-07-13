@@ -65,8 +65,10 @@
             <div class="total">
                 <div class="result">
                     <h3>회원님의 아이디는 다음과 같습니다:</h3>
-                    <h4 id="result"></h4>
+                    <h4 id="result">${user_id}</h4>
 				</div>
+				<hr>
+				<button type="button" id="submitpass" onclick="location.href='login.do'">로그인</button>
             </div>
         </div>
     </div>

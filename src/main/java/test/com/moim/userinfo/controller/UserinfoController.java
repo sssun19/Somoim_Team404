@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.userinfo.service.UserinfoService;
@@ -13,7 +14,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
@@ -174,6 +177,7 @@ public class UserinfoController {
 
 	        // 이메일을 가진 아이디 조회
 	        UserinfoVO userinfoVO = service.findId(email);
+	        log.info("{}", userinfoVO);
 
 	        if (userinfoVO != null) {
 	            // 아이디가 존재하는 경우 모델에 추가
@@ -191,6 +195,8 @@ public class UserinfoController {
 	    return "userinfo/findId2";
 	}
 
+
+
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.GET)
 	public String findPassword() {
 		log.info("/findPassword.do");
@@ -199,8 +205,29 @@ public class UserinfoController {
 	}
 
 	@RequestMapping(value = "/findPassword2.do", method = RequestMethod.GET)
-	public String findPassword2() {
-		log.info("/findPassword2.do");
+	public String findPassword2(UserinfoVO vo, Model model) {
+		log.info("/findPassword2.do...{}",vo);
+		
+		try {
+			String user_id = vo.getUser_id();
+			
+			//아이디를 가진 비밀번호 조회
+			UserinfoVO userinfoVO  = service.findPassword(user_id);
+			log.info("{}", userinfoVO);
+			
+			if(userinfoVO != null) {
+				//비밀번호가 존재한다면 모델에 추가
+				model.addAttribute("pw", userinfoVO.getPw());
+			}else {
+				//비밀번호가 존재하지 않는 경우 메세지를 출력하기 위해 모델에 추가
+				model.addAttribute("pw","일치하는 회원정보를 찾을 수 없습니다.");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			//비밀번호 조회 중 오류 발생시 메시지를 출력하기 위해 모델에 추가
+			model.addAttribute("pw","비밀번호 검색 중 오류가 발생했습니다. ");
+		}
+		
 
 		return "userinfo/findPassword2";
 	}

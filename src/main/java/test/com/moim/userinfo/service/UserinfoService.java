@@ -43,5 +43,10 @@ public class UserinfoService {
 	    return dao.findId(email);
 	}
 
+	public UserinfoVO findPassword(String user_id) throws Exception{
+		log.info("findPassword()...user_id:{}", user_id);
+		return dao.findPassword(user_id);
+	}
+
 
 }

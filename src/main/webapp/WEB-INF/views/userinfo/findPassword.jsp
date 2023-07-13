@@ -2,6 +2,40 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function findPassword2() {
+        var userId = $("#find_password").val();
+
+        // AJAX를 사용하여 서버에 아이디 조회 요청 보내기
+        $.ajax({
+            url: "findPassword2.do",
+            method: "GET",
+            data: { user_id: userId },
+            success: function(response) {
+                // 서버에서의 처리가 성공했을 때
+                if (response.success) {
+                    // 아이디가 조회되었을 경우
+                    var password = response.password;
+
+                    // 팝업으로 아이디 조회 결과 표시
+                    alert("아이디를 조회했습니다.");
+                } else {
+                    // 아이디가 조회되지 않았을 경우
+                    alert("아이디를 조회하지 못했습니다.");
+                }
+            },
+            error: function() {
+                // 서버와의 통신에 실패했을 때
+                alert("서버와의 통신 중 오류가 발생했습니다.");
+            }
+        });
+    }
+</script>
+
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,8 +87,8 @@
         </div>
         <div class="total" >
             <h3 style="height: 4px; margin-right: 50%;">아이디</h3>
-            <input type="text"  placeholder="아이디를 입력하세요" id="find_password" style="width: 50%;" > <br>       
-        <button style="width: 30%;" type="button" onclick="location.href='findPassword2.do'">제출</button>
+            <input type="text"  placeholder="아이디를 입력하세요" id="find_password" style="width: 50%;" > <br>   
+        <button style="width: 30%;" type="button" onclick="findPassword2()">조회</button>
     </div>    
 </div>
       
@@ -90,4 +124,4 @@
        
     </div>
 </body>
-</html>
+</html> 
