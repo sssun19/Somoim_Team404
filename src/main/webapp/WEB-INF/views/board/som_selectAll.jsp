@@ -105,7 +105,7 @@
                         <input type="hidden" value="${vo.create_date}">
                         <div class="moim_img">
                             <div class="img_box">
-                                <img src="resources/uploadimg/${vo.somoim_img}"></div>
+                                <img src="resources/uploadimg/${vo.save_name}"></div>
                             <span>
 									<p class="hashtag">${vo.category}</p>
 									<h1>${vo.som_title}</h1>
@@ -150,7 +150,7 @@
                                 <input type="hidden" value="${vo.category}">
                                 <div class="moim_img">
                                     <div class="img_box">
-                                        <img src="resources/uploadimg/${vo.somoim_img}"></div>
+                                        <img src="resources/uploadimg/${vo.save_name}"></div>
                                     <span>
 									<h1>${vo.som_title}</h1>
 									<p class="sub_tit">소셜링 📌 ${vo.area}</p>
@@ -169,7 +169,7 @@
                                 <input type="hidden" value="${vo.category}">
                                 <div class="moim_img">
                                     <div class="img_box">
-                                        <img src="resources/uploadimg/${vo.somoim_img}"></div>
+                                        <img src="resources/uploadimg/${vo.save_name}"></div>
                                     <span>
 									<h1>${vo.som_title}</h1>
 									<p class="sub_tit">소셜링 📌 ${vo.area}</p>
@@ -188,7 +188,7 @@
                                 <input type="hidden" value="${vo.category}">
                                 <div class="moim_img">
                                     <div class="img_box">
-                                        <img src="resources/uploadimg/${vo.somoim_img}"></div>
+                                        <img src="resources/uploadimg/${vo.save_name}"></div>
                                     <span>
 									<h1>${vo.som_title}</h1>
 									<p class="sub_tit">소셜링 📌 ${vo.area}</p>

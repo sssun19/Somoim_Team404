@@ -74,6 +74,8 @@
                        value="${vo2.content}">
                 <img src="resources/uploadimg/${vo2.save_name}"></div>
 
+
+
                 <!-- Hidden input field to store the content -->
             </div>
             <div class="center">
@@ -153,48 +155,6 @@
     }
 </script>
 
-<script>
-    // Update the value of the hidden input field with the content of the editable div
-    document.getElementById("insert_content").addEventListener("input", function () {
-        var content = this.innerHTML;
-        document.getElementById("hidden_content").value = content;
-    });
-
-    const btnBold = document.getElementById('btn-bold');
-    const btnItalic = document.getElementById('btn-italic');
-    const btnUnderline = document.getElementById('btn-underline');
-    const btnStrike = document.getElementById('btn-strike');
-    const btnImage = document.getElementById('btn-image');
-    const imageSelector = document.getElementById('img-selector');
-
-    btnBold.addEventListener('click', function () {
-        setStyle('bold');
-    });
-
-    btnItalic.addEventListener('click', function () {
-        setStyle('italic');
-    });
-
-    btnUnderline.addEventListener('click', function () {
-        setStyle('underline');
-    });
-
-    btnStrike.addEventListener('click', function () {
-        setStyle('strikeThrough');
-    });
-
-    function setStyle(style) {
-        document.execCommand(style);
-        focusEditor();
-    }
-
-    // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌
-    function focusEditor() {
-        document.getElementById("insert_content").focus({
-            preventScroll: true
-        });
-    }
-</script>
 
 </body>
 </html>
