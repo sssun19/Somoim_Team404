@@ -13,4 +13,5 @@ public class MemberVO {
 	private String position;
 	private String som_title;
 	private String save_name;
+	private int somoim_num;
 }

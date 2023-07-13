@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
@@ -15,12 +14,8 @@ import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
-import test.com.moim.userinfo.controller.Email;
-import test.com.moim.userinfo.model.UserinfoVO;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.time.Clock;
 import java.util.*;
 
 /**
@@ -155,8 +150,6 @@ public class BoardController {
 //
 
 
-        model.addAttribute("coms", coms);
-        model.addAttribute("c_coms", c_coms);
 
 
         return "board/join_selectOne";

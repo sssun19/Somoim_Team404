@@ -25,11 +25,11 @@
 	<update id="SOM_D_C_UPDATE">
 		UPDATE somoim_board_comments
 SET content = #{content, jdbcType=VARCHAR}, SOM_COMMENT_DEPTH = 1
-WHERE num = #{num, jdbcType=VARCHAR} AND parent_com = #{parent_com, jdbcType=VARCHAR}
+WHERE num = #{num, jdbcType=VARCHAR}
 	</update>
 
 	<delete id="SOM_D_C_DELETE">
 		delete from SOMOIM_BOARD_COMMENTS where num = #{num,
-		jdbcType=VARCHAR} and parent_com = #{parent_com,jdbcType=VARCHAR} and SOM_COMMENT_DEPTH=1
+		jdbcType=VARCHAR} and SOM_COMMENT_DEPTH=1
 	</delete>
 </mapper>

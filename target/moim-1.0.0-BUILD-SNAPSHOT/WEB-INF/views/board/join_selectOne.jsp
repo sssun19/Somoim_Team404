@@ -13,6 +13,38 @@
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
+
+<script>
+    function replaceWithForm(button) {
+        var parentDiv = button.parentNode;
+
+        var form = document.createElement('form');
+        form.action = 'som_dcomm_insertOK.do';
+
+        var div = document.createElement('div');
+        div.className = 'join_commnets_insert_section';
+
+        var inputText = document.createElement('input');
+        inputText.type = 'text';
+        inputText.placeholder = '댓글 작성';
+        inputText.name = 'content';
+        inputText.value = '${c_com.content}';
+
+
+        var buttonSubmit = document.createElement('button');
+        buttonSubmit.type = 'submit';
+        buttonSubmit.textContent = '댓글 작성';
+
+        div.appendChild(inputText);
+
+        div.appendChild(buttonSubmit);
+
+        form.appendChild(div);
+
+        parentDiv.replaceChild(div, button);
+    }
+</script>
+
 <body>
 
 <jsp:include page="../top_menu.jsp"></jsp:include>
@@ -48,7 +80,7 @@
                 </button>
                 <button type="button">
                     <a href="join_deleteOK.do?num=${vo2.num}">
-                            <i class="fas fa-trash-alt"></i>
+                        <i class="fas fa-trash-alt"></i>
                     </a>
 
                 </button>
@@ -78,8 +110,8 @@
                                         <span>
                                             <form action="som_comm_updateOK.do?num=${com.som_board_num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
-                                                <input type="hidden" name="num" value = "${com.num}">
-                                                <input type="hidden" name="content" value = "${com.content}">
+                                                <input type="hidden" name="num" value="${com.num}">
+                                                <input type="hidden" name="content" value="${com.content}">
 
 
                                             <button type="submit">
@@ -101,27 +133,47 @@
                                     </div>
                                     <p>${com.write_date}</p>
                                     <div class="com_func">
-                                        <h4>댓글${com.user_id}</h4>
                                         <input type="text" placeholder="댓글 목록" value="${com.content}"
-                                               id="join_comments" readonly>
+                                               id="join_comments">
                                     </div>
+                                            <h4 style="margin-left: 4%; margin-top: 2%;">대댓글</h4>
+
                                 <c:forEach var="c_com" items="${c_coms}">
                                     <c:if test="${c_com.parent_com eq com.num}">
                                         <div class="com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
                                             <h5>${c_com.user_id}</h5>
-                                            <input type="text" placeholder="댓글 목록" value="${c_com.content}" readonly>
+                                            <form  action="som_dcomm_updateOK.do" style=" width: 100%; display: flex; justify-content: space-between;">
+                                            <input type="text" placeholder="댓글 목록" name="content" value="${c_com.content}">
+                                                   <input type="hidden" name="num" value="${c_com.num}">
+                                                   <input type="hidden" name="som_board_num" value="${c_com.som_board_num}">
+<%--                                                   <input type="hidden" name="" value="${com.som_board_num}">--%>
+
+                                               <button type="submit" >
+                                                   <i class="fas fa-edit"></i></button>
+                                                    </form>
+                                                <form action="som_dcomm_deleteOK.do">
+
+                                                    <input type="hidden" name="num" value="${c_com.num}">
+                                                   <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                                 <button type="submit"  >
+                                                     <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                </form>
+
                                         </div>
                                     </c:if>
                                 </c:forEach>
-                                <form action="som_dcomm_insertOK.do">
-                                    <div class="join_commnets_insert_section">
-                                        <input type="text" placeholder="댓글 작성" name="content" value="${c_com.content}">
+                                    <form action="som_dcomm_insertOK.do">
                                         <input type="hidden" name="parent_com" value="${com.num}">
                                         <input type="hidden" name="user_id" value="${user_id}">
 
                                         <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                         <input type="hidden" name="somoim_num" value="${com.somoim_num}">
-                                        <button type="submit">댓글 작성</button>
+                                        <div style="display: flex; justify-content: center;">
+                                        <button class="lovely_insert_button"
+                                                style="margin-top: 10px; border: none; color: gray;"
+                                                onclick="replaceWithForm(this)">대댓글 작성</button>
+
                                     </div>
                                 </form>
                             </div>
@@ -131,22 +183,22 @@
             </span>
         </c:forEach>
         <form action="som_comm_insertOK.do?som_board_num=${vo2.num}">
-        <div class="join_commnets_insert_section">
-            <div class="comments_user_profile">
-                <div class="commnets_user_profile_img">
-                    <i class="far fa-user"></i>
+            <div class="join_commnets_insert_section">
+                <div class="comments_user_profile">
+                    <div class="commnets_user_profile_img">
+                        <i class="far fa-user"></i>
+                    </div>
+                    <p>닉네임</p>
                 </div>
-                <p>닉네임</p>
-            </div>
                 <input type="hidden" name="som_board_num" value="${vo2.num}">
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">
                 <input type="hidden" name="num" value="${vo2.num}">
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="text" placeholder="댓글 작성" name="content">
-<%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
+                <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 
                 <button type="submit">댓글 작성</button>
-       </div>
+            </div>
         </form>
     </div>
 </div>
