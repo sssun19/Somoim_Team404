@@ -1,14 +1,11 @@
 package test.com.moim.somoim.controller;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,15 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
-import test.com.moim.member.model.MemberVO;
 import test.com.moim.member.service.MemberService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.somoim.service.SomoimService;
 import test.com.moim.userinfo.model.UserinfoVO;
+import test.com.moim.userinfo.service.UserinfoService;
 
 
 @Slf4j
@@ -38,6 +34,9 @@ public class SomoimController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	UserinfoService userinfoService;
 	
 	@Autowired
 	ServletContext sContext;
@@ -175,9 +174,19 @@ public class SomoimController {
 		
 	}
 	
-	
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
 	public String som_update(SomoimVO vo) {
+		log.info("som_update.do().....{}", vo);
+		log.info("update 할 소모임의 번호 : {}", vo.getNum());
+		
+//		int result = service.update(vo);
+		
+		
+		return "board/som_selectAll";
+	}
+	
+	@RequestMapping(value = "/som_updateOK.do", method = RequestMethod.GET)
+	public String som_updateOK(SomoimVO vo) {
 		log.info("som_update.do().....{}", vo);
 		
 		int result = service.update(vo);
@@ -187,14 +196,55 @@ public class SomoimController {
 	}
 	
 	@RequestMapping(value = "/som_delete.do", method = RequestMethod.GET)
-	public String som_delete(SomoimVO vo) {
-		log.info("som_delete.do().....{}", vo);
+	public String som_delete(String message, Model model, SomoimVO vo, HttpServletRequest request) {
+		log.info("som_delete.do().....");
+		log.info("소모임 번호 잘 넘어오나? {}", vo.getNum());
+		String num = request.getParameter("num");
+		log.info("파라미터는 넘어 오나? {}", num);
 		
-		int result = service.delete(vo);
+//		session.invalidate();
 		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("message", message);
+		map.put("num", num);
 		
-		return "redirect:selectAll.do";
+		if (message != null)
+			message = "아이디/비밀번호를 확인하세요";
+		model.addAllAttributes(map);
+		
+		return "board/deletebeforelogin";
 	}
 
+	@RequestMapping(value = "/som_deleteOK.do", method = RequestMethod.POST)
+	public String som_deleteOK(UserinfoVO vo, HttpServletRequest request, SomoimVO somoim) {
+		log.info("som_delete.do().....{}", vo);
+		String num = request.getParameter("num");
+		String user_id = (String) session.getAttribute("user_id");
+		UserinfoVO vo2 = userinfoService.login(vo);
+		
+		
+		log.info("vo2..... 로그인 성공?{}", vo2);
+		log.info("num : {}", num);
+		log.info("somoim....{}", somoim.getNum());
+		
+		int result = service.delete(somoim);
+		String path = "";
+		if(vo2==null) {
+			log.info("로그인 실패");
+			path = "redirect:som_delete.do?num="+num+"&user_id="+user_id;
+		}
+		else {
+			log.info("로그인 성공");
+			path = "redirect:som_selectAll.do";
+		}
+		
+		log.info("path......====={}", path);
+		
+		if (result==1)
+			return path;
+		else
+			return path;
+	}
+	
 	
 }
