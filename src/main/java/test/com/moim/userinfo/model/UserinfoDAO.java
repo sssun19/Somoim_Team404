@@ -16,4 +16,8 @@ public interface UserinfoDAO {
 
 	UserinfoVO mypageSelectOne(UserinfoVO vo);
 
+	UserinfoVO selectUser(UserinfoVO vo2);
+
+	int mypage_update(UserinfoVO vo);
+
 }

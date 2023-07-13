@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.member.model.MemberVO;
 import test.com.moim.member.service.MemberService;
+import test.com.moim.userinfo.model.UserinfoVO;
+import test.com.moim.userinfo.service.UserinfoService;
 
 
 @Slf4j
@@ -21,6 +23,9 @@ public class MemberRestController {
 	
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	UserinfoService service2;
 
 	@ResponseBody
 	@RequestMapping(value = "/som_member_insertOK.do", method = RequestMethod.POST)
@@ -32,7 +37,14 @@ public class MemberRestController {
 		
 		int result = service.insert(vo);
 		log.info("result : {}", result);
-		log.info("된거야?");
+		
+		UserinfoVO vo2 = new UserinfoVO();
+		vo2.setUser_id(vo.getUser_id());
+		vo2.setSom_title("/"+vo.getSom_title());
+		
+		UserinfoVO vo3 = service2.selectUser(vo2);
+		log.info("vo3...{}", vo3);
+		
 		
 		if(result==1)
 			return "OK!";
