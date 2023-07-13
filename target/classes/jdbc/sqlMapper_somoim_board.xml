@@ -25,8 +25,6 @@
 	<delete id="JOIN_SOMOIM_DELETE">
 		delete from somoim_board where num=#{num}
 	</delete>
-	<insert id="SCHEDULE_INSERT">
-	</insert>
 	<select id="Sch_SELECT_ONE"
 			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
 		select * from somoim_schedule where num =#{num}
@@ -47,7 +45,10 @@
 	<insert id="JOIN_INSERT">
 		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date)
 		values(
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://git@github.com/BeomV/Somoim_Team404.git
 				  seq_somoim_board.nextval,
 				  #{title},
 				  #{content},
@@ -73,37 +74,5 @@
 		where
 			num = #{num}
 	</update>
-	<!--
-    <select id="b_SELECT_ONE"
-       resultType="test.com.semi.board.model.BoardVO">
-       select * from board where wnum = #{wnum}
-    </select>
-    <select id="b_ID_CHECK"
-       resultType="test.com.semi.board.model.BoardVO">
-       select * from board where id = #{id}
-    </select>
-    <select id="b_LOGIN"
-       resultType="test.com.semi.board.model.BoardVO">
-       select * from board where id = #{id} and pw = #{pw}
-    </select>
-    <select id="b_SEARCH_LIST_NAME"
-       resultType="test.com.semi.board.model.BoardVO">
-       select * from board where name like #{searchWord}
-    </select>
-    <select id="b_SEARCH_LIST_TEL"
-       resultType="test.com.semi.board.model.BoardVO">
-       select * from board where tel like #{searchWord}
-    </select>
-    <insert id="b_INSERT">
-       insert into board(wnum,title,writer,content,wdate)
-       values(seq_board.nextval,#{title},#{writer},#{content},sysdate)
-    </insert>
-    <update id="b_UPDATE">
-       update board set title=#{title},writer=#{writer},content=#{content}
-       where wnum=#{wnum}
-    </update>
-    <delete id="b_DELETE">
-       delete from board where wnum=#{wnum}
-    </delete>
-    -->
+
 </mapper>

@@ -1,25 +1,27 @@
 package test.com.moim.community.controller;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import lombok.extern.slf4j.Slf4j;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.community.service.CommunityService;
-import test.com.moim.somoim.model.SomoimVO;
+import test.com.moim.community_comments.model.Community_commentsVO;
+import test.com.moim.community_comments.model.Community_re_commentsVO;
+import test.com.moim.community_comments.service.Community_commentsService;
+import test.com.moim.community_comments.service.Community_re_commentsService;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Handles requests for the application home page.
@@ -40,6 +42,12 @@ public class CommunityController {
 
 	@Autowired
 	CommunityService service;
+
+	@Autowired
+	Community_commentsService community_comservice;
+
+	@Autowired
+	Community_re_commentsService community_re_comservice;
 
 
 	@RequestMapping(value = "/community_selectAll.do", method = RequestMethod.GET)
@@ -66,13 +74,29 @@ public class CommunityController {
 
 		model.addAttribute("vo2",vo2);
 
+
+
+		Community_commentsVO vo3 = new Community_commentsVO();
+		vo3.setBoard_num(vo2.getNum());
+		log.info("vo3...!!!!!!!!!!!!!!!!{}", vo3);
+
+		List<Community_commentsVO> ccoms = community_comservice.selectAll(vo3);
+		System.out.println("ccoms:" + ccoms.toString());
+
+		model.addAttribute("vo3", vo3);
+		model.addAttribute("ccoms", ccoms);
+
+		Community_re_commentsVO c_cvo = new Community_re_commentsVO();
+		c_cvo.setBoard_num(vo3.getBoard_num());
+		log.info("vo3.getnum..{}", vo3.getNum());
+		List<Community_re_commentsVO> c_coms = new ArrayList<Community_re_commentsVO>();
+		c_coms = community_re_comservice.selectAll(c_cvo);
 		return "community/selectOne";
 	}
 	
 	@RequestMapping(value = "/community_insert.do", method = RequestMethod.GET)
-	public String community_insert(Model model) {
-		String userId = (String) session.getAttribute("user_id");
-		model.addAttribute("user_id", userId);
+	public String community_insert() {
+
 
 		log.info("community_insert.do().....");
 
@@ -81,9 +105,8 @@ public class CommunityController {
 	}
 
 	@RequestMapping(value = "/community_insertOK.do", method = RequestMethod.POST)
-	public String community_insertOK(Model model, CommunityVO vo) throws IllegalStateException, IOException {
-		String userId = (String) session.getAttribute("user_id");
-		model.addAttribute("user_id", userId);
+	public String community_insertOK(CommunityVO vo) throws IllegalStateException, IOException {
+
 		log.info("community_insertOK.do().....{}", vo);
 
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
@@ -152,13 +175,14 @@ public class CommunityController {
 		CommunityVO vo2 = service.selectOne(vo);
 
 		model.addAttribute("vo2", vo2);
+		log.info("vo2...{}", vo2);
 
 		return "community/update";
 	}
 
 	@RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
 	public String community_updateOK(CommunityVO vo) {
-		log.info("/community_updateOK.do...{}", vo);
+		log.info("/++++++++++++++++++++community_updateOK.do...{}", vo);
 
 		int result = service.update(vo);
 		log.info("result...{}", result);

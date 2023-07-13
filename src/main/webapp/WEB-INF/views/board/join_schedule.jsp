@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <link rel="stylesheet" href="resources/css/board_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="resources/js/schedule.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -69,6 +70,7 @@
                                     <input type="hidden" value="${participant}" class="participant_mine">
                                     <img src="resources/uploadimg/${saveNamesMap[participant].save_name}" style="width: 50px; height: 50px; border-radius: 25px">
                                 </li>
+
                                 </c:forEach>
 
 
