@@ -21,7 +21,8 @@ public class som_com_comments_controller {
 		log.info("/som_dcomm_updateOK.do...{}", vo);
 		log.info("/parent.do...{}", vo.getParent_com());
 		log.info("/num.do...{}", vo.getNum());
-		
+		log.info("/getContentgetContentgetContentgetContent.do...{}", vo.getContent());
+
 		int result = commService.update(vo);
 		log.info("result...{}", result);
 		
@@ -35,7 +36,7 @@ public class som_com_comments_controller {
 		int result = commService.delete(vo);
 
 		log.info("result...{}", result);
-		
+
 		return "redirect:join_selectOne.do?num="+vo.getSom_board_num();
 	}
 	
