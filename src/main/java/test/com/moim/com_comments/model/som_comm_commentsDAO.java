@@ -1,7 +1,5 @@
 package test.com.moim.com_comments.model;
 
-import test.com.moim.somoim.model.SomoimVO;
-
 import java.util.List;
 
 
