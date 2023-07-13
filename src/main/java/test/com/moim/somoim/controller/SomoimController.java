@@ -135,14 +135,14 @@ public class SomoimController {
 			vo.getFile().transferTo(f);
 
 			//// create thumbnail image/////////
-			BufferedImage original_buffer_img = ImageIO.read(f);
-			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-			Graphics2D graphic = thumb_buffer_img.createGraphics();
-			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
-			File thumb_file = new File(realPath + "/thumb_" + vo.getSomoim_img());
-			String formatName = vo.getSomoim_img().substring(vo.getSomoim_img().lastIndexOf(".")+1);
-			log.info("formatName : {}", formatName);
-			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
+//			BufferedImage original_buffer_img = ImageIO.read(f);
+//			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+//			Graphics2D graphic = thumb_buffer_img.createGraphics();
+//			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
+//			File thumb_file = new File(realPath + "/thumb_" + vo.getSomoim_img());
+//			String formatName = vo.getSomoim_img().substring(vo.getSomoim_img().lastIndexOf(".")+1);
+//			log.info("formatName : {}", formatName);
+//			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
 
 		} // end else
 		

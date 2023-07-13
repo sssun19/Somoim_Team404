@@ -54,7 +54,7 @@
           </li>
           <li>
              <div class="moimst_list_01_img_box">
-                <img src="/uploadimg/0112.png">
+                <img src="resources/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -80,7 +80,7 @@
        <ul>
           <li>
              <div>
-                <img src="/uploadimg/0112.png">
+                <img src="resources/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -90,7 +90,7 @@
           </li>
           <li>
              <div>
-                <img src="/uploadimg/0112.png">
+                <img src="resources/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -100,7 +100,7 @@
           </li>
           <li>
              <div>
-                <img src="/uploadimg/0112.png">
+                <img src="resources/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>
@@ -110,7 +110,7 @@
           </li>
           <li>
              <div>
-                <img src="/uploadimg/0112.png">
+                <img src="resources/uploadimg/0112.png">
              </div>
              <div class="main_selectList">
                 <p class="hashtag">위스키</p>

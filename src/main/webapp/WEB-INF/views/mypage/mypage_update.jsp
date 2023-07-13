@@ -16,7 +16,7 @@
 // 	});
 	
 	$(document).ready(function() {
-	    const dataValue = '${vo2.save_name}';  // JSP 표현식을 JavaScript 변수에 할당
+	    const dataValue = '${vo2.save_name}';
 	    handleImageSelect(dataValue);
 	});
 
@@ -53,6 +53,31 @@ function handleImageSelect(dataValue) {
 		`;
 		}
 	    $('#file_savename').html(tag_vo);
+	}
+	
+	function alertmsg(){
+		var selectedInterest = $("select[name='interest']").val();
+		
+		if(!selectedInterest) {
+			alert("관심 태그를 선택해주세요.");
+			return false;
+		} else
+			return true;
+		
+// 		$.ajax({
+// 			url:"mypage_updateOK.do",
+// 			method:"POST",
+// 			data: $("form").serialize(), //폼 데이터를 직렬화하여 전송
+// 			success: function(response){
+// 				console.log(response);
+// 				if(response==1)
+// 					console.log('일단 요청은 성공');
+// 			},
+// 			error: function(xhr, status, error){
+// 				console.log('xhr.status : ', xhr.status);
+// 				console.error(error);
+// 			}
+// 		});
 	}
 	
 	
@@ -196,7 +221,7 @@ function handleImageSelect(dataValue) {
 <!-- 			</form> -->
 		</li>
 		</ul>
-		<input type="submit" value="수정하기" name="submit_btn">
+		<input type="submit" onclick="return alertmsg();" name="submit_btn" value="수정 완료">
 	</div>
 	</form>
 

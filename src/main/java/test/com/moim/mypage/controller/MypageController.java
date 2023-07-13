@@ -115,6 +115,22 @@ public class MypageController {
 		
 		vo.setSave_name(getOriginalFileName.length() == 0 ? vo.getSave_name() : getOriginalFileName);
 		
+		if (getOriginalFileName.length() != 0) {
+			vo.setSave_name(getOriginalFileName);
+			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+			String realPath = sContext.getRealPath("resources/uploadimg");
+			
+			log.info("realPath : {}", realPath);
+
+			File f = new File(realPath + "\\" + vo.getSave_name());
+
+			vo.getFile().transferTo(f);
+
+		} 
+			
+
+		log.info("최종 변경 : {}", vo.getSave_name());
+		
 		int result = service.mypage_update(vo);
 		log.info("result : {}", result);
 		

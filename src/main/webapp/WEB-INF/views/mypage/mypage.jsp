@@ -103,7 +103,7 @@
             </div>
         </div>
         <div class="mypage_center_sec">
-            <h2>나의 모임</h2>
+           <h2>나의 모임  <a href="som_selectAll.do"> <img src="resources/uploadimg/plus.png" style="width:15px; height:15px;"></a>  </h2>
             <ul id="img_somoim" class="mypage_grid02">
 <!--                 <li> -->
 <!--                     <div class="mypage_moim_profile"> -->
