@@ -20,16 +20,12 @@ g
 +src/main/webapp/resources/css/community.css,7\7\7710278bcfb590234e01dc18be996c0fe72a5434
 _
 /src/main/java/test/com/moim/HomeController.java,1\9\192fb33ea8e944b01bcf86c8e7c3ad4e4aaa3b54
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 m
 =src/main/java/test/com/moim/somoim/service/SomoimService.java,8\a\8a24f85923dbc4796aa4256677d8a1ae85c92b9e
 b
 2src/main/webapp/WEB-INF/views/board/som_insert.jsp,1\6\168672a77d788750ab8c4fd85b9221b1c466b317
 q
 Asrc/main/java/test/com/moim/community/model/CommunityDAOimpl.java,e\9\e9b0f8ef7f618fd7fba4c6d7b7ec020e568b852a
-e
-5src/main/webapp/WEB-INF/views/board/som_selectAll.jsp,e\e\ee5fb07547aae31ed484a32bfd6c3ed3cef65620
 `
 0src/main/webapp/WEB-INF/views/userinfo/login.jsp,c\2\c226bbb5718a889c231d6f80bf2b4457da50c1dd
 a
@@ -52,24 +48,16 @@ l
 <src/main/webapp/WEB-INF/views/board/join_schedule_update.jsp,0\1\013b9de7bed775642a14194c084d6c7a519de03e
 s
 Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
-m
-=src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml,d\3\d3e54629b9a71e7b6b2949fb63e8fbc3314079cf
 c
 3src/main/webapp/WEB-INF/views/board/join_update.jsp,2\e\2e9a8da7a53d28a09183ca18dacb27f6fa894080
 j
 :src/main/java/test/com/moim/userinfo/model/UserinfoVO.java,8\3\83143ab027ee82f2d8eb1d8f3bf32d836e9ff399
-f
-6src/main/java/test/com/moim/somoim/model/SomoimVO.java,6\9\69da2d0219c362faf1af64f7231c1bb01f77342b
 f
 6src/main/java/test/com/moim/member/model/MemberVO.java,8\9\8997650ebb1d198e2030c4669756246629a1c086
 m
 =src/main/java/test/com/moim/community/model/CommunityDAO.java,c\4\c4d13ea49725091316c22c0a475b5465be348319
 k
 ;src/main/java/test/com/moim/cs/controller/CsController.java,2\7\276c61477109f3f9c3088f1b84dc5dc18e752fc5
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 o
 ?src/main/java/test/com/moim/comments/model/som_commentsDAO.java,d\a\daf0da646276f0646a210afcae4e420aeb25bce5
 v
@@ -80,5 +68,3 @@ l
 <src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
 s
 Csrc/main/java/test/com/moim/comments/model/som_commentsDAOimpl.java,1\4\145467ec04be9d69d83c95adf97dd1b7a12726ba
-e
-5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9

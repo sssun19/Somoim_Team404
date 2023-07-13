@@ -54,24 +54,15 @@
                     <label for="content">내용</label>
                 </h3>
                 <div class="editor-menu">
-                    <button type="button" id="btn-bold">
-                        <b>B</b>
-                    </button>
-                    <button type="button" id="btn-italic">
-                        <i>I</i>
-                    </button>
-                    <button type="button" id="btn-underline">
-                        <u>U</u>
-                    </button>
-                    <button type="button" id="btn-strike">
-                        <s>S</s>
-                    </button>
                     <button type="button" id="btn-image">IMG</button>
                     <input type="file" id="img-selector" name="file" accept="image/*"/>
                 </div>
-                <div id="insert_content" contenteditable="true">${vo2.content}</div>
-                <input type="hidden" id="hidden_content" name="content"
-                       value="${vo2.content}">
+                <div id="insert_content">${vo2.content}
+                    <textarea name="content"></textarea>
+                </div>
+
+
+
                 <!-- Hidden input field to store the content -->
             </div>
             <div class="center">
@@ -149,47 +140,7 @@
     }
 </script>
 
-<script>
-    // Update the value of the hidden input field with the content of the editable div
-    document.getElementById("insert_content").addEventListener("input", function () {
-        var content = this.innerHTML;
-        document.getElementById("hidden_content").value = content;
-    });
-
-    const btnBold = document.getElementById('btn-bold');
-    const btnItalic = document.getElementById('btn-italic');
-    const btnUnderline = document.getElementById('btn-underline');
-    const btnStrike = document.getElementById('btn-strike');
-    const btnImage = document.getElementById('btn-image');
-    const imageSelector = document.getElementById('img-selector');
-
-    btnBold.addEventListener('click', function () {
-        setStyle('bold');
-    });
-
-    btnItalic.addEventListener('click', function () {
-        setStyle('italic');
-    });
-
-    btnUnderline.addEventListener('click', function () {
-        setStyle('underline');
-    });
-
-    btnStrike.addEventListener('click', function () {
-        setStyle('strikeThrough');
-    });
-
-    function setStyle(style) {
-        document.execCommand(style);
-        focusEditor();
-    }
-
-    // 버튼 클릭 시 에디터가 포커스를 잃기 때문에 다시 에디터에 포커스를 해줌
-    function focusEditor() {
-        document.getElementById("insert_content").focus({
-            preventScroll: true
-        });
-    }
+<
 </script>
 
 
