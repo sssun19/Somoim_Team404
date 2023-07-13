@@ -25,7 +25,6 @@ import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
 
-
 /**
  * Handles requests for the application home page.
  */
@@ -46,7 +45,6 @@ public class BoardController {
     som_comm_comments_Service c_commService;
     @Autowired
     som_comments_Service commService;
-
 
 
 //    @RequestMapping(value = "/som_selectAll.do", method = RequestMethod.GET)
@@ -101,7 +99,6 @@ public class BoardController {
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
     public String join_selectAll(Model model, Somoim_BoardVO vo) {
         log.info("join_selectAll().....");
-        log.info("저장");
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
 
