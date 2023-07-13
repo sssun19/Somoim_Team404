@@ -11,21 +11,67 @@
     <link rel="stylesheet" href="resources/css/mypage.css">
     <link rel="stylesheet" href="resources/css/mypage_min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+    	console.log('onload....mypage');
+    	
+    	$.ajax({
+    		url:'mypageSelectSomoim.do',
+    		success: function(vos){
+    			console.log('ajax successed...');
+    			console.log('data vos:{}', vos);
+    			
+    			let tag_vos = '';
+    			
+    			$.each(vos,function(index,vo){
+    				console.log(index,vo);
+	    			console.log('somoim_img : ', vo.somoim_img);
+	    			
+    				tag_vos += `
+                        
+    					<a href="som_selectOne.do?num=\${vo.num}"> <li>
+                        <div>
+                            <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%;">
+    ​
+                        </div>
+  						  <p>\${vo.som_title}</p>
+                  	    </li> </a>
+    				
+        			`;
+        			
+        			if(index>=3) {
+	    				console.log('3보다 많다.');
+	    				return false;
+    				}
+        			        			
+    			});
+    			
+    			
+    			
+    			$('#img_somoim').html(tag_vos);
+    			
+    		},
+    		error: function(xhr, status, error){
+    			console.log('xhr.status:', xhr.status);
+    		}
+    		
+    	});
+    });
+    
+    </script>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
-    <div class="header">
-       
-​
-    </div>
     <div class="mypage_sec">
         <div class="mypage_top_sec">
             <div class="mypage_left_profile">
                 <div class="mypage_myprofile">
-                    <img src="resources/uploadimg/${vo2.save_name }">
+                    <img src="resources/uploadimg/${vo2.save_name }" width="220" height="220">
                     
                 </div>
-                <button type="button" id="update_profile">프로필 편집</button>
+                <button type="button" id="update_profile"><a href="mypage_update.do">프로필 편집</a></button>
 ​
             </div>
             <div class="mypage_right_info">
@@ -57,41 +103,25 @@
             </div>
         </div>
         <div class="mypage_center_sec">
-            <h2>나의 모임</h2>
-            <ul class="mypage_grid02">
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
-                <li>
-                    <div class="mypage_moim_profile">
-                        dgdgdg
-​
-                    </div>
-                    <p>카테고리</p>
-​
-                </li>
-                <li>
-                    <div class="mypage_moim_profile">
-                        <i class="fas fa-plus"></i>
-​
-                    </div>
-                   <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a> 
+           <h2>나의 모임  <a href="som_selectAll.do"> <img src="resources/uploadimg/plus.png" style="width:15px; height:15px;"></a>  </h2>
+            <ul id="img_somoim" class="mypage_grid02">
+<!--                 <li> -->
+<!--                     <div class="mypage_moim_profile"> -->
+<!--                         dgdgdg -->
+<!-- ​ -->
+<!--                     </div> -->
+<!--                     <p>카테고리</p> -->
+<!-- ​ -->
+<!--                 </li> -->
+<!--                 <li> -->
+<!--                     <div class="mypage_moim_profile"> -->
+<!--                         <i class="fas fa-plus"></i> -->
+<!-- ​ -->
+<!--                     </div> -->
+<!--                    <a href="som_selectAll.do"><button type="button">새 모임 추가</button></a> -->
+<!--                    </li> -->
 ​
 ​
-                </li>
             </ul>
         </div>
         <div class="mypage_bottom_sec">

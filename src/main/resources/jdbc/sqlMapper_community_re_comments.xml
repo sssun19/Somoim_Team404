@@ -23,6 +23,6 @@
 
 	<delete id="COMMUNITY_RE_C_DELETE"
 			parameterType="test.com.moim.community_comments.model.Community_re_commentsVO">
-		delete from community_comments where num = #{num} and board_num = #{board_num}
+		delete from community_comments where num = #{num}
 	</delete>
 </mapper>

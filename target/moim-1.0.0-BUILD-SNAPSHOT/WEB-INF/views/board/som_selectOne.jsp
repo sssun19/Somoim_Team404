@@ -68,11 +68,12 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
         <div class="img_info">
-            <img src="resources/uploadimg/${vo2.save_name}">
+            <img src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 10px;">${vo2.som_title}</h1>
             <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
+            <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
 
 <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
              <p>${vo2.som_content}</p>
@@ -148,8 +149,7 @@
                     </ul>
                 </div>
                 <div class="detail_status">
-                    <button type="button">참석</button>
-                    <button type="button">취소</button>
+                    <button type="button"><a href="join_schedule.do?somoim_num=${vo2.num }">참석</a></button>
                 </div>
 
 
@@ -161,6 +161,10 @@
         <input type="hidden" name="som_title" value="${vo2.som_title}">
         <input type="hidden" name="save_name" value="${uvo2.save_name}">
         <input type="submit" id="som_register" value="모임 가입하기">
+        <br>
+        <br>
+        <a href="som_update.do"><input type="button" id="som_update" value="수정"></a>
+        <a href="som_delete.do?num=${vo2.num }&user_id=${user_id}"><input type="button" id="som_delete" value="삭제"></a>
 
     </div>
 
@@ -193,7 +197,19 @@
 
     </div>
 
-
+<script type="text/javascript">
+if('${user_id}'==='${vo2.somoim_master}'){
+	console.log('${user_id}')
+	console.log('너 모임장이네!!');
+	$('#som_update').show();
+	$('#som_delete').show();
+// 	$('#som_register').hide();
+} else {
+	console.log('아닌데?');
+	$('#som_update').hide();
+	$('#som_delete').hide();
+}
+</script>
 
 
 </body>

@@ -17,12 +17,20 @@
 		select * from somoim_member where somoim_num=#{num}
 	</select>
 	
+	<select id="SOMOIM_CHECK" resultType="test.com.moim.member.model.MemberVO">
+		select somoim_num from somoim_member where user_id=#{user_id}
+	</select>
+	
 	<select id="MEMBER_SEARCH_LIST_USERID" resultType="test.com.moim.member.model.MemberVO">
 		select * from somoim_member where user_id like #{searchWord}
 	</select>	
 	
 	<select id="MEMBER_SEARCH_LIST_SOMTITLE" resultType="test.com.moim.member.model.MemberVO">
 		select * from somoim_member where som_title like #{searchWord}
+	</select>
+	
+	<select id="SEARCH_SAVE_NAME" resultType="test.com.moim.member.model.MemberVO">
+		select save_name from somoim_member where user_id=#{somoim_master}
 	</select>
 	
 	<insert id="MEMBER_INSERT" parameterType="test.com.moim.member.model.MemberVO">
