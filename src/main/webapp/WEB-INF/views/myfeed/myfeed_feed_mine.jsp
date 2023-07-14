@@ -12,31 +12,12 @@
     <link rel="stylesheet" href="resources/css/myfeed_min.css">
     <link rel="stylesheet" href="resources/css/board.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="header">
-        <div class="gnb">
-            <div class="logo">
-                <img src="/uploadimg/logo.png">
-            </div>
-            <nav>
-                <ul>
-                    <li><a>원데이</a></li>
-                    <li><a>소모임</a></li>
-                    <li><a>이벤트</a></li>
-                    <li><a>커뮤니티</a></li>
-                    <li><a>고객센터</a></li>
-                </ul>
-            </nav>
-            <div class="main_search">
-                <input type="search" placeholder="검색">
-            </div>
-            <div class="login">
-                <a >마이페이지</a>
-                <a>로그아웃</a>
-            </div>
-
-        </div>
+        
+	<jsp:include page="../top_menu.jsp"></jsp:include>
 
     </div>
     <div class="myfeed_sec">

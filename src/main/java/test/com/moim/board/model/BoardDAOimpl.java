@@ -100,4 +100,13 @@ public class BoardDAOimpl implements BoardDAO{
     }
 
 
+
+
+	@Override
+	public List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo) {
+		log.info("mypageBoardbyme....user_id:{}", vo.getUser_id());
+		return sqlSession.selectList("MYPAGE_BOARDBYME", vo);
+	}
+
+
 }

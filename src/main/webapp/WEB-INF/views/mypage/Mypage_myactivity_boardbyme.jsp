@@ -2,19 +2,16 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
-<script>
-   
-    </script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mypage_myactivity_commbyme.html</title>
+<title>Mypage_myactivity_likedboard</title>
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/min.css">
 <link rel="stylesheet"
-	href="resources/css/Mypage_myactivity_commbyme.css">
+	href="resources/css/Mypage_myactivity_likedboard.css">
 <link rel="stylesheet"
-	href="resources/css/Mypage_myactivity_commbyme_min.css">
+	href="resources/css/Mypage_myactivity_likedboard_min.css">
 <script src="https://kit.fontawesome.com/1652357a48.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -25,7 +22,7 @@
     	console.log('onload........');
     	
     	$.ajax({
-    		url:'Rest_Mypage_myactivity_commbyme.do',
+    		url:'Rest_Mypage_myactivity_boardbyme.do',
     		data: {
         		user_id:'${param.user_id}'
         	},
@@ -40,28 +37,31 @@
     				
     				tag_vos += `
     				
-    					<li>
-    					<div class="liked_board">
-    						<ul class="board_profile_info">
-    							<li class="info_item1">
-    							</li>
-    							<ul>
-    							<a href="join_selectOne.do?num=\${vo.som_board_num}"> <li class="info_item2">
-    									<div class="vertical_info">
-    										<a href="join_selectOne.do?num=\${vo.som_board_num}" style="display: inline;">\${vo.user_id}</a>
-    										<a href="join_selectOne.do?num=\${vo.som_board_num}" style="font-size: 0.2rem; display: inline;">\${vo.write_date}</a>
-    									</div>
-    								</li>
-    								<li><a href="join_selectOne.do?num=\${vo.som_board_num}" value="작성한 댓글입니다">\${vo.content}</a></li></a>
-    							</ul>
-    						</ul>
+    					 <li>
+    			        <div class="liked_board">
+    			          <ul class="board_profile_info" >
+        				
+    					<li class="info_item1">
 
-    					</li>
+    		              
+    		            </li>
+    		        <a href="join_selectOne.do?num=\${vo.num}">  <li class="info_item2">
+    		              <div class="vertical_info">
+    		                \${vo.user_id}
+    		                <p style="font-size: 0.2rem;">\${vo.write_date}</p>
+    		                \${vo.title} <br>
+    		                \${vo.content}<br>
+    		               
+    		              </div></a>
+    		            </li>
+    		            </ul>
+    		            </div>
+    		            </li>
     				
     				`;
     				
     			});
-    			$('#selectComm').html(tag_vos);
+    			$('#boardbyme').html(tag_vos);
     			
     		},
     		error : function(xhr, status, error){
@@ -72,29 +72,22 @@
     
     </script>
 
-
 </head>
 
 
 <body>
-	<jsp:include page="../top_menu.jsp"></jsp:include>
 
+	<jsp:include page="../top_menu.jsp"></jsp:include>
 	<div class="header"></div>
 
 	<div class="area">
 
 		<div class="Mypage_myactivity_selection">
 			<ul>
-				<li><a
-					href="Mypage_myactivity_boardbyme.do?user_id=${user_id }">내가 쓴
-						글</a></li>
-				<li><a href="Mypage_myactivity_commbyme.do?user_id=${user_id }">내가
-						쓴 댓글</a></li>
-				<li><a href="mypage_myactivity_good.do?user_id=${user_id }">좋아요
-						사진</a></li>
-				<li><a
-					href="Mypage_myactivity_likedboard.do?user_id=${user_id }">좋아요
-						게시글</a></li>
+				<li><a href="Mypage_myactivity_boardbyme.do?user_id=${user_id }">내가 쓴 글</a></li>
+				<li><a href="Mypage_myactivity_commbyme.do?user_id=${user_id }">내가 쓴 댓글</a></li>
+				<li><a href="mypage_myactivity_good.do?user_id=${user_id }">좋아요 사진</a></li>
+				<li><a href="Mypage_myactivity_likedboard.do?user_id=${user_id }">좋아요 게시글</a></li>
 			</ul>
 		</div>
 	</div>
@@ -102,10 +95,18 @@
 
 
 	<div class="like_List">
-		<ul class="asldkjasd" id="selectComm">
-			
-						
+		<ul class="asldkjasd" id="boardbyme">
+			<li>
+				<div class="liked_board">
+					<ul class="board_profile_info">
 
+
+
+
+					</ul>
+				</div>
+
+			</li>
 
 		</ul>
 	</div>

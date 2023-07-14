@@ -66,5 +66,4 @@ public class MemberDAOimpl implements MemberDAO {
 		return session.selectList("SEARCH_SAVE_NAME", somoim_master);
 	}
 
-
 }

@@ -3,73 +3,82 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.moim.board">
+	<select id="MYPAGE_BOARDBYME"
+		resultType="test.com.moim.board.model.Somoim_BoardVO">
+		select * from somoim_board a join somoim_member b on a.som_member_num=b.num 
+		join somoim c on a.somoim_num=c.num where user_id=#{user_id}
+	</select>
 	<select id="JOIN_SOMOIM_SELECT_ALL"
-			resultType="test.com.moim.board.model.Somoim_BoardVO">
+		resultType="test.com.moim.board.model.Somoim_BoardVO">
 		select * from somoim_board b
-						  INNER JOIN somoim_member m
-									 on b.som_member_num = m.num
+		INNER JOIN somoim_member m
+		on b.som_member_num = m.num
 		where b.somoim_num = #{somoim_num}
-		ORDER BY b.num desc
+		ORDER BY
+		b.num desc
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ONE"
-			resultType="test.com.moim.board.model.Somoim_BoardVO">
+		resultType="test.com.moim.board.model.Somoim_BoardVO">
 		select * from somoim_board b
-						  INNER JOIN somoim_member m
-									 on b.som_member_num = m.num
+		INNER JOIN somoim_member m
+		on b.som_member_num = m.num
 		where b.num=#{num}
 	</select>
 	<update id="JOIN_SOMOIM_UPDATE">
-		update somoim_board set title=#{title},content=#{content}
+		update somoim_board set
+		title=#{title},content=#{content}
 		where num=#{num}
 	</update>
 	<delete id="JOIN_SOMOIM_DELETE">
 		delete from somoim_board where num=#{num}
 	</delete>
 	<select id="Sch_SELECT_ONE"
-			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+		resultType="test.com.moim.board.model.Somoim_ScheduleVO">
 		select * from somoim_schedule where num =#{num}
 	</select>
 	<update id="Sch_UPDATE">
 		update somoim_schedule set
-								   schedule_title =#{schedule_title},
-								   schedule_date=#{schedule_date},
-								   schedule_time = #{schedule_time},
-								   place=#{place},
-								   money=#{money},
-								   max_participant=#{max_participant}
+		schedule_title =#{schedule_title},
+		schedule_date=#{schedule_date},
+		schedule_time = #{schedule_time},
+		place=#{place},
+		money=#{money},
+		max_participant=#{max_participant}
 		where num = #{num}
 	</update>
 	<delete id="Sch_DELETE">
 		delete from somoim_schedule where num=#{num}
 	</delete>
 	<insert id="JOIN_INSERT">
-		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date)
+		insert into
+		somoim_board(num,title,content,som_member_num,somoim_num,write_date)
 		values(
 
-				  seq_somoim_board.nextval,
-				  #{title},
-				  #{content},
-				  (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-				  #{somoim_num},
-				  sysdate
-			  )
+		seq_somoim_board.nextval,
+		#{title},
+		#{content},
+		(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num =
+		#{somoim_num}),
+		#{somoim_num},
+		sysdate
+		)
 	</insert>
 	<update id="SCH_PART_UPDATE">
 		UPDATE somoim_schedule
 		SET
-			participant = participant || '/' || #{user_id},
-			participant_count = participant_count + 1
+		participant = participant || '/' || #{user_id},
+		participant_count = participant_count + 1
 		WHERE
-			num = #{num}
-		  AND INSTR(participant, '/' || #{user_id}) = 0
+		num = #{num}
+		AND INSTR(participant, '/' || #{user_id}) = 0
 	</update>
 	<update id="SCH_CANCEL_UPDATE">
 		update somoim_schedule
 		SET
-			participant = #{participant},
-			participant_count = participant_count -1
+		participant = #{participant},
+		participant_count = participant_count -1
 		where
-			num = #{num}
+		num = #{num}
 	</update>
 
 </mapper>
