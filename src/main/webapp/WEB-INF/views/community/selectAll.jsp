@@ -32,7 +32,7 @@
 
 <div class="community_navigation">
     <div class="community_navigation_func">
-        <a>인기피드</a> <a>모임후기</a>
+        <a></a> <a></a>
     </div>
 </div>
 <div class="community_navigation_upload">
