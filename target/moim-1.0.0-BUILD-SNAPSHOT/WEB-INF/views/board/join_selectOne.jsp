@@ -96,8 +96,6 @@
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
-
-
             <span>
                 <ul class="com_grid">
                     <li>
@@ -128,12 +126,9 @@
                                                 <%-- 삭제 --%>
                                             </button>
                                             </form>
-
-
                                         </span>
                                     </div>
                                         <p>${com.write_date}</p>
-
                                     <div class="com_func">
                                         <input type="text" placeholder="댓글 목록" value="${com.content}" id="join_comments">
                                     </div>
