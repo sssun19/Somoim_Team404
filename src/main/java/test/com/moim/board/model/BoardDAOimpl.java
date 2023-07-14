@@ -25,7 +25,7 @@ public class BoardDAOimpl implements BoardDAO{
     @Override
     public List<Somoim_BoardVO> selectList(Somoim_BoardVO vo) {
 
-
+    log.info("JOIN_SOMOIM_SELECT_ALL!!!!!!!!!!!!!!!!!!!!!!!!!!", vo);
         return sqlSession.selectList("JOIN_SOMOIM_SELECT_ALL",vo);
     }
 
