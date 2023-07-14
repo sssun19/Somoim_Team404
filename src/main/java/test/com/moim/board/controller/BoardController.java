@@ -94,10 +94,33 @@ public class BoardController {
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
+        List<Somoim_BoardVO> infos=service.select_user_info();
+        log.info("infos..{}", infos);
 
         for (Somoim_BoardVO vo2 : vos) {
+            for (Somoim_BoardVO info : infos) {
+                log.info("검사 vo 아이디...{}", vo2.getUser_id());
+                log.info("검사 info 저장된 이름...{}", info.getUser_id());
+                if(vo2.getUser_id().equals(info.getUser_id())) {
+                    log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
+                    log.info("info 저장된 이름...{}", info.getUser_id());
+                    if (!vo2.getSave_name().equals(info.getSave_name())) {
+                        log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
+                        log.info("보드에 저장된 이름...{}", vo2.getSave_name());
+                        log.info("처음 가입 이미지 이름...{}", info.getSave_name());
+                        vo2.setSave_name(info.getSave_name());
+                        log.info("바뀐거 ::: vo2.getSave_name...{}", vo2.getSave_name());
+                    }
+                }
+            }
             log.info(vo2.toString());
+
         }
+
+//
+//        for (Somoim_BoardVO vo2 : vos) {
+//            log.info(vo2.toString());
+//        }
         model.addAttribute("vos", vos);
 
         return "board/join_selectAll";
@@ -106,23 +129,56 @@ public class BoardController {
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
     public String join_selectOne(Somoim_BoardVO vo, Model model) {
         log.info("join_selectOne.do().....{}", vo);
-        String userId = (String) session.getAttribute("user_id");
+        List<Somoim_BoardVO> infos=service.select_user_info();
+        log.info("infos..{}", infos);
 
-        model.addAttribute("user_id", userId);
+
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}", vo2);
+        for (Somoim_BoardVO info: infos){
+            if(vo2.getUser_id().equals(info.getUser_id())){
+                vo2.setSave_name(info.getSave_name());
+            }
+        }
+        log.info("바뀐 test...{}", vo2);
+
+
+
         model.addAttribute("vo2", vo2);
 
         som_commentsVO cvo = new som_commentsVO();
-System.out.println("cvo");
         cvo.setSom_board_num(vo2.getNum());
         cvo.setSave_name(vo2.getSave_name());
         System.out.println("vo2.getNum!!!!!!!!!!!!:" + vo2.getNum());
-
         cvo.setSomoim_num(vo2.getSomoim_num());
         System.out.println("cvo:" + cvo.toString());
         List<som_commentsVO> coms = commService.selectAll(cvo);
+
+
+        for (som_commentsVO com : coms) {
+            for (Somoim_BoardVO info : infos) {
+                log.info("검사 vo 아이디...{}", com.getUser_id());
+                log.info("검사 info 저장된 이름...{}", info.getUser_id());
+                if(com.getUser_id().equals(info.getUser_id())) {
+                    log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
+                    log.info("info 저장된 이름...{}", info.getUser_id());
+                    if (!com.getSave_name().equals(info.getSave_name())) {
+                        log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
+                        log.info("보드에 저장된 이름...{}", vo2.getSave_name());
+                        log.info("처음 가입 이미지 이름...{}", info.getSave_name());
+                        com.setSave_name(info.getSave_name());
+                        log.info("바뀐거 ::: vo2.getSave_name...{}", com.getSave_name());
+                    }
+                }
+            }
+            log.info(com.toString());
+
+        }
+
+
+
+
         System.out.println("coms:" + coms.toString());
 
 

@@ -16,7 +16,14 @@
 		ORDER BY
 		b.num desc
 	</select>
-	<select id="JOIN_SOMOIM_SELECT_ONE" resultType="test.com.moim.board.model.Somoim_BoardVO">
+
+	<select id="JOIN_SOMOIM_SELECT_SAVE_NAME" resultType="test.com.moim.board.model.Somoim_BoardVO">
+		select * from userinfo
+	</select>
+
+	<select id="JOIN_SOMOIM_SELECT_ONE"
+			resultType="test.com.moim.board.model.Somoim_BoardVO">
+
 		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM from somoim_board b
 		INNER JOIN somoim_member m
 	   on b.som_member_num = m.num
