@@ -93,9 +93,9 @@
 											</form>
 										</span>
 									</div>
-									<p>${ccoms.write_date}</p>
+										<p>${ccoms.write_date}</p>
 									<div class="c_com_func">
-										<h4>댓글${ccoms.user_id}</h4>
+										<h4>대댓글${ccoms.user_id}</h4>
 										<input type="text" placeholder="댓글 목록" value="${ccoms.content}"
 											   id="community_comments">
 									</div>
