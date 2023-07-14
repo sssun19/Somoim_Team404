@@ -79,6 +79,12 @@
     width: 95%;
 }
 
+.review_grid li img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
 .review_grid{
     display: grid;
     grid-gap: 10px;
