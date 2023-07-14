@@ -19,10 +19,10 @@
         
     <div class="mypage_myactivity_group_menu">
         <ul>
-            <li><a href="#">내가 쓴 글</a></li>
-            <li><a href="#">내가 쓴 댓글</a></li>
-            <li><a href="#">좋아요 표시한 사진</a></li>
-            <li><a href="#">좋아요 표시한 게시글</a></li>
+       <li><a href="Mypage_myactivity_boardbyme.do?user_id=${user_id }">내가 쓴 글</a></li>
+				<li><a href="Mypage_myactivity_commbyme.do?user_id=${user_id }">내가 쓴 댓글</a></li>
+				<li><a href="mypage_myactivity_good.do?user_id=${user_id }">좋아요 사진</a></li>
+				<li><a href="Mypage_myactivity_likedboard.do?user_id=${user_id }">좋아요 게시글</a></li>
         </ul>
     </div>
             

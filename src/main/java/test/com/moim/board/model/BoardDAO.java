@@ -36,4 +36,6 @@ public interface BoardDAO {
 
 
     Somoim_MemberVO selectMember(Somoim_MemberVO mvo);
+
+	List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo);
 }

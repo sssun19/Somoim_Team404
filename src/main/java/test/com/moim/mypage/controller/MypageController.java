@@ -1,16 +1,14 @@
 package test.com.moim.mypage.controller;
 
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.board.model.Somoim_BoardVO;
+import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.mypage.service.MypageService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
@@ -137,7 +135,6 @@ public class MypageController {
 		return "redirect:mypage.do";
 	}
 	
-	
 	@ResponseBody
 	@RequestMapping(value = "/mypageSelectSomoim.do", method = RequestMethod.GET)
 	public List<SomoimVO> mypageSelectSomoim(Model model) {
@@ -147,6 +144,56 @@ public class MypageController {
 		
 		List<SomoimVO> vos = service.mypageSelectSomoim(user_id);
 		log.info("vo....!!{}", vos);
+		
+		return vos;
+	}
+	
+	@RequestMapping(value = "/Mypage_myactivity_boardbyme.do", method = RequestMethod.GET)
+	public String Mypage_myactivity_boardbyme(Model model, HttpServletRequest request) {
+		log.info("Mypage_myactivity_boardbyme.do....{}");
+		
+		return "mypage/Mypage_myactivity_boardbyme";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/Rest_Mypage_myactivity_boardbyme.do", method = RequestMethod.GET)
+	public List<Somoim_BoardVO> Rest_Mypage_myactivity_boardbyme(HttpServletRequest request) {
+		log.info("Mypage_myactivity_boardbyme.do....{}");
+		String user_id= request.getParameter("user_id");
+		Somoim_BoardVO vo = new Somoim_BoardVO();
+		vo.setUser_id(user_id);
+		
+		List<Somoim_BoardVO> vos = service.mypageMyactivity_boardbyme(vo);
+		
+		for (Somoim_BoardVO x : vos) {
+			log.info(x.getTitle());
+			log.info(x.getContent());
+		}
+		
+		
+		return vos;
+	}
+	
+	@RequestMapping(value = "/Mypage_myactivity_commbyme.do", method = RequestMethod.GET)
+	public String Mypage_myactivity_commbyme() {
+		log.info("Mypage_myactivity_commbyme.do().....");
+		
+		
+		
+		return "mypage/Mypage_myactivity_commbyme";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/Rest_Mypage_myactivity_commbyme.do", method = RequestMethod.GET)
+	public List<som_commentsVO> Rest_Mypage_myactivity_commbyme(HttpServletRequest request) {
+		log.info("Rest_Mypage_myactivity_commbyme.do().....");
+		log.info("Mypage_myactivity_boardbyme.do....{}");
+		String user_id= request.getParameter("user_id");
+		
+		som_commentsVO vo = new som_commentsVO();
+		vo.setUser_id(user_id);
+		
+		List<som_commentsVO> vos = service.mypageMyactivity_commbyme(vo);
 		
 		return vos;
 	}
@@ -169,13 +216,6 @@ public class MypageController {
 		return "mypage/Mypage_myactivity_likedboard";
 	}
 	
-	@RequestMapping(value = "/Mypage_myactivity_commbyme.do", method = RequestMethod.GET)
-	public String Mypage_myactivity_commbyme() {
-		log.info("Mypage_myactivity_commbyme.do().....");
-		
-		
-		
-		return "mypage/Mypage_myactivity_commbyme";
-	}
+	
 	
 }
