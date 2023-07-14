@@ -208,6 +208,14 @@ public class CommunityController {
 		log.info("fileNameLength : {}", fileNameLength);
 		vo.setSave_name(getOriginalFileName.length() == 0 ? vo.getSave_name() : getOriginalFileName);
 
+		CommunityVO vo2 = new CommunityVO();
+		vo2.setNum(vo.getNum());
+		vo2 = service.selectOne(vo2);
+		log.info("new vo2 vo2 vo2..{}",vo2 );
+		if (vo.getSave_name() == null || vo.getSave_name().equals("")) {
+			vo.setSave_name(vo2.getSave_name());
+		}
+
 		if (getOriginalFileName.length() != 0) {
 			vo.setSave_name(getOriginalFileName);
 			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
