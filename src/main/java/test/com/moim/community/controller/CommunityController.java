@@ -12,6 +12,8 @@ import test.com.moim.community_comments.model.Community_commentsVO;
 import test.com.moim.community_comments.model.Community_re_commentsVO;
 import test.com.moim.community_comments.service.Community_commentsService;
 import test.com.moim.community_comments.service.Community_re_commentsService;
+import test.com.moim.events.model.EventsVO;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
@@ -147,14 +149,14 @@ public class CommunityController {
 			vo.getFile().transferTo(f);
 
 			//// create thumbnail image/////////
-			BufferedImage original_buffer_img = ImageIO.read(f);
+			/*BufferedImage original_buffer_img = ImageIO.read(f);
 			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
 			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
 			File thumb_file = new File(realPath + "/thumb_" + vo.getSave_name());
 			String formatName = vo.getSave_name().substring(vo.getSave_name().lastIndexOf(".")+1);
 			log.info("formatName : {}", formatName);
-			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
+			ImageIO.write(thumb_buffer_img, formatName, thumb_file);*/
 
 		} // end else
 
@@ -196,8 +198,33 @@ public class CommunityController {
 	}
 
 	@RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
-	public String community_updateOK(CommunityVO vo) {
-		log.info("/++++++++++++++++++++community_updateOK.do...{}", vo);
+	public String community_updateOK(CommunityVO vo) throws IllegalStateException, IOException {
+		log.info("community_updateOK.do....{}", vo);
+
+		log.info("사진 변경...{}", vo.getFile());
+		int fileNameLength = vo.getFile().getOriginalFilename().length();
+		String getOriginalFileName = vo.getFile().getOriginalFilename();
+		log.info("getOriginalFilename : {}", getOriginalFileName);
+		log.info("fileNameLength : {}", fileNameLength);
+		vo.setSave_name(getOriginalFileName.length() == 0 ? vo.getSave_name() : getOriginalFileName);
+
+		CommunityVO vo2 = new CommunityVO();
+		vo2.setNum(vo.getNum());
+		vo2 = service.selectOne(vo2);
+		log.info("new vo2 vo2 vo2..{}",vo2 );
+		if (vo.getSave_name() == null || vo.getSave_name().equals("")) {
+			vo.setSave_name(vo2.getSave_name());
+		}
+
+		if (getOriginalFileName.length() != 0) {
+			vo.setSave_name(getOriginalFileName);
+			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+			String realPath = sContext.getRealPath("resources/uploadimg");
+			log.info("realPath : {}", realPath);
+			File f = new File(realPath + "\\" + vo.getSave_name());
+			vo.getFile().transferTo(f);
+		}
+		log.info("최종 변경 : {}", vo.getSave_name());
 
 		int result = service.update(vo);
 		log.info("result...{}", result);
@@ -207,9 +234,8 @@ public class CommunityController {
 		}else {
 			return "redirect:community_update.do?num="+vo.getNum();
 		}
-
 	}
-	
+
 	@RequestMapping(value = "/community_deleteOK.do", method = RequestMethod.GET)
 	public String community_deleteOK(CommunityVO vo){
 		log.info("/community_deleteOK.do...{}", vo);

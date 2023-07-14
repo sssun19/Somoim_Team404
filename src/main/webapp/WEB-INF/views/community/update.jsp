@@ -17,20 +17,18 @@
             href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@400;700;800&family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
             rel="stylesheet"/>
 
-    <title>Document</title>
+
 
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
 
-<form action="community_updateOK.do" method="post"
-      enctype="multipart/form-data">
+<form action="community_updateOK.do" method="post" enctype="multipart/form-data">
     <div class="community_section">
         <div class="c_insert_func"></div>
         <div class="community_insert_section">
             <div class="num">
-                <label for="num">${vo2.num}</label> <input type="hidden" id="num"
-                                                           name="num" value="${vo2.num}">
+                <label for="num">${vo2.num}</label> <input type="hidden" id="num" name="num" value="${vo2.num}">
             </div>
             <div class="writer">
                 <h3>
@@ -38,12 +36,11 @@
                 </h3>
             </div>
             <div>
-                ${user_id} <input type="hidden" id="user_id" name="user_id"
-                                  value="${user_id}">
+                ${user_id} <input type="hidden" id="user_id" name="user_id" value="${user_id}">
             </div>
             <div>
                 <h2>
-                    <label for="title">제목</label>
+                    <label for="title">태그</label>
                 </h2>
             </div>
             <div>
@@ -53,30 +50,19 @@
                 <h3>
                     <label for="content">내용</label>
                 </h3>
-                <div class="editor-menu">
-                    <button type="button" id="btn-bold">
-                        <b>B</b>
-                    </button>
-                    <button type="button" id="btn-italic">
-                        <i>I</i>
-                    </button>
-                    <button type="button" id="btn-underline">
-                        <u>U</u>
-                    </button>
-                    <button type="button" id="btn-strike">
-                        <s>S</s>
-                    </button>
-                    <button type="button" id="btn-image">IMG</button>
-                    <input id="img-selector" type="file" accept="image/*"/>
+                <div class="form-group">
+                    <label for="image">IMG</label>
+                    <input type="file" id="image" name="file" accept="image/*" onchange="previewImage();" />
+                    <c:if test="${empty vo2.save_name}">
+                        <input type="hidden" name="image" value="${vo2.save_name}" />
+                    </c:if>
                 </div>
-                <div id="insert_content" contenteditable="true">${vo2.content}
-                <input type="hidden" id="hidden_content" name="content"
-                       value="${vo2.content}">
-                <img src="resources/uploadimg/${vo2.save_name}"></div>
-
-
-
-                <!-- Hidden input field to store the content -->
+                <div class="preview_img_box">
+                    <img id="imagePreview" src="resources/uploadimg/${vo2.save_name}">
+                </div>
+                <div>
+                    <textarea id="content" name="content">${vo2.content}</textarea>
+                </div>
             </div>
             <div class="center">
                 <input type="submit" value="작성완료">
@@ -113,45 +99,19 @@
 
 </div>
 
-
-
 <script>
-    document.getElementById("btn-image").addEventListener("click",
-        function () {
-            document.getElementById("img-selector").click();
-        });
+    function previewImage() {
+        var fileInput = document.getElementById('image');
+        var imagePreview = document.getElementById('imagePreview');
 
-    document.getElementById("img-selector").addEventListener("change",
-        function () {
-            var file = this.files[0];
-            // 선택된 파일을 처리하는 로직을 추가할 수 있습니다.
-            console.log(file);
-        });
-</script>
+        var file = fileInput.files[0];
+        var reader = new FileReader();
 
-<script>
-    document.getElementById('img-selector').addEventListener(
-        'change',
-        function (e) {
-            var file = e.target.files[0];
-            var reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+        };
 
-            reader.onloadend = function () {
-                var img = document.createElement('img');
-                img.src = reader.result;
-                document.getElementById('insert_content').appendChild(
-                    img);
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                preview.innerHTML = "";
-            }
-        });
-
-    function clearContent() {
-        document.getElementById('insert_content').innerHTML = '';
+        reader.readAsDataURL(file);
     }
 </script>
 

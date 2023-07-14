@@ -51,7 +51,8 @@
         update community_board
         set title=#{title},
             content=#{content},
-            write_date=sysdate
+            write_date=sysdate,
+            save_name=#{save_name}
         where num = #{num}
     </update>
 
