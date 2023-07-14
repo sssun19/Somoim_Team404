@@ -15,10 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.member.service.MemberService;
+import test.com.moim.paging.model.PagingVO;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.somoim.service.SomoimService;
 import test.com.moim.userinfo.model.UserinfoVO;
@@ -45,12 +46,13 @@ public class SomoimController {
 	HttpSession session;
 
 
-	@RequestMapping(value = "/som_selectAll.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/somz_selectAll.do", method = RequestMethod.GET)
 	public String som_selectAll(SomoimVO vo, Model model) {
 		log.info("som_selectAll.do().....");
 		log.info("-------");
 
 		List<SomoimVO> vos = service.selectAll(vo);
+		int total = service.countSomoim();
 
 		model.addAttribute("vos",vos);
 
@@ -93,7 +95,7 @@ public class SomoimController {
 
 		List<SomoimVO> vos = service.searchList(searchKey, searchWord, category);
 
-		model.addAttribute("vos", vos);
+		model.addAttribute("viewAll", vos);
 
 		return "board/som_selectAll";
 	}
@@ -175,6 +177,40 @@ public class SomoimController {
 
 	}
 
+	@RequestMapping(value = "/som_selectAll.do", method = RequestMethod.GET)
+	public String somoimPaging(PagingVO vo, Model model
+			, @RequestParam(value="nowPage", required=false)String nowPage
+			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+		
+		int total = service.countSomoim();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "12";
+		} else if(nowPage == null) {
+			nowPage = "1";
+		} else if(cntPerPage == null) {
+			cntPerPage = "12";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		log.info("이거 확인하기...{}", vo);
+		
+		SomoimVO vo2 = new SomoimVO();
+		List<SomoimVO> vos = service.selectAll(vo2);
+		
+		for (SomoimVO x : vos) {
+			log.info("얘도 확인....{}", x);
+		}
+		
+		model.addAttribute("vos",vos);
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", service.selectSomoim(vo));
+		
+		
+		return "board/som_selectAll";
+	}
+	
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
 	public String som_update(SomoimVO vo) {
 		log.info("som_update.do().....{}", vo);
