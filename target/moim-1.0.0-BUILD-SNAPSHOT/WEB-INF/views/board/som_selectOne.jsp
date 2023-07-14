@@ -195,7 +195,6 @@
         </ul>
     </div>
 
-<<<<<<< HEAD
 </div>
 
 <script type="text/javascript">
@@ -210,20 +209,6 @@
         $('#som_update').hide();
         $('#som_delete').hide();
     }
-=======
-<script type="text/javascript">
-if('${user_id}'==='${vo2.somoim_master}'){
-	console.log('${user_id}')
-	console.log('너 모임장이네!!');
-	$('#som_update').show();
-	$('#som_delete').show();
-// 	$('#som_register').hide();
-} else {
-	console.log('아닌데?');
-	$('#som_update').hide();
-	$('#som_delete').hide();
-}
->>>>>>> 3253539228c80cb83cc546a91c5f991f226ff484
 </script>
 
 

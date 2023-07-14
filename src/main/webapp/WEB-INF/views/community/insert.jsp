@@ -43,22 +43,26 @@
             </div>
             <div>
                 <h2>
-                    <label for="title">제목</label>
+                    <label for="title">태그</label>
                 </h2>
             </div>
             <div>
-                <input type="text" id="title" name="title" value="테스트제목">
+                <input type="text" id="title" name="title" value="태그">
             </div>
             <div>
                 <h3>
                     <label for="content">내용</label>
                 </h3>
-                <div class="editor-menu">
-                    <button type="button" id="btn-image">IMG</button>
-                    <input type="file" id="img-selector" name="file" accept="image/*"/>
+
+                <div class="form-group">
+                    <label for="image">IMG</label>
+                    <input type="file" id="image" name="file" accept="image/*" onchange="previewImage();" />
                 </div>
-                <div id="insert_content">${vo2.content}
-                    <textarea name="content"></textarea>
+                <div class="preview_img_box">
+                    <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
+                </div>
+                <div>
+                    <textarea id="content" name="content" style="display: none;"></textarea>
                 </div>
 
 
@@ -100,49 +104,29 @@
 
 </div>
 
-<script>
-    document.getElementById("btn-image").addEventListener("click",
-        function () {
-            document.getElementById("img-selector").click();
-        });
-
-    document.getElementById("img-selector").addEventListener("change",
-        function () {
-            var file = this.files[0];
-            // 선택된 파일을 처리하는 로직을 추가할 수 있습니다.
-            console.log(file);
-        });
-</script>
 
 <script>
-    document.getElementById('img-selector').addEventListener(
-        'change',
-        function (e) {
-            var file = e.target.files[0];
-            var reader = new FileReader();
+    function showContent() {
+        var contentTextArea = document.getElementById('content');
+        contentTextArea.style.display = 'block';
+    }
 
-            reader.onloadend = function () {
-                var img = document.createElement('img');
-                img.src = reader.result;
-                document.getElementById('insert_content').appendChild(
-                    img);
-            }
+    function previewImage() {
+        var fileInput = document.getElementById('image');
+        var imagePreview = document.getElementById('imagePreview');
 
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                preview.innerHTML = "";
-            }
-        });
+        var file = fileInput.files[0];
+        var reader = new FileReader();
 
-    function clearContent() {
-        document.getElementById('insert_content').innerHTML = '';
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block';
+            showContent();
+        };
+
+        reader.readAsDataURL(file);
     }
 </script>
-
-<
-</script>
-
 
 </body>
 </html>

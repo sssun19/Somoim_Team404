@@ -47,6 +47,7 @@
             <c:forEach var="vo" items="${vos}">
                 <li><a href="community_selectOne.do?num=${vo.num}">
                     <img src="resources/uploadimg/${vo.save_name}">
+                    </br>
                     <strong>${vo.title}</strong>
                 </a></li>
             </c:forEach>
