@@ -99,6 +99,11 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.selectOne("PAYMENT_USER_CHECK",mvo);
     }
 
+    @Override
+    public List<Somoim_BoardVO> select_user_info() {
+        return sqlSession.selectList("JOIN_SOMOIM_SELECT_SAVE_NAME");
+    }
+
 
 
 

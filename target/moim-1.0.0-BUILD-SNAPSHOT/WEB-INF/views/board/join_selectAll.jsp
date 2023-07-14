@@ -39,6 +39,7 @@
                                     </div>
                                     <span>
                                         <strong>${vo.user_id}</strong>
+
                                         <p>${vo.write_date}</p>
                                     </span>
                                 </div>
