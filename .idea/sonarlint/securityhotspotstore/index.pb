@@ -125,8 +125,6 @@ f
 _
 /src/main/webapp/WEB-INF/views/mypage/mypage.jsp,f\b\fbde0636e9411a83c0556df8f97ae0eb3f812382
 s
-Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
-s
 Csrc/main/java/test/com/moim/events/controller/EventsController.java,8\4\84a3ba8a44c24d0215f0e56480ead1717b6cd4a3
 s
 Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
@@ -140,13 +138,9 @@ b
 2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
 e
 5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 l
 <src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
 q
 Asrc/main/java/test/com/moim/community/model/CommunityDAOimpl.java,e\9\e9b0f8ef7f618fd7fba4c6d7b7ec020e568b852a
 m
 =src/main/java/test/com/moim/community/model/CommunityDAO.java,c\4\c4d13ea49725091316c22c0a475b5465be348319
-y
-Isrc/main/java/test/com/moim/community/controller/CommunityController.java,8\e\8e15b57d304f4e54d55660e0f0cda30c776591ec
