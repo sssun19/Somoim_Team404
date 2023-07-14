@@ -94,8 +94,6 @@ q
 Asrc/main/java/test/com/moim/board/controller/BoardController.java,c\f\cf7389886ab4b89672d7c2f846004c7e6c895a3a
 Ž
 ^src/main/java/test/com/moim/community_comments/controller/Community_re_commnetsController.java,d\8\d8f6933a66d465d2eed7db1cf17c422643a92772
-Y
-)src/main/webapp/resources/css/gallery.css,1\0\10ef4874df88a9c9a59a6c7df45ca7a96920418d
 ]
 -src/main/webapp/WEB-INF/views/event/event.jsp,2\3\2360eff4cccbfd0a1a427026f45b92fe10628d70
 d
@@ -114,10 +112,6 @@ e
 5src/main/webapp/WEB-INF/views/board/som_selectAll.jsp,e\e\ee5fb07547aae31ed484a32bfd6c3ed3cef65620
 k
 ;src/main/webapp/WEB-INF/views/board/join_gallery_insert.jsp,1\2\124aa979f3f048d5838c21d00da6485933383612
-e
-5src/main/webapp/WEB-INF/views/community/selectOne.jsp,5\1\51d8064ad082f95155e66087138df63876e5b41f
-e
-5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
 f
 6src/main/java/test/com/moim/events/model/EventsVO.java,2\c\2c705fa6fd4a507749b84047b8c0bb54a1687f8d
 m
@@ -132,10 +126,6 @@ f
 6src/main/webapp/WEB-INF/views/mypage/mypage_update.jsp,c\f\cf70a368b91b1890490a1800d842092d87d37f91
 _
 /src/main/webapp/WEB-INF/views/mypage/mypage.jsp,f\b\fbde0636e9411a83c0556df8f97ae0eb3f812382
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-[
-+src/main/webapp/resources/css/community.css,7\7\7710278bcfb590234e01dc18be996c0fe72a5434
 s
 Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
 s
