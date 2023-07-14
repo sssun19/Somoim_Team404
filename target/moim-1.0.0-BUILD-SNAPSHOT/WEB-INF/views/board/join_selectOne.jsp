@@ -59,8 +59,11 @@
     <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
         <div class="join_top">
             <div class="user_info">
-                <div class="profile">
-                    <i class="far fa-user"></i>
+                <div class="profile" style="background-color: red">
+
+<%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
+                    <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                         src="resources/uploadimg/${vo2.save_name}">
                 </div>
                 <span>
                     <strong>${vo2.user_id}</strong>
@@ -102,7 +105,9 @@
                         <div class="user_info">
                             <div class="user_info_profile_">
                                 <div class="profile">
-                                    <i class="far fa-user"></i>
+                                    <%--                    파트 "댓글"작성자 이미지 프로필 사진 --%>
+
+                                    <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;" src="resources/uploadimg/${com.save_name}">
                                 </div>
                                 <div class="user_info_profile_tooltip">
                                     <div class="com_top">
@@ -111,6 +116,7 @@
                                             <form id="myForm" action="som_comm_updateOK.do?num=${com.som_board_num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                 <input type="hidden" name="num" value="${com.num}">
+                                                <input type="hidden" name="save_name" value="${com.save_name}">
                                                 <input type="hidden" name="content" id="hidden_content_input" value="${com.content}">
                                                     <button id="submitButton" type="submit">
                                                         <i class="fas fa-edit"></i>
@@ -190,6 +196,8 @@
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">
                 <input type="hidden" name="num" value="${vo2.num}">
                 <input type="hidden" name="user_id" value="${user_id}">
+                <input type="hidden" name="save_name" value="${vo2.save_name}">
+
                 <input type="text" placeholder="댓글 작성" name="content">
                 <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 

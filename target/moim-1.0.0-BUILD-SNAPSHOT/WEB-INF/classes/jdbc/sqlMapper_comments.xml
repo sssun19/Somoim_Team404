@@ -26,10 +26,7 @@
 
 		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, (SELECT num FROM
 		somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num})
-		, #{content,
-
-		jdbcType=VARCHAR
-		},0,#{som_board_num, jdbcType=VARCHAR}, 0,
+		, #{content,jdbcType=VARCHAR},0,#{som_board_num, jdbcType=VARCHAR}, 0,
 		#{somoim_num})
 	</insert>
 

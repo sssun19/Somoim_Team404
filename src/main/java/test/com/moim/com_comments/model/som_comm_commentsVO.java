@@ -17,5 +17,6 @@ public class som_comm_commentsVO {
 	private int parent_com;
 	private String user_id;
 	private int somoim_num;
+	private String save_name;
 }
 
