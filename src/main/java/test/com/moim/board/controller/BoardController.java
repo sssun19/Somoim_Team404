@@ -15,8 +15,16 @@ import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +41,9 @@ public class BoardController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    ServletContext sContext;
 
     @Autowired
     som_comm_comments_Service c_commService;
@@ -164,8 +175,33 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_insertOK.do", method = RequestMethod.POST)
-    public String join_insertOK(Somoim_BoardVO vo) {
+    public String join_insertOK(Somoim_BoardVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("join_insert.do().....{}", vo);
+
+
+        int fileNameLength = vo.getFile().getOriginalFilename().length();
+        String getOriginalFileName = vo.getFile().getOriginalFilename();
+
+        log.info("getOriginalFilename : {}", getOriginalFileName);
+        log.info("fileNameLength : {}", fileNameLength);
+
+        vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+
+        if (getOriginalFileName.length() == 0) {
+            vo.setSave_name("아이유.png");
+
+        } else {
+            vo.setSave_name(getOriginalFileName);
+            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+            String realPath = sContext.getRealPath("resources/uploadimg");
+
+            log.info("realPath : {}", realPath);
+
+            File f = new File(realPath + "\\" + vo.getSave_name());
+            vo.getFile().transferTo(f);
+
+        } // end else
+
 
         int result = service.join_insert(vo);
 

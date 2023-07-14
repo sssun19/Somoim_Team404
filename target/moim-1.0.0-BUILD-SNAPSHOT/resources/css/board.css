@@ -923,3 +923,11 @@
 
 }
 
+.form_span{
+  width: 100%;
+  text-align: center;
+}
+
+.form_span button{
+  width: 100%;
+}
