@@ -1,12 +1,12 @@
 package test.com.moim.board.model;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import test.com.moim.userinfo.model.UserinfoVO;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
@@ -103,6 +103,15 @@ public class BoardDAOimpl implements BoardDAO{
     public List<Somoim_BoardVO> select_user_info() {
         return sqlSession.selectList("JOIN_SOMOIM_SELECT_SAVE_NAME");
     }
+
+
+
+
+	@Override
+	public List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo) {
+		log.info("mypageBoardbyme....user_id:{}", vo.getUser_id());
+		return sqlSession.selectList("MYPAGE_BOARDBYME", vo);
+	}
 
 
 }
