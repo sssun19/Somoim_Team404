@@ -91,7 +91,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
     public String join_selectAll(Model model, Somoim_BoardVO vo) {
-        log.info("join_selectAll().....");
+        log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
 
@@ -115,8 +115,9 @@ public class BoardController {
         model.addAttribute("vo2", vo2);
 
         som_commentsVO cvo = new som_commentsVO();
-
+System.out.println("cvo");
         cvo.setSom_board_num(vo2.getNum());
+        cvo.setSave_name(vo2.getSave_name());
         System.out.println("vo2.getNum!!!!!!!!!!!!:" + vo2.getNum());
 
         cvo.setSomoim_num(vo2.getSomoim_num());
@@ -250,11 +251,11 @@ public class BoardController {
     @RequestMapping(value = "/join_deleteOK.do", method = RequestMethod.GET)
     public String join_deleteOK(Somoim_BoardVO vo) {
         log.info("join_deleteOK.do().....");
-
+System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim_num"+vo.getSomoim_num());
         int result = service.delete(vo);
 
 
-        return "redirect:join_selectAll.do";
+        return "redirect:join_selectAll.do?somoim_num="+vo.getSomoim_num();
 
 
     }
