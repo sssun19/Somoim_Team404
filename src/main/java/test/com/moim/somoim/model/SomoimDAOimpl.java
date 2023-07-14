@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.paging.model.PagingVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 @Slf4j
@@ -81,6 +82,18 @@ public class SomoimDAOimpl implements SomoimDAO {
 	public List<SomoimVO> mypageSelectSomoim(String user_id) {
 		log.info("mypageSelectSomoim....user_id:{}", user_id);
 		return session.selectList("SELECT_MYPAGE", user_id);
+	}
+
+	@Override
+	public int countSomoim() {
+		log.info("countSomoim....");
+		return session.selectOne("COUNT_SOMOIM");
+	}
+	
+	@Override
+	public List<SomoimVO> selectSomoim(PagingVO vo) {
+		log.info("selectSomoim....{}", vo);
+		return session.selectList("PAGING_SOMOIM", vo);
 	}
 
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {

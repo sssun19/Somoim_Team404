@@ -1,6 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -30,10 +31,10 @@
                         'category':category
                     },
                     success : function(data){
-                        console.log('이게 데이터', data);
                         console.log('category', category);
 
                         $('body').html(data);
+                        $('#paging').hide();
                     },
                     error : function(xhr, status, error){
                         console.log('xhr.status : ', xhr.status);
@@ -42,6 +43,11 @@
 
 
                 });//end ajax
+            });//end click
+            
+            $("input[id='searchbutton']").on('click', function(){
+            	console.log('클릭 감지!');
+            	$('#paging').hide();
             });//end click
 
         });//end ready
@@ -52,6 +58,11 @@
 
 
         // 	}
+        
+        function selChange() {
+    		var sel = document.getElementById('cntPerPage').value;
+    		location.href="som_selectAll.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+    	}
 
 
     </script>
@@ -121,6 +132,14 @@
         </ul>
 
     </div>
+    <div style="float: right;">
+		<select id="cntPerPage" name="sel" onchange="selChange()">
+			<option value="12"
+				<c:if test="${paging.cntPerPage == 12}">selected</c:if>>간략하게 볼래요</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>많이 볼래요</option>
+		</select>
+	</div>
     <div class="board_list">
         <form action="som_searchList.do">
             <div class="board_list_category_detail">
@@ -133,7 +152,7 @@
                 </select>
                 <input type="text" placeholder="검색" id="board_search" name="searchWord">
                 <input type="hidden" name="category" value=${param.category }>
-                <input type="submit" value="검색">
+                <input type="submit" value="검색" id="searchbutton">
             </div>
         </form>
 
@@ -141,7 +160,7 @@
 
         <div class="list_selectAll">
             <ul class="list_grid">
-                <c:forEach var="vo" items="${vos}">
+                <c:forEach var="vo" items="${viewAll}">
                     <c:if test="${vo.category eq param.category }">
                         <li>
                             <a href="som_selectOne.do?num=${vo.num}">
@@ -206,11 +225,30 @@
 
             </ul>
 
-        </div>
+				<div style="display: block; text-align: center;" >
+<%-- 					<c:if test="${paging.startPage != 1 }"> --%>
+<%-- 						<a href="som_selectAll.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a> --%>
+<%-- 					</c:if> --%>
+					<span id="paging">
+					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+						<c:choose>
+							<c:when test="${p == paging.nowPage }">
+								<b>${p }</b>
+							</c:when>
+							<c:when test="${p != paging.nowPage }">
+								<a href="som_selectAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					</span>
+<%-- 					<c:if test="${paging.endPage != paging.lastPage}"> --%>
+<%-- 						<a href="som_selectAll.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a> --%>
+<%-- 					</c:if> --%>
+				</div>
+			</div>
 
     </div>
 </div>
-
 
 <div class="footer">
     <div>

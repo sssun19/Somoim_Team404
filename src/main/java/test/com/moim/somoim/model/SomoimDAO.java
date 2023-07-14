@@ -2,6 +2,7 @@ package test.com.moim.somoim.model;
 
 import java.util.List;
 
+import test.com.moim.paging.model.PagingVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 public interface SomoimDAO {
@@ -15,5 +16,7 @@ public interface SomoimDAO {
 	//	public UserinfoVO selectprofileOne(UserinfoVO uvo);
 	public UserinfoVO searchSavename(UserinfoVO uvo);
 	public List<SomoimVO> mypageSelectSomoim(String user_id);
+	public int countSomoim();
+	public List<SomoimVO> selectSomoim(PagingVO vo);
 
 }
