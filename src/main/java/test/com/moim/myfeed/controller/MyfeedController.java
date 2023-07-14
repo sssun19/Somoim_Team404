@@ -13,13 +13,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MyfeedController {
 
-	@RequestMapping(value = "/myfeed_feed.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/myfeed_feed_mine.do", method = RequestMethod.GET)
 	public String home() {
 		log.info("home.do().....");
 
 
 
-		return "mypage/";
+		return "myfeed/myfeed_feed_mine";
 	}
 	
 }
