@@ -5,17 +5,17 @@
 <mapper namespace="test.com.moim.board">
 	<select id="JOIN_SOMOIM_SELECT_ALL"
 			resultType="test.com.moim.board.model.Somoim_BoardVO">
-		select * from somoim_board b
-						  INNER JOIN somoim_member m
-									 on b.som_member_num = m.num
+		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM from somoim_board b
+	   INNER JOIN somoim_member m
+	 	on b.som_member_num = m.num
 		where b.somoim_num = #{somoim_num}
 		ORDER BY b.num desc
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ONE"
 			resultType="test.com.moim.board.model.Somoim_BoardVO">
-		select * from somoim_board b
-						  INNER JOIN somoim_member m
-									 on b.som_member_num = m.num
+		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM from somoim_board b
+		INNER JOIN somoim_member m
+	   on b.som_member_num = m.num
 		where b.num=#{num}
 	</select>
 	<update id="JOIN_SOMOIM_UPDATE">
@@ -45,6 +45,7 @@
 	<insert id="JOIN_INSERT">
 		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date)
 		values(
+
 				  seq_somoim_board.nextval,
 				  #{title},
 				  #{content},

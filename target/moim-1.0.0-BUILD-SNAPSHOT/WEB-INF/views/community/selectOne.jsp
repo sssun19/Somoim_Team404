@@ -51,9 +51,12 @@
 				</div>
 			</div>
 			<div class="c_content_text">
-				<strong>제목: ${vo2.title}</strong>
-				<p>내용: ${vo2.content}</p>
 				<img src="resources/uploadimg/${vo2.save_name}">
+				</br>
+				<strong>${vo2.title}</strong>
+
+				<p>${vo2.content}</p>
+
 			</div>
 		</div>
 		<div class="c_comments_sec">

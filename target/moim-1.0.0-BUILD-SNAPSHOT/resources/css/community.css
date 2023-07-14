@@ -8,8 +8,6 @@
     margin-bottom: 200px;
 }
 
-
-
 .community_section_top{
     width: 100%;
     margin: 0 auto;
@@ -79,6 +77,12 @@
     width: 95%;
 }
 
+.review_grid li img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
 .review_grid{
     display: grid;
     grid-gap: 10px;
@@ -103,7 +107,8 @@
 }
 
 .c_view_content{
-    width: 100%;
+    margin: 20px auto;
+    width: 60%;
     text-align: left;
     padding-bottom: 30px;
     height: auto;
@@ -147,13 +152,24 @@
 }
 
 .c_content_text{
-    margin: 20px 0px 20px 60px;
+    margin: 20px 30px;
 }
 
 .c_content_text p{
     margin-top: 20px;
 
 }
+
+
+.c_content_text img {
+    width: 468px;
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 
 .c_user_info span p{
     font-size: 12px;
@@ -221,6 +237,17 @@
 .community_insert_section input[type="text"],
 .community_insert_section textarea {
     width: 96%;
+    border: #ccc solid 1px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+
+.community_insert_section textarea {
+    width: 96%;
+    height: 500px;
     border: #ccc solid 1px;
     border-radius: 5px;
     outline: none;
