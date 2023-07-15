@@ -56,10 +56,10 @@ public class MypageService {
 	}
 
 
-	public List<som_commentsVO> mypageMyactivity_commbyme(som_commentsVO vo) {
-		log.info("나의활동..내가 쓴 댓글 모아보기 : {}", vo.getUser_id());
-		return commDao.mypageMyactivity_commbyme(vo);
-	}
+//	public List<som_commentsVO> mypageMyactivity_commbyme(som_commentsVO vo) {
+//		log.info("나의활동..내가 쓴 댓글 모아보기 : {}", vo.getUser_id());
+//		return commDao.mypageMyactivity_commbyme(vo);
+//	}
 
 
 }
