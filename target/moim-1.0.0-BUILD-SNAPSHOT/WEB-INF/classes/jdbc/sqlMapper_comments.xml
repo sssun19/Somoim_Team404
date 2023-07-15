@@ -15,15 +15,12 @@
 		AND c.som_comment_depth = 0
 		AND c.somoim_num =
 		#{somoim_num}
-<<<<<<< HEAD
-=======
 	</select>
 
 	<select id="MYPAGE_COMMBYME"
 		resultType="test.com.moim.comments.model.som_commentsVO">
 		select * from somoim_board_comments a join somoim_member b on a.som_member_num=b.num 
 		join somoim c on a.somoim_num=c.num join somoim_board d on a.som_board_num=d.num where user_id=#{user_id}
->>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
 	</select>
 
 	<insert id="SOM_C_INSERT"
@@ -35,14 +32,7 @@
 
 		values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, (SELECT num FROM
 		somoim_member WHERE user_id = #{user_id} and somoim_num=#{somoim_num})
-<<<<<<< HEAD
-		, #{content,
-
-		jdbcType=VARCHAR
-		},0,#{som_board_num, jdbcType=VARCHAR}, 0,
-=======
 		, #{content,jdbcType=VARCHAR},0,#{som_board_num, jdbcType=VARCHAR}, 0,
->>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
 		#{somoim_num})
 	</insert>
 

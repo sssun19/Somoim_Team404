@@ -39,4 +39,12 @@ public interface BoardDAO {
 
     List<Somoim_BoardVO> select_user_info();
 	List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo);
+
+    Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo);
+    int adding_good_count_list(Somoim_BoardVO vo);
+    int del_good_count_list(Somoim_BoardVO vo);
+
+    int good_count_up(Somoim_BoardVO vo);
+    int good_count_down(Somoim_BoardVO vo);
+    int vvcountup(Somoim_BoardVO vo);
 }
