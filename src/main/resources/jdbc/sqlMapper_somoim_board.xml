@@ -43,7 +43,7 @@
 		delete from somoim_schedule where num=#{num}
 	</delete>
 	<insert id="JOIN_INSERT">
-		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date)
+		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date,save_name)
 		values(
 
 				  seq_somoim_board.nextval,
@@ -51,7 +51,8 @@
 				  #{content},
 				  (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
 				  #{somoim_num},
-				  sysdate
+				  sysdate,
+		       	  #{save_name}
 			  )
 	</insert>
 	<update id="SCH_PART_UPDATE">

@@ -35,7 +35,7 @@
 
     </div>
     <div class="join_insert_secction">
-        <form id="insert_form" enctype="multipart/form-data" action="/join_insertOK.do" method="POST">
+        <form id="insert_form" enctype="multipart/form-data" method="POST">
             <span>
 
                     <h2>제목</h2>
@@ -46,21 +46,23 @@
                          style="width: 100%; height: 620px; border-radius:5px; padding: 8px; border: #ccc solid 1px; outline: none; resize: none; text-align: left;margin-top: 20px;"
                          id="insert_content" name="content">
 
+                        <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
+
 
                     </div>
 
                     <h2>작성자</h2>
-                    <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" name="user_id"readonly/>
+                    <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" name="user_id" readonly/>
 
-                    <h2>이미지</h2>
-                    <input type="file" name="file" id="insert_imageUpload">
-                    <input type="text" value="${num}" id="insert_num" name="somoim_num">
+
+                    <input type="file" name="file" id="insert_imageUpload" style="display: none;" onchange="image_done()">
+                    <input type="hidden" value="${num}" id="insert_num" name="somoim_num">
 
 
 
             </span>
             <div class="form_span">
-                <button type="submit">작성완료</button>
+                <button type="button" onclick="join_insertOK()">작성완료</button>
             </div>
         </form>
 
@@ -104,4 +106,15 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="resources/js/board.js"></script>
+
+<script type="text/javascript">
+    $('.fa-image').on('click', function() {
+        $('#insert_imageUpload').click();
+    });
+
+    function image_done(){
+        alert("이미지가 추가되었습니다.");
+    }
+</script>
+
 </html>

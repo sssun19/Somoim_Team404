@@ -931,3 +931,15 @@
 .form_span button{
   width: 100%;
 }
+
+.content_text{
+  padding-right: 50px;
+}
+
+.content_text p{
+  width: 100%;
+}
+
+.content_text p img{
+  max-width: 100%;
+}

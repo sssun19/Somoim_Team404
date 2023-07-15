@@ -90,7 +90,14 @@
         </div>
         <div class="content_text">
             <strong>제목: ${vo2.title}</strong>
-            <p>내용: ${vo2.content}</p>
+            <p><p>내용:
+            <br>
+            <c:if test="${vo2.save_name != null}">
+                <img src="resources/uploadimg/${vo2.save_name}">
+            </c:if>
+            <br>
+            ${vo2.content}
+        </p>
         </div>
     </div>
     <div class="comments_sec">

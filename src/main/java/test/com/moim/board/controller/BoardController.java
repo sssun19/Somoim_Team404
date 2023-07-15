@@ -207,10 +207,11 @@ public class BoardController {
 
         if (result == 1) {
             log.info("됐냐?");
+
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
 
         } else {
-            return "redirect:join_insert.do";
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         }
 
 
@@ -291,7 +292,13 @@ public class BoardController {
         int result = service.delete(vo);
 
 
-        return "redirect:join_selectAll.do";
+        if (result == 1) {
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
+        }
+        else{
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
+        }
+
 
 
     }

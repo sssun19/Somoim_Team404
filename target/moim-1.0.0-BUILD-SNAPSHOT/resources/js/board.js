@@ -66,34 +66,32 @@ function som_insertOK() {
 }//end som_insertOK
 
 function join_insertOK() {
-    console.log("join_insert....");
+    console.log("join_insertOK ajax....");
 
-    console.log($('#insert_id').val());
-    console.log($('#insert_num').val());
-    console.log($('#insert_title').val());
-    console.log($('#insert_content').val());
+    var formData = new FormData();
+    formData.append('user_id', $('#insert_id').val());
+    formData.append('somoim_num', $('#insert_num').val());
+    formData.append('title', $('#insert_title').val());
+    formData.append('content', $('#insert_content').html());
+    formData.append('file', $('#insert_imageUpload')[0].files[0]);
 
     $.ajax({
         url: "join_insertOK.do",
-        data: {
-            user_id: $('#insert_id').val(),
-            somoim_num: $('#insert_num').val(),
-            title: $('#insert_title').val(),
-            content: $('#insert_content').val(),
-
-        },
+        data: formData,
         method: 'POST',
+        processData: false,  // important
+        contentType: false,  // important
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
             location.href="join_selectAll.do?somoim_num="+$('#insert_num').val();
-
         },
         error:function(xhr,status,error){
             console.log('xhr.status:', xhr.status);
         }
     });
 }//end function()
+
 
 function join_updateOK() {
     console.log("join_updateOK....");
