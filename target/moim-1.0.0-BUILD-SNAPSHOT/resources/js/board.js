@@ -73,8 +73,9 @@ function join_insertOK() {
     formData.append('somoim_num', $('#insert_num').val());
     formData.append('title', $('#insert_title').val());
     formData.append('content', $('#insert_content').html());
-    if ($('#insert_imageUpload')[0].files[0]) {
-        formData.append('file', $('#insert_imageUpload')[0].files[0]);
+    var fileInput = $('#insert_imageUpload')[0];
+    if (fileInput.files.length > 0) {
+        formData.append('file', fileInput.files[0]);
     }
 
     $.ajax({
@@ -93,6 +94,7 @@ function join_insertOK() {
         }
     });
 }//end function()
+
 
 
 function join_updateOK() {

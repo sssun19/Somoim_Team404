@@ -2,25 +2,23 @@ package test.com.moim.board.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.board.model.Somoim_MemberVO;
-import test.com.moim.board.model.Somoim_ScheduleVO;
+import org.springframework.web.bind.annotation.ResponseBody;
+import test.com.moim.board.model.*;
 import test.com.moim.board.service.BoardService;
 import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -105,33 +103,7 @@ public class BoardController {
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
-        List<Somoim_BoardVO> infos=service.select_user_info();
-        log.info("infos..{}", infos);
 
-        for (Somoim_BoardVO vo2 : vos) {
-            for (Somoim_BoardVO info : infos) {
-                log.info("검사 vo 아이디...{}", vo2.getUser_id());
-                log.info("검사 info 저장된 이름...{}", info.getUser_id());
-                if(vo2.getUser_id().equals(info.getUser_id())) {
-                    log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
-                    log.info("info 저장된 이름...{}", info.getUser_id());
-                    if (!vo2.getSave_name().equals(info.getSave_name())) {
-                        log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
-                        log.info("보드에 저장된 이름...{}", vo2.getSave_name());
-                        log.info("처음 가입 이미지 이름...{}", info.getSave_name());
-                        vo2.setSave_name(info.getSave_name());
-                        log.info("바뀐거 ::: vo2.getSave_name...{}", vo2.getSave_name());
-                    }
-                }
-            }
-            log.info(vo2.toString());
-
-        }
-
-//
-//        for (Somoim_BoardVO vo2 : vos) {
-//            log.info(vo2.toString());
-//        }
         model.addAttribute("vos", vos);
 
         return "board/join_selectAll";
@@ -234,29 +206,39 @@ public class BoardController {
     public String join_insertOK(Somoim_BoardVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("join_insert.do().....{}", vo);
 
-        String getOriginalFileName = (vo.getFile() != null && vo.getFile().getOriginalFilename() != null) ? vo.getFile().getOriginalFilename() : "";
-        log.info("getOriginalFilename : {}", getOriginalFileName);
+        if (vo.getFile() != null && !vo.getFile().isEmpty()) {
+            String getOriginalFileName = vo.getFile().getOriginalFilename();
+            int fileNameLength = getOriginalFileName.length();
 
-        vo.setSave_image(getOriginalFileName.isEmpty() ? "아이유.png" : getOriginalFileName);
+            log.info("getOriginalFilename : {}", getOriginalFileName);
+            log.info("fileNameLength : {}", fileNameLength);
 
-        if (!getOriginalFileName.isEmpty()) {
-            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
-            String realPath = sContext.getRealPath("resources/uploadimg");
-            log.info("realPath : {}", realPath);
+            if (fileNameLength == 0) {
+                vo.setSave_image(getOriginalFileName);
+            } else {
+                vo.setSave_image(getOriginalFileName);
+                String realPath = sContext.getRealPath("resources/uploadimg");
 
-            File f = new File(realPath + "\\" + vo.getSave_image());
-            vo.getFile().transferTo(f);
+                log.info("realPath : {}", realPath);
+
+                File f = new File(realPath + "\\" + vo.getSave_image());
+                vo.getFile().transferTo(f);
+            }
+        } else {
+            vo.setSave_image(null); // file이 null인 경우에 save_image도 null로 설정합니다.
         }
 
         int result = service.join_insert(vo);
 
         if (result == 1) {
             log.info("됐냐?");
+
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         } else {
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         }
     }
+
 
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
@@ -512,11 +494,35 @@ public class BoardController {
             return "redirect:join_pay.do?somoium_num="+vo.getSomoim_num();
         }
 
-
-
-
-
     }
+
+    @RequestMapping(value = "/vote_insertOK.do", method = RequestMethod.POST)
+    public ResponseEntity<Integer> vote_insertOK(Somoim_Question_VoteVO vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        Somoim_Question_VoteVO vo2 = service.vote_num(vo);
+
+        vo.setNum(vo2.getNum()+1);
+        service.vote_insert(vo);
+        int num = vo.getNum();
+
+
+        // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+        return new ResponseEntity<>(num, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/choice_insertOK.do", method = RequestMethod.POST)
+    public String choice_insertOK(Somoim_Choice_Vote vo) {
+        log.info("choice_insertOK.do().....{}", vo);
+
+        service.choice_insert(vo);
+
+
+        // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+        return "SUCCESS";
+    }
+
+
 
 
 

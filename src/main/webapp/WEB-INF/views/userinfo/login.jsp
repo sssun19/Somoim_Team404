@@ -19,13 +19,13 @@
             
             <labal for="user_id">아이디</labal>
             <br>
-            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="tester1"> 
+            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="test111">
             
             <br>
 
             <label for="user_pw">비밀번호</label>
             <br>
-            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="hi111"> 
+            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="1234">
             <br>
             <div class="sub_login">
                 <label><input type="checkbox" id="auto_login">자동로그인</label>

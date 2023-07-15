@@ -39,4 +39,11 @@ public interface BoardDAO {
 
     List<Somoim_BoardVO> select_user_info();
 	List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo);
+
+
+    Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo);
+
+    int vote_insert(Somoim_Question_VoteVO vo);
+
+    int choice_num(Somoim_Choice_Vote vo);
 }

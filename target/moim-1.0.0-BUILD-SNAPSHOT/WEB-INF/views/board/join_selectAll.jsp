@@ -25,9 +25,9 @@
             <button type="button"><a href="join_insert.do" style="color: white">글쓰기</a></button>
         </div> 
         <div class="view_content">
-            <ul>
+            <ul class="view_grid">
                 <c:forEach var="vo" items="${vos}">
-                    <li>
+                    <li class="view_grid_li">
                         <input type="hidden" value="${vo.som_member_num}">
                         <a href="join_selectOne.do?num=${vo.num}">
                             <input type="hidden" value="${vo.somoim_num}">
@@ -56,12 +56,18 @@
                             </div>
 
                                 <div class="content_text">
-                                    <strong>제목:   ${vo.title}</strong>
-                                    <p>내용:
+                                    <div class="content_text_title">
+                                        <strong>제목:   ${vo.title}</strong>
+                                        <p>내용:
+                                    </div>
                                         <br>
+
                                         <c:if test="${vo.save_image != null}">
-                                            <img src="resources/uploadimg/${vo.save_image}">
+                                            <div class="content_img_box" style="text-align: center">
+                                                <img src="resources/uploadimg/${vo.save_image}">
+                                            </div>
                                         </c:if>
+
                                         <br>
                                         ${vo.content}
                                     </p>

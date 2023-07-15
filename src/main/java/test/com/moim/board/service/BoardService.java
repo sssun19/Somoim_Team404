@@ -3,10 +3,7 @@ package test.com.moim.board.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import test.com.moim.board.model.BoardDAO;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.board.model.Somoim_MemberVO;
-import test.com.moim.board.model.Somoim_ScheduleVO;
+import test.com.moim.board.model.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public class BoardService {
 
     @Autowired
     BoardDAO dao;
+
 
     public BoardService(){
         log.info("BoardService()....");
@@ -83,4 +81,16 @@ public class BoardService {
 
     public List<Somoim_BoardVO> select_user_info() { return dao.select_user_info();}
 
+    public int vote_insert(Somoim_Question_VoteVO vo) {
+        return dao.vote_insert(vo);
+
     }
+
+    public Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo) {
+        return dao.vote_num(vo);
+    }
+
+    public int choice_insert(Somoim_Choice_Vote vo) {
+        return dao.choice_num(vo);
+    }
+}

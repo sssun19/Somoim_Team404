@@ -113,5 +113,24 @@ public class BoardDAOimpl implements BoardDAO{
 		return sqlSession.selectList("MYPAGE_BOARDBYME", vo);
 	}
 
+    @Override
+    public Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo) {
+        return sqlSession.selectOne("MAX_NUM",vo);
+    }
+
+    @Override
+    public int vote_insert(Somoim_Question_VoteVO vo) {
+
+        return sqlSession.insert("Vote_Insert", vo);
+
+
+
+    }
+
+    @Override
+    public int choice_num(Somoim_Choice_Vote vo) {
+        return sqlSession.insert("CHOICE_INSERT",vo);
+    }
+
 
 }
