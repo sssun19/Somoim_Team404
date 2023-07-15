@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
          language="java" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -32,7 +32,7 @@
 
 <div class="community_navigation">
     <div class="community_navigation_func">
-        <a>인기피드</a> <a>모임후기</a>
+        <a></a> <a></a>
     </div>
 </div>
 <div class="community_navigation_upload">
@@ -47,6 +47,7 @@
             <c:forEach var="vo" items="${vos}">
                 <li><a href="community_selectOne.do?num=${vo.num}">
                     <img src="resources/uploadimg/${vo.save_name}">
+                    </br>
                     <strong>${vo.title}</strong>
                 </a></li>
             </c:forEach>

@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.paging.model.PagingVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
 @Slf4j
 @Repository
 public class SomoimDAOimpl implements SomoimDAO {
-	
+
 	@Autowired
 	SqlSession session;
 
@@ -33,16 +34,16 @@ public class SomoimDAOimpl implements SomoimDAO {
 	public List<SomoimVO> searchList(String searchKey, String searchWord, String category) {
 		log.info("searchList()...{}, {}", searchKey, searchWord);
 		log.info("searchList()...category : {}", category);
-		
+
 		log.info("====이거확인{}", category=="");
-		
-		
+
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("searchWord",  "%"+searchWord+"%");
 		map.put("category", category);
-		
+
 		if(searchKey.equals("소모임 이름")) {
-			if(category=="") {			
+			if(category=="") {
 				return session.selectList("SOMOIM_SEARCH_LIST_TITLE2", "%"+searchWord+"%");
 			}
 			return session.selectList("SOMOIM_SEARCH_LIST_TITLE",map);
@@ -83,11 +84,23 @@ public class SomoimDAOimpl implements SomoimDAO {
 		return session.selectList("SELECT_MYPAGE", user_id);
 	}
 
+	@Override
+	public int countSomoim() {
+		log.info("countSomoim....");
+		return session.selectOne("COUNT_SOMOIM");
+	}
+	
+	@Override
+	public List<SomoimVO> selectSomoim(PagingVO vo) {
+		log.info("selectSomoim....{}", vo);
+		return session.selectList("PAGING_SOMOIM", vo);
+	}
+
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info("profilesearch()....{}", uvo);
 //		log.info("이건  mapper 에 있음");
-//		
-//		return session.selectOne("PROFILE_SEARCH", uvo); 
+//
+//		return session.selectOne("PROFILE_SEARCH", uvo);
 //	}
 
 }

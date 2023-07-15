@@ -93,10 +93,10 @@
                         <p>${vo2.birthday }</p>
                     </li>
                     <li>
-                        <a href="mypage_myactivity_good.do">나의 활동</a>
+                        <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id }">나의 활동</a>
                     </li>
                     <li>
-                        <a href="#">내 피드 들어가기</a>
+                        <a href="myfeed_feed_mine.do?user_id=${vo2.user_id }">내 피드 들어가기</a>
                     </li>
 ​
                 </ul>

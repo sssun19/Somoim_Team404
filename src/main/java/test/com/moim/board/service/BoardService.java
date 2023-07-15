@@ -7,7 +7,6 @@ import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
-import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -81,4 +80,7 @@ public class BoardService {
     public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
         return dao.selectMember(mvo);
     }
-}
+
+    public List<Somoim_BoardVO> select_user_info() { return dao.select_user_info();}
+
+    }
