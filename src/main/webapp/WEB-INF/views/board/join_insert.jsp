@@ -46,10 +46,31 @@
                          style="width: 100%; height: 620px; border-radius:5px; padding: 8px; border: #ccc solid 1px; outline: none; resize: none; text-align: left;margin-top: 20px;"
                          id="insert_content" name="content">
 
-                        <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
+                            <div class="vote_section">
+                            <div class="vote_detail_seciton">
+                                <h2>투표 제목</h2>
+                                <input type="text" placeholder="투표 제목을 입력하세요" class="vote_title">
+
+                                <ul class="vote_grid">
+                                    <li>
+                                        <button type="button">
+                                            <input type="text" placeholder="투표 항목">
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button">
+                                            <input type="text" placeholder="투표 항목">
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="vote_function">
+                                <a>항목 추가</a>
+                            </div>
+                        </div>
 
 
-                    </div>
+                    </div> <%--contenteditable 종료 부분--%>
 
                     <h2>작성자</h2>
                     <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" name="user_id" readonly/>

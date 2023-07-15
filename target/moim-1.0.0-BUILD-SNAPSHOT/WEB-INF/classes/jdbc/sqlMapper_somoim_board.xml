@@ -55,32 +55,17 @@
 		delete from somoim_schedule where num=#{num}
 	</delete>
 	<insert id="JOIN_INSERT">
-<<<<<<< HEAD
-		insert into somoim_board(num,title,content,som_member_num,somoim_num,write_date,save_name)
-		values(
-
-				  seq_somoim_board.nextval,
-				  #{title},
-				  #{content},
-				  (SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
-				  #{somoim_num},
-				  sysdate,
-		       	  #{save_name}
-			  )
-=======
 		insert into
-		somoim_board(num,title,content,som_member_num,somoim_num,write_date)
+		somoim_board(num,title,content,som_member_num,somoim_num,write_date,save_image)
 		values(
-
 		seq_somoim_board.nextval,
 		#{title},
 		#{content},
-		(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num =
-		#{somoim_num}),
+		(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num = #{somoim_num}),
 		#{somoim_num},
-		sysdate
+		sysdate,
+		#{save_image}
 		)
->>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
 	</insert>
 	<update id="SCH_PART_UPDATE">
 		UPDATE somoim_schedule

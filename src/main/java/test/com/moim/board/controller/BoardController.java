@@ -234,44 +234,30 @@ public class BoardController {
     public String join_insertOK(Somoim_BoardVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("join_insert.do().....{}", vo);
 
-
-        int fileNameLength = vo.getFile().getOriginalFilename().length();
-        String getOriginalFileName = vo.getFile().getOriginalFilename();
-
+        String getOriginalFileName = (vo.getFile() != null && vo.getFile().getOriginalFilename() != null) ? vo.getFile().getOriginalFilename() : "";
         log.info("getOriginalFilename : {}", getOriginalFileName);
-        log.info("fileNameLength : {}", fileNameLength);
 
-        vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+        vo.setSave_image(getOriginalFileName.isEmpty() ? "아이유.png" : getOriginalFileName);
 
-        if (getOriginalFileName.length() == 0) {
-            vo.setSave_name("아이유.png");
-
-        } else {
-            vo.setSave_name(getOriginalFileName);
+        if (!getOriginalFileName.isEmpty()) {
             // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
             String realPath = sContext.getRealPath("resources/uploadimg");
-
             log.info("realPath : {}", realPath);
 
-            File f = new File(realPath + "\\" + vo.getSave_name());
+            File f = new File(realPath + "\\" + vo.getSave_image());
             vo.getFile().transferTo(f);
-
-        } // end else
-
+        }
 
         int result = service.join_insert(vo);
 
         if (result == 1) {
             log.info("됐냐?");
-
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
-
         } else {
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         }
-
-
     }
+
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
     public String join_schedule(Model model, Somoim_ScheduleVO vo) {

@@ -73,7 +73,9 @@ function join_insertOK() {
     formData.append('somoim_num', $('#insert_num').val());
     formData.append('title', $('#insert_title').val());
     formData.append('content', $('#insert_content').html());
-    formData.append('file', $('#insert_imageUpload')[0].files[0]);
+    if ($('#insert_imageUpload')[0].files[0]) {
+        formData.append('file', $('#insert_imageUpload')[0].files[0]);
+    }
 
     $.ajax({
         url: "join_insertOK.do",

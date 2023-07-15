@@ -35,7 +35,7 @@
                                 <div class="user_info">
                                     <div class="profile">
                                         <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
-                                             src="resources/uploadimg/${vo.save_name}">
+                                             src="/resources/uploadimg/${vo.save_name}">
                                     </div>
                                     <span>
                                         <strong>${vo.user_id}</strong>
@@ -44,7 +44,6 @@
                                     </span>
                                 </div>
                                 <div class="bbs_func">
-<<<<<<< HEAD
                                     <c:if test="${vo.user_id == user_id}">
                                         <button type="button">
                                             <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
@@ -53,14 +52,6 @@
                                             <a href="join_deleteOK.do?num=${vo.num}&somoim_num=${num}"><i class="fas fa-trash-alt"></i></a>
                                         </button>
                                     </c:if>
-=======
-                                    <button type="button">
-                                        <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
-                                    </button>
-                                    <button type="button">
-                                        <a href="join_deleteOK.do?num=${vo.num}&somoim_num=${vo.somoim_num}"><i class="fas fa-trash-alt"></i></a>
-                                    </button>
->>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
                                 </div>
                             </div>
 
@@ -68,8 +59,8 @@
                                     <strong>제목:   ${vo.title}</strong>
                                     <p>내용:
                                         <br>
-                                        <c:if test="${vo.save_name != null}">
-                                            <img src="resources/uploadimg/${vo.save_name}">
+                                        <c:if test="${vo.save_image != null}">
+                                            <img src="resources/uploadimg/${vo.save_image}">
                                         </c:if>
                                         <br>
                                         ${vo.content}
