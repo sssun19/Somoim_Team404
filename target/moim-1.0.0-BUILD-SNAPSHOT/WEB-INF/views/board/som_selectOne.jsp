@@ -195,6 +195,20 @@
         </ul>
     </div>
 
+<<<<<<< HEAD
+<script type="text/javascript">
+if('${user_id}'==='${vo2.somoim_master}'){
+	console.log('${user_id}')
+	console.log('너 모임장이네!!');
+	$('#som_update').show();
+	$('#som_delete').show();
+// 	$('#som_register').hide();
+} else {
+	console.log('아닌데?');
+	$('#som_update').hide();
+	$('#som_delete').hide();
+}
+=======
 </div>
 
 <script type="text/javascript">
@@ -209,6 +223,7 @@
         $('#som_update').hide();
         $('#som_delete').hide();
     }
+>>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
 </script>
 
 

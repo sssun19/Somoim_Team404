@@ -923,6 +923,28 @@
 
 }
 
+<<<<<<< HEAD
+.form_span{
+  width: 100%;
+  text-align: center;
+}
+
+.form_span button{
+  width: 100%;
+}
+
+.content_text{
+  padding-right: 50px;
+}
+
+.content_text p{
+  width: 100%;
+}
+
+.content_text p img{
+  max-width: 100%;
+}
+=======
 
 
 
@@ -931,3 +953,4 @@
   width: 100%;
   height: 100%;
 }
+>>>>>>> c7bef14a72571994a25d4ec5ac62d0d51e6e903e
