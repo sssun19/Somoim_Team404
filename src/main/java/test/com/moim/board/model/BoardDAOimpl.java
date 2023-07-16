@@ -132,5 +132,10 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.insert("CHOICE_INSERT",vo);
     }
 
+    @Override
+    public List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos) {
+        return sqlSession.selectList("VOTE_SELECT_ALL",voteVos);
+    }
+
 
 }

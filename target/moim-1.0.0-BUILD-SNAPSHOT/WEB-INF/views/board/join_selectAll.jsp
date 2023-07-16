@@ -70,6 +70,10 @@
 
                                         <br>
                                         ${vo.content}
+                                        <br>
+                                        <c:if test="${vo.vote_num != null}">
+                                            테스트 투표 들어가는 부분
+                                        </c:if>
                                     </p>
                                 </div>
                         </a>

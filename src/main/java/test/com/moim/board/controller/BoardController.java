@@ -99,10 +99,31 @@ public class BoardController {
 //    }
 
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
-    public String join_selectAll(Model model, Somoim_BoardVO vo) {
+    public String join_selectAll(Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos) {
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
+
+        for(Somoim_BoardVO vo2 : vos){
+            log.info(vo2.toString());
+            int vo2Num = vo2.getNum();
+            if (vo2.getVote_num() != 0){
+                log.info(String.valueOf(vo2Num));
+                Vote_vos.setNum2(vo2Num);
+            }
+
+
+        }
+
+        List<Somoim_Question_VoteVO> vote_vos = service.vote_selectList(Vote_vos);
+
+
+        for(Somoim_Question_VoteVO vo3 : vote_vos) {
+            log.info("TEST!! :    "+vo3.toString());
+        }
+
+
+
 
         model.addAttribute("vos", vos);
 

@@ -46,4 +46,7 @@ public interface BoardDAO {
     int vote_insert(Somoim_Question_VoteVO vo);
 
     int choice_num(Somoim_Choice_Vote vo);
+
+
+    List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos);
 }

@@ -10,6 +10,10 @@ public class Somoim_Question_VoteVO {
     private String question;
     private String user_id;
     private int somoim_num;
+    private int som_qvote_num;
+    private String choice;
+    private int count;
+    private int num2;
 
 
 }

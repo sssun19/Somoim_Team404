@@ -10,7 +10,7 @@
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
 		select * from somoim_board b
-	   INNER JOIN somoim_member m
+	   	INNER JOIN somoim_member m
 	 	on b.som_member_num = m.num
 		where b.somoim_num = #{somoim_num}
 		ORDER BY
@@ -56,7 +56,7 @@
 	</delete>
 	<insert id="JOIN_INSERT">
 		insert into
-			somoim_board(num, title, content, som_member_num, somoim_num, write_date, save_image)
+			somoim_board(num, title, content, som_member_num, somoim_num, write_date, save_image,vote_num)
 		values(
 				  seq_somoim_board.nextval,
 				  #{title,jdbcType=VARCHAR},
@@ -64,7 +64,8 @@
 				  (SELECT num FROM somoim_member WHERE user_id = #{user_id,jdbcType=VARCHAR} and somoim_num = #{somoim_num,jdbcType=INTEGER}),
 				  #{somoim_num,jdbcType=INTEGER},
 				  sysdate,
-				  #{save_image,jdbcType=VARCHAR}
+				  #{save_image,jdbcType=VARCHAR},
+		    	#{vote_num}
 			  )
 	</insert>
 

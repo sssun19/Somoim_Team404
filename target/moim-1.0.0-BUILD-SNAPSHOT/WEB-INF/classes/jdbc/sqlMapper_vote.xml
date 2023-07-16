@@ -32,6 +32,15 @@
 			   )
 	</insert>
 
+	<select id="VOTE_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_Question_VoteVO">
+		SELECT SQV.*, SC.*
+		FROM Somoim_board SB
+				 INNER JOIN Somoim_question_vote SQV ON SB.vote_num = SQV.num
+				 INNER JOIN Somoim_Choice_vote SC ON SQV.num = SC.som_qvote_num
+		where SB.num = #{num2}
+
+	</select>
+
 
 
 
