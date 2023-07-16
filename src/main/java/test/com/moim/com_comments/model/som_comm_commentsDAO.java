@@ -16,6 +16,5 @@ public interface som_comm_commentsDAO {
 	public void som_board_num_down(som_comm_commentsVO vo) ;
 
 //	public List<SomoimVO> searchList(int searchKey, int searchWord);
-	
 
 }

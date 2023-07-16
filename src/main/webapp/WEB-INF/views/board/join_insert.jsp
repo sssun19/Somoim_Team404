@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 <body>
-    <jsp:include page="../top_menu.jsp"></jsp:include>
+<jsp:include page="../top_menu.jsp"></jsp:include>
 
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
@@ -35,61 +35,86 @@
 
     </div>
     <div class="join_insert_secction">
+        <form id="insert_form" enctype="multipart/form-data" method="POST">
             <span>
 
-                <h2>제목</h2>
-                <input type="text" placeholder="제목을 입력하세요" id="insert_title">
-                <h2>내용</h2>
-                <textarea style="width: 100%; height: 620px; border-radius:5px; padding: 8px; border: #ccc solid 1px; outline: none; resize: none; text-align: left;margin-top: 20px;" id="insert_content" ></textarea>
+                    <h2>제목</h2>
+                    <input type="text" placeholder="제목을 입력하세요" id="insert_title" name="title">
 
-                <h2>작성자</h2>
-                <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" readonly/>
-                <input type="hidden" value="${num}" id="insert_num">
+                    <h2>내용</h2>
+                    <div contenteditable="true"
+                         style="width: 100%; height: 620px; border-radius:5px; padding: 8px; border: #ccc solid 1px; outline: none; resize: none; text-align: left;margin-top: 20px;"
+                         id="insert_content" name="content">
+
+                        <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
+
+
+                    </div>
+
+                    <h2>작성자</h2>
+                    <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" name="user_id" readonly/>
+
+
+                    <input type="file" name="file" id="insert_imageUpload" style="display: none;" onchange="image_done()">
+                    <input type="hidden" value="${num}" id="insert_num" name="somoim_num">
+
+
 
             </span>
-        <button type="button" onclick="join_insertOK()">작성완료</button>
+            <div class="form_span">
+                <button type="button" onclick="join_insertOK()">작성완료</button>
+            </div>
+        </form>
 
 
     </div>
-
 
 
 </div>
 
 
-    <div class="footer">
+<div class="footer">
 
-        <div>
-            <strong>온앤오프</strong>
-            <ul>
-                <li>공지사항</li>
-                <li>이벤트</li>
-                <li>자주 믿는 질문</li>
-            </ul>
-        </div>
-        <div>
-            <strong>소셜 미디어</strong>
-            <ul>
-                <li>인스타그램</li>
-                <li>네이버 블로그</li>
+    <div>
+        <strong>온앤오프</strong>
+        <ul>
+            <li>공지사항</li>
+            <li>이벤트</li>
+            <li>자주 믿는 질문</li>
+        </ul>
+    </div>
+    <div>
+        <strong>소셜 미디어</strong>
+        <ul>
+            <li>인스타그램</li>
+            <li>네이버 블로그</li>
 
-            </ul>
-        </div>
-        <div class="footer_company">
-            <strong>온앤오프</strong>
-            <ul>
-                <li>대표: 팀404 개인정보관리책임자: 팀404</li>
-                <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-                <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
-            </ul>
-        </div>
-
+        </ul>
+    </div>
+    <div class="footer_company">
+        <strong>온앤오프</strong>
+        <ul>
+            <li>대표: 팀404 개인정보관리책임자: 팀404</li>
+            <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
+            <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
+        </ul>
     </div>
 
-
+</div>
 
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="resources/js/board.js"></script>
+
+<script type="text/javascript">
+    $('.fa-image').on('click', function() {
+        $('#insert_imageUpload').click();
+    });
+
+    function image_done(){
+        alert("이미지가 추가되었습니다.");
+    }
+</script>
+
 </html>

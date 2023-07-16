@@ -60,5 +60,10 @@ public class som_commentsDAOimpl implements som_commentsDAO {
 		log.info("num");
 
 	}
+	@Override
+	public List<som_commentsVO> mypageMyactivity_commbyme(som_commentsVO vo) {
+		log.info("mypageMyactivity_commbyme...{}", vo.getUser_id());
+		return sqlsession.selectList("MYPAGE_COMMBYME", vo);
+	}
 
 }

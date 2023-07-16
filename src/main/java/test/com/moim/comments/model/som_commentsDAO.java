@@ -15,5 +15,7 @@ public interface som_commentsDAO {
 	public void good_count_up(som_commentsVO vo) ;
 	public void som_board_num_down(som_commentsVO vo) ;
 
+	public List<som_commentsVO> mypageMyactivity_commbyme(som_commentsVO vo);
+
 
 }

@@ -51,9 +51,12 @@
 				</div>
 			</div>
 			<div class="c_content_text">
-				<strong>제목: ${vo2.title}</strong>
-				<p>내용: ${vo2.content}</p>
 				<img src="resources/uploadimg/${vo2.save_name}">
+				</br>
+				<strong>${vo2.title}</strong>
+
+				<p>${vo2.content}</p>
+
 			</div>
 		</div>
 		<div class="c_comments_sec">
@@ -90,9 +93,9 @@
 											</form>
 										</span>
 									</div>
-									<p>${ccoms.write_date}</p>
+										<p>${ccoms.write_date}</p>
 									<div class="c_com_func">
-										<h4>댓글${ccoms.user_id}</h4>
+										<h4>대댓글${ccoms.user_id}</h4>
 										<input type="text" placeholder="댓글 목록" value="${ccoms.content}"
 											   id="community_comments">
 									</div>

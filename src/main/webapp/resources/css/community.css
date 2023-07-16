@@ -1,4 +1,4 @@
-.community_section{
+.community_section {
     width: 75%;
     margin: 0 auto;
     text-align: center;
@@ -8,44 +8,36 @@
     margin-bottom: 200px;
 }
 
-
-
 .community_section_top{
     width: 100%;
     margin: 0 auto;
     text-align: center;
 }
-
-.community_title{
+.community_title {
     padding: 100px 0px;
 }
-
-.community_title p{
+.community_title p {
     margin-top: 20px;
     font-size: 14px;
 }
-
-.community_navigation{
+.community_navigation {
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #ccc;
 }
-
-.community_navigation_func a{
+.community_navigation_func a {
     padding: 12px 36px;
 }
-
-.community_navigation_func{
+.community_navigation_func {
     display: flex;
     justify-content: center;
 }
-.community_navigation_upload{
+.community_navigation_upload {
     width: 100%;
     text-align: right;
     padding: 5px;
 }
-
-.community_navigation_upload button{
+.community_navigation_upload button {
     margin-top: 10px;
     margin-right: 20px;
     border: none;
@@ -54,46 +46,44 @@
     color: white;
     border-radius: 5px;
 }
-
-.community_review_section{
+.community_review_section {
     width: 100%;
     margin: 30px auto 100px auto;
-
 }
-
-.community_review_view{
+.community_review_view {
     width: 90%;
     display: flex;
     justify-content: center;
     margin: 0 auto;
-
 }
-
-.community_review_img{
+.community_review_img {
     width: 100%;
     padding-bottom: 100%;
-    background-color: #5f2b2b;
+    background-color: #5F2B2B;
 }
-
-.review_grid li{
+.review_grid li {
     width: 95%;
 }
 
-.review_grid{
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(3,1fr);
+
+.review_grid li img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
 }
 
+.review_grid{
 
-/*community_selectOne*/
-
-.c_top_func{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+/* community_selectOne */
+.c_top_func {
     text-align: right;
     padding: 10px;
 }
-
-.c_top_func button{
+.c_top_func button {
     border: none;
     border-radius: 5px;
     padding: 2px 20px;
@@ -103,121 +93,117 @@
 }
 
 .c_view_content{
-    width: 100%;
+    margin: 20px auto;
+    width: 60%;
     text-align: left;
     padding-bottom: 30px;
     height: auto;
 }
-
-.c_view_content ul{
+.c_view_content ul {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
 }
-
-.c_view_content ul li{
+.c_view_content ul li {
     padding: 20px;
     width: 1000px;
     margin: 0 auto;
-    border: solid 1px #c9c9c9;
+    border: solid 1px #C9C9C9;
     border-radius: 10px;
 }
-
-.c_user_info{
+.c_user_info {
     display: flex;
     padding: 20px;
 }
-
-.c_profile{
+.c_profile {
     width: 40px;
     height: 40px;
-    background-color: #c9c9c9;
+    background-color: #C9C9C9;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
 }
-
-.c_profile i{
+.c_profile i {
     font-size: 20px;
 }
-
-.c_user_info span{
+.c_user_info span {
     margin-left: 20px;
 }
 
+
 .c_content_text{
-    margin: 20px 0px 20px 60px;
-}
 
-.c_content_text p{
+    margin: 20px 30px;
+}
+.c_content_text p {
     margin-top: 20px;
-
 }
+
+
+
+
+.c_content_text img {
+    width: 468px;
+    margin: 0 auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
 
 .c_user_info span p{
     font-size: 12px;
     color: #666;
 }
-
-.community_top{
+.community_top {
     display: flex;
     justify-content: space-between;
 }
-
-.c_bbs_func{
-
+.c_bbs_func {
     text-align: right;
     width: 40%;
 }
-
-.c_bbs_func button{
+.c_bbs_func button {
     border: none;
     background: transparent;
 }
-
 .c_bbs_func button i {
     font-size: 16px;
     color: #1785F2;
     font-weight: 600;
 }
-
-/*insert.html*/
-
+/* insert.html */
 .c_insert_func {
     margin-top: 40px;
     width: 100%;
     text-align: left;
     border-bottom: #ccc solid 1px;
 }
-
 .c_insert_func i {
     font-size: 18px;
     padding: 20px;
     color: #1785F2;
 }
-
 .c_insert_func a {
     padding: 20px;
     font-weight: 600;
     font-size: 16px;
 }
-
 .community_insert_section {
     margin: 0 auto;
     width: 70%;
     text-align: center;
 }
-
 .community_insert_section {
     text-align: left;
 }
-
 .community_insert_section h2,
 .community_insert_section h3 {
     margin-top: 30px;
 }
-
 .community_insert_section input[type="text"],
 .community_insert_section textarea {
     width: 96%;
@@ -228,11 +214,23 @@
     margin-top: 20px;
 }
 
+
+
+.community_insert_section textarea {
+    width: 96%;
+    height: 500px;
+    border: #ccc solid 1px;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+
 #content-container {
     height: 600px;
     text-align: center;
 }
-
 #content-container input[type="text"] {
     width: 99%;
     border: #ccc solid 1px;
@@ -241,8 +239,7 @@
     padding: 8px 12px;
     margin-top: 20px;
 }
-
-.community_insert_secction input[type="submit"] {
+.community_insert_section input[type="submit"] {
     width: 50%;
     margin-bottom: 50px;
     padding: 5px 10px;
@@ -252,27 +249,24 @@
     border-radius: 5px;
     color: white;
 }
-
 .num {
     margin-top: 30px;
 }
-
 #insert_content {
-    height: 600px; /* div의 최대 높이를 설정합니다 */
-    max-height: 600px; /* 높이가 600px를 초과하지 않도록 이 줄을 추가합니다 */
+    height: 600px;
+    /* div의 최대 높이를 설정합니다 */
+    max-height: 600px;
+    /* 높이가 600px를 초과하지 않도록 이 줄을 추가합니다 */
     overflow: auto;
 }
-
 div#insert_content {
     border: 1px solid #D6D6D6;
     border-radius: 4px;
 }
-
 .center {
     display: flex;
     justify-content: center;
 }
-
 .center input[type="submit"] {
     width: 50%;
     margin-top: 50px;
@@ -283,79 +277,65 @@ div#insert_content {
     border-radius: 5px;
     color: white;
 }
-
-.c_comments_sec{
+.c_comments_sec {
     text-align: left;
     padding: 20px;
     margin: 0 auto;
     width: 100%;
 }
-
-.c_comments_sec h3{
+.c_comments_sec h3 {
     margin-bottom: 50px;
 }
-
-.c_user_info_profile_tooltip{
+.c_user_info_profile_tooltip {
     width: 100%;
 }
-
-.c_com_func{
+.c_com_func {
     width: 100%;
     display: flex;
     margin-top: 30px;
     justify-content: space-between;
 }
-
-.c_com_func input{
+.c_com_func input {
     width: 100%;
     padding: 5px;
     border: none;
     outline: none;
     border-bottom: 1px solid #ccc;
 }
-
-#com_insert{
+#com_insert {
     width: 10%;
     margin-left: 12px;
     color: white;
     background-color: #1785F2;
     border: none;
     border-radius: 5px;
-
 }
-
-.c_com_top{
+.c_com_top {
     display: flex;
     justify-content: space-between;
 }
-
-.c_com_top button{
+.c_com_top button {
     border: none;
     background-color: transparent;
 }
-
-.c_com_top button i{
+.c_com_top button i {
     font-size: 16px;
     color: #1785F2;
 }
-
-.c_com_grid{
+.c_com_grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 30px;
 }
-
-.c_user_info_profile_{
+.c_user_info_profile_ {
     display: flex;
     width: 80%;
     margin: 0 auto;
 }
-
-.c_user_info_profile_ .c_profile{
+.c_user_info_profile_ .c_profile {
     margin-right: 10px;
 }
-
-.community_imgbox .img_grid{
+.community_imgbox .img_grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
@@ -363,21 +343,19 @@ div#insert_content {
     background-color: #1785F2;
     margin: 40px auto;
 }
-
-.community_commnets_insert_section{
+.community_commnets_insert_section {
     width: 75%;
     margin: 50px auto 0px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-.c_comments_user_profile{
+.c_comments_user_profile {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.c_commnets_user_profile_img{
+.c_commnets_user_profile_img {
     width: 50px;
     height: 50px;
     background-color: #ccc;
@@ -386,55 +364,45 @@ div#insert_content {
     justify-content: center;
     align-items: center;
 }
-
-.community_commnets_insert_section input{
+.community_commnets_insert_section input {
     width: 80%;
     padding: 8px 12px;
 }
-
-.community_commnets_insert_section button{
+.community_commnets_insert_section button {
     padding: 8px 24px;
     border-radius: 5px;
     border: none;
     background-color: #1785F2;
     color: white;
 }
-
-.c_insert_func{
-
+.c_insert_func {
     margin-top: 40px;
     width: 100%;
     text-align: center;
     border-bottom: #ccc solid 1px;
 }
-
-.c_insert_func i{
+.c_insert_func i {
     font-size: 18px;
     padding: 20px;
     color: #1785F2;
 }
-
-.c_insert_func span a{
+.c_insert_func span a {
     padding: 20px;
     font-weight: 600;
     font-size: 16px;
 }
-
 /* toolbar */
 div#editor {
     padding: 16px 24px;
     border: 1px solid #D6D6D6;
     border-radius: 4px;
 }
-
 #img-selector {
     display: none;
 }
-
 #editor img {
     max-width: 100%;
 }
-
 button.active {
     background-color: purple;
     color: #FFF;

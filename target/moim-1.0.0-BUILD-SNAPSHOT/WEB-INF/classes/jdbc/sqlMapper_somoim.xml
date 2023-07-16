@@ -1,42 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
 <mapper namespace="test.com.moim.somoim">
-	<select id="SOMOIM_SELECT_ALL" resultType="test.com.moim.somoim.model.SomoimVO">
+	<select id="SOMOIM_SELECT_ALL"
+		resultType="test.com.moim.somoim.model.SomoimVO">
 		select * from somoim order by num desc
 	</select>
-	
-	<select id="SOMOIM_SELECT_ONE" resultType="test.com.moim.somoim.model.SomoimVO">
+
+	<select id="SOMOIM_SELECT_ONE"
+		resultType="test.com.moim.somoim.model.SomoimVO">
 		select * from somoim where num = #{num}
 	</select>
-	
-	<select id="SOMOIM_SEARCH_LIST_TITLE" resultType="test.com.moim.somoim.model.SomoimVO" parameterType="HashMap">
-		select * from somoim where som_title like #{searchWord} and category=#{category}
+
+	<select id="SELECT_MYPAGE"
+		resultType="test.com.moim.somoim.model.SomoimVO">
+		select * from somoim a join somoim_member b on
+		a.som_title=b.som_title where user_id=#{user_id}
 	</select>
-	
-	<select id="SOMOIM_SEARCH_LIST_TITLE2" resultType="test.com.moim.somoim.model.SomoimVO">
+
+	<select id="SELECT_SOMOIM"
+		resultType="test.com.moim.somoim.model.SomoimVO">
+		select * from somoim_member a join somoim b on
+		a.somoim_num=b.num where somoim_num=#{somoim_num}
+	</select>
+
+	<select id="SOMOIM_SEARCH_LIST_TITLE"
+		resultType="test.com.moim.somoim.model.SomoimVO"
+		parameterType="HashMap">
 		select * from somoim where som_title like #{searchWord}
+		and category=#{category} order by num desc
 	</select>
-	
-	<select id="SOMOIM_SEARCH_LIST_AREA" resultType="test.com.moim.somoim.model.SomoimVO" parameterType="HashMap">
-		select * from somoim where area like #{searchWord} and category=#{category}
+
+	<select id="SOMOIM_SEARCH_LIST_TITLE2"
+		resultType="test.com.moim.somoim.model.SomoimVO">
+		select * from somoim where som_title like #{searchWord} order by num desc
 	</select>
-	<select id="SOMOIM_SEARCH_LIST_AREA2" resultType="test.com.moim.somoim.model.SomoimVO">
-		select * from somoim where area like #{searchWord}
+
+	<select id="SOMOIM_SEARCH_LIST_AREA"
+		resultType="test.com.moim.somoim.model.SomoimVO"
+		parameterType="HashMap">
+		select * from somoim where area like #{searchWord} and
+		category=#{category} by num desc
 	</select>
-	
-	<insert id="SOMOIM_INSERT" parameterType="test.com.moim.somoim.model.SomoimVO">
-		insert into somoim (num,som_title,category,max_member,create_date,area, som_content, save_name) 
-		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area}, #{som_content}, #{save_name})
+	<select id="SOMOIM_SEARCH_LIST_AREA2"
+		resultType="test.com.moim.somoim.model.SomoimVO">
+		select * from somoim where area like #{searchWord} by num desc
+	</select>
+
+	<select id="COUNT_SOMOIM" resultType="int">
+		select count(*) from somoim
+	</select>
+
+	<select id="PAGING_SOMOIM"
+		resultType="test.com.moim.somoim.model.SomoimVO">
+		SELECT *
+		FROM (
+		SELECT rownum rn, a.*
+		FROM (
+		SELECT *
+		FROM somoim
+		ORDER BY num DESC
+		) a
+		) WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+
+	<insert id="SOMOIM_INSERT"
+		parameterType="test.com.moim.somoim.model.SomoimVO">
+		insert into somoim
+		(num,som_title,category,max_member,create_date,area, som_content,
+		somoim_img, somoim_master)
+		values(seq_somoim.nextval,#{som_title},#{category},#{max_member},sysdate,#{area},
+		#{som_content}, #{somoim_img}, #{somoim_master})
 	</insert>
-	
-	<update id="SOMOIM_UPDATE" parameterType="test.com.moim.somoim.model.SomoimVO">
-		update somoim set category=#{category.val}, area=#{area}, som_content=#{som_content} where num = #{num}
+
+	<update id="SOMOIM_UPDATE"
+		parameterType="test.com.moim.somoim.model.SomoimVO">
+		update somoim set category=#{category.val},
+		area=#{area}, som_content=#{som_content} where num = #{num}
 	</update>
-	
+
 	<delete id="SOMOIM_DELETE">
 		delete from somoim where num = #{num}
 	</delete>

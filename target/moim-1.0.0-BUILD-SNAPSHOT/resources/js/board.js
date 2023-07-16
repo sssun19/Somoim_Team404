@@ -6,12 +6,12 @@ $(document).ready(function() {
         event.preventDefault();
         var listItems = [
             "운동", "야구관람", "게임/오락", "아웃도어", "반려동물", "문화/공연", "카페/맛집", "공예",
-            "도서", "사진/영상", "야구", "음악/악기", "업종/직무", "해외/언어", "요리", "배이커리",
+            "도서", "사진/영상", "사교/인맥", "음악/악기", "업종/직무", "해외/언어", "요리", "배이커리",
             "자유주제","자유주제"
         ];
         $.each(listItems, function(index, item) {
             var li = $('<li/>');
-            var input = $('<input/>', {type: 'button',name: 'category',value: item});
+            var input = $('<input/>', {type: 'button', value: item});
             li.append(input);
             $('.board_grid').append(li);
         });
@@ -66,34 +66,32 @@ function som_insertOK() {
 }//end som_insertOK
 
 function join_insertOK() {
-    console.log("join_insert....");
+    console.log("join_insertOK ajax....");
 
-    console.log($('#insert_id').val());
-    console.log($('#insert_num').val());
-    console.log($('#insert_title').val());
-    console.log($('#insert_content').val());
+    var formData = new FormData();
+    formData.append('user_id', $('#insert_id').val());
+    formData.append('somoim_num', $('#insert_num').val());
+    formData.append('title', $('#insert_title').val());
+    formData.append('content', $('#insert_content').html());
+    formData.append('file', $('#insert_imageUpload')[0].files[0]);
 
     $.ajax({
         url: "join_insertOK.do",
-        data: {
-            user_id: $('#insert_id').val(),
-            somoim_num: $('#insert_num').val(),
-            title: $('#insert_title').val(),
-            content: $('#insert_content').val(),
-
-        },
+        data: formData,
         method: 'POST',
+        processData: false,  // important
+        contentType: false,  // important
         dataType: 'text',
         success: function(response) {
             console.log('ajax....success', response);
             location.href="join_selectAll.do?somoim_num="+$('#insert_num').val();
-
         },
         error:function(xhr,status,error){
             console.log('xhr.status:', xhr.status);
         }
     });
 }//end function()
+
 
 function join_updateOK() {
     console.log("join_updateOK....");
@@ -182,7 +180,4 @@ function join_schedule_updateOK() {
         }
     });
 }//end function()
-
-
-
 

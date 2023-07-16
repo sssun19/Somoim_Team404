@@ -923,3 +923,33 @@
 
 }
 
+.form_span{
+  width: 100%;
+  text-align: center;
+}
+
+.form_span button{
+  width: 100%;
+}
+
+.content_text{
+  padding-right: 50px;
+}
+
+.content_text p{
+  width: 100%;
+}
+
+.content_text p img{
+  max-width: 100%;
+}
+
+
+
+
+.profile img  {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+

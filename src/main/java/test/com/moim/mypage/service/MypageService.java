@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.board.model.BoardDAO;
+import test.com.moim.board.model.Somoim_BoardVO;
+import test.com.moim.comments.model.som_commentsDAO;
+import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.somoim.model.SomoimDAO;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoDAO;
@@ -20,6 +24,12 @@ public class MypageService {
 	
 	@Autowired
 	SomoimDAO dao2;
+	
+	@Autowired
+	BoardDAO boardDao;
+	
+	@Autowired
+	som_commentsDAO commDao;
 
 
 	public UserinfoVO mypageSelectOne(UserinfoVO vo) {
@@ -38,6 +48,18 @@ public class MypageService {
 		log.info("update.....{}", vo);
 		return dao.mypage_update(vo);
 	}
+
+
+	public List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo) {
+		log.info("나의활동..내가 쓴 게시글 모아보기 : {}", vo.getUser_id());
+		return boardDao.mypageMyactivity_boardbyme(vo);
+	}
+
+
+//	public List<som_commentsVO> mypageMyactivity_commbyme(som_commentsVO vo) {
+//		log.info("나의활동..내가 쓴 댓글 모아보기 : {}", vo.getUser_id());
+//		return commDao.mypageMyactivity_commbyme(vo);
+//	}
 
 
 }

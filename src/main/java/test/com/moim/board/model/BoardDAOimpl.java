@@ -1,12 +1,12 @@
 package test.com.moim.board.model;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import test.com.moim.userinfo.model.UserinfoVO;
 
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
@@ -25,7 +25,7 @@ public class BoardDAOimpl implements BoardDAO{
     @Override
     public List<Somoim_BoardVO> selectList(Somoim_BoardVO vo) {
 
-
+    log.info("JOIN_SOMOIM_SELECT_ALL!!!!!!!!!!!!!!!!!!!!!!!!!!", vo);
         return sqlSession.selectList("JOIN_SOMOIM_SELECT_ALL",vo);
     }
 
@@ -97,6 +97,52 @@ public class BoardDAOimpl implements BoardDAO{
     @Override
     public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
         return sqlSession.selectOne("PAYMENT_USER_CHECK",mvo);
+    }
+
+    @Override
+    public List<Somoim_BoardVO> select_user_info() {
+        return sqlSession.selectList("JOIN_SOMOIM_SELECT_SAVE_NAME");
+    }
+
+
+
+
+	@Override
+	public List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo) {
+		log.info("mypageBoardbyme....user_id:{}", vo.getUser_id());
+		return sqlSession.selectList("MYPAGE_BOARDBYME", vo);
+	}
+//section  좋아요 좋아요 취소
+    @Override
+    public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo) {
+        return sqlSession.selectOne("SELECT_ALL_GOOD_LIST", vo);
+    }
+
+    @Override
+    public int adding_good_count_list(Somoim_BoardVO vo) {
+        return sqlSession.insert("ADDING_GOOD_COUNT_LIST", vo);
+    }
+
+    @Override
+    public int del_good_count_list(Somoim_BoardVO vo) {
+        return sqlSession.delete("DEL_GOOD_COUNT_LIST", vo);
+    }
+
+    @Override
+    public int good_count_up(Somoim_BoardVO vo) {
+        return sqlSession.update("SOM_GOOD-COUNT_UP", vo);
+    }
+
+    @Override
+    public int good_count_down(Somoim_BoardVO vo) {
+        return sqlSession.update("SOM_GOOD-COUNT_DOWN", vo);
+    }
+
+    @Override
+    public int vvcountup(Somoim_BoardVO vo) {
+        log.info("view_count_up VO...{}", vo);
+        return sqlSession.update("SOM_VIEW-COUNT_UP", vo);
+
     }
 
 

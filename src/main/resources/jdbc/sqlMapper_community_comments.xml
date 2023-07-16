@@ -12,7 +12,7 @@
 	<insert id="COMMUNITY_C_INSERT"
 			parameterType="test.com.moim.community_comments.model.Community_commentsVO">
 		insert into community_comments(num,board_num,content,user_id, parent_com)
-		values(seq_community_comments.nextval,#{board_num},#{content},#{user_id}, 0)
+		values(seq_community_comments.nextval,#{board_num},#{content},#{user_id}, #{parent_com})
 	</insert>
 
 	<update id="COMMUNITY_C_UPDATE"
@@ -23,6 +23,6 @@
 
 	<delete id="COMMUNITY_C_DELETE"
 			parameterType="test.com.moim.community_comments.model.Community_commentsVO">
-		delete from community_comments where num = #{num} and board_num = #{board_num}
+		delete from community_comments where num = #{num}
 	</delete>
 </mapper>
