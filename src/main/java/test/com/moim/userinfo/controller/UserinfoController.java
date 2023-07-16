@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.userinfo.service.UserinfoService;
@@ -204,41 +205,88 @@ public class UserinfoController {
 		return "userinfo/findPassword";
 	}
 
+	
 	@RequestMapping(value = "/findPassword2.do", method = RequestMethod.GET)
 	public String findPassword2(UserinfoVO vo, Model model) {
 		log.info("/findPassword2.do...{}",vo);
 		
-		try {
-			String user_id = vo.getUser_id();
-			
-			//아이디를 가진 비밀번호 조회
-			UserinfoVO userinfoVO  = service.findPassword(user_id);
-			log.info("{}", userinfoVO);
-			
-			if(userinfoVO != null) {
-				//비밀번호가 존재한다면 모델에 추가
-				model.addAttribute("pw", userinfoVO.getPw());
-			}else {
-				//비밀번호가 존재하지 않는 경우 메세지를 출력하기 위해 모델에 추가
-				model.addAttribute("pw","일치하는 회원정보를 찾을 수 없습니다.");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			//비밀번호 조회 중 오류 발생시 메시지를 출력하기 위해 모델에 추가
-			model.addAttribute("pw","비밀번호 검색 중 오류가 발생했습니다. ");
+		 try {
+		        String email = vo.getEmail();
+
+		        // 이메일을 가진 비밀번호 조회
+		        UserinfoVO userinfoVO = service.findPassword(email);
+		        log.info("{}", userinfoVO);
+
+		        if (userinfoVO != null) {
+		            // 비밀번호가 존재하는 경우 모델에 추가
+		            model.addAttribute("pw", userinfoVO.getPw());
+		        } else {
+		            // 비밀번호가 존재하지 않는 경우 메시지를 출력하기 위해 모델에 추가
+		            model.addAttribute("pw", "일치하는 회원 정보를 찾을 수 없습니다.");
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        // 비밀번호 조회 중 오류 발생 시 메시지를 출력하기 위해 모델에 추가
+		        model.addAttribute("pw", "아이디 검색 중 오류가 발생했습니다.");
+		    }
+
+	    return "userinfo/findPassword2";
+	}
+
+	
+	@RequestMapping(value = "/resetPassword.do", method = RequestMethod.GET)
+	public String resetPassword(UserinfoVO vo, Model model) {
+		log.info("/resetPassword.do..{}",vo);
+
+	    try {
+	        String email = vo.getEmail();
+
+	        // 이메일을 가진 비밀번호 조회
+	        UserinfoVO userinfoVO = service.findPassword2(email);
+	        log.info("{}", userinfoVO);
+
+	        if (userinfoVO != null) {
+	            // 비밀번호가 존재하는 경우 모델에 추가
+	            model.addAttribute("password", userinfoVO.getPw());
+	        } else {
+	            // 비밀번호가 존재하지 않는 경우 메시지를 출력하기 위해 모델에 추가
+	            model.addAttribute("password", "일치하는 회원 정보를 찾을 수 없습니다.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 비밀번호 조회 중 오류 발생 시 메시지를 출력하기 위해 모델에 추가
+	        model.addAttribute("password", "아이디 검색 중 오류가 발생했습니다.");
+	    }
+
+		return "userinfo/resetPassword";
+	}
+
+	
+	@RequestMapping(value = "/u_resetPassword_update.do", method = RequestMethod.GET)
+		public String b_update(UserinfoVO vo, Model model) {
+			log.info("/u_resetPassword_update.do...{}", vo);
+
+			UserinfoVO vo2 = service.selectOne(vo);
+
+			model.addAttribute("vo2", vo2);
+
+			return "Userinfo/u_resetPassword_update";
 		}
 		
-
-		return "userinfo/findPassword2";
-	}
-
-	@RequestMapping(value = "/findPassword3.do", method = RequestMethod.GET)
-	public String findPassword3() {
-		log.info("/findPassword3.do");
-
-		return "userinfo/findPassword3";
-	}
-
+		@RequestMapping(value = "/u_resetPassword_updateOK.do", method = RequestMethod.POST)
+		public String b_updateOK(UserinfoVO vo) {
+			log.info("/u_resetPassword_updateOK.do...{}", vo);
+			
+			int result = service.resetPassword_update(vo);
+			log.info("result...{}", result);
+			
+			if(result==1) {
+				return "redirect:b_selectOne.do?user_id="+vo.getUser_id();
+			}else {
+				return "redirect:b_update.do?user_id="+vo.getUser_id();
+			}
+			
+		}
 }
 
 

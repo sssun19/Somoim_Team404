@@ -5,34 +5,34 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
-    function findPassword2() {
-        var userId = $("#find_password").val();
+function idCheck(){
+	console.log("idCheck....",$('#user_id').val());
+	
+	$.ajax({
+		url : "json_m_idCheck.do",
+		data:{user_id:$('#user_id').val()},
+		method:'GET',
+		dataType:'json',
+		success : function(obj) {
+			console.log('ajax...success:', obj);
+			console.log('ajax...success:', obj.result);
+			let msg = '';
+			if(obj.result==='OK'){
+				msg = '가입된 아이디입니다.';
+			}else{
+				msg = '없는 아이디입니다.';
+			}
+			$('#demo').text(msg);
+		},
+		error:function(xhr,status,error){
+			console.log('xhr.status:', xhr.status);
+		}
+	});//end $.ajax()...
+	
+}//end idCheck()...
 
-        // AJAX를 사용하여 서버에 아이디 조회 요청 보내기
-        $.ajax({
-            url: "findPassword2.do",
-            method: "GET",
-            data: { user_id: userId },
-            success: function(response) {
-                // 서버에서의 처리가 성공했을 때
-                if (response.success) {
-                    // 아이디가 조회되었을 경우
-                    var password = response.password;
-
-                    // 팝업으로 아이디 조회 결과 표시
-                    alert("아이디를 조회했습니다.");
-                } else {
-                    // 아이디가 조회되지 않았을 경우
-                    alert("아이디를 조회하지 못했습니다.");
-                }
-            },
-            error: function() {
-                // 서버와의 통신에 실패했을 때
-                alert("서버와의 통신 중 오류가 발생했습니다.");
-            }
-        });
-    }
-</script>
+function memberCheck(){
+	location.href='findPassword2.do?user_id='+$('#user_id').val()}; 
 
 </script>
 
@@ -87,8 +87,13 @@
         </div>
         <div class="total" >
             <h3 style="height: 4px; margin-right: 50%;">아이디</h3>
-            <input type="text"  placeholder="아이디를 입력하세요" id="find_password" style="width: 50%;" > <br>   
-        <button style="width: 30%;" type="button" onclick="findPassword2()">조회</button>
+            <input type="text"  placeholder="아이디를 입력하세요" value="kim123" id="user_id" style="width: 50%;" >
+            <span id="demo"></span> <br>   
+        <button style="width: 30%;" type="button" onclick="idCheck()">조회</button>
+        <hr>
+         <button type="button" id="submitpass" onclick="memberCheck()">본인확인</button>
+           
+        
     </div>    
 </div>
       

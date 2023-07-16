@@ -59,4 +59,12 @@ public class MemberDAOimpl implements MemberDAO {
 		return session.selectList("PROFILE_CHECK", vo);
 	}
 
+	@Override
+	public List<MemberVO> searchSavename(String somoim_master) {
+		log.info("searchSavename...{}", somoim_master);
+		
+		return session.selectList("SEARCH_SAVE_NAME", somoim_master);
+	}
+
+
 }

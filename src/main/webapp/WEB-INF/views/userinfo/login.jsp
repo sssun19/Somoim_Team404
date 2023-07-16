@@ -9,13 +9,29 @@
     <title>Document</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
+      <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+  function check(){
+	  if(loginform.user_id.value.length == 0){
+		  alert("아이디가 누락되었습니다.");
+		  loginform.user_id.focus();
+		  return false;
+	  }
+	  if(loginform.pw.value.length == 0){
+		  alert("비밀번호가 누락되었습니다.");
+		  loginform.pw.focus();
+		  return false;
+	  }
+  }
+    </script>
 </head>
 <body>
    <jsp:include page="../top_menu.jsp"></jsp:include>
 
     <div class="login_section">
 
-       <form action="loginOK.do" method="post">
+       <form action="loginOK.do" method="post" name="loginform" onsubmit="return check();">
             
             <label for="user_id">아이디</label>
             <br>

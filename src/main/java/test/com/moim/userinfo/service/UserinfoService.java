@@ -45,8 +45,21 @@ public class UserinfoService {
 
 	public UserinfoVO findPassword(String user_id) throws Exception{
 		log.info("findPassword()...user_id:{}", user_id);
-		return dao.findPassword(user_id);
+		return dao.resetPassword(user_id);
 	}
 
+
+	public UserinfoVO selectUser(UserinfoVO vo2) {
+		log.info("selectUserID...{}", vo2);
+		return dao.selectUser(vo2);
+	}
+
+	public UserinfoVO findPassword2(String email) {
+		log.info("findPassword()...email:{}", email);
+		return dao.findPassword2(email);
+	}
+	public int resetPassword_update(UserinfoVO vo) {
+		return dao.resetPassword_update(vo);
+	}
 
 }

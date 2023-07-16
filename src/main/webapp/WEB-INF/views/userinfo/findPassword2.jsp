@@ -72,10 +72,27 @@
                 return false;
             });
 
-    	$("#register").click(function() {
-    		var userId = $("h4").text(); // 회원 아이디 추출
-    	    window.location.href = 'findPassword3.do?userId=' + userId;
-    	});
+    
+     function passwordCheck() {
+         var name = $("#name").val();
+         var email = $("input[name='email']").val();
+
+         $.ajax({
+             url: 'findPassword2.do',
+             method: 'POST',
+             data: {
+                 name: name,
+                 email: email
+             },
+             success: function(response) {
+                 $("#result").text(response);
+             },
+             error: function() {
+                 alert('비밀번호 검색에 실패했습니다.');
+             }
+         });
+     }
+
 
     });
 
@@ -134,14 +151,14 @@
 
             <div class="total" >
                 <h3 style="height: 4px; margin-right: 50%;">이름</h3>
-                <input type="text"  placeholder="이름을 입력하세요" id="find_password"  > <br>       
+                <input type="text"  placeholder="이름을 입력하세요" id="user_id" value="김나연" > <br>       
                     <div class="email" >
                         <div class="emailtitle" >
                             <h3  style="height: 4px; ">이메일</h3>
                             <h5 >본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</h5>
                         </div>
                         <div class="inser_email">
-                            <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" id="find_password">     
+                            <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" id="email" value="wendy3302@naver.com">     
                             <button type="button" class="mail_check_button" id="mail_check_button">인증 번호 전송</button>
                         </div>
                     </div>    
@@ -151,9 +168,10 @@
                             <br>
                             <div class="injarea" style="text-align: center;">
                             <button id="inj" type="button" onclick="showMessage()">인증번호가 오지 않았나요?</button> <br>
-                            </div>
-                             <button id="btn_email_token" >확인</button>
-                        <button type="button" id="submitpass" onclick="location.href='findPassword3.do'">비밀번호 찾기</button>
+                    </div>
+                          <button id="btn_email_token" >확인</button>
+                             
+                        <button type="button" id="submitpass" onclick="location.href='resetPassword.do?user_id=${param.user_id}'">비밀번호 재설정</button>
                     </div>
 
                 </div>    

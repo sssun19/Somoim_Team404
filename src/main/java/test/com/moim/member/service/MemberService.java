@@ -37,4 +37,8 @@ public class MemberService {
 		log.info("this is ... : {}", vo.getNum());
 		return dao.profileCheck(vo);
 	}
+	public List<MemberVO> searchSavename(String somoim_master) {
+		log.info("searchSave_name ....{}", somoim_master);
+		return dao.searchSavename(somoim_master);
+	}
 }

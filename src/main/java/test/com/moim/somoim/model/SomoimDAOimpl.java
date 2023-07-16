@@ -77,6 +77,12 @@ public class SomoimDAOimpl implements SomoimDAO {
 		return session.selectOne("SEARCH_SAVENAME", uvo);
 	}
 
+	@Override
+	public List<SomoimVO> mypageSelectSomoim(String user_id) {
+		log.info("mypageSelectSomoim....user_id:{}", user_id);
+		return session.selectList("SELECT_MYPAGE", user_id);
+	}
+
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info("profilesearch()....{}", uvo);
 //		log.info("이건  mapper 에 있음");

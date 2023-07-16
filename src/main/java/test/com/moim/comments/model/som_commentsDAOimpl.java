@@ -24,7 +24,7 @@ public class som_commentsDAOimpl implements som_commentsDAO {
 	@Override
 	public int insert(som_commentsVO vo) {
 		log.info(" dao.inserct().... {}", vo );
-		log.info("등록됩니다");
+		log.info("comments");
 		
 		return sqlsession.update("SOM_C_INSERT",vo);
 	}
@@ -50,14 +50,14 @@ public class som_commentsDAOimpl implements som_commentsDAO {
 	public void good_count_up(som_commentsVO vo) {
 //		log.info("vcountUp()....{}",vo);
 //		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("�ö󰩴ϴ�");
+		log.info("count");
 		
 	}
 	@Override
 	public void som_board_num_down(som_commentsVO vo) {
 //		log.info("vcountUp()....{}",vo);
 //		sqlSession.update("B_VCOUNT_UP",vo);
-		log.info("�������ϴ�");
+		log.info("num");
 
 	}
 

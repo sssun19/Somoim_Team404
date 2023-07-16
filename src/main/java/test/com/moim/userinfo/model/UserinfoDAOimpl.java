@@ -50,8 +50,8 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 
 	@Override
 	public UserinfoVO idCheck(UserinfoVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("idCheck()..{}",vo);
+		return sqlSession.selectOne("U_ID_CHECK",vo);
 	}
 
 	@Override
@@ -67,14 +67,43 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 	    map.put("email", email);
 		return sqlSession.selectOne("U_FindId", map);
 	}
+	
+	@Override
+	public UserinfoVO findPassword2(String email) {
+		log.info("find_password()...{}", email);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("email", email);
+		return sqlSession.selectOne("U_FindPassword2", map);
+	}
 
 	@Override
-	public UserinfoVO findPassword(String user_id) throws Exception {
-		log.info("find_password()...{}", user_id);
+	public UserinfoVO resetPassword(String email) throws Exception {
+		log.info("find_password()...{}", email);
 	    Map<String, String> map = new HashMap<String, String>();
-	    map.put("user_id", user_id);
-		return sqlSession.selectOne("U_FindPassword", map);
+	    map.put("user_id", email);
+		return sqlSession.selectOne("U_resetPassword", map);
 	}
+	
+
+	@Override
+	public int resetPassword_update(UserinfoVO vo) {
+		log.info("resetPassword_update....{}", vo);
+		return sqlSession.update("U_resetPassword", vo);
+	}
+	
+	@Override			
+	public UserinfoVO selectUser(UserinfoVO vo2) {
+		log.info("selectUserID....{}", vo2);
+		return sqlSession.selectOne("UPDATE_USER", vo2);
+	}
+
+	@Override
+	public int mypage_update(UserinfoVO vo) {
+		log.info("mypage_update....{}", vo);
+		return sqlSession.update("MYPAGE_UPDATE_OK", vo);
+	}
+
+
 
 		
 }

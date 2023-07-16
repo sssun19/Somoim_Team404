@@ -89,6 +89,25 @@ function findID(){
          var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
         alert(alertMessage);
         }
+        
+        
+<%--        
+        function check(event){
+      	  if(findidform.name.value.length == 0){
+      		  alert("이름이 누락되었습니다.");
+      		  findidform.name.focus();
+      	  	  event.preventDefault(); 
+      		  return false;
+      	  }
+      	  if(findidform.email.value.length == 0){
+      		  alert("이메일이 누락되었습니다.");
+      		  findidform.email.focus();
+      		  event.preventDefault(); 
+      		  return false;
+      	  }
+      	  return true;
+      }
+    --%>
     </script>
 
 <head>
@@ -130,6 +149,8 @@ function findID(){
 
     <div class="find_sec" >
     
+    <form action="findId.do" method="post" name="findidform" > <%--onsubmit="return check();" --%>
+    
         <div class="insert_sec" >
 
         <div class="find_title" >
@@ -161,14 +182,16 @@ function findID(){
                              <button id="btn_email_token">확인</button>
                             </div>
                         <button type="submit" id="register" onclick="findID()">확인</button>
+                        
+
                         <button type="button" id="submitpass" onclick="location.href='findPassword.do'">비밀번호 찾기</button>
            
                 </div>    
         </div>
     </div>
-                
-        
-    
+    </form>            
+       
+</div>
 
    
 

@@ -75,16 +75,52 @@
 
         });
         // 이메일 값을 저장하는 함수
-        function saveEmail() {
+        function saveEmail(event) {
             var email = $("input[name='email']").val();
             localStorage.setItem("email", email);
         }
+        <%--
+        function check(){
+      	  if(insertform.user_id.value.length == 0){
+      		  alert("아이디가 누락되었습니다.");
+      		  insertform.user_id.focus();
+      		  event.preventDefault();
+      		  return false;
+      	  }
+      	  if(insertform.pw.value.length == 0){
+      		  alert("비밀번호가 누락되었습니다.");
+      		  insertform.pw.focus();
+      		  return false;
+      	  }
+      	  if(insertform.pw_check.value.length == 0){
+      		  alert("비밀번호 재입력이 누락되었습니다.");
+      		  insertform.pw_check.focus();
+      		  return false;
+      	  }
+      	  if(insertform.name.value.length == 0){
+      		  alert("이름이 누락되었습니다.");
+      		  insertform.name.focus();
+      		  return false;
+      	  }
+      	  if(insertform.email.value.length == 0){
+      		  alert("이메일이 누락되었습니다.");
+      		  insertform.email.focus();
+      		  return false;
+      	  }
+      	  if(insertform.email_token.value.length == 0){
+      		  alert("인증번호가 누락되었습니다.");
+      		  insertform.email_token.focus();
+      		  return false;
+      	  }
+      	  return true;
+        }
+        --%>
         </script>
 </head>
 <body>
 <%@ include file="../top_menu.jsp" %>
 <div class="register_section">
-    <form action="u_insertOK.do" method="post" enctype="multipart/form-data">
+    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" > <%-- name="insertform" onsubmit="return check(event); " --%>
         <label for="user_id">아이디</label>
         <br>
         <input type="text" placeholder="아이디를 입력하세요." name="user_id" id="user_id" >
@@ -134,6 +170,29 @@
         <br>
         <input type="file" name="file" id="file" value="">
         <br>
+        <label for="user_interest">관심 태그 선택</label>
+        <br>
+        <select name="interest" size="5">
+			<option value="야구">야구</option>
+			<option value="독서">독서</option>
+			<option value="요리">요리</option>
+			<option value="운동">운동</option>
+			<option value="게임/오락">게임/오락</option>
+			<option value="아웃도어">아웃도어</option>
+			<option value="반려동물">반려동물</option>
+			<option value="문화/공연">문화/공연</option>
+			<option value="카페/맛집">카페/맛집</option>
+			<option value="공예">공예</option>
+			<option value="사진/영상">사진/영상</option>
+			<option value="사교/인맥">사교/인맥</option>
+			<option value="음악/악기">음악/악기</option>
+			<option value="업종/직무">업종/직무</option>
+			<option value="해외/언어">해외/언어</option>
+			<option value="베이커리">베이커리</option>
+			<option value="여행">여행</option>
+		</select>
+		<br>
+		<br>
         <label for="user_email">이메일</label>
         <br>
         <div class="register_input_flex">

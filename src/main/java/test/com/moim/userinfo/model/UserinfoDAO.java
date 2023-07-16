@@ -18,7 +18,14 @@ public interface UserinfoDAO {
 
 	UserinfoVO findId(String email) throws Exception;
 
-	UserinfoVO findPassword(String user_id) throws Exception;
+	UserinfoVO resetPassword(String user_id) throws Exception;
 
+	UserinfoVO selectUser(UserinfoVO vo2);
+
+	int mypage_update(UserinfoVO vo);
+
+	UserinfoVO findPassword2(String email);
+
+	int resetPassword_update(UserinfoVO vo);
 
 }
