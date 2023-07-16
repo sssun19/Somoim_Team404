@@ -2,12 +2,58 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
-    <script>
-        function showMessage() {
-         var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
-        alert(alertMessage);
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>findID2</title>
+    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/min.css">
+    <link rel="stylesheet" href="resources/css/find.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // 비밀번호 변경 요청을 서버에 전송하는 Ajax 요청
+    $("#submitpass").click(function() {
+        var newPassword = $("#newPassword").val();
+        var confirmPassword = $("#confirmPassword").val();
+
+        // 비밀번호 유효성 검사
+        if (newPassword === '' || confirmPassword === '') {
+            alert("비밀번호를 입력해주세요.");
+            return;
         }
-    </script>
+
+        if (newPassword !== confirmPassword) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
+        // 서버에 변경된 비밀번호 저장하는 Ajax 요청
+        $.ajax({
+            url: 'savePassword.do',
+            method: 'POST',
+            data: { user_id: '${param.user_id}', pw: newPassword },
+            dataType: "json",
+            success: function(response) {
+                if (response.result === 'OK') {
+                    alert('비밀번호가 성공적으로 변경되었습니다.');
+                    // 로그인 페이지로 이동
+                    window.location.href = "login.do";
+                } else {
+                    alert('비밀번호 변경에 실패했습니다.');
+                }
+            },
+            error: function() {
+                alert('서버와의 통신에 실패했습니다.');
+            }
+        });
+    });
+});
+
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,8 +85,8 @@
                 <input type="search" placeholder="검색">
             </div>
             <div class="login">
-                <a href="/login.do">로그인</a>
-                <a href="/logout.do">로그아웃</a>
+                <a href="login.do">로그인</a>
+                <a href="logout.do">로그아웃</a>
             </div>
 
         </div>
@@ -51,6 +97,7 @@
     
         <div class="insert_sec" >
 
+	<form action="u_resetPassword.do" method="post">
         <div class="find_title" >
           <h2>비밀번호 찾기 </h2>           
         </div>
@@ -61,14 +108,14 @@
 
             <div class="total" >
                 <h3 style="height: 4px; margin-right: 50%;">새로운 비밀번호</h3>
-                <input type="text"  placeholder="비밀번호를 입력하세요" id="find_password"  > <br>       
+                <input type="text"  placeholder="비밀번호를 입력하세요" id="newPassword" value="1234" > <br>       
                     <div class="email" >
                         <div class="emailtitle" >
                             <h3  style="height: 4px; ">비밀번호 확인</h3>
                             <h5 >위와 동일한 비밀번호를 입력해주세요.</h5>
                         </div>
                     <div class="inser_email">
-                         <input type="text" placeholder="비밀번호를 입력하세요" id="find_password">      
+                         <input type="text" placeholder="비밀번호를 입력하세요" id="confirmPassword" value="1234">      
   		             </div>
                     </div>    
                 
@@ -81,9 +128,11 @@
                     </div>
             
                     <input type="text" placeholder="자동 입력 방지 문자"  >     
+                    <img src="getCaptchaImg" alt="captcha image"> <!-- 캡차 이미지 표시 -->
+                
 
                     <button style="width: 10%;" type="button"><h>확인</h></button>
-            		<button type="button" id="submitpass" onclick="location.href='login.do'" >변경하기</button>
+            		<button type="button" id="submitpass" >변경하기</button>
             </div>
                     
 
