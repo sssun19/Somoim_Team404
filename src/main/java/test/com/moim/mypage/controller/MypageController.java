@@ -201,10 +201,9 @@ public class MypageController {
 		som_commentsVO vo = new som_commentsVO();
 		vo.setUser_id(user_id);
 		
-//		List<som_commentsVO> vos = service.mypageMyactivity_commbyme(vo);
+		List<som_commentsVO> vos = service.mypageMyactivity_commbyme(vo);
 		
-//		return vos;
-		return null;
+		return vos;
 	}
 	
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)
