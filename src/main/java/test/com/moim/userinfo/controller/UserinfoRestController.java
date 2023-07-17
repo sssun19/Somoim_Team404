@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.userinfo.model.UserinfoVO;
+import test.com.moim.userinfo.service.UserinfoService;
 
 @Slf4j
 @Controller
@@ -26,7 +29,41 @@ public class UserinfoRestController {
 
 	@Autowired
 	private HttpServletRequest request;
+	
+	@Autowired
+	UserinfoService service;
+	
+	@ResponseBody
+	@RequestMapping(value = "/json_m_idCheck.do", method = RequestMethod.GET)
+	public String json_m_idCheck(UserinfoVO vo, Model model) {
+		log.info("/json_m_idCheck.do...{}",vo);
+		
+		UserinfoVO vo2 = service.idCheck(vo);
+		log.info("{}",vo2);
+		if(vo2!=null) {
+			return "{\"result\":\"OK\"}";
+		}else {
+			return "{\"result\":\"NotOK\"}";
+		}
+	}
+	@ResponseBody
+	@RequestMapping(value = "/savePassword.do", method = RequestMethod.POST)
+	public String savePassword(UserinfoVO vo, Model model) {
+		log.info("/savePassword.do...{}",vo);
+		
+		int vo2 = service.resetPassword_update(vo);
+	    log.info("{}", vo);
+	    if (vo2 > 0) {
+	        // 비밀번호 변경 후 세션 정보 갱신
+	        HttpSession session = request.getSession();
+	        UserinfoVO updatedUser = service.selectOne(vo); // 업데이트된 유저 정보 가져오기
+	        session.setAttribute("user", updatedUser); // 세션에 업데이트된 유저 정보 저장
 
+	        return "{\"result\":\"OK\"}";
+	    } else {
+	        return "{\"result\":\"NotOK\"}";
+	    }
+	}
 	@ResponseBody
 	@RequestMapping(value = "/sendEmail.do", method = RequestMethod.GET)
 	public String sendEmail(String email) {

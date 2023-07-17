@@ -206,7 +206,7 @@ public class BoardController {
 
         model.addAttribute("coms", coms);
         model.addAttribute("c_coms", c_coms);
-
+        service.vvcountup(vo);
 
 
 

@@ -45,9 +45,7 @@
         parentDiv.replaceChild(div, button);
     }
 </script>
-<button type="button" onclick="showPopup()">
-    <i class="fa-solid fa-lightbulb" style="color: red;"></i>
-</button>
+
 
 <script>
     function showPopup() {

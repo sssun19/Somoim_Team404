@@ -2,6 +2,40 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kr">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+function idCheck(){
+	console.log("idCheck....",$('#user_id').val());
+	
+	$.ajax({
+		url : "json_m_idCheck.do",
+		data:{user_id:$('#user_id').val()},
+		method:'GET',
+		dataType:'json',
+		success : function(obj) {
+			console.log('ajax...success:', obj);
+			console.log('ajax...success:', obj.result);
+			let msg = '';
+			if(obj.result==='OK'){
+				msg = '가입된 아이디입니다.';
+			}else{
+				msg = '없는 아이디입니다.';
+			}
+			$('#demo').text(msg);
+		},
+		error:function(xhr,status,error){
+			console.log('xhr.status:', xhr.status);
+		}
+	});//end $.ajax()...
+	
+}//end idCheck()...
+
+function memberCheck(){
+	location.href='findPassword2.do?user_id='+$('#user_id').val()}; 
+
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,8 +87,13 @@
         </div>
         <div class="total" >
             <h3 style="height: 4px; margin-right: 50%;">아이디</h3>
-            <input type="text"  placeholder="아이디를 입력하세요" id="find_password" style="width: 50%;" > <br>       
-        <button style="width: 30%;" type="button" onclick="location.href='findPassword2.do'">제출</button>
+            <input type="text"  placeholder="아이디를 입력하세요" value="kim123" id="user_id" style="width: 50%;" >
+            <span id="demo"></span> <br>   
+        <button style="width: 30%;" type="button" onclick="idCheck()">조회</button>
+        <hr>
+         <button type="button" id="submitpass" onclick="memberCheck()">본인확인</button>
+           
+        
     </div>    
 </div>
       
@@ -90,4 +129,4 @@
        
     </div>
 </body>
-</html>
+</html> 
