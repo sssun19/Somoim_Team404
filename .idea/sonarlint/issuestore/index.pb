@@ -14,8 +14,6 @@ _
 /src/main/java/test/com/moim/HomeController.java,1\9\192fb33ea8e944b01bcf86c8e7c3ad4e4aaa3b54
 m
 =src/main/java/test/com/moim/somoim/service/SomoimService.java,8\a\8a24f85923dbc4796aa4256677d8a1ae85c92b9e
-`
-0src/main/webapp/WEB-INF/views/userinfo/login.jsp,c\2\c226bbb5718a889c231d6f80bf2b4457da50c1dd
 a
 1src/main/webapp/WEB-INF/views/userinfo/insert.jsp,3\6\36fc5a8324a7b84eaa298efd3d8ac0e548d62970
 j
@@ -100,13 +98,5 @@ d
 4src/main/webapp/WEB-INF/views/board/join_gallery.jsp,4\b\4b769089ef87bad298774dfb85040ded6a26380c
 Y
 )src/main/webapp/resources/css/gallery.css,1\0\10ef4874df88a9c9a59a6c7df45ca7a96920418d
-e
-5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-l
-<src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 s
 Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87

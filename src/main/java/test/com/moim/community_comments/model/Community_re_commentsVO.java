@@ -14,5 +14,6 @@ public class Community_re_commentsVO {
 	private int good_count;
 	private int board_num;
 	private int parent_com;
+	private String save_name;
 
 }

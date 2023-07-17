@@ -22,8 +22,6 @@ j
 :src/main/java/test/com/moim/userinfo/controller/Email.java,c\f\cf117f056b066226e13ec9d98e3f90d8d0c5ff18
 w
 Gsrc/main/java/test/com/moim/userinfo/controller/UserinfoController.java,a\d\ad329835b636e658462d3e7f8f7391d9b07283dc
-`
-0src/main/webapp/WEB-INF/views/userinfo/login.jsp,c\2\c226bbb5718a889c231d6f80bf2b4457da50c1dd
 a
 1src/main/webapp/WEB-INF/views/userinfo/insert.jsp,3\6\36fc5a8324a7b84eaa298efd3d8ac0e548d62970
 Z
@@ -102,13 +100,5 @@ Y
 )src/main/webapp/resources/css/gallery.css,1\0\10ef4874df88a9c9a59a6c7df45ca7a96920418d
 d
 4src/main/webapp/WEB-INF/views/board/join_gallery.jsp,4\b\4b769089ef87bad298774dfb85040ded6a26380c
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
-e
-5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
-l
-<src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
-b
-2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
 s
 Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87

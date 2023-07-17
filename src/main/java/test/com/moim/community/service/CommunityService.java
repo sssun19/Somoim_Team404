@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.community.model.CommunityDAO;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.somoim.model.SomoimVO;
@@ -46,6 +47,8 @@ public class CommunityService {
     public List<CommunityVO> searchList(String searchKey, String searchWord) {
         return dao.searchList(searchKey, searchWord);
     }
+
+    public List<CommunityVO> select_user_info() { return dao.select_user_info();}
 
     public void view_countUp(CommunityVO vo) {
         dao.view_countUp(vo);

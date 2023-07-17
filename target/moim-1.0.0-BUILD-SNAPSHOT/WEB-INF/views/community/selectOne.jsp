@@ -59,7 +59,8 @@
         <div class="community_top">
             <div class="c_user_info">
                 <div class="c_profile">
-                    <i class="far fa-user"></i>
+                    <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                         src="resources/uploadimg/${vo2.save_name}">
                 </div>
                 <span> <strong>${vo2.user_id}</strong>
 						<p>${vo2.write_date}</p>
@@ -82,7 +83,7 @@
             </div>
         </div>
         <div class="c_content_text">
-            <img src="resources/uploadimg/${vo2.save_name}">
+            <img src="resources/uploadimg/${vo2.save_img}">
             </br>
             <strong>${vo2.title}</strong>
 
@@ -99,7 +100,9 @@
 						<div class="c_user_info">
 							<div class="c_user_info_profile_">
 								<div class="c_profile">
-									<i class="far fa-user"></i>
+                                    <%--파트 "댓글"작성자 이미지 프로필 사진 --%>
+									<img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                         src="resources/uploadimg/${ccoms.save_name}">
 								</div>
 								<div class="c_user_info_profile_tooltip">
 									<div class="c_com_top">

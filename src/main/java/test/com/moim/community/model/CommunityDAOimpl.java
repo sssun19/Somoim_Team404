@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import test.com.moim.board.model.Somoim_BoardVO;
 
 import java.util.List;
 
@@ -64,6 +65,10 @@ public class CommunityDAOimpl implements CommunityDAO{
 			
 		}
 		return sqlSession.selectList(key,"%"+searchWord+"%");
+	}
+
+	public List<CommunityVO> select_user_info() {
+		return sqlSession.selectList("CB_SELECT_SAVE_NAME");
 	}
 
 	@Override
