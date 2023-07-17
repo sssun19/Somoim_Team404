@@ -39,4 +39,6 @@ public interface BoardDAO {
 
     List<Somoim_BoardVO> select_user_info();
 	List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo);
+
+	List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo);
 }

@@ -114,4 +114,13 @@ public class BoardDAOimpl implements BoardDAO{
 	}
 
 
+
+
+	@Override
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("som_schedule_selectOne....somoim_num:{}", vo);
+		return sqlSession.selectList("SOM_SCHEDULE_SELECTONE", vo);
+	}
+
+
 }

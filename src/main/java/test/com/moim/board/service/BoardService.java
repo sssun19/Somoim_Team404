@@ -83,4 +83,10 @@ public class BoardService {
 
     public List<Somoim_BoardVO> select_user_info() { return dao.select_user_info();}
 
+
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("somoim_schedule_selectOne.....somoim_num:{}", vo);
+		return dao.som_schedule_selectOne(vo);
+	}
+
     }

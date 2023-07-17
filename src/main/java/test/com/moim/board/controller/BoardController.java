@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
@@ -411,6 +413,26 @@ System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim
         }
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/som_schedule_selectOne.do", method = RequestMethod.GET)
+    public List<Somoim_ScheduleVO> som_schedule_SelectOne(Integer somoim_num, Model model) {
+    	log.info("som_schedule_SelectOne.do().....somoim_num:{}", somoim_num);
+    	Somoim_ScheduleVO vo = new Somoim_ScheduleVO();
+    	vo.setSomoim_num(somoim_num);
+    	
+    	List<Somoim_ScheduleVO> vos = service.som_schedule_selectOne(vo);
+    	log.info("=============================왜 안뜨지?");
+    	log.info("======={}", vos);
+    	
+    	for (Somoim_ScheduleVO x : vos) {
+			log.info("ddlaskdjflkasjdflkajsldfkjx,mcnx,xmnvc?????{}",x.getPlace());
+			log.info(x.getSchedule_title());
+		}
+    	
+    	model.addAttribute("vos", vos);
+    	return vos;
+    }
+    
     @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
     public String join_pay(Somoim_ScheduleVO vo,Model model) {
 

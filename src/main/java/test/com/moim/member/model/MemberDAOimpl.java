@@ -66,4 +66,10 @@ public class MemberDAOimpl implements MemberDAO {
 		return session.selectList("SEARCH_SAVE_NAME", somoim_master);
 	}
 
+	@Override
+	public int mypage_update_member(MemberVO vo2) {
+		log.info("오로지 somoim_member 테이블의 save_name을 바꾸기 위한 메서드....{}", vo2.getSave_name());
+		return session.selectOne("MYPAGE_UPDATE_MEMBER", vo2);
+	}
+
 }
