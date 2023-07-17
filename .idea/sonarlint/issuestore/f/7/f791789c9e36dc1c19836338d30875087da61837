@@ -1,7 +1,0 @@
-
-c	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(á÷õ
-c	java:S100+"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…›∆å
-c	java:S100/"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ö…⁄ç
-b	java:S1003"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬ªÔ<
-c	java:S1007"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ãí‰¢
-c	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûµ∫ˇ

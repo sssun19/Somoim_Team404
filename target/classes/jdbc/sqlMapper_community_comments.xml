@@ -17,8 +17,8 @@
 
 	<update id="COMMUNITY_C_UPDATE"
 			parameterType="test.com.moim.community_comments.model.Community_commentsVO">
-		update community_comments set content=#{content} , wdate=sysdate
-		where num = #{num} and board_num = #{board_num}
+		update community_comments set content=#{content}
+		where num = #{num}
 	</update>
 
 	<delete id="COMMUNITY_C_DELETE"
