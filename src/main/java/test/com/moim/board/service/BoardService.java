@@ -97,4 +97,8 @@ public class BoardService {
     public List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos) {
         return dao.vote_selectList(voteVos);
     }
+
+    public int vote_update(Somoim_Choice_Vote vo) {
+        return dao.vote_update(vo);
+    }
 }

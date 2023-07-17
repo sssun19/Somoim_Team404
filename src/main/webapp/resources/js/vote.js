@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
     var globalCurrentNum;
 
     function setCurrentNum(num) {
@@ -136,4 +138,11 @@ $(document).ready(function() {
             }
         });
     });
+
+
+
+
+
+
+
 });

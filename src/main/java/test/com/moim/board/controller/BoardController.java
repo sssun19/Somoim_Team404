@@ -103,32 +103,36 @@ public class BoardController {
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
+        List<SomoimDto> dtos = new ArrayList<>();  // dto 리스트를 생성
 
         for(Somoim_BoardVO vo2 : vos){
             log.info(vo2.toString());
             int vo2Num = vo2.getNum();
+
+            SomoimDto dto = new SomoimDto();  // 새로운 dto를 생성
+            dto.setBoardVo(vo2);  // dto에 Somoim_BoardVO를 설정
+
             if (vo2.getVote_num() != 0){
                 log.info(String.valueOf(vo2Num));
                 Vote_vos.setNum2(vo2Num);
+
+                List<Somoim_Question_VoteVO> vote_vos = service.vote_selectList(Vote_vos);
+                for(Somoim_Question_VoteVO vo3 : vote_vos) {
+                    log.info("TEST!! :    "+vo3.toString());
+                }
+
+                dto.setVoteVos(vote_vos);  // dto에 List<Somoim_Question_VoteVO>를 설정
             }
 
-
+            dtos.add(dto);  // dto 리스트에 dto를 추가
         }
 
-        List<Somoim_Question_VoteVO> vote_vos = service.vote_selectList(Vote_vos);
-
-
-        for(Somoim_Question_VoteVO vo3 : vote_vos) {
-            log.info("TEST!! :    "+vo3.toString());
-        }
-
-
-
-
-        model.addAttribute("vos", vos);
+        model.addAttribute("dtos", dtos);
+        // 모델에 dto 리스트를 추가
 
         return "board/join_selectAll";
     }
+
 
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
     public String join_selectOne(Somoim_BoardVO vo, Model model) {
@@ -304,7 +308,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_update.do", method = RequestMethod.GET)
     public String join_update(Model model, Somoim_BoardVO vo) {
-        log.info("join_update.do().....");
+        log.info("join_update.do().....{}",vo);
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}", vo2);
@@ -317,7 +321,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_updateOK.do", method = RequestMethod.POST)
     public String join_updateOK(Somoim_BoardVO vo) {
-        log.info("join_updateOK.do().....");
+        log.info("join_updateOK.do().....{}",vo);
 
         int result = service.update(vo);
 
@@ -542,6 +546,29 @@ public class BoardController {
         // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
         return "SUCCESS";
     }
+
+    @RequestMapping(value = "/vote_UpdateOK.do", method = RequestMethod.POST)
+    public ResponseEntity<String> vote_update(Somoim_Choice_Vote vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        String userId = (String) request.getSession().getAttribute("user_id");
+
+        vo.setSom_vote_user_id(userId);
+
+        int result = service.vote_update(vo);
+
+
+        if (result == 1) {
+            // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+            return new ResponseEntity<>("투표 성공!", HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>("투표 실패!", HttpStatus.OK);
+        }
+        
+    }
+
+
 
 
 

@@ -8,4 +8,5 @@ public class Somoim_Choice_Vote {
     private int som_qvote_num;
     private String choice;
     private int count;
+    private String som_vote_user_id;
 }

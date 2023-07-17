@@ -14,6 +14,7 @@ public class Somoim_Question_VoteVO {
     private String choice;
     private int count;
     private int num2;
+    private String som_vote_user_id;
 
 
 }

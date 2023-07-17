@@ -27,8 +27,7 @@
     <div class="insert_func">
             <span>
                 <i class="fas fa-vote-yea"><a id="vote_link">투표</a></i>
-                <i class="fas fa-image"><a>이미지</a></i>
-                <i class="fas fa-file-alt"><a>파일</a></i>
+                <i class="fas fa-image"><a href="#" id="imageUploadLink">이미지</a></i>
 
 
             </span>
@@ -55,7 +54,7 @@
                     <input type="text" style="background-color: #ccc;" value="${user_id}" id="insert_id" name="user_id" readonly/>
 
 
-                    <input type="file" name="file" id="insert_imageUpload" style="display: none;" onchange="image_done()">
+                    <input type="file" name="file" id="insert_imageUpload" style="display: none;">
                     <input type="hidden" value="${num}" id="insert_num" name="somoim_num">
                     <input type="hidden" id="vote_num">
 
@@ -107,7 +106,15 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="resources/js/board.js"></script>
-<script src="resources/js/vote.js"></script>
+<script src="/resources/js/vote.js"></script>
 
+<script>
+    $(document).ready(function() {
+        $("#imageUploadLink").click(function(event) {
+            event.preventDefault();  // 기본 동작(여기서는 페이지 이동)을 중지시킵니다.
+            $("#insert_imageUpload").click();  // '#insert_imageUpload'를 클릭한 것처럼 만듭니다.
+        });
+    });
+</script>
 
 </html>

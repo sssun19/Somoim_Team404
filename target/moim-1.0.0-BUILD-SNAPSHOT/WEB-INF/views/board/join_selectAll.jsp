@@ -26,57 +26,80 @@
         </div> 
         <div class="view_content">
             <ul class="view_grid">
-                <c:forEach var="vo" items="${vos}">
-                    <li class="view_grid_li">
-                        <input type="hidden" value="${vo.som_member_num}">
-                        <a href="join_selectOne.do?num=${vo.num}">
-                            <input type="hidden" value="${vo.somoim_num}">
+                <c:forEach var="dto" items="${dtos}">
+                    <li class="view_grid_li" style="padding-bottom: 50px;">
+                        <input type="hidden" value="${dto.boardVo.som_member_num}">
+                        <a href="join_selectOne.do?num=${dto.boardVo.num}">
+                            <input type="hidden" value="${dto.boardVo.somoim_num}">
                             <div class="join_top">
                                 <div class="user_info">
                                     <div class="profile">
-                                        <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
-                                             src="/resources/uploadimg/${vo.save_name}">
+                                        <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                             src="/resources/uploadimg/${dto.boardVo.save_name}">
                                     </div>
                                     <span>
-                                        <strong>${vo.user_id}</strong>
-
-                                        <p>${vo.write_date}</p>
-                                    </span>
+                        <strong>${dto.boardVo.user_id}</strong>
+                        <p>${dto.boardVo.write_date}</p>
+                    </span>
                                 </div>
                                 <div class="bbs_func">
-                                    <c:if test="${vo.user_id == user_id}">
+                                    <c:if test="${dto.boardVo.user_id == user_id}">
                                         <button type="button">
-                                            <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
+                                            <a href="join_update.do?num=${dto.boardVo.num}"><i class="fas fa-edit"></i></a>
                                         </button>
                                         <button type="button">
-                                            <a href="join_deleteOK.do?num=${vo.num}&somoim_num=${num}"><i class="fas fa-trash-alt"></i></a>
+                                            <a href="join_deleteOK.do?num=${dto.boardVo.num}&somoim_num=${dto.boardVo.somoim_num}"><i class="fas fa-trash-alt"></i></a>
                                         </button>
                                     </c:if>
                                 </div>
                             </div>
 
-                                <div class="content_text">
-                                    <div class="content_text_title">
-                                        <strong>제목:   ${vo.title}</strong>
-                                        <p>내용:
-                                    </div>
-                                        <br>
-
-                                        <c:if test="${vo.save_image != null}">
-                                            <div class="content_img_box" style="text-align: center">
-                                                <img src="resources/uploadimg/${vo.save_image}">
-                                            </div>
-                                        </c:if>
-
-                                        <br>
-                                        ${vo.content}
-                                        <br>
-                                        <c:if test="${vo.vote_num != null}">
-                                            테스트 투표 들어가는 부분
-                                        </c:if>
-                                    </p>
+                            <div class="content_text">
+                                <div class="content_text_title">
+                                    <strong>제목:   ${dto.boardVo.title}</strong>
+                                    <p>내용:</p>
                                 </div>
-                        </a>
+                                <c:if test="${dto.boardVo.save_image != null}">
+                                    <div class="content_img_box" style="text-align: center">
+                                        <img src="resources/uploadimg/${dto.boardVo.save_image}">
+                                    </div>
+                                </c:if>
+
+                                <br>
+                                    ${dto.boardVo.content}
+                                <br>
+                                </a>
+                                <c:forEach var="voteVo" items="${dto.voteVos}" varStatus="status">
+                                    <div class="vote_div" style="padding-right: 30px; ">
+                                        <div class="vote_section">
+                                            <div class="vote_detail_seciton">
+                                                <h2 style="margin-bottom: 20px;">
+                                                    <c:if test="${status.index == 0}">
+                                                    ${voteVo.question}<br>
+                                                    </c:if>
+                                                </h2>
+                                                <ul class="vote_grid">
+                                                    <li>
+
+                                                        <button type="button" onclick="test(this)" style="position: relative;">
+                                                                <input type="hidden" value="${voteVo.som_vote_user_id}" style="display: none;" class="som_vote_member">
+                                                                <input type="hidden" value="${voteVo.num}" id="voteVo_num" style="display: none;">
+                                                                <input type="text" class="vote_items" value="${voteVo.choice}" readonly/>
+                                                                <div class="vote_count_section">
+                                                                    <strong style="text-align: right;">${voteVo.count}</strong>
+                                                                </div>
+
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </c:forEach>
+                            </div>
 
                     </li>
                 </c:forEach>
@@ -87,21 +110,7 @@
         </div>
 
 
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="footer">
         <div>
@@ -135,4 +144,50 @@
 
     
 </body>
+<script>
+    var prevClickedButton = null;
+
+
+    function test(buttonElement) {
+        var userId = "${user_id}";
+        console.log(userId);
+
+        var voteItemValue = $(buttonElement).find('.vote_items').val();
+        var voteVo_num = $(buttonElement).find('#voteVo_num').val();
+        console.log(voteItemValue);
+        console.log(voteVo_num);
+
+
+        var VoteMember = $(buttonElement).find('.som_vote_member').val();
+        console.log(VoteMember);
+
+        // VoteMember를 '/'로 분할하고, userId가 있는지 확인
+        var VoteMemberArray = VoteMember.split('/');
+        if (VoteMemberArray.includes(userId)) {
+            alert("이미 선택한 항목입니다.");
+        }else {
+            $.ajax({
+                url: "vote_UpdateOK.do",
+                data: {
+                    som_qvote_num: voteVo_num,
+                    choice: voteItemValue,
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr) {
+                    console.log('xhr.status:', xhr.status);
+                }
+            });
+        }
+
+
+
+
+    }
+</script>
+
+
 </html>

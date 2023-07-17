@@ -41,6 +41,13 @@
 
 	</select>
 
+	<update id="VOTE_UPDATE">
+		update somoim_choice_vote set
+		count = count + 1,
+		som_vote_user_id = som_vote_user_id || '/' || #{som_vote_user_id}
+		where choice = #{choice} and som_qvote_num = #{som_qvote_num}
+	</update>
+
 
 
 

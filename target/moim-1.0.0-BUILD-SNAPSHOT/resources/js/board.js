@@ -70,12 +70,16 @@ function som_insertOK() {
 function join_updateOK() {
     console.log("join_updateOK....");
     console.log($('#somoim_num').val());
+
+    var content22 = $('#insert_content').text();
+    console.log("콘텐트 값"+content22);
+
     $.ajax({
         url: "join_updateOK.do",
         data: {
             num: $('#update_num').val(),
             title: $('#update_title').val(),
-            content: $('#insert_content').val(),
+            content: $('#update_content').text(),
 
         },
         method: 'POST',
