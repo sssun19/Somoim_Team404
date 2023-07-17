@@ -16,8 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.member.model.MemberVO;
 import test.com.moim.member.service.MemberService;
 import test.com.moim.paging.model.PagingVO;
 import test.com.moim.somoim.model.SomoimVO;
@@ -52,9 +54,9 @@ public class SomoimController {
 		log.info("-------");
 
 		List<SomoimVO> vos = service.selectAll(vo);
-		int total = service.countSomoim();
+//		int total = service.countSomoim();
 
-		model.addAttribute("vos",vos);
+		model.addAttribute("viewAll",vos);
 
 		return "board/som_selectAll";
 	}
@@ -78,10 +80,20 @@ public class SomoimController {
 		log.info("profile!!!:{}", uvo2.getSave_name());
 
 		session.setAttribute("num",vo.getNum());
+		
+//		MemberVO vo3 = new MemberVO();
+//		vo3.setNum((Integer)session.getAttribute("num"));
+//		log.info("......여기의 num 은 : {}", vo3.getNum());
+//		
+//		List<MemberVO> vos = memberService.profileCheck(vo3);
+//		for (MemberVO y : vos) {
+//			log.info("...확인!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", y.getSave_name());
+//		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vo2", vo2);
 		map.put("uvo2", uvo2);
+//		map.put("vos", vos);
 		model.addAllAttributes(map);
 
 		return "board/som_selectOne";
@@ -199,9 +211,9 @@ public class SomoimController {
 		SomoimVO vo2 = new SomoimVO();
 		List<SomoimVO> vos = service.selectAll(vo2);
 		
-		for (SomoimVO x : vos) {
-			log.info("얘도 확인....{}", x);
-		}
+//		for (SomoimVO x : vos) {
+//			log.info("얘도 확인....{}", x);
+//		}
 		
 		model.addAttribute("vos",vos);
 		model.addAttribute("paging", vo);

@@ -18,5 +18,6 @@ public class CommunityVO {
 	private int view_count;
 	private int good_count;
 	private MultipartFile file;
+	private String save_img;
 
 }

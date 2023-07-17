@@ -24,6 +24,11 @@
 		Order by num desc
 	</select>
 
+	<select id="SOM_SCHEDULE_SELECTONE"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+		select * from somoim_schedule where somoim_num=#{somoim_num}
+	</select>
+
 	<insert id="Sch_INSERT">
         INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money, max_participant,
                                     som_member_num, somoim_num, participant, participant_count)

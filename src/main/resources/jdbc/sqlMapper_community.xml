@@ -34,16 +34,16 @@
         where user_id like #{searchWord}
     </select>
 
-    <select id="CB_SEARCH_LIST_SAVE_NAME" resultType="test.com.moim.community.model.CommunityVO">
+    <select id="CB_SEARCH_LIST_save_img" resultType="test.com.moim.community.model.CommunityVO">
         select *
         from community_board
-        where save_name like #{searchWord}
+        where save_img like #{searchWord}
     </select>
 
     <insert id="CB_INSERT" parameterType="test.com.moim.community.model.CommunityVO">
 
-        insert into community_board(num, title, user_id, content, save_name)
-        values (seq_community_board.nextval, #{title}, #{user_id}, #{content}, #{save_name})
+        insert into community_board(num, title, user_id, content, save_img)
+        values (seq_community_board.nextval, #{title}, #{user_id}, #{content}, #{save_img})
 
     </insert>
 
@@ -52,9 +52,13 @@
         set title=#{title},
             content=#{content},
             write_date=sysdate,
-            save_name=#{save_name}
+            save_img=#{save_img}
         where num = #{num}
     </update>
+
+    <select id="CB_SELECT_SAVE_NAME" resultType="test.com.moim.community.model.CommunityVO">
+        select * from userinfo
+    </select>
 
     <!-- 	<update id="CB_good_count_UP" parameterType="test.com.moim.community.model.CommunityVO"> -->
     <!-- 		update community_board set view_count=view_count+1 -->

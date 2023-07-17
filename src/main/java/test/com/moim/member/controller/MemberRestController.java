@@ -60,8 +60,9 @@ public class MemberRestController {
 		
 		List<MemberVO> vos = service.profileCheck(vo);
 		for (MemberVO vo2 : vos) {
-			log.info("..!!{}", vo2.getSave_name());
+			log.info("..------------------------------------!!{}", vo2.getSave_name());
 		}
+		
 		
 		return vos;
 

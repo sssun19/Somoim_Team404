@@ -146,7 +146,7 @@
             <div class="user_info">
                 <div class="profile" style="background-color: red">
 
-<%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
+                    <%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
                     <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
                          src="resources/uploadimg/${vo2.save_name}">
                 </div>
@@ -159,6 +159,7 @@
                 <button type="button" onclick="showPopup()">
                     <i class="fa-solid fa-lightbulb" style="color: red;"></i>
                 </button>
+<<<<<<< HEAD
 
                     <%--                좋아요 파트--%>
                     <c:if test="${good_count_mem ==null}">
@@ -166,11 +167,19 @@
                         <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
                         <i class="far fa-heart"></i>
                     </a>
+=======
+                <%--                좋아요 파트--%>
+                <c:if test="${good_count_mem ==null}">
+                    <button type="button">
+                        <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
+                            <i class="far fa-heart"></i>
+                        </a>
+>>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
 
-                </button>
+                    </button>
                 </c:if>
                 <c:if test="${good_count_mem.user_id ==user_id}">
-                    <button type="button" >
+                    <button type="button">
 
                         <a href="good_count_down.do?user_id=${user_id}&num=${vo2.num}">
                             <i class="far fa-heart">취소</i>
@@ -178,7 +187,7 @@
 
                     </button>
                 </c:if>
-<%--                좋아요 파트 끝--%>
+                <%--                좋아요 파트 끝--%>
                 <button type="button">
                     <a href="join_update.do?num=${vo2.num}">
 
@@ -196,14 +205,15 @@
         </div>
         <div class="content_text">
             <strong>제목: ${vo2.title}</strong>
-            <p><p>내용:
-            <br>
-            <c:if test="${vo2.save_name != null}">
-                <img src="resources/uploadimg/${vo2.save_name}">
-            </c:if>
-            <br>
-            ${vo2.content}
-        </p>
+            <p>
+            <p>내용:
+                <br>
+                <c:if test="${vo2.save_name != null}">
+                    <img src="resources/uploadimg/${vo2.save_name}">
+                </c:if>
+                <br>
+                ${vo2.content}
+            </p>
         </div>
         <div style=" text-align: right; margin-right: 10px;">
             <i class="fa-regular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
@@ -223,7 +233,8 @@
                                 <div class="profile">
                                     <%--                    파트 "댓글"작성자 이미지 프로필 사진 --%>
 
-                                    <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;" src="resources/uploadimg/${com.save_name}">
+                                    <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                         src="resources/uploadimg/${com.save_name}">
                                 </div>
                                 <div class="user_info_profile_tooltip">
                                     <div class="com_top">
@@ -235,14 +246,15 @@
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                 <input type="hidden" name="num" value="${com.num}">
                                                 <input type="hidden" name="save_name" value="${com.save_name}">
-                                                <input type="hidden" name="content" id="hidden_content_input" value="${com.content}">
+                                                <input type="hidden" name="content" id="hidden_content_input"
+                                                       value="${com.content}">
                                                     <button id="submitButton" type="submit">
                                                         <i class="fas fa-edit"></i>
                                                         <%-- 수정 --%>
                                                     </button>
                                             </form>
 
-                                            <form action="som_comm_deleteOK.do?num=${com.num}">
+                                                <form action="som_comm_deleteOK.do?num=${com.num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                 <input type="hidden" name="num" value="${com.num}">
                                             <button type="submit">
@@ -255,7 +267,8 @@
                                     </div>
                                         <p>${com.write_date}</p>
                                     <div class="com_func">
-                                        <input type="text" placeholder="댓글 목록" value="${com.content}" id="join_comments">
+                                        <input type="text" placeholder="댓글 목록" value="${com.content}"
+                                               id="join_comments">
                                     </div>
                                 <h4 style="margin-left: 4%; margin-top: 2%;">대댓글</h4>
 
@@ -263,15 +276,22 @@
                                     <c:if test="${c_com.parent_com eq com.num}">
                                         <div class="com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
                                             <h5>${c_com.user_id}</h5>
-                                            <form  action="som_dcomm_updateOK.do" style=" width: 100%; display: flex; justify-content: space-between;">
-                                                    <input type="text" placeholder="댓글 목록" name="content" value="${c_com.content}">
+                                            <form action="som_dcomm_updateOK.do"
+                                                  style=" width: 100%; display: flex; justify-content: space-between;">
+                                                    <input type="text" placeholder="댓글 목록" name="content"
+                                                           value="${c_com.content}">
                                                     <input type="hidden" name="num" value="${c_com.num}">
-                                                    <input type="hidden" name="som_board_num" value="${c_com.som_board_num}">
+                                                    <input type="hidden" name="som_board_num"
+                                                           value="${c_com.som_board_num}">
 <%--                                                <input type="hidden" name="" value="${com.som_board_num}">--%>
                                                <c:if test="${c_com.user_id == user_id}">
+<<<<<<< HEAD
                                                 <div class="bbs_func" style="width: 3%;">
 
                                                            <button type="submit" >
+=======
+                                                           <button type="submit">
+>>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
                                                                    <i class="fas fa-edit"></i>
                                                            </button>
                                                 </div>
@@ -279,10 +299,16 @@
                                             <form action="som_dcomm_deleteOK.do">
 
                                                    <input type="hidden" name="num" value="${c_com.num}">
+<<<<<<< HEAD
                                                    <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                                                                 <div class="bbs_func">
 
                                                          <button type="submit"  >
+=======
+                                                   <input type="hidden" name="som_board_num"
+                                                          value="${com.som_board_num}">
+                                                         <button type="submit">
+>>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
                                                              <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                                                                                                                     </div>
@@ -295,7 +321,6 @@
                                     <form action="som_dcomm_insertOK.do">
                                         <input type="hidden" name="parent_com" value="${com.num}">
                                         <input type="hidden" name="user_id" value="${user_id}">
-
                                         <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                         <input type="hidden" name="somoim_num" value="${com.somoim_num}">
                                         <div style="display: flex; justify-content: center;">
@@ -355,7 +380,7 @@
         <ul>
             <li>대표: 팀404 개인정보관리책임자: 팀404</li>
             <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-            
+
             <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
         </ul>
     </div>
@@ -369,12 +394,11 @@
     const hiddenContentInput = document.getElementById('hidden_content_input');
     console.log("hidden_content_input", hiddenContentInput);
 
-    submitButton.addEventListener('click', function(event) {
+    submitButton.addEventListener('click', function (event) {
         event.preventDefault();
 
         const inputTextValue = joinCommentsInput.value;
         console.log("inputTextValue", inputTextValue);
-
 
 
         hiddenContentInput.value = inputTextValue;

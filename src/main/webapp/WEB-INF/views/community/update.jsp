@@ -53,12 +53,12 @@
                 <div class="form-group">
                     <label for="image">IMG</label>
                     <input type="file" id="image" name="file" accept="image/*" onchange="previewImage();" />
-                    <c:if test="${empty vo2.save_name}">
-                        <input type="hidden" name="image" value="${vo2.save_name}" />
+                    <c:if test="${empty vo2.save_img}">
+                        <input type="hidden" name="image" value="${vo2.save_img}" />
                     </c:if>
                 </div>
                 <div class="preview_img_box">
-                    <img id="imagePreview" src="resources/uploadimg/${vo2.save_name}">
+                    <img id="imagePreview" src="resources/uploadimg/${vo2.save_img}">
                 </div>
                 <div>
                     <textarea id="content" name="content">${vo2.content}</textarea>

@@ -19,9 +19,6 @@ public class BoardDAOimpl implements BoardDAO{
         log.info("Boardimpl()....");
     }
 
-
-
-
     @Override
     public List<Somoim_BoardVO> selectList(Somoim_BoardVO vo) {
 
@@ -149,6 +146,15 @@ public class BoardDAOimpl implements BoardDAO{
     public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo) {
         return sqlSession.selectList("JSON_SELECT_ALL");
     }
+
+
+
+
+	@Override
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("som_schedule_selectOne....somoim_num:{}", vo);
+		return sqlSession.selectList("SOM_SCHEDULE_SELECTONE", vo);
+	}
 
 
 }
