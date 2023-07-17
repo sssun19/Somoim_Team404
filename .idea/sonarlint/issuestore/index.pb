@@ -142,3 +142,11 @@ q
 Asrc/main/java/test/com/moim/community/model/CommunityDAOimpl.java,e\9\e9b0f8ef7f618fd7fba4c6d7b7ec020e568b852a
 l
 <src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
+e
+5src/main/webapp/WEB-INF/views/community/selectOne.jsp,5\1\51d8064ad082f95155e66087138df63876e5b41f
+f
+6src/main/webapp/WEB-INF/views/board/join_selectOne.jsp,3\d\3d3866b6ab19a8a6255b0970c50d597af145d9b3
+b
+2src/main/webapp/WEB-INF/views/community/update.jsp,2\e\2e77dc8112e414b160d02885c5ac1b56c977bc95
+s
+Csrc/main/java/test/com/moim/somoim/controller/SomoimController.java,6\6\664c7bee2c8a3b1f42bb73b6c39097656c964c87
