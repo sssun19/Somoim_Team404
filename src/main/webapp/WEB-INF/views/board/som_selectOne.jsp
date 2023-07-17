@@ -145,11 +145,12 @@
         <div class="join_member">
             <h1>가입한 멤버</h1>
             <ul id="img_members">
-                <!--                 <li> -->
-                <!--                     <div class="round_box"> -->
-                <!--                         <i class="far fa-user"></i> -->
-                <!--                     </div> -->
-                <!--                 </li> -->
+	             <li>
+	                 <div class="round_box">
+	                     <i class="far fa-user"></i>
+	                 </div>
+	             </li>
+                
             </ul>
 
         </div>
