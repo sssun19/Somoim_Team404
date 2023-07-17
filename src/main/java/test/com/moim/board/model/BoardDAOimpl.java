@@ -145,5 +145,10 @@ public class BoardDAOimpl implements BoardDAO{
 
     }
 
+    @Override
+    public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo) {
+        return sqlSession.selectList("JSON_SELECT_ALL");
+    }
+
 
 }

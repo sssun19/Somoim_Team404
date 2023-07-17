@@ -124,4 +124,9 @@
 
 	</update>
 
+	<select id="JSON_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
+	select * from somoim_board where somoim_num = #{somoim_num}
+
+	</select>
+
 </mapper>
