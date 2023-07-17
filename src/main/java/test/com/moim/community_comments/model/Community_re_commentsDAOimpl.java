@@ -29,7 +29,7 @@ public class Community_re_commentsDAOimpl implements Community_re_commentsDAO {
 
 	@Override
 	public int update(Community_re_commentsVO vo) {
-		log.info("update()...{}",vo);
+		log.info("대댓글()...{}",vo);
 		return sqlsession.update("COMMUNITY_RE_C_UPDATE",vo);
 	}
 

@@ -1,5 +1,7 @@
 package test.com.moim.community.model;
 
+import test.com.moim.board.model.Somoim_BoardVO;
+
 import java.util.List;
 
 public interface CommunityDAO {
@@ -15,6 +17,8 @@ public interface CommunityDAO {
 	public CommunityVO selectOne(CommunityVO vo);
 
 	public List<CommunityVO> searchList(String searchKey, String searchWord);
+
+	List<CommunityVO> select_user_info();
 
 	public void view_countUp(CommunityVO vo);
 	

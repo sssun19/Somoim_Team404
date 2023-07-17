@@ -17,8 +17,16 @@ import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 /**
  * Handles requests for the application home page.
@@ -35,6 +43,9 @@ public class BoardController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    ServletContext sContext;
 
     @Autowired
     som_comm_comments_Service c_commService;
@@ -96,14 +107,14 @@ public class BoardController {
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
-        List<Somoim_BoardVO> infos=service.select_user_info();
+        List<Somoim_BoardVO> infos = service.select_user_info();
         log.info("infos..{}", infos);
 
         for (Somoim_BoardVO vo2 : vos) {
             for (Somoim_BoardVO info : infos) {
                 log.info("검사 vo 아이디...{}", vo2.getUser_id());
                 log.info("검사 info 저장된 이름...{}", info.getUser_id());
-                if(vo2.getUser_id().equals(info.getUser_id())) {
+                if (vo2.getUser_id().equals(info.getUser_id())) {
                     log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
                     log.info("info 저장된 이름...{}", info.getUser_id());
                     if (!vo2.getSave_name().equals(info.getSave_name())) {
@@ -131,20 +142,18 @@ public class BoardController {
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
     public String join_selectOne(Somoim_BoardVO vo, Model model) {
         log.info("join_selectOne.do().....{}", vo);
-        List<Somoim_BoardVO> infos=service.select_user_info();
+        List<Somoim_BoardVO> infos = service.select_user_info();
         log.info("infos..{}", infos);
-
 
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}", vo2);
-        for (Somoim_BoardVO info: infos){
-            if(vo2.getUser_id().equals(info.getUser_id())){
+        for (Somoim_BoardVO info : infos) {
+            if (vo2.getUser_id().equals(info.getUser_id())) {
                 vo2.setSave_name(info.getSave_name());
             }
         }
         log.info("바뀐 test...{}", vo2);
-
 
 
         model.addAttribute("vo2", vo2);
@@ -162,7 +171,7 @@ public class BoardController {
             for (Somoim_BoardVO info : infos) {
                 log.info("검사 vo 아이디...{}", com.getUser_id());
                 log.info("검사 info 저장된 이름...{}", info.getUser_id());
-                if(com.getUser_id().equals(info.getUser_id())) {
+                if (com.getUser_id().equals(info.getUser_id())) {
                     log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
                     log.info("info 저장된 이름...{}", info.getUser_id());
                     if (!com.getSave_name().equals(info.getSave_name())) {
@@ -177,8 +186,6 @@ public class BoardController {
             log.info(com.toString());
 
         }
-
-
 
 
         System.out.println("coms:" + coms.toString());
@@ -201,13 +208,18 @@ public class BoardController {
 
         model.addAttribute("coms", coms);
         model.addAttribute("c_coms", c_coms);
+        service.vvcountup(vo);
 
-//		System.out.println("coms:::"+coms);
+		System.out.println("완료:::");
 //
 //		System.out.println("c_coms:::"+c_coms);
-//
+        String user_id = (String) session.getAttribute("user_id");
 
-
+        vo.setUser_id(user_id);
+        Somoim_BoardVO good_count_mem= service.select_all_goodList(vo);
+        log.info("user_id..{}", user_id);
+        model.addAttribute("good_count_mem", good_count_mem);
+        log.info("good_count_mem..{}", good_count_mem);
 
 
         return "board/join_selectOne";
@@ -222,17 +234,43 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_insertOK.do", method = RequestMethod.POST)
-    public String join_insertOK(Somoim_BoardVO vo) {
+    public String join_insertOK(Somoim_BoardVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("join_insert.do().....{}", vo);
+
+
+        int fileNameLength = vo.getFile().getOriginalFilename().length();
+        String getOriginalFileName = vo.getFile().getOriginalFilename();
+
+        log.info("getOriginalFilename : {}", getOriginalFileName);
+        log.info("fileNameLength : {}", fileNameLength);
+
+        vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+
+        if (getOriginalFileName.length() == 0) {
+            vo.setSave_name("아이유.png");
+
+        } else {
+            vo.setSave_name(getOriginalFileName);
+            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+            String realPath = sContext.getRealPath("resources/uploadimg");
+
+            log.info("realPath : {}", realPath);
+
+            File f = new File(realPath + "\\" + vo.getSave_name());
+            vo.getFile().transferTo(f);
+
+        } // end else
+
 
         int result = service.join_insert(vo);
 
         if (result == 1) {
             log.info("됐냐?");
+
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
 
         } else {
-            return "redirect:join_insert.do";
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         }
 
 
@@ -248,7 +286,7 @@ public class BoardController {
         Set<String> participantSet = new HashSet<>(); // 중복되는 participant를 제거하기 위한 Set을 생성합니다.
 
         for (Somoim_ScheduleVO vo2 : vos) {
-            log.info("각자의 vos 값"+vo2.toString());
+            log.info("각자의 vos 값" + vo2.toString());
 
             String[] Splits = vo2.getParticipant().split("/");
 
@@ -258,18 +296,20 @@ public class BoardController {
         }
 
         for (String participant : participantSet) { // 중복을 제거한 participant에 대해 반복합니다.
-            log.info("스플릿한 값"+participant);
+            log.info("스플릿한 값" + participant);
             vo.setUser_id(participant);
 
             List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
-            if(!vos2.isEmpty()) {
+            if (!vos2.isEmpty()) {
                 saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
             }
 
-            for (Somoim_ScheduleVO t : vos2){
-                log.info("저장된 세이브 네임"+t.getSave_name());
+            for (Somoim_ScheduleVO t : vos2) {
+                log.info("저장된 세이브 네임" + t.getSave_name());
             }
         }
+
+
 
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
@@ -309,11 +349,14 @@ public class BoardController {
     @RequestMapping(value = "/join_deleteOK.do", method = RequestMethod.GET)
     public String join_deleteOK(Somoim_BoardVO vo) {
         log.info("join_deleteOK.do().....");
-System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim_num"+vo.getSomoim_num());
         int result = service.delete(vo);
 
 
-        return "redirect:join_selectAll.do?somoim_num="+vo.getSomoim_num();
+        if (result == 1) {
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
+        } else {
+            return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
+        }
 
 
     }
@@ -433,7 +476,7 @@ System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim
     }
     
     @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
-    public String join_pay(Somoim_ScheduleVO vo,Model model) {
+    public String join_pay(Somoim_ScheduleVO vo, Model model) {
 
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
@@ -456,15 +499,14 @@ System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim
             vo.setUser_id(participant);
 
             List<Somoim_ScheduleVO> vos2 = service.sch_selectList_part(vo);
-            if(!vos2.isEmpty()) {
+            if (!vos2.isEmpty()) {
                 saveNamesMap.put(participant, vos2.get(0)); // Save name을 담습니다.
             }
 
-            for (Somoim_ScheduleVO t : vos2){
+            for (Somoim_ScheduleVO t : vos2) {
 
             }
         }
-
 
 
         model.addAttribute("vos", vos);
@@ -474,41 +516,60 @@ System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim
     }
 
 
-
     @RequestMapping(value = "/schedule_payment.do", method = RequestMethod.POST)
-    public String schedule_payment(Somoim_ScheduleVO vo,Somoim_MemberVO mvo) {
+    public String schedule_payment(Somoim_ScheduleVO vo, Somoim_MemberVO mvo) {
 
-        log.info("schedule_payment.do().....{}",vo);
+        log.info("schedule_payment.do().....{}", vo);
 
 //        String userId = (String) request.getSession().getAttribute("user_id");
 
 
-        log.info("세션 아이디"+vo.getSomoim_num());
+        log.info("세션 아이디" + vo.getSomoim_num());
 
         Somoim_ScheduleVO vo2 = service.selectPay(vo);
 
         Somoim_MemberVO mvo2 = service.selectMember(mvo);
 
 
+        log.info("vo2 스트링" + vo2.toString());
 
-
-        log.info("vo2 스트링"+vo2.toString());
-
-        log.info("mvo2 스트링"+mvo2.toString());
+        log.info("mvo2 스트링" + mvo2.toString());
 
         if (vo2.getSom_member_num() == mvo2.getNum()) {
             log.info("같음");
-            return "redirect:join_pay.do?somoium_num="+vo.getSomoim_num();
-        }else{
+            return "redirect:join_pay.do?somoium_num=" + vo.getSomoim_num();
+        } else {
             log.info("다름");
-            return "redirect:join_pay.do?somoium_num="+vo.getSomoim_num();
+            return "redirect:join_pay.do?somoium_num=" + vo.getSomoim_num();
         }
 
 
+    }
 
+    @RequestMapping(value = "/good_count_up.do", method = RequestMethod.GET)
+    public String good_count_up(Somoim_BoardVO vo) {
+        log.info("good_count_up.do...{}", vo);
+        service.good_count_up(vo);
+        service.adding_good_count_list(vo);
+
+
+        return "redirect:join_selectOne.do?num="+vo.getNum();
 
 
     }
+
+    @RequestMapping(value = "/good_count_down.do", method = RequestMethod.GET)
+    public String good_count_down(Somoim_BoardVO vo) {
+        log.info("good_count_down.do...{}", vo);
+        service.good_count_down(vo);
+        service.del_good_count_list(vo);
+
+
+        return "redirect:join_selectOne.do?num="+vo.getNum();
+
+
+    }
+
 
 
 

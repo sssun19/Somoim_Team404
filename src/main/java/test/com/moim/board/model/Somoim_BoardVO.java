@@ -1,6 +1,7 @@
 package test.com.moim.board.model;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 
@@ -18,6 +19,7 @@ public class Somoim_BoardVO{
     private int som_member_num;
     private int somoim_num;
     private String user_id;
+    private MultipartFile file;
 
 
 }

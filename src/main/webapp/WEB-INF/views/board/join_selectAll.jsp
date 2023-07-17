@@ -44,18 +44,28 @@
                                     </span>
                                 </div>
                                 <div class="bbs_func">
-                                    <button type="button">
-                                        <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
-                                    </button>
-                                    <button type="button">
-                                        <a href="join_deleteOK.do?num=${vo.num}&somoim_num=${vo.somoim_num}"><i class="fas fa-trash-alt"></i></a>
-                                    </button>
+                                    <c:if test="${vo.user_id == user_id}">
+                                        <button type="button">
+                                            <a href="join_update.do?num=${vo.num}"><i class="fas fa-edit"></i></a>
+                                        </button>
+                                        <button type="button">
+                                            <a href="join_deleteOK.do?num=${vo.num}&somoim_num=${vo.somoim_num}"><i class="fas fa-trash-alt"></i></a>
+                                        </button>
+                                    </c:if>
+
                                 </div>
                             </div>
 
                                 <div class="content_text">
                                     <strong>제목:   ${vo.title}</strong>
-                                    <p>내용:   ${vo.content}</p>
+                                    <p>내용:
+                                        <br>
+                                        <c:if test="${vo.save_name != null}">
+                                            <img src="resources/uploadimg/${vo.save_name}">
+                                        </c:if>
+                                        <br>
+                                        ${vo.content}
+                                    </p>
                                 </div>
                         </a>
 
