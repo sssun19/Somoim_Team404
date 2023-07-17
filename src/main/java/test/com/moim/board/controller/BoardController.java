@@ -421,11 +421,10 @@ System.out.println("vo.getSomoim_numvo.getSomoim_numvo.getSomoim_numvo.getSomoim
     	vo.setSomoim_num(somoim_num);
     	
     	List<Somoim_ScheduleVO> vos = service.som_schedule_selectOne(vo);
-    	log.info("=============================왜 안뜨지?");
     	log.info("======={}", vos);
     	
     	for (Somoim_ScheduleVO x : vos) {
-			log.info("ddlaskdjflkasjdflkajsldfkjx,mcnx,xmnvc?????{}",x.getPlace());
+			log.info("place : {}",x.getPlace());
 			log.info(x.getSchedule_title());
 		}
     	
