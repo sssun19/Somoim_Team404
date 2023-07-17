@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import test.com.moim.somoim.model.SomoimDAOimpl;
+import test.com.moim.paging.model.PagingVO;
+import test.com.moim.somoim.model.SomoimDAO;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
 
@@ -15,7 +16,7 @@ import test.com.moim.userinfo.model.UserinfoVO;
 public class SomoimService {
 	
 	@Autowired
-	SomoimDAOimpl dao;
+	SomoimDAO dao;
 	
 	
 	public List<SomoimVO> selectAll(SomoimVO vo) {
@@ -58,6 +59,18 @@ public class SomoimService {
 	public UserinfoVO searchSavename(UserinfoVO uvo) {
 		log.info("searchSavename...{}", uvo);
 		return dao.searchSavename(uvo);
+	}
+
+
+	public int countSomoim() {
+		log.info("countSomoim....");
+		return dao.countSomoim();
+	}
+
+
+	public List<SomoimVO> selectSomoim(PagingVO vo) {
+		log.info("selectSomoim...{}", vo);
+		return dao.selectSomoim(vo);
 	}
 
 	

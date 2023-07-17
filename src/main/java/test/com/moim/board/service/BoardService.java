@@ -7,7 +7,6 @@ import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
-import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -81,4 +80,34 @@ public class BoardService {
     public Somoim_MemberVO selectMember(Somoim_MemberVO mvo) {
         return dao.selectMember(mvo);
     }
-}
+
+    public List<Somoim_BoardVO> select_user_info() { return dao.select_user_info();}
+
+
+
+    //------------
+    public void good_count_up(Somoim_BoardVO vo){
+        log.info("good count up 정상 작동");
+         dao.good_count_up(vo);
+    }
+
+    public int good_count_down(Somoim_BoardVO vo){
+        return dao.good_count_down(vo);
+    }
+    public void vvcountup(Somoim_BoardVO vo){
+    dao.vvcountup(vo);
+
+    }
+    public  Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo){
+        log.info("전체 좋아요 목록을 불러옵니다.");
+        return dao.select_all_goodList(vo);
+    }
+    public void adding_good_count_list(Somoim_BoardVO vo){
+        log.info("완료...{}", vo);
+        dao.adding_good_count_list(vo);
+    }
+    public  void del_good_count_list(Somoim_BoardVO vo){
+        log.info("완료...{}", vo);
+         dao.del_good_count_list(vo);
+    }
+    }

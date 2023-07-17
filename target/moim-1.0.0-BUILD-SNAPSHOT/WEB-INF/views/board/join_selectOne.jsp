@@ -74,11 +74,28 @@
                 <button type="button">
                     <i class="fa-solid fa-lightbulb" style="color: red;"></i>
                 </button>
-                <button type="button">
-                    <i class="far fa-heart"></i>
+<%--                좋아요 파트--%>
+                <c:if test="${good_count_mem ==null}">
+                <button type="button" >
+                    <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
+                        <i class="far fa-heart"></i>
+                    </a>
+
                 </button>
+                </c:if>
+                <c:if test="${good_count_mem.user_id ==user_id}">
+                    <button type="button" >
+
+                        <a href="good_count_down.do?user_id=${user_id}&num=${vo2.num}">
+                            <i class="far fa-heart">취소</i>
+                        </a>
+
+                    </button>
+                </c:if>
+<%--                좋아요 파트 끝--%>
                 <button type="button">
                     <a href="join_update.do?num=${vo2.num}">
+
                         <i class="fas fa-edit"></i>
                     </a>
 
@@ -93,9 +110,21 @@
         </div>
         <div class="content_text">
             <strong>제목: ${vo2.title}</strong>
-            <p>내용: ${vo2.content}</p>
+            <p><p>내용:
+            <br>
+            <c:if test="${vo2.save_name != null}">
+                <img src="resources/uploadimg/${vo2.save_name}">
+            </c:if>
+            <br>
+            ${vo2.content}
+        </p>
         </div>
+        <div style=" text-align: right; margin-right: 10px;">
+            <i class="fa-regular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
+        </div>
+
     </div>
+
     <div class="comments_sec">
         <h3>댓글</h3>
         <c:forEach items="${coms}" var="com">
@@ -113,6 +142,7 @@
                                     <div class="com_top">
                                         <strong>${com.user_id}</strong>
                                         <span>
+                                            <c:if test="${vo2.user_id == user_id}">
                                             <form id="myForm" action="som_comm_updateOK.do?num=${com.som_board_num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                 <input type="hidden" name="num" value="${com.num}">
@@ -132,6 +162,7 @@
                                                 <%-- 삭제 --%>
                                             </button>
                                             </form>
+                                            </c:if>
                                         </span>
                                     </div>
                                         <p>${com.write_date}</p>
@@ -145,23 +176,25 @@
                                         <div class="com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
                                             <h5>${c_com.user_id}</h5>
                                             <form  action="som_dcomm_updateOK.do" style=" width: 100%; display: flex; justify-content: space-between;">
-                                            <input type="text" placeholder="댓글 목록" name="content" value="${c_com.content}">
-                                                   <input type="hidden" name="num" value="${c_com.num}">
-                                                   <input type="hidden" name="som_board_num" value="${c_com.som_board_num}">
-<%--                                                   <input type="hidden" name="" value="${com.som_board_num}">--%>
-
-                                               <button type="submit" >
-                                                   <i class="fas fa-edit"></i></button>
-                                                    </form>
-                                                <form action="som_dcomm_deleteOK.do">
-
+                                                    <input type="text" placeholder="댓글 목록" name="content" value="${c_com.content}">
                                                     <input type="hidden" name="num" value="${c_com.num}">
-                                                   <input type="hidden" name="som_board_num" value="${com.som_board_num}">
-                                                 <button type="submit"  >
-                                                     <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                                </form>
+                                                    <input type="hidden" name="som_board_num" value="${c_com.som_board_num}">
+<%--                                                <input type="hidden" name="" value="${com.som_board_num}">--%>
+                                               <c:if test="${c_com.user_id == user_id}">
+                                                           <button type="submit" >
+                                                                   <i class="fas fa-edit"></i>
+                                                           </button>
 
+                                            </form>
+                                            <form action="som_dcomm_deleteOK.do">
+
+                                                   <input type="hidden" name="num" value="${c_com.num}">
+                                                   <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                                         <button type="submit"  >
+                                                             <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                </form>
+                                                </c:if>
                                         </div>
                                     </c:if>
                                 </c:forEach>

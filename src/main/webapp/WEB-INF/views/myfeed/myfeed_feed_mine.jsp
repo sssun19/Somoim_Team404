@@ -23,28 +23,34 @@
     <div class="myfeed_sec">
         <div class="myfeed_top_sec">
             <div class="myfeed_left_profile">
-                <div class="myfeed_myprofile">
-                    <i class="far fa-user"></i>
+                <div class="myfeed_myprofile" style="background-color:white"><img src="resources/uploadimg/${vo2.save_name }" style="height:120px; weight:120px;">
+<!--                     <i class="far fa-user"></i> -->
+				
                 </div>
             </div>
             <div class="myfeed_right_info">
                 <ul class="myfeed_grid">
                     <li>
-                        <h2>닉네임</h2>
+                        <h2>${vo2.name }</h2>
                     </li>
-                </br>
-                    <li><span>#ENFP</span></li>
-                    <li><span>#여행러버</span></li>
+                    <br/>
+                    <li>#반려동물</li>
+                    <li>#공연관람</li>
                 </ul>
-                <div class="top_follow">
+                <div class="top_follow" id="feed_mine">
                     <button type="button" style="padding: 5px 12px;">수정하기</button>
                     <button type="button" style="padding: 5px 12px;">사진추가</button>
-                    <button type="button" style="padding: 5px 12px;">포인트샵</button>
-                    
+                    <button type="button" style="padding: 5px 12px;">포인트샵</button>           
                 </div>
+                <div class="top_follow" id="feed_notmine">
+                    <button type="button" style="padding: 5px 12px;">팔로우 하기</button>
+                    <button type="button" style="padding: 5px 12px;">매너온도UP</button>
+                    <button type="button" style="padding: 5px 12px;">신고하기</button>           
+                </div>
+                
                 <div class="follower_following">
-                    <span>팔로워: <strong>100</strong></span>
-                    <span>팔로잉: <strong>200</strong></span>
+                    <span>팔로워: <strong>0</strong></span>
+                    <span>팔로잉: <strong>0</strong></span>
                     <span>피드: <strong>9</strong></span>
                 </div>
             </div>
@@ -107,5 +113,18 @@
         </div>
 
     </div>
+    
+    <script type="text/javascript">
+    if('${param.user_id}'==='${vo2.user_id}') {
+    	console.log('내가 피드 주인!');
+    	$('#feed_mine').show();
+    	$('#feed_notmine').hide();
+    } else {
+    	console.log('나는 구경꾼!');
+    	$('#feed_notmine').show();
+    	$('#feed_mine').hide();
+    }
+    
+    </script>
 </body>
 </html>
