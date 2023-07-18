@@ -246,6 +246,8 @@ public class BoardController {
         model.addAttribute("c_coms", c_coms);
         service.vvcountup(vo);
 
+
+
 		System.out.println("완료:::");
 //
 //		System.out.println("c_coms:::"+c_coms);

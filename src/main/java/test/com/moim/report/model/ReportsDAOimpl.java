@@ -13,6 +13,6 @@ public class ReportsDAOimpl implements ReportsDAO{
     SqlSession sqlSession;
     @Override
     public int insert(ReportsVO vo) {
-        return 0;
+        return sqlSession.insert("REPORTS_INSERT", vo );
     }
 }
