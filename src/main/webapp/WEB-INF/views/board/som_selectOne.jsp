@@ -129,7 +129,7 @@
             			console.log('response...........?!:', response);
             			
             			if (response >= ${vo2.max_member}) {
-                            alert('가입 실패: 소모임 인원이 초과되었습니다.'); // max_member는 서버에서 설정한 최대 인원 수
+                            alert('가입 실패: 소모임 인원이 초과되었습니다.    모임 정원:${vo2.max_member} 명'); // max_member는 서버에서 설정한 최대 인원 수
                         } else {
                         	$.ajax({
                         		url:'som_member_insertOK.do',
@@ -283,6 +283,7 @@
         <input type="hidden" name="som_title" value="${vo2.som_title}">
         <input type="hidden" name="save_name" value="${uvo2.save_name}">
         <input type="submit" id="som_register" value="모임 가입하기">
+        <a href="login.do" id="loginCheck">로그인이 필요합니다.</a>
         <br>
         <br>
         <a href="som_update.do"><input type="button" id="som_update" value="수정"></a>
@@ -330,6 +331,16 @@
         console.log('아닌데?');
         $('#som_update').hide();
         $('#som_delete').hide();
+    }
+    
+    if('${user_id}'==='') {
+    	console.log('로그인 풀렸어요;;');
+    	$('#som_register').hide();
+    	$('#loginCheck').show();
+    } else {
+    	console.log('로그인 OK');
+    	$('#loginCheck').hide();
+    	$('#som_register').show();
     }
 </script>
 
