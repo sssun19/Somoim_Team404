@@ -25,13 +25,14 @@
                 var category = $(this).val();
                 console.log($(this).val());
                 $.ajax({
-                    url : 'som_selectAll.do',
+                    url : 'somz_selectAll.do',
                     method:'GET',
                     data : {
                         'category':category
                     },
                     success : function(data){
                         console.log('category', category);
+                        console.log('data', data);
 
                         $('body').html(data);
                         $('#paging').hide();
@@ -85,7 +86,7 @@
             <li><input type="button" name="category" value="문화/공연"></li>
             <li><input type="button" name="category" value="카페/맛집"></li>
             <li><input type="button" name="category" value="공예"></li>
-            <li><input type="button" name="category" value="도서"></li>
+            <li><input type="button" name="category" value="독서"></li>
             <li><input type="button" name="category" value="사진/영상"></li>
             <li><input type="button" name="category" value="사교/인맥"></li>
             <li><input type="button" name="category" value="음악/악기"></li>

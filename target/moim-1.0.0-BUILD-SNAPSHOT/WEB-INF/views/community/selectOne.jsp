@@ -102,7 +102,7 @@
 
         </div>
         <div style=" text-align: right; margin-right: 10px;">
-            <i class="fa-regular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
+            <i class="fa-reggiular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
         </div>
     </div>
     <div class="c_comments_sec">
