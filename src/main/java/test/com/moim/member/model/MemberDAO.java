@@ -13,6 +13,7 @@ public interface MemberDAO {
 	public List<MemberVO> profileCheck(MemberVO vo);
 	public List<MemberVO> searchSavename(String user_id);
 	public int mypage_update_member(MemberVO vo2);
+	public int som_maxmember_check(MemberVO vo);
 	
 
 }
