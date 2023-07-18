@@ -62,7 +62,7 @@
                     <img id="imagePreview" src="" alt="Image Preview" style="display: none;"/>
                 </div>
                 <div>
-                    <textarea id="content" name="content" style="display: none;"></textarea>
+                    <pre><textarea id="content" name="content" style="display: none;"></textarea></pre>
                 </div>
 
 

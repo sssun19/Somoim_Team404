@@ -1,0 +1,10 @@
+
+a	java:S101	"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÎÖ4
+i	java:S116"TRename this field "save_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òĞøÃ
+o	java:S116"URename this field "write_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†…¤ëøÿÿÿÿ
+j	java:S116"URename this field "view_count" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨Šİà
+o	java:S116"URename this field "good_count" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›´ôùÿÿÿÿ
+h	java:S116"SRename this field "vote_num" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢˜€
+n	java:S116"YRename this field "som_member_num" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¹¢î
+o	java:S116"URename this field "somoim_num" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄÑËíÿÿÿÿÿ
+g	java:S116"RRename this field "user_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„¡Ü

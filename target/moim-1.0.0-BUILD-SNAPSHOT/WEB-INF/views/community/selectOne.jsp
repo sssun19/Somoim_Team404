@@ -87,7 +87,7 @@
             </br>
             <strong>${vo2.title}</strong>
 
-            <p>${vo2.content}</p>
+            <pre>${vo2.content}</pre>
 
         </div>
     </div>
