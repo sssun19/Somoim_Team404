@@ -33,7 +33,10 @@
 		select * from somoim_schedule where somoim_num=#{somoim_num}
 	</select>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 484a945ffe0cc50c57bd9177c5a1d78bbb8ca409
 	<insert id="Sch_INSERT">
         INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money, max_participant,
                                     som_member_num, somoim_num, participant, participant_count)
