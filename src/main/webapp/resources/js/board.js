@@ -65,43 +65,21 @@ function som_insertOK() {
     });
 }//end som_insertOK
 
-function join_insertOK() {
-    console.log("join_insertOK ajax....");
-
-    var formData = new FormData();
-    formData.append('user_id', $('#insert_id').val());
-    formData.append('somoim_num', $('#insert_num').val());
-    formData.append('title', $('#insert_title').val());
-    formData.append('content', $('#insert_content').html());
-    formData.append('file', $('#insert_imageUpload')[0].files[0]);
-
-    $.ajax({
-        url: "join_insertOK.do",
-        data: formData,
-        method: 'POST',
-        processData: false,  // important
-        contentType: false,  // important
-        dataType: 'text',
-        success: function(response) {
-            console.log('ajax....success', response);
-            location.href="join_selectAll.do?somoim_num="+$('#insert_num').val();
-        },
-        error:function(xhr,status,error){
-            console.log('xhr.status:', xhr.status);
-        }
-    });
-}//end function()
 
 
 function join_updateOK() {
     console.log("join_updateOK....");
     console.log($('#somoim_num').val());
+
+    var content22 = $('#insert_content').text();
+    console.log("콘텐트 값"+content22);
+
     $.ajax({
         url: "join_updateOK.do",
         data: {
             num: $('#update_num').val(),
             title: $('#update_title').val(),
-            content: $('#insert_content').val(),
+            content: $('#update_content').text(),
 
         },
         method: 'POST',

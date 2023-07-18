@@ -22,13 +22,15 @@ public class MongoBoardDAOImpl implements MongoBoardDAO {
     MongoCollection<Document> gallery;
 
     @Override
-    public List<MongoBoardVO> findAll(MongoBoardVO vo) {
+    public List<MongoBoardVO> findAll(MongoBoardVO vo, int pageNo) {
         log.info("findAll()...");
         List<MongoBoardVO> list = new ArrayList<MongoBoardVO>();
 
+        int skip = (pageNo - 1) * 9;
+
         Bson filter = Filters.eq("somoim_num", vo.getSomoim_num());
         Bson sort = new Document("num", -1);
-        FindIterable<Document> docs = gallery.find(filter).sort(sort);
+        FindIterable<Document> docs = gallery.find(filter).sort(sort).skip(skip).limit(9);
         for (Document doc : docs){
             MongoBoardVO vo2 = new MongoBoardVO();
             vo2.set_id(doc.get("_id").toString());
@@ -42,6 +44,7 @@ public class MongoBoardDAOImpl implements MongoBoardDAO {
 
         return list;
     }
+
 
     @Override
     public int insert(MongoBoardVO vo) {
@@ -105,6 +108,14 @@ public class MongoBoardDAOImpl implements MongoBoardDAO {
 
         return flag;
     }
+
+    @Override
+    public long countAll(MongoBoardVO vo) {
+        Bson filter = Filters.eq("somoim_num", vo.getSomoim_num());
+        long count = gallery.count(filter);
+        return count;
+    }
+
 
 }
 

@@ -72,4 +72,10 @@ public class MemberDAOimpl implements MemberDAO {
 		return session.update("MYPAGE_UPDATE_MEMBER", vo2);
 	}
 
+	@Override
+	public int som_maxmember_check(MemberVO vo) {
+		log.info("som_maxmember_check....som_title:{}", vo.getSom_title());
+		return session.selectOne("SOM_MAXMEMBER_CHECK", vo);
+	}
+
 }

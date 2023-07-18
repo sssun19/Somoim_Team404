@@ -37,6 +37,10 @@
 		select save_name from somoim_member where user_id=#{somoim_master}
 	</select>
 	
+	<select id="SOM_MAXMEMBER_CHECK" resultType="int">
+		select count(*) from somoim_member where som_title=#{som_title}
+	</select>
+	
 	<insert id="MEMBER_INSERT" parameterType="test.com.moim.member.model.MemberVO">
 		insert into somoim_member (num,user_id,som_title,save_name, somoim_num) 
 		values(seq_somoim_member.nextval,#{user_id},#{som_title},#{save_name},#{num})

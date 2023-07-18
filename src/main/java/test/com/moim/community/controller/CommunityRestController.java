@@ -16,19 +16,20 @@ import java.util.List;
 @Slf4j
 @Controller
 public class CommunityRestController {
-    @Autowired
-    CommunityService service;
-    @RequestMapping(value = "/json_comu_selectAll.do", method = RequestMethod.GET)
-    @ResponseBody
-    public List<CommunityVO> json_comu_selectAll() {
-        log.info("/json_comu_selectAll.do");
 
-        // selectOne
-        List<CommunityVO> comu_vos = service.selectAll();
+	@Autowired
+	CommunityService service;
+	@RequestMapping(value = "/json_community_selectAll.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CommunityVO> json_community_selectAll() {
+		log.info("/json_community_selectAll.do");
+
+		// selectOne
+		List<CommunityVO> c_vos = service.selectAll();
 
 
-        log.info("{}", comu_vos);
+		log.info("{}", c_vos);
 
-        return comu_vos;
-    }
+		return c_vos;
+	}
 }

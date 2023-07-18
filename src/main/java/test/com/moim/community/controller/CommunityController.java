@@ -6,22 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.community.service.CommunityService;
 import test.com.moim.community_comments.model.Community_commentsVO;
 import test.com.moim.community_comments.model.Community_re_commentsVO;
 import test.com.moim.community_comments.service.Community_commentsService;
 import test.com.moim.community_comments.service.Community_re_commentsService;
-import test.com.moim.events.model.EventsVO;
-import test.com.moim.userinfo.model.UserinfoVO;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -154,6 +147,15 @@ public class CommunityController {
 		log.info("filteredcoms@@@@@@@@@@@@@@@@...{}",filteredcoms);
 
 		model.addAttribute("c_coms", filteredcoms);
+
+		String user_id = (String) session.getAttribute("user_id");
+
+		vo.setUser_id(user_id);
+		CommunityVO good_count_mem= service.select_all_goodList(vo);
+		log.info("user_id..{}", user_id);
+		model.addAttribute("good_count_mem", good_count_mem);
+		log.info("good_count_mem..{}", good_count_mem);
+
 		return "community/selectOne";
 	}
 	
@@ -295,6 +297,30 @@ public class CommunityController {
 			return "redirect:community_selectOne.do?num="+vo.getNum();
 		}
 		
+	}
+
+	@RequestMapping(value = "/community_good_count_up.do", method = RequestMethod.GET)
+	public String good_count_up(CommunityVO vo) {
+		log.info("community_good_count_up.do...{}", vo);
+		service.good_count_up(vo);
+		service.adding_good_count_list(vo);
+
+
+		return "redirect:community_selectOne.do?num="+vo.getNum();
+
+
+	}
+
+	@RequestMapping(value = "/community_good_count_down.do", method = RequestMethod.GET)
+	public String good_count_down(CommunityVO vo) {
+		log.info("community_good_count_down.do...{}", vo);
+		service.good_count_down(vo);
+		service.del_good_count_list(vo);
+
+
+		return "redirect:community_selectOne.do?num="+vo.getNum();
+
+
 	}
 	
 }

@@ -505,6 +505,7 @@ form{
 /*register.html 회원가입 영역*/
 
 .register_section{
+    padding: 100px 0px;
     display: flex;
     width: 50%;
     margin: 0 auto;

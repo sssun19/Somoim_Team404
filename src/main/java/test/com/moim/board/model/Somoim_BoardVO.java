@@ -11,7 +11,7 @@ public class Somoim_BoardVO{
     private int num;
     private String title;
     private  String content;
-    private String save_name;
+    private String save_image;
     private Timestamp write_date;
     private int view_count;
     private int good_count;
@@ -20,6 +20,10 @@ public class Somoim_BoardVO{
     private int somoim_num;
     private String user_id;
     private MultipartFile file;
+    private String save_name;
+
+    private int startRow;
+    private int endRow;
 
 
 }
