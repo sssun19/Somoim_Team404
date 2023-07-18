@@ -95,18 +95,23 @@
 
 .img_box{
   width: 130px;
-  height: 130px;
-  margin-left: 10px;
+  height: 120px;
+  margin: auto;
   border-radius: 15px;
   margin-top: 10px;
   overflow: hidden;
   background-color: white;
 
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
 }
 
 .img_box img{
   width: 100%;
-  height: auto;
+  height: 80%;
+  border-radius: 3%;
 
 }
 
@@ -125,6 +130,7 @@
 .moim_img h1{
   padding-top: 20px;
   font-size: 18px;
+  width: 95%;
 
 }
 
@@ -370,7 +376,7 @@
 }
 
 .cal_detail{
-  width: 50%;
+  width: 80%;
   margin: 50px auto;
   display: flex;
   justify-content: space-between;

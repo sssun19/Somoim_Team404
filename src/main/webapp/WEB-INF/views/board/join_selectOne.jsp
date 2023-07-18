@@ -159,7 +159,6 @@
                 <button type="button" onclick="showPopup()">
                     <i class="fa-solid fa-lightbulb" style="color: red;"></i>
                 </button>
-<<<<<<< HEAD
 
                     <%--                좋아요 파트--%>
                     <c:if test="${good_count_mem ==null}">
@@ -167,14 +166,7 @@
                         <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
                         <i class="far fa-heart"></i>
                     </a>
-=======
-                <%--                좋아요 파트--%>
-                <c:if test="${good_count_mem ==null}">
-                    <button type="button">
-                        <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
-                            <i class="far fa-heart"></i>
-                        </a>
->>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
+
 
                     </button>
                 </c:if>
@@ -285,13 +277,9 @@
                                                            value="${c_com.som_board_num}">
 <%--                                                <input type="hidden" name="" value="${com.som_board_num}">--%>
                                                <c:if test="${c_com.user_id == user_id}">
-<<<<<<< HEAD
                                                 <div class="bbs_func" style="width: 3%;">
 
-                                                           <button type="submit" >
-=======
                                                            <button type="submit">
->>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
                                                                    <i class="fas fa-edit"></i>
                                                            </button>
                                                 </div>
@@ -299,16 +287,13 @@
                                             <form action="som_dcomm_deleteOK.do">
 
                                                    <input type="hidden" name="num" value="${c_com.num}">
-<<<<<<< HEAD
                                                    <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                                                                 <div class="bbs_func">
 
                                                          <button type="submit"  >
-=======
                                                    <input type="hidden" name="som_board_num"
                                                           value="${com.som_board_num}">
                                                          <button type="submit">
->>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
                                                              <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                                                                                                                     </div>

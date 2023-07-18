@@ -117,12 +117,9 @@ public class BoardService {
         log.info("완료...{}", vo);
          dao.del_good_count_list(vo);
     }
-<<<<<<< HEAD
 
     public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo){
         return dao.JSON_SELECT_ALL(vo);
     }
 
-=======
->>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
 }

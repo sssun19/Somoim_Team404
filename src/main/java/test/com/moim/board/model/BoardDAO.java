@@ -47,10 +47,7 @@ public interface BoardDAO {
     int good_count_up(Somoim_BoardVO vo);
     int good_count_down(Somoim_BoardVO vo);
     int vvcountup(Somoim_BoardVO vo);
-<<<<<<< HEAD
     List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo);
-=======
 
 	Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo);
->>>>>>> 2b96f6a32ac736b3e59c81b58f8f5615dd1c7e7b
 }
