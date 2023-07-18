@@ -117,8 +117,65 @@
                 error: function(xhr, status, error) {
                     console.log('xhr.status:', xhr.status);
                 }
-            });
+            });//end ajax...
+            
+            $("input[id='som_register']").on("click", function(){
+            	$.ajax({
+            		url:'som_maxmember_check.do',
+            		data: {
+            			som_title:'${vo2.som_title}'
+            		},
+            		success : function(response){
+            			console.log('response...........?!:', response);
+            			
+            			if (response >= ${vo2.max_member}) {
+                            alert('가입 실패: 소모임 인원이 초과되었습니다.'); // max_member는 서버에서 설정한 최대 인원 수
+                        } else {
+                        	$.ajax({
+                        		url:'som_member_insertOK.do',
+                        		method:'POST',
+                        		data: {
+                        			user_id:'${user_id}',
+                        			num:${vo2.num},
+                        			som_title:'${vo2.som_title}',
+                        			save_name:'${uvo2.save_name}'
+                        		},
+                        		success : function(response) {
+                        			console.log('ajax successed...');
+                        			console.log('response : ', response);
+                        			
+                        			if(response==='OK') {
+                        				alert('가입 완료되었습니다.');
+                        				location.reload();
+                        			} else {
+                        				alert('가입 실패: 이미 가입한 소모임입니다.');
+                        			}
+                        		},
+                        		error : function(xhr, status, error){
+                        			console.log('xhr.status : ', xhr.status);
+                        		}
+
+                        	});//end ajax
+                        	
+                        }
+            		},
+            		error : function(xhr, status, error){
+            			console.log('xhr.status : ', xhr.status);
+            		}
+
+            		
+            		
+            		
+            	});//end ajax..
+            	
+            	
+            	
+            });//end click
+            
         });
+        
+        
+        
     </script>
 
 </head>
@@ -127,7 +184,7 @@
 
 
 
-<form action="som_member_insertOK.do" method="POST">
+<!-- <form action="som_member_insertOK.do" method="POST"> -->
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -233,7 +290,7 @@
 
     </div>
 
-</form>
+<!-- </form> -->
 <div class="footer">
     <div>
         <strong>온앤오프</strong>

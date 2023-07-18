@@ -45,11 +45,10 @@ public class MemberRestController {
 		UserinfoVO vo3 = service2.selectUser(vo2);
 		log.info("vo3...{}", vo3);
 		
-		
 		if(result==1)
-			return "OK!";
+			return "OK";
 		else
-			return "FALSE...";
+			return "NOT OK";
 	}
 	
 	@ResponseBody
@@ -66,6 +65,18 @@ public class MemberRestController {
 		
 		return vos;
 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/som_maxmember_check.do", method = RequestMethod.GET)
+	public int som_maxmember_check(MemberVO vo) {
+		log.info("mex_member.......som_title:{}", vo.getSom_title());
+		
+		int result = service.som_maxmember_check(vo);
+		log.info("result??????{}", result);
+		
+		return result;
+		
 	}
 	
 }
