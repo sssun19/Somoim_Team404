@@ -45,11 +45,11 @@
                     for (var i = startIndex; i < endIndex; i++) {
                         var vo = items[i];
 
-                        html += '<li><a href="community_selectOne.do?num=' + vo.num + '">';
+                        html += '<div><a href="community_selectOne.do?num=' + vo.num + '">';
                         html += '<img src="resources/uploadimg/' + vo.save_img + '">';
                         html += '<br>';
                         html += '<strong>' + vo.title + '</strong>';
-                        html += '</a></li>';
+                        html += '</a></div>';
                     }
 
                     $(".ajaxLoop").append(html); // 가져온 항목을 추가합니다
@@ -101,21 +101,23 @@
 
 <div class="community_review_section">
     <div class="community_review_view">
-        <ul class="review_grid">
-            <c:forEach var="vo" items="${vos}" varStatus="loop">
-                <c:if test="${loop.index < 9}">
-                    <li><a href="community_selectOne.do?num=${vo.num}">
-                        <img src="resources/uploadimg/${vo.save_img}">
-                        </br>
-                        <strong>${vo.title}</strong>
-                    </a></li>
-                </c:if>
-            </c:forEach>
-            <ul class="ajaxLoop"></ul>
+        <div>
+            <div class="review_grid">
+                <c:forEach var="vo" items="${vos}" varStatus="loop">
+                    <c:if test="${loop.index < 9}">
+                        <div><a href="community_selectOne.do?num=${vo.num}">
+                            <img src="resources/uploadimg/${vo.save_img}">
+                            </br>
+                            <strong>${vo.title}</strong>
+                        </a></div>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <div class="ajaxLoop"></div>
             <div class="more_but_position">
                 <button class="more_but">더 보기</button>
             </div>
-        </ul>
+        </div>
 
 
     </div>
