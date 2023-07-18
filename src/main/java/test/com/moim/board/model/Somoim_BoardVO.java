@@ -22,5 +22,8 @@ public class Somoim_BoardVO{
     private MultipartFile file;
     private String save_name;
 
+    private int startRow;
+    private int endRow;
+
 
 }

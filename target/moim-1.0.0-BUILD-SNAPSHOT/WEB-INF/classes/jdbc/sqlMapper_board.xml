@@ -19,10 +19,16 @@
 
 	<select id="Sch_SELECT_ALL"
 			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
-		select * from somoim_schedule
-		where somoim_num = #{somoim_num}
-		Order by num desc
+			SELECT * FROM (
+						  SELECT rownum rnum, A.* FROM (
+														   select * from somoim_schedule
+														   where somoim_num = #{somoim_num}
+														   Order by num desc
+													   ) A WHERE rownum &lt;= #{endRow}
+			) WHERE rnum >= #{startRow}
 	</select>
+
+
 
 	<insert id="Sch_INSERT">
         INSERT INTO somoim_schedule(num, schedule_date, schedule_time, schedule_title, place, money, max_participant,

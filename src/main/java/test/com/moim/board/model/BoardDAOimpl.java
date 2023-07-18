@@ -142,5 +142,15 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.update("VOTE_UPDATE",vo);
     }
 
+    @Override
+    public int Join_Count(Somoim_BoardVO vo) {
+        return sqlSession.selectOne("Join_Count", vo);
+    }
+
+    @Override
+    public int Sch_Count(Somoim_ScheduleVO vo) {
+        return sqlSession.selectOne("Sch_Count", vo);
+    }
+
 
 }

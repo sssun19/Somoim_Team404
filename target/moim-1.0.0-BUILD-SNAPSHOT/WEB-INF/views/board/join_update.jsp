@@ -27,7 +27,6 @@
             <span>
                 <i class="fas fa-vote-yea"><a>투표</a></i>
                 <i class="fas fa-image"><a>이미지</a></i>
-                <i class="fas fa-file-alt"><a>파일</a></i>
 
 
             </span>

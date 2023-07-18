@@ -1049,3 +1049,16 @@
   border: 1px solid #ccc;
   margin: 15px 0px;
 }
+
+.Join_Paging{
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50px;
+
+}
+
+.Join_Paging a{
+  display: inline-block;
+  padding: 0px 8px;
+}

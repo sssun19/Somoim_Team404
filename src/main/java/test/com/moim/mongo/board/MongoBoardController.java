@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.imageio.ImageIO;
@@ -31,15 +32,24 @@ public class MongoBoardController {
 
 
     @RequestMapping(value = "/join_gallery.do", method = RequestMethod.GET)
-    public String Mongo_join_gallery(Model model, MongoBoardVO vo) {
+    public String Mongo_join_gallery(
+            @RequestParam(defaultValue = "1") int pageNo,
+            Model model,
+            MongoBoardVO vo
+    ) {
         log.info("join_gallery()......");
 
-        List<MongoBoardVO> list = service.findAll(vo);
-
+        List<MongoBoardVO> list = service.findAll(vo, pageNo);
         model.addAttribute("list", list);
+
+        long totalPosts = service.countAll(vo);
+        int totalPage = (int) Math.ceil((double) totalPosts / 9);
+        model.addAttribute("totalPage", totalPage);
 
         return "board/join_gallery";
     }
+
+
 
     @RequestMapping(value = "/join_gallery_insert.do", method = RequestMethod.GET)
     public String join_gallery_insert(HttpServletRequest request) {

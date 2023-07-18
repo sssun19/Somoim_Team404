@@ -9,12 +9,15 @@
 		join somoim c on a.somoim_num=c.num where user_id=#{user_id}
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
-		select * from somoim_board b
-	   	INNER JOIN somoim_member m
-	 	on b.som_member_num = m.num
-		where b.somoim_num = #{somoim_num}
-		ORDER BY
-		b.num desc
+		SELECT * FROM (
+						  SELECT rownum rnum, A.* FROM (
+														   SELECT * FROM somoim_board b
+																			 INNER JOIN somoim_member m
+																						on b.som_member_num = m.num
+														   where b.somoim_num = #{somoim_num}
+														   ORDER BY b.num desc
+													   ) A WHERE rownum &lt;= #{endRow}
+					  ) WHERE rnum >= #{startRow}
 	</select>
 
 	<select id="JOIN_SOMOIM_SELECT_SAVE_NAME" resultType="test.com.moim.board.model.Somoim_BoardVO">
@@ -86,5 +89,17 @@
 		where
 		num = #{num}
 	</update>
+
+	<select id="Join_Count" resultType="int">
+		select count(*) from somoim_board b
+			INNER JOIN somoim_member m
+			on b.som_member_num = m.num
+		where b.somoim_num = #{somoim_num}
+	</select>
+
+	<select id="Sch_Count" resultType="int">
+		select count(*) from somoim_schedule
+		where somoim_num = #{somoim_num}
+	</select>
 
 </mapper>

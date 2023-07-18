@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.moim.board.model.*;
 import test.com.moim.board.service.BoardService;
@@ -99,7 +100,25 @@ public class BoardController {
 //    }
 
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
-    public String join_selectAll(Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos) {
+    public String join_selectAll(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos) {
+
+            int startRow = (pageNo - 1) * pageSize + 1;
+            int endRow = pageNo * pageSize;
+
+            vo.setStartRow(startRow);
+            vo.setEndRow(endRow);
+
+
+            int totalPosts = service.Join_Count(vo);
+            int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
+
+
+
+
+
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
@@ -127,6 +146,7 @@ public class BoardController {
             dtos.add(dto);  // dto 리스트에 dto를 추가
         }
 
+        model.addAttribute("totalPage", totalPage);
         model.addAttribute("dtos", dtos);
         // 모델에 dto 리스트를 추가
 
@@ -267,7 +287,22 @@ public class BoardController {
 
 
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
-    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
+    public String join_schedule(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Model model, Somoim_ScheduleVO vo) {
+
+            int startRow = (pageNo - 1) * pageSize + 1;
+            int endRow = pageNo * pageSize;
+
+            vo.setStartRow(startRow);
+            vo.setEndRow(endRow);
+
+
+            int totalPosts = service.Sch_Count(vo);
+            int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
+
+
         log.info("join_schedule.do().....{}", vo);
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
@@ -299,6 +334,7 @@ public class BoardController {
             }
         }
 
+        model.addAttribute("totalPage", totalPage);
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 
@@ -448,7 +484,20 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
-    public String join_pay(Somoim_ScheduleVO vo,Model model) {
+    public String join_pay(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Somoim_ScheduleVO vo,Model model) {
+
+        int startRow = (pageNo - 1) * pageSize + 1;
+        int endRow = pageNo * pageSize;
+
+        vo.setStartRow(startRow);
+        vo.setEndRow(endRow);
+
+
+        int totalPosts = service.Sch_Count(vo);
+        int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
 
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
@@ -481,7 +530,7 @@ public class BoardController {
         }
 
 
-
+        model.addAttribute("totalPage", totalPage);
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 

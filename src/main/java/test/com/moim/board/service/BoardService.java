@@ -101,4 +101,10 @@ public class BoardService {
     public int vote_update(Somoim_Choice_Vote vo) {
         return dao.vote_update(vo);
     }
+
+    public int Join_Count(Somoim_BoardVO vo) { return dao.Join_Count(vo);
+    }
+
+    public int Sch_Count(Somoim_ScheduleVO vo) { return dao.Sch_Count(vo);
+    }
 }

@@ -51,4 +51,8 @@ public interface BoardDAO {
     List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos);
 
     int vote_update(Somoim_Choice_Vote vo);
+
+    int Join_Count(Somoim_BoardVO vo);
+
+    int Sch_Count(Somoim_ScheduleVO vo);
 }

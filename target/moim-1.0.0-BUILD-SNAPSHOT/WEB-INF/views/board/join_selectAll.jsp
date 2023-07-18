@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page session="true" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,10 +110,39 @@
 
         </div>
 
+        <div class="Join_Paging">
 
-    </div>
+                <a href="<c:url value='join_selectAll.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo > 1) ? param.pageNo - 1 : param.pageNo}'/>
 
-    <div class="footer">
+                <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                </c:url>"><i class="fa-solid fa-angle-left"></i></a>
+
+
+
+                <c:forEach var="i" begin="1" end="${totalPage}">
+                    <a href="<c:url value='join_selectAll.do'>
+                    <c:param name='somoim_num' value='${num}'/>
+                    <c:param name='pageNo' value='${i}'/>
+                    <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                    </c:url>">${i}</a>
+                </c:forEach>
+
+
+
+                <a href="<c:url value='join_selectAll.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo < totalPage) ? param.pageNo + 1 : param.pageNo}'/>
+                <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                </c:url>"><i class="fa-solid fa-angle-right"></i></a>
+
+        </div>
+
+
+
+
+        <div class="footer">
         <div>
             <strong>온앤오프</strong>
             <ul>
