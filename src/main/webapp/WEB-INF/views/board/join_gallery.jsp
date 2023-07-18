@@ -42,13 +42,39 @@
 
     </div>
 
+        <div class="Join_Paging">
+    <a href="<c:url value='join_gallery.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo > 1) ? param.pageNo - 1 : param.pageNo}'/>
 
 
+                </c:url>"><i class="fa-solid fa-angle-left"></i></a>
+
+
+
+    <c:forEach var="i" begin="1" end="${totalPage}">
+        <a href="<c:url value='join_gallery.do'>
+                    <c:param name='somoim_num' value='${num}'/>
+                    <c:param name='pageNo' value='${i}'/>
+
+                    </c:url>">${i}</a>
+    </c:forEach>
+
+
+
+    <a href="<c:url value='join_gallery.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo < totalPage) ? param.pageNo + 1 : param.pageNo}'/>
+                </c:url>"><i class="fa-solid fa-angle-right"></i></a>
+        </div>
 </div>
 
 
 
-<div class="footer">
+
+
+
+    <div class="footer">
     <div>
         <strong>온앤오프</strong>
         <ul>

@@ -11,8 +11,8 @@ public class MongoBoardService {
     @Autowired
     MongoBoardDAO dao;
 
-    public List<MongoBoardVO> findAll(MongoBoardVO vo) {
-        return dao.findAll(vo);
+    public List<MongoBoardVO> findAll(MongoBoardVO vo, int pageNo) {
+        return dao.findAll(vo, pageNo);
     }
 
     public int insert(MongoBoardVO vo) { return dao.insert(vo);
@@ -22,5 +22,9 @@ public class MongoBoardService {
     }
 
     public int delete(MongoBoardVO vo) { return dao.delete(vo);
+    }
+
+    public long countAll(MongoBoardVO vo) {
+        return dao.countAll(vo);
     }
 }

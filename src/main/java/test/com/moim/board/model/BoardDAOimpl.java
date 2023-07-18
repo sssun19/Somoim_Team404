@@ -151,5 +151,44 @@ public class BoardDAOimpl implements BoardDAO{
 		return sqlSession.selectList("SOM_SCHEDULE_SELECTONE", vo);
 	}
 
+    @Override
+    public Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo) {
+        return sqlSession.selectOne("MAX_NUM",vo);
+    }
+
+    @Override
+    public int vote_insert(Somoim_Question_VoteVO vo) {
+
+        return sqlSession.insert("Vote_Insert", vo);
+
+
+
+    }
+
+    @Override
+    public int choice_num(Somoim_Choice_Vote vo) {
+        return sqlSession.insert("CHOICE_INSERT",vo);
+    }
+
+    @Override
+    public List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos) {
+        return sqlSession.selectList("VOTE_SELECT_ALL",voteVos);
+    }
+
+    @Override
+    public int vote_update(Somoim_Choice_Vote vo) {
+        return sqlSession.update("VOTE_UPDATE",vo);
+    }
+
+    @Override
+    public int Join_Count(Somoim_BoardVO vo) {
+        return sqlSession.selectOne("Join_Count", vo);
+    }
+
+    @Override
+    public int Sch_Count(Somoim_ScheduleVO vo) {
+        return sqlSession.selectOne("Sch_Count", vo);
+    }
+
 
 }
