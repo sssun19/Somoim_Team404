@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.member.model.MemberVO;
 import test.com.moim.mypage.service.MypageService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoVO;
@@ -130,7 +131,14 @@ public class MypageController {
 		log.info("최종 변경 : {}", vo.getSave_name());
 		
 		int result = service.mypage_update(vo);
+		MemberVO vo2 = new MemberVO();
+		vo2.setSave_name(vo.getSave_name());
+		vo2.setUser_id((String)session.getAttribute("user_id"));
+		
+		int result2 = service.mypage_update_member(vo2);
+		
 		log.info("result : {}", result);
+		log.info("모든 save_name 바뀌었는지....{}", result2);
 		
 		return "redirect:mypage.do";
 	}
@@ -193,10 +201,9 @@ public class MypageController {
 		som_commentsVO vo = new som_commentsVO();
 		vo.setUser_id(user_id);
 		
-//		List<som_commentsVO> vos = service.mypageMyactivity_commbyme(vo);
+		List<som_commentsVO> vos = service.mypageMyactivity_commbyme(vo);
 		
-//		return vos;
-		return null;
+		return vos;
 	}
 	
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)

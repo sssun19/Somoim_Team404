@@ -41,4 +41,8 @@ public class MemberService {
 		log.info("searchSave_name ....{}", somoim_master);
 		return dao.searchSavename(somoim_master);
 	}
+	public int som_maxmember_check(MemberVO vo) {
+		log.info("som_maxmember_check....som_title:{}", vo.getSom_title());
+		return dao.som_maxmember_check(vo);
+	}
 }

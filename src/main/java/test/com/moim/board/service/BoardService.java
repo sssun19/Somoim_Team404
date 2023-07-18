@@ -85,6 +85,13 @@ public class BoardService {
 
 
 
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("somoim_schedule_selectOne.....somoim_num:{}", vo);
+		return dao.som_schedule_selectOne(vo);
+	}
+
+
+
     //------------
     public void good_count_up(Somoim_BoardVO vo){
         log.info("good count up 정상 작동");
@@ -98,7 +105,7 @@ public class BoardService {
     dao.vvcountup(vo);
 
     }
-    public  Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo){
+    public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo){
         log.info("전체 좋아요 목록을 불러옵니다.");
         return dao.select_all_goodList(vo);
     }
@@ -110,4 +117,4 @@ public class BoardService {
         log.info("완료...{}", vo);
          dao.del_good_count_list(vo);
     }
-    }
+}

@@ -1,11 +1,26 @@
 package test.com.moim.board.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.extern.slf4j.Slf4j;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.board.model.Somoim_MemberVO;
 import test.com.moim.board.model.Somoim_ScheduleVO;
@@ -14,17 +29,6 @@ import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
-
-import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-import java.util.List;
 
 /**
  * Handles requests for the application home page.
@@ -547,6 +551,25 @@ public class BoardController {
         return "redirect:join_selectOne.do?num="+vo.getNum();
 
 
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/som_schedule_selectOne.do", method = RequestMethod.GET)
+    public List<Somoim_ScheduleVO> som_schedule_SelectOne(Integer somoim_num, Model model) {
+    	log.info("som_schedule_SelectOne.do().....somoim_num:{}", somoim_num);
+    	Somoim_ScheduleVO vo = new Somoim_ScheduleVO();
+    	vo.setSomoim_num(somoim_num);
+    	
+    	List<Somoim_ScheduleVO> vos = service.som_schedule_selectOne(vo);
+    	log.info("======={}", vos);
+    	
+    	for (Somoim_ScheduleVO x : vos) {
+			log.info("place : {}",x.getPlace());
+			log.info(x.getSchedule_title());
+		}
+    	
+    	model.addAttribute("vos", vos);
+    	return vos;
     }
 
 
