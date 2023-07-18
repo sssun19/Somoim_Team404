@@ -19,9 +19,6 @@ public class BoardDAOimpl implements BoardDAO{
         log.info("Boardimpl()....");
     }
 
-
-
-
     @Override
     public List<Somoim_BoardVO> selectList(Somoim_BoardVO vo) {
 
@@ -111,6 +108,47 @@ public class BoardDAOimpl implements BoardDAO{
 	public List<Somoim_BoardVO> mypageMyactivity_boardbyme(Somoim_BoardVO vo) {
 		log.info("mypageBoardbyme....user_id:{}", vo.getUser_id());
 		return sqlSession.selectList("MYPAGE_BOARDBYME", vo);
+	}
+//section  좋아요 좋아요 취소
+    @Override
+    public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo) {
+        return sqlSession.selectOne("SELECT_ALL_GOOD_LIST", vo);
+    }
+
+    @Override
+    public int adding_good_count_list(Somoim_BoardVO vo) {
+        return sqlSession.insert("ADDING_GOOD_COUNT_LIST", vo);
+    }
+
+    @Override
+    public int del_good_count_list(Somoim_BoardVO vo) {
+        return sqlSession.delete("DEL_GOOD_COUNT_LIST", vo);
+    }
+
+    @Override
+    public int good_count_up(Somoim_BoardVO vo) {
+        return sqlSession.update("SOM_GOOD-COUNT_UP", vo);
+    }
+
+    @Override
+    public int good_count_down(Somoim_BoardVO vo) {
+        return sqlSession.update("SOM_GOOD-COUNT_DOWN", vo);
+    }
+
+    @Override
+    public int vvcountup(Somoim_BoardVO vo) {
+        log.info("view_count_up VO...{}", vo);
+        return sqlSession.update("SOM_VIEW-COUNT_UP", vo);
+
+    }
+
+
+
+
+	@Override
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("som_schedule_selectOne....somoim_num:{}", vo);
+		return sqlSession.selectList("SOM_SCHEDULE_SELECTONE", vo);
 	}
 
     @Override

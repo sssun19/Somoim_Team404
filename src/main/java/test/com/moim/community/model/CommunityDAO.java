@@ -1,5 +1,7 @@
 package test.com.moim.community.model;
 
+import test.com.moim.board.model.Somoim_BoardVO;
+
 import java.util.List;
 
 public interface CommunityDAO {
@@ -16,8 +18,16 @@ public interface CommunityDAO {
 
 	public List<CommunityVO> searchList(String searchKey, String searchWord);
 
-	public void view_countUp(CommunityVO vo);
-	
-	public void good_countUp(CommunityVO vo);
+	List<CommunityVO> select_user_info();
+
+
+
+	CommunityVO select_all_goodList(CommunityVO vo);
+	int adding_good_count_list(CommunityVO vo);
+	int del_good_count_list(CommunityVO vo);
+
+	int good_count_up(CommunityVO vo);
+	int good_count_down(CommunityVO vo);
+
 
 }

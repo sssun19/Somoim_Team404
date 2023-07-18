@@ -55,4 +55,15 @@ public interface BoardDAO {
     int Join_Count(Somoim_BoardVO vo);
 
     int Sch_Count(Somoim_ScheduleVO vo);
+
+	List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo);
+    int adding_good_count_list(Somoim_BoardVO vo);
+    int del_good_count_list(Somoim_BoardVO vo);
+
+    int good_count_up(Somoim_BoardVO vo);
+    int good_count_down(Somoim_BoardVO vo);
+    int vvcountup(Somoim_BoardVO vo);
+
+	Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo);
+
 }

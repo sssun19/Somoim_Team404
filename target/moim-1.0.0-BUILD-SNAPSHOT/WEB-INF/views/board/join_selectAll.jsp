@@ -44,14 +44,18 @@
                     </span>
                                 </div>
                                 <div class="bbs_func">
+
                                     <c:if test="${dto.boardVo.user_id == user_id}">
+
                                         <button type="button">
                                             <a href="join_update.do?num=${dto.boardVo.num}"><i class="fas fa-edit"></i></a>
                                         </button>
                                         <button type="button">
+
                                             <a href="join_deleteOK.do?num=${dto.boardVo.num}&somoim_num=${dto.boardVo.somoim_num}"><i class="fas fa-trash-alt"></i></a>
                                         </button>
                                     </c:if>
+
                                 </div>
                             </div>
 

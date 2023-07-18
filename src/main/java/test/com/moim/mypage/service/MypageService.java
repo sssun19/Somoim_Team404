@@ -10,6 +10,8 @@ import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.comments.model.som_commentsDAO;
 import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.member.model.MemberDAO;
+import test.com.moim.member.model.MemberVO;
 import test.com.moim.somoim.model.SomoimDAO;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.userinfo.model.UserinfoDAO;
@@ -30,6 +32,9 @@ public class MypageService {
 	
 	@Autowired
 	som_commentsDAO commDao;
+	
+	@Autowired
+	MemberDAO memberDao;
 
 
 	public UserinfoVO mypageSelectOne(UserinfoVO vo) {
@@ -60,6 +65,16 @@ public class MypageService {
 		log.info("나의활동..내가 쓴 댓글 모아보기 : {}", vo.getUser_id());
 		return commDao.mypageMyactivity_commbyme(vo);
 	}
+
+
+	public int mypage_update_member(MemberVO vo2) {
+		log.info("somoim_member 테이블의 save_name 도 update ...{}", vo2.getSave_name());
+		log.info("구분하기 위한 user_id : {}", vo2.getUser_id());
+		return memberDao.mypage_update_member(vo2);
+	}
+
+
+
 
 
 }

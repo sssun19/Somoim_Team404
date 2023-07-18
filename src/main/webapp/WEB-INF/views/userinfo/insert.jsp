@@ -72,33 +72,70 @@
                 // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
                 window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
             });
-            // 이메일 값을 저장하는 함수
-            function saveEmail() {
-                var email = $("input[name='email']").val();
-                localStorage.setItem("email", email);
-            }
+
         });
-    </script>
+        // 이메일 값을 저장하는 함수
+        function saveEmail(event) {
+            var email = $("input[name='email']").val();
+            localStorage.setItem("email", email);
+        }
+        <%--
+        function check(){
+      	  if(insertform.user_id.value.length == 0){
+      		  alert("아이디가 누락되었습니다.");
+      		  insertform.user_id.focus();
+      		  event.preventDefault();
+      		  return false;
+      	  }
+      	  if(insertform.pw.value.length == 0){
+      		  alert("비밀번호가 누락되었습니다.");
+      		  insertform.pw.focus();
+      		  return false;
+      	  }
+      	  if(insertform.pw_check.value.length == 0){
+      		  alert("비밀번호 재입력이 누락되었습니다.");
+      		  insertform.pw_check.focus();
+      		  return false;
+      	  }
+      	  if(insertform.name.value.length == 0){
+      		  alert("이름이 누락되었습니다.");
+      		  insertform.name.focus();
+      		  return false;
+      	  }
+      	  if(insertform.email.value.length == 0){
+      		  alert("이메일이 누락되었습니다.");
+      		  insertform.email.focus();
+      		  return false;
+      	  }
+      	  if(insertform.email_token.value.length == 0){
+      		  alert("인증번호가 누락되었습니다.");
+      		  insertform.email_token.focus();
+      		  return false;
+      	  }
+      	  return true;
+        }
+        --%>
+        </script>
 </head>
 <body>
 <%@ include file="../top_menu.jsp" %>
 <div class="register_section">
-    <form action="u_insertOK.do" method="post" enctype="multipart/form-data">
+    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" > <%-- name="insertform" onsubmit="return check(event); " --%>
         <label for="user_id">아이디</label>
         <br>
-        <input type="text" placeholder="아이디를 입력하세요." name="user_id" id="user_id" value="tester">
+        <input type="text" placeholder="아이디를 입력하세요." name="user_id" id="user_id" >
         <br>
         <label for="user_pw">비밀번호</label>
         <br>
-        <input type="password" placeholder="비밀번호를 입력하세요." name="pw" id="user_pw" value="hi111">
+        <input type="password" placeholder="비밀번호를 입력하세요." name="pw" id="user_pw" >
         <br>
         <label for="user_pw">비밀번호 확인</label>
         <br>
-        <input type="password" placeholder="비밀번호를 입력하세요." name="pw_check" id="pw_check" value="hi111">
+        <input type="password" placeholder="비밀번호를 입력하세요." name="pw_check" id="pw_check" >
         <br>
         <label for="user_name">이름</label>
         <br>
-        <input type="text" placeholder="이름를 입력하세요." id="name" name="name" value="kim12">
+        <input type="text" placeholder="이름를 입력하세요." id="name" name="name" >
         <br>
         <div class="birth_gender">
         <span>
@@ -158,7 +195,7 @@
         </div>
         <br>
         <div class="register_input_flex">
-            <input type="text" placeholder="인증번호 입력" name="email_token" id="email_token" value="">
+            <input type="text" placeholder="인증번호 입력" name="email_token" id="email_token" >
             <button id="btn_email_token">확인</button>
         </div>
         <br>

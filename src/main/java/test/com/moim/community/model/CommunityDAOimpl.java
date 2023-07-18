@@ -66,16 +66,36 @@ public class CommunityDAOimpl implements CommunityDAO{
 		return sqlSession.selectList(key,"%"+searchWord+"%");
 	}
 
-	@Override
-	public void view_countUp(CommunityVO vo) {
-		log.info("view_countUp()....{}",vo);
-		sqlSession.update("CB_view_count_UP",vo);
+	public List<CommunityVO> select_user_info() {
+		return sqlSession.selectList("CB_SELECT_SAVE_NAME");
 	}
-	
+
+	//section  좋아요 좋아요 취소
 	@Override
-	public void good_countUp(CommunityVO vo) {
-		log.info("good_countUp()....{}",vo);
-		sqlSession.update("CB_good_count_UP",vo);
+	public CommunityVO select_all_goodList(CommunityVO vo) {
+		return sqlSession.selectOne("CB_SELECT_ALL_GOOD_LIST", vo);
 	}
+
+	@Override
+	public int adding_good_count_list(CommunityVO vo) {
+		return sqlSession.insert("CB_ADDING_GOOD_COUNT_LIST", vo);
+	}
+
+	@Override
+	public int del_good_count_list(CommunityVO vo) {
+		return sqlSession.delete("CB_DEL_GOOD_COUNT_LIST", vo);
+	}
+
+	@Override
+	public int good_count_up(CommunityVO vo) {
+		return sqlSession.update("CB_GOOD_COUNT_UP", vo);
+	}
+
+	@Override
+	public int good_count_down(CommunityVO vo) {
+		return sqlSession.update("CB_GOOD_COUNT_DOWN", vo);
+	}
+
+
 
 }

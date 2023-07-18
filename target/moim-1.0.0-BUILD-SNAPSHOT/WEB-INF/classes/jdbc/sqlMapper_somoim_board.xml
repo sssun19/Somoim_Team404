@@ -10,13 +10,13 @@
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
 		SELECT * FROM (
-						  SELECT rownum rnum, A.* FROM (
-														   SELECT * FROM somoim_board b
-																			 INNER JOIN somoim_member m
-																						on b.som_member_num = m.num
-														   where b.somoim_num = #{somoim_num}
-														   ORDER BY b.num desc
-													   ) A WHERE rownum &lt;= #{endRow}
+			SELECT rownum rnum, A.* FROM (
+				SELECT * FROM somoim_board b
+				INNER JOIN somoim_member m
+				on b.som_member_num = m.num
+				where b.somoim_num = #{somoim_num}
+				ORDER BY b.num desc
+				) A WHERE rownum &lt;= #{endRow}
 					  ) WHERE rnum >= #{startRow}
 	</select>
 
@@ -88,6 +88,44 @@
 		participant_count = participant_count -1
 		where
 		num = #{num}
+	</update>
+<!--	GOOD COUNT LIST 를 불러온다.-->
+	<select id="SELECT_ALL_GOOD_LIST" resultType="test.com.moim.board.model.Somoim_BoardVO">
+		select * from good_count_list where user_id=#{user_id} and num=#{num}
+	</select>
+
+
+
+<!--	좋아요 버튼을 누를 때 작용한다.-->
+	<update id="SOM_GOOD-COUNT_UP">
+		update somoim_board
+		set good_count = good_count + 1 where num=#{num}
+
+	</update>
+
+<!--	좋아요를 누른 인원을 LIST에 추가한다.-->
+	<insert id="ADDING_GOOD_COUNT_LIST">
+		insert into good_count_list(num, user_id, list_num) values (#{num}, #{user_id}, seq_good_count.nextval)
+	</insert>
+
+	<!--	좋아요가 눌려있는 버튼을 누를 때 작용한다.-->
+	<update id="SOM_GOOD-COUNT_DOWN">
+		update somoim_board
+		set good_count = good_count - 1 where num=#{num}
+
+	</update>
+
+	<!--	좋아요 취소 누른 인원을 LIST에서 삭제한다..-->
+	<delete id="DEL_GOOD_COUNT_LIST" >
+		delete from good_count_list where
+		num=#{num} and user_id=#{user_id}
+	</delete>
+
+<!--게시글을 보았을 때, 바로 작용한다. 즉, 게시글이 호출되면 바로 작용한다.-->
+	<update id="SOM_VIEW-COUNT_UP" parameterType="test.com.moim.board.model.Somoim_BoardVO">
+		update somoim_board
+		set view_count = view_count + 1 where num=#{num}
+
 	</update>
 
 	<select id="Join_Count" resultType="int">

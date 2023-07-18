@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.community.model.CommunityDAO;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.somoim.model.SomoimVO;
@@ -47,11 +48,28 @@ public class CommunityService {
         return dao.searchList(searchKey, searchWord);
     }
 
-    public void view_countUp(CommunityVO vo) {
-        dao.view_countUp(vo);
+    public List<CommunityVO> select_user_info() { return dao.select_user_info();}
+
+
+    public void good_count_up(CommunityVO vo){
+        log.info("good count up 정상 작동");
+        dao.good_count_up(vo);
     }
 
-    public void good_countUp(CommunityVO vo) {
-        dao.good_countUp(vo);
+    public int good_count_down(CommunityVO vo){
+        return dao.good_count_down(vo);
+    }
+
+    public  CommunityVO select_all_goodList(CommunityVO vo){
+        log.info("전체 좋아요 목록을 불러옵니다.");
+        return dao.select_all_goodList(vo);
+    }
+    public void adding_good_count_list(CommunityVO vo){
+        log.info("완료...{}", vo);
+        dao.adding_good_count_list(vo);
+    }
+    public void del_good_count_list(CommunityVO vo){
+        log.info("완료...{}", vo);
+        dao.del_good_count_list(vo);
     }
 }

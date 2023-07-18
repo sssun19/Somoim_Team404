@@ -106,6 +106,14 @@ $(document).ready(function() {
     $('#join_insertOK').click(function(e) {
         e.preventDefault();
 
+
+
+        console.log($('#insert_num').val());
+        console.log($('#insert_id').val());
+        console.log($('#insert_title').val());
+        console.log($('#insert_content').html());
+        console.log($('vote_num').val());
+
         var formData = new FormData();
         formData.append('user_id', $('#insert_id').val());
         formData.append('somoim_num', $('#insert_num').val());
@@ -122,6 +130,8 @@ $(document).ready(function() {
         if (fileInput.files.length > 0) {
             formData.append('file', fileInput.files[0]);
         }
+
+
 
         $.ajax({
             url: "join_insertOK.do",

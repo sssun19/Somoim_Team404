@@ -1,6 +1,8 @@
 package test.com.moim.userinfo.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +50,8 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 
 	@Override
 	public UserinfoVO idCheck(UserinfoVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("idCheck()..{}",vo);
+		return sqlSession.selectOne("U_ID_CHECK",vo);
 	}
 
 	@Override
@@ -59,6 +61,37 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 	}
 
 	@Override
+	public UserinfoVO findId(String email) throws Exception {
+		log.info("find_id()...{}", email);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("email", email);
+		return sqlSession.selectOne("U_FindId", map);
+	}
+	
+	@Override
+	public UserinfoVO findPassword2(String email) {
+		log.info("find_password()...{}", email);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("email", email);
+		return sqlSession.selectOne("U_FindPassword2", map);
+	}
+
+	@Override
+	public UserinfoVO resetPassword(String email) throws Exception {
+		log.info("find_password()...{}", email);
+	    Map<String, String> map = new HashMap<String, String>();
+	    map.put("user_id", email);
+		return sqlSession.selectOne("U_resetPassword", map);
+	}
+	
+
+	@Override
+	public int resetPassword_update(UserinfoVO vo) {
+		log.info("resetPassword_update....{}", vo);
+		return sqlSession.update("U_resetPassword", vo);
+	}
+	
+	@Override			
 	public UserinfoVO selectUser(UserinfoVO vo2) {
 		log.info("selectUserID....{}", vo2);
 		return sqlSession.selectOne("UPDATE_USER", vo2);
@@ -69,6 +102,8 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 		log.info("mypage_update....{}", vo);
 		return sqlSession.update("MYPAGE_UPDATE_OK", vo);
 	}
+
+
 
 		
 }

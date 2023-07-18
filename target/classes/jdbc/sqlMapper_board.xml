@@ -28,6 +28,10 @@
 			) WHERE rnum >= #{startRow}
 	</select>
 
+	<select id="SOM_SCHEDULE_SELECTONE"
+			resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+		select * from somoim_schedule where somoim_num=#{somoim_num}
+	</select>
 
 
 	<insert id="Sch_INSERT">
