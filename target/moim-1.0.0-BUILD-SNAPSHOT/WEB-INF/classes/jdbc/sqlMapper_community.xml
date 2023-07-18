@@ -6,7 +6,7 @@
 <mapper namespace="test.com.moim.community">
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
         select *
-        from community_board
+        from community_board order by num desc
     </select>
 
     <select id="CB_SELECT_ONE" resultType="test.com.moim.community.model.CommunityVO">
