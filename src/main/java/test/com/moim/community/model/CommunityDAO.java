@@ -20,8 +20,14 @@ public interface CommunityDAO {
 
 	List<CommunityVO> select_user_info();
 
-	public void view_countUp(CommunityVO vo);
-	
-	public void good_countUp(CommunityVO vo);
+
+
+	CommunityVO select_all_goodList(CommunityVO vo);
+	int adding_good_count_list(CommunityVO vo);
+	int del_good_count_list(CommunityVO vo);
+
+	int good_count_up(CommunityVO vo);
+	int good_count_down(CommunityVO vo);
+
 
 }

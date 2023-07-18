@@ -67,9 +67,20 @@
 					</span>
             </div>
             <div class="c_bbs_func">
-                <button type="button">
-                    <i class="far fa-heart"></i>
-                </button>
+                <c:if test="${good_count_mem ==null}">
+                    <button type="button">
+                        <a href="community_good_count_up.do?user_id=${user_id}&num=${vo2.num}">
+                        <i class="far fa-heart"></i>
+                        </a>
+                    </button>
+                </c:if>
+                <c:if test="${good_count_mem.user_id ==user_id}">
+                    <button type="button">
+                        <a href="community_good_count_down.do?user_id=${user_id}&num=${vo2.num}">
+                            <i class="far fa-heart">취소</i>
+                        </a>
+                    </button>
+                </c:if>
                 <a href="community_update.do?num=${param.num}" class="button-link">
                     <button type="button" class="edit-button">
                         <i class="fas fa-edit"></i>
@@ -87,8 +98,11 @@
             </br>
             <strong>${vo2.title}</strong>
 
-            <p>${vo2.content}</p>
+            <p style="white-space: pre-wrap">${vo2.content}</p>
 
+        </div>
+        <div style=" text-align: right; margin-right: 10px;">
+            <i class="fa-reggiular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
         </div>
     </div>
     <div class="c_comments_sec">
