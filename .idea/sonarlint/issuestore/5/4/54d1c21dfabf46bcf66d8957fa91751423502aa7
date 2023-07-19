@@ -1,5 +1,0 @@
-
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¨†•øÿÿÿÿ8øÎ¯Í–1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–ñÏ½8ÿÎ¯Í–1
-d
-java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ð­µ^8€Ï¯Í–1

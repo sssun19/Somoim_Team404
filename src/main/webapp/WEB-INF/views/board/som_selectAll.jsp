@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +112,7 @@
 
         <ul class="rec_list_grid">
             <c:forEach var="vo" items="${vos}" end="3">
-                <li>
+                <li >
                     <a href="som_selectOne.do?num=${vo.num}">
                         <input type="hidden" value="${vo.num}">
                         <input type="hidden" value="${vo.create_date}">
@@ -141,9 +142,9 @@
 				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>많이 볼래요</option>
 		</select>
 	</div>
-    <div class="board_list">
+    <div class="board_list" style="margin-top: 1%;" >
         <form action="som_searchList.do">
-            <div class="board_list_category_detail">
+            <div class="board_list_category_detail" style="margin-bottom: 1%;">
                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a>
                 <!-- 				<a href="som_selectAll.do?category=local"><button type="button" name="local">국내여행</button></a> -->
                 <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>-->
@@ -160,15 +161,15 @@
 
 
         <div class="list_selectAll">
-            <ul class="list_grid">
+            <ul class="list_grid" >
                 <c:forEach var="vo" items="${viewAll}">
                     <c:if test="${vo.category eq param.category }">
-                        <li>
+                        <li style="border: 1px solid lightgray; border-radius: 5%; text-align: center; display: flex; justify-content: center; align-items: center;">
                             <a href="som_selectOne.do?num=${vo.num}">
                                 <input type="hidden" value="${vo.num}">
                                 <input type="hidden" value="${vo.create_date}">
                                 <input type="hidden" value="${vo.category}">
-                                <div class="moim_img">
+                                <div class="moim_img" >
                                     <div class="img_box">
                                         <img src="resources/uploadimg/${vo.somoim_img}"></div>
                                     <span>
@@ -181,8 +182,10 @@
                             </a>
                         </li>
                     </c:if>
+
+
                     <c:if test="${param.category eq null}">
-                        <li>
+                        <li style="border: 1px solid lightgray; border-radius: 5%; text-align: center; display: flex; justify-content: center; align-items: center;">
                             <a href="som_selectOne.do?num=${vo.num}">
                                 <input type="hidden" value="${vo.num}">
                                 <input type="hidden" value="${vo.create_date}">
@@ -190,12 +193,13 @@
                                 <div class="moim_img">
                                     <div class="img_box">
                                         <img src="resources/uploadimg/${vo.somoim_img}"></div>
+                                    <div style="width: 100%;">
                                     <span>
 									<h1>${vo.som_title}</h1>
 									<p class="sub_tit">소셜링 📌 ${vo.area}</p>
 									<p class="sub_tit">⏱ ${vo.create_date }</p>
-								</span>
-
+								    </span>
+                                    </div>
                                 </div>
                             </a>
                         </li>
@@ -226,7 +230,7 @@
 
             </ul>
 
-				<div style="display: block; text-align: center;" >
+				<div style="display: block; text-align: center; margin-top: 2%;" >
 <%-- 					<c:if test="${paging.startPage != 1 }"> --%>
 <%-- 						<a href="som_selectAll.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a> --%>
 <%-- 					</c:if> --%>

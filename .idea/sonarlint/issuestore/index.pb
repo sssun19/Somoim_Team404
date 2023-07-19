@@ -22,8 +22,6 @@ Z
 *src/main/webapp/WEB-INF/views/top_menu.jsp,2\7\2766d971312ca4144c935c57a736a8ad5745c4c8
 {
 Ksrc/main/java/test/com/moim/userinfo/controller/UserinfoRestController.java,e\a\ea7607faa2940e80f129fa3b017bef80ed6efff2
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 e
 5src/main/webapp/WEB-INF/views/board/join_schedule.jsp,7\9\797f6eba16b64fc8d9fd1c503c2855b6d5357c3b
 l
@@ -162,8 +160,6 @@ s
 Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
 h
 8src/main/webapp/WEB-INF/views/cs/CS_notice_selectAll.jsp,f\5\f51eaa44a03bb974df90d2ad56a82616bf7fbe0c
-}
-Msrc/main/java/test/com/moim/community/controller/CommunityRestController.java,5\4\54d1c21dfabf46bcf66d8957fa91751423502aa7
 e
 5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
 [

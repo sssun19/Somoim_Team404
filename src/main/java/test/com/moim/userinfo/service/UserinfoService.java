@@ -39,7 +39,10 @@ public class UserinfoService {
 	
 	public UserinfoVO findId(String email) throws Exception {
 	    log.info("findId()... email: {}", email);
-	    
+	    if (email == null || email.trim().isEmpty()) {
+	        throw new IllegalArgumentException("이메일을 입력해주세요.");
+	    }
+
 	    return dao.findId(email);
 	}
 

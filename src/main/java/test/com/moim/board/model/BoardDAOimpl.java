@@ -112,6 +112,7 @@ public class BoardDAOimpl implements BoardDAO{
 //section  좋아요 좋아요 취소
     @Override
     public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo) {
+        log.info("select_all_goodList", vo);
         return sqlSession.selectOne("SELECT_ALL_GOOD_LIST", vo);
     }
 
@@ -140,6 +141,11 @@ public class BoardDAOimpl implements BoardDAO{
         log.info("view_count_up VO...{}", vo);
         return sqlSession.update("SOM_VIEW-COUNT_UP", vo);
 
+    }
+
+    @Override
+    public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo) {
+        return sqlSession.selectList("JSON_SELECT_ALL");
     }
 
 

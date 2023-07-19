@@ -16,6 +16,7 @@ import java.util.List;
 @Slf4j
 @Controller
 public class CommunityRestController {
+
 	@Autowired
 	CommunityService service;
 	@RequestMapping(value = "/json_community_selectAll.do", method = RequestMethod.GET)

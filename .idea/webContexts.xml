@@ -3,7 +3,11 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+<<<<<<< HEAD
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/join_selectOne.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board" />
+=======
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/join_insert.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board" />
+>>>>>>> 4db151fda722e5797ca1b969963ff30a989cc769
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community/insert.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/community" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage/mypage_update.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/mypage" />
       </map>

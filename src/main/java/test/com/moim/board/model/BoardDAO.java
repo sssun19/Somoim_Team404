@@ -63,6 +63,7 @@ public interface BoardDAO {
     int good_count_up(Somoim_BoardVO vo);
     int good_count_down(Somoim_BoardVO vo);
     int vvcountup(Somoim_BoardVO vo);
+    List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo);
 
 	Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo);
 
