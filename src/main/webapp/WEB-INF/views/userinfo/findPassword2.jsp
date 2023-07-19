@@ -10,38 +10,62 @@
         alert(alertMessage);
         }
         
-    $(document).ready(function() {
-        $("#mail_check_button").click(function() {
-        	console.log("mail_check_button...click");
-            var email = $("input[name='email']").val();
-            console.log(email);
-
-            // 서버에 이메일 주소를 전송하는 Ajax 요청
-            $.ajax({
-                url: 'sendEmail.do',
-                method: 'GET',
-                data: { email: email },
-                dataType:"json",
-                success: function(response) {
-                	console.log("response:",response);
-                	console.log("response.result:",response.result);
-                    // 서버로부터의 응답을 처리하는 로직
-                    if (response.result === 'OK') {
-                        alert('인증번호를 이메일로 발송했습니다.');
-                    } else {
-                        alert('이메일 전송에 실패했습니다.');
-                    }
-                },
-               error: function() {
-                   alert('서버와의 통신에 실패했습니다.');
-               }
+        $(document).ready(function() {
+            // 이름 입력 유효성 검사 및 팝업 띄우기
+            $("#user_id").blur(function() {
+                var name = $("#user_id").val();
+                if (name === '') {
+                    alert("이름을 입력해주세요.");
+                }
             });
-            return false;
-        });
-        
-     $("#btn_email_token").click(function() {
-            	console.log("btn_email_token...click");
-            	var email = $("input[name='email']").val();
+
+            // 이메일 입력 유효성 검사 및 팝업 띄우기
+            $("input[name='email']").blur(function() {
+                var email = $("input[name='email']").val();
+                if (email === '') {
+                    alert("이메일을 입력해주세요.");
+                }
+            });
+
+            // 인증번호 입력 유효성 검사 및 팝업 띄우기
+            $("#email_token").blur(function() {
+                var email_token = $("#email_token").val();
+                if (email_token === '') {
+                    alert("인증번호를 입력해주세요.");
+                }
+            });
+
+            $("#mail_check_button").click(function() {
+                console.log("mail_check_button...click");
+                var email = $("input[name='email']").val();
+                console.log(email);
+
+                // 서버에 이메일 주소를 전송하는 Ajax 요청
+                $.ajax({
+                    url: 'sendEmail.do',
+                    method: 'GET',
+                    data: { email: email },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("response:", response);
+                        console.log("response.result:", response.result);
+                        // 서버로부터의 응답을 처리하는 로직
+                        if (response.result === 'OK') {
+                            alert('인증번호를 이메일로 발송했습니다.');
+                        } else {
+                            alert('이메일 전송에 실패했습니다.');
+                        }
+                    },
+                    error: function() {
+                        alert('서버와의 통신에 실패했습니다.');
+                    }
+                });
+                return false;
+            });
+
+            $("#btn_email_token").click(function() {
+                console.log("btn_email_token...click");
+                var email = $("input[name='email']").val();
                 console.log(email);
                 var email_token = $("input[name='email_token']").val();
                 console.log(email_token);
@@ -51,16 +75,16 @@
                     url: 'send_email_token.do',
                     method: 'GET',
                     data: {
-                    	email: email,
-                    	email_token: email_token
+                        email: email,
+                        email_token: email_token
                     },
                     dataType: "json",
                     success: function(response) {
-                    	console.log("response:", response);
+                        console.log("response:", response);
                         if (response.result === 'OK') {
                             alert('인증이 완료되었습니다.');
-                         	// 인증 성공한 경우 회원가입 버튼 활성화
-                            $("#register").prop('disabled', false);  
+                            // 인증 성공한 경우 회원가입 버튼 활성화
+                            $("#register").prop('disabled', false);
                         } else {
                             alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
                         }
@@ -72,29 +96,20 @@
                 return false;
             });
 
-    
-     function passwordCheck() {
-         var name = $("#name").val();
-         var email = $("input[name='email']").val();
+            // 비밀번호 재설정 버튼 클릭 이벤트
+            $("#submitpass").click(function() {
+                var email_token = $("#email_token").val();
 
-         $.ajax({
-             url: 'findPassword2.do',
-             method: 'POST',
-             data: {
-                 name: name,
-                 email: email
-             },
-             success: function(response) {
-                 $("#result").text(response);
-             },
-             error: function() {
-                 alert('비밀번호 검색에 실패했습니다.');
-             }
-         });
-     }
+                if (email_token === '') {
+                    alert("인증번호를 입력해주세요.");
+                    return false;
+                } else {
+                    // 비밀번호 재설정 페이지로 이동
+                    location.href = "resetPassword.do?user_id=${param.user_id}";
+                }
+            });
+        });
 
-
-    });
 
     </script>
 <head>
@@ -171,7 +186,7 @@
                     </div>
                           <button id="btn_email_token" >확인</button>
                              
-                        <button type="button" id="submitpass" onclick="location.href='resetPassword.do?user_id=${param.user_id}'">비밀번호 재설정</button>
+                        <button type="button" id="submitpass" >비밀번호 재설정</button>
                     </div>
 
                 </div>    
