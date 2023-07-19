@@ -216,20 +216,32 @@
             <version>3.1.1.RELEASE</version>
         </dependency>
 
-		<!-- WebSocket -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
-			<version>6.0.11</version>
+			<version>5.0.7.RELEASE</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-websocket</artifactId>
-			<version>6.0.10</version>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.1</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
     <build>
         <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+
+
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>
