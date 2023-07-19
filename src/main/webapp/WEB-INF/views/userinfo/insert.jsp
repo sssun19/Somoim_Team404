@@ -68,10 +68,7 @@
                 });
                 return false;
             });
-            $("#register").click(function() {
-                // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
-                window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
-            });
+
 
         });
         // 이메일 값을 저장하는 함수
@@ -79,12 +76,11 @@
             var email = $("input[name='email']").val();
             localStorage.setItem("email", email);
         }
-        <%--
+        
         function check(){
       	  if(insertform.user_id.value.length == 0){
       		  alert("아이디가 누락되었습니다.");
       		  insertform.user_id.focus();
-      		  event.preventDefault();
       		  return false;
       	  }
       	  if(insertform.pw.value.length == 0){
@@ -112,15 +108,19 @@
       		  insertform.email_token.focus();
       		  return false;
       	  }
-      	  return true;
+      	  return             
+      	  $("#register").click(function() {
+              // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
+              window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
+          });
         }
-        --%>
+
         </script>
 </head>
 <body>
 <%@ include file="../top_menu.jsp" %>
 <div class="register_section">
-    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" > <%-- name="insertform" onsubmit="return check(event); " --%>
+    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" name="insertform" >
         <label for="user_id">아이디</label>
         <br>
         <input type="text" placeholder="아이디를 입력하세요." name="user_id" id="user_id" >
@@ -205,7 +205,7 @@
             <button id="btn_email_token">확인</button>
         </div>
         <br>
-        <input id="register" type="submit" value="회원가입">
+        <input id="register" type="submit" onClick="return check()" value="회원가입">
     </form>
 </div>
 <div class="footer">
