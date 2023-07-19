@@ -139,7 +139,7 @@
 </div>
 </body>
 
-<script src="/resources/js/schedule.js"></script>
+<script src="resources/js/schedule.js"></script>
 <script>
     $(document).ready(function() {
         var userId = $('#login_user_id').val();

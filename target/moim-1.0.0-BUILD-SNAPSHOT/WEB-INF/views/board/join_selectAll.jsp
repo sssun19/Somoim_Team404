@@ -132,7 +132,7 @@
                         <div class="user_info">
                             <div class="profile">
                                 <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
-                                     src="/resources/uploadimg/${dto.boardVo.save_name}">
+                                     src="resources/uploadimg/${dto.boardVo.save_name}">
                             </div>
                             <span>
 

@@ -23,7 +23,7 @@
 	
 	<select id="U_FindId"
 		resultType="test.com.moim.userinfo.model.UserinfoVO" parameterType="HashMap">
-		select * from userinfo where email=#{email}
+		select * from userinfo where email=#{email,jdbcType=VARCHAR }
 	</select>
 
 	<select id="U_ID_CHECK"

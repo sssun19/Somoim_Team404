@@ -31,9 +31,16 @@ function idCheck(){
 	
 }//end idCheck()...
 
-function memberCheck(){
-	location.href='findPassword2.do?user_id='+$('#user_id').val()}; 
+function memberCheck() {
+    var userId = $("#user_id").val();
 
+    if (userId === "") {
+        alert("아이디를 입력해주세요.");
+        return;
+    }
+
+    location.href = "findPassword2.do?user_id=" + userId;
+}
 </script>
 
 <head>
