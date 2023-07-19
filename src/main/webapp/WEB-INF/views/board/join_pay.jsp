@@ -120,7 +120,7 @@
 
 
 </body>
-<script src="/resources/js/pay.js"></script>
+<script src="resources/js/pay.js"></script>
 <script>
 
 </script>
