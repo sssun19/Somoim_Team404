@@ -9,23 +9,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
+      <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+  function check(){
+	  if(loginform.user_id.value.length == 0){
+		  alert("아이디가 누락되었습니다.");
+		  loginform.user_id.focus();
+		  return false;
+	  }
+	  if(loginform.pw.value.length == 0){
+		  alert("비밀번호가 누락되었습니다.");
+		  loginform.pw.focus();
+		  return false;
+	  }
+  }
+    </script>
 </head>
 <body>
    <jsp:include page="../top_menu.jsp"></jsp:include>
 
     <div class="login_section">
 
-       <form action="loginOK.do" method="post">
+       <form action="loginOK.do" method="post" name="loginform" onsubmit="return check();">
             
-            <labal for="user_id">아이디</labal>
+            <label for="user_id">아이디</label>
             <br>
-            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="tester1"> 
+            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="test111">
             
             <br>
 
             <label for="user_pw">비밀번호</label>
             <br>
-            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="hi111"> 
+            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="1234">
             <br>
             <div class="sub_login">
                 <label><input type="checkbox" id="auto_login">자동로그인</label>

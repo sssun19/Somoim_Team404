@@ -142,20 +142,14 @@
             <label>생년월일</label>
             <br>
             <select name="birthday_year">
-                <option value="2000">2000</option>
-                <option value="2001">2001</option>
-                <option value="2002">2002</option>
             </select>
+
             <select name="birthday_month">
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
             </select>
+
             <select name="birthday_day">
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
             </select>
+
         </span>
             <span>
             <label>성별</label>
@@ -172,7 +166,7 @@
         <br>
         <label for="user_interest">관심 태그 선택</label>
         <br>
-        <select name="interest" size="5">
+        <select name="interest" size="5" style="width: 30%; border: solid 1px #cccccc; padding: 4px; margin-top: 5px;">
 			<option value="야구">야구</option>
 			<option value="독서">독서</option>
 			<option value="요리">요리</option>
@@ -234,4 +228,28 @@
     </div>
 </div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        var year = new Date().getFullYear();
+        var startYear = year - 65;
+        var endYear = year - 15;
+
+        for (var i = startYear; i <= endYear; i++) {
+            $('select[name="birthday_year"]').append('<option value="'+ i +'">'+ i +'</option>');
+        }
+
+        for (var i = 1; i <= 12; i++) {
+            var month = (i < 10) ? '0' + i : i;
+            $('select[name="birthday_month"]').append('<option value="'+ month +'">'+ month +'</option>');
+        }
+
+        for (var i = 1; i <= 31; i++) {
+            var day = (i < 10) ? '0' + i : i;
+            $('select[name="birthday_day"]').append('<option value="'+ day +'">'+ day +'</option>');
+        }
+    });
+
+
+</script>
 </html>

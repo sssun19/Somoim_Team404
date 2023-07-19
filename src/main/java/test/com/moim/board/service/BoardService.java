@@ -3,10 +3,7 @@ package test.com.moim.board.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import test.com.moim.board.model.BoardDAO;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.board.model.Somoim_MemberVO;
-import test.com.moim.board.model.Somoim_ScheduleVO;
+import test.com.moim.board.model.*;
 
 import java.util.List;
 
@@ -16,6 +13,7 @@ public class BoardService {
 
     @Autowired
     BoardDAO dao;
+
 
     public BoardService(){
         log.info("BoardService()....");
@@ -83,9 +81,40 @@ public class BoardService {
 
     public List<Somoim_BoardVO> select_user_info() { return dao.select_user_info();}
 
+    public int vote_insert(Somoim_Question_VoteVO vo) {
+        return dao.vote_insert(vo);
+
+    }
+
+    public Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo) {
+        return dao.vote_num(vo);
+    }
+
+    public int choice_insert(Somoim_Choice_Vote vo) {
+        return dao.choice_num(vo);
+    }
+
+    public List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos) {
+        return dao.vote_selectList(voteVos);
+    }
+
+    public int vote_update(Somoim_Choice_Vote vo) {
+        return dao.vote_update(vo);
+    }
+
+    public int Join_Count(Somoim_BoardVO vo) { return dao.Join_Count(vo);
+    }
+
+    public int Sch_Count(Somoim_ScheduleVO vo) {
+        return dao.Sch_Count(vo);
+    }
+
+    public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+        log.info("somoim_schedule_selectOne.....somoim_num:{}", vo);
+        return dao.som_schedule_selectOne(vo);
+    }
 
 
-    //------------
     public void good_count_up(Somoim_BoardVO vo){
         log.info("good count up 정상 작동");
          dao.good_count_up(vo);
@@ -98,7 +127,7 @@ public class BoardService {
     dao.vvcountup(vo);
 
     }
-    public  Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo){
+    public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo){
         log.info("전체 좋아요 목록을 불러옵니다.");
         return dao.select_all_goodList(vo);
     }
@@ -110,4 +139,9 @@ public class BoardService {
         log.info("완료...{}", vo);
          dao.del_good_count_list(vo);
     }
+
+    public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo){
+        return dao.JSON_SELECT_ALL(vo);
     }
+
+}

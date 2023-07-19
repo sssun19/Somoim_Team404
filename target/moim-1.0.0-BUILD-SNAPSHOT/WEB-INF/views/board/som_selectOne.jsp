@@ -52,9 +52,130 @@
 
 
             });//end ajax...
-        });//end onload..
+            
+            $.ajax({
+                url: 'som_schedule_selectOne.do',
+                data: {
+                    somoim_num: ${param.num}
+                },
+                success: function(response) {
+                    console.log('ajax successsed...response:', response);
+                    var now = new Date();
+                    console.log('현재 시각:', now); // 현재 시간 체크
+                    var closestSchedule = null; // 가장 가까운 일정 저장할 변수 초기화
+                    var closestTimeDiff = Infinity;
 
+                    $.each(response, function(index, data) {
+                        console.log(index, data);
 
+                        var scheduleTime = new Date(data.schedule_date + ' ' + data.schedule_time);
+                        var timeDiff = scheduleTime - now;
+                        console.log('시간 확인:', scheduleTime);
+                        console.log('남은 시간:', timeDiff);
+
+                        if (timeDiff >= 0 && timeDiff < closestTimeDiff) {
+                            closestSchedule = data;
+                            closestTimeDiff = timeDiff;
+                        }
+                    });
+
+                    if (closestSchedule) {
+                        var schedule_selectOne = `
+                            <h1>일정</h1>
+                            <div class="cal_detail">
+                                <div class="detail_info">
+                                    <h1>06/17</h1>
+                                    <br>
+                                    <strong>\${closestSchedule.schedule_title}</strong>
+                                    <p>일시: \${closestSchedule.schedule_date} \${closestSchedule.schedule_time}</p>
+                                    <p>장소: \${closestSchedule.place}</p>
+                                    <p>회비: \${closestSchedule.money}</p>
+                                </div>
+                                <div class="detail_member">
+                                    <!-- 참석 멤버 목록 -->
+                                    <h1>참석 멤버</h1>
+                                    <ul>
+                                        <li>
+                                            <div class="round_box">
+                                                <i class="far fa-user"></i>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="detail_status">
+                                    <button type="button"><a href="join_schedule.do?somoim_num=${vo2.num}">참석</a></button>
+                                </div>
+                            </div>
+                        `;
+
+                        $('.join_cal').html(schedule_selectOne);
+                    } else {
+                        $('.join_cal').html('<p>가까운 일정이 없습니다.</p>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('xhr.status:', xhr.status);
+                }
+            });//end ajax...
+            
+            $("input[id='som_register']").on("click", function(){
+            	$.ajax({
+            		url:'som_maxmember_check.do',
+            		data: {
+            			som_title:'${vo2.som_title}'
+            		},
+            		success : function(response){
+            			console.log('response...........?!:', response);
+            			
+            			if (response >= ${vo2.max_member}) {
+                            alert('가입 실패: 소모임 인원이 초과되었습니다.    모임 정원:${vo2.max_member} 명'); // max_member는 서버에서 설정한 최대 인원 수
+                        } else {
+                        	$.ajax({
+                        		url:'som_member_insertOK.do',
+                        		method:'POST',
+                        		data: {
+                        			user_id:'${user_id}',
+                        			num:${vo2.num},
+                        			som_title:'${vo2.som_title}',
+                        			save_name:'${uvo2.save_name}'
+                        		},
+                        		success : function(response) {
+                        			console.log('ajax successed...');
+                        			console.log('response : ', response);
+                        			
+                        			if(response==='OK') {
+                        				alert('가입 완료되었습니다.');
+                        				location.reload();
+                        			} else {
+                        				alert('가입 실패: 이미 가입한 소모임입니다.');
+                        			}
+                        		},
+                        		error : function(xhr, status, error){
+                        			console.log('xhr.status : ', xhr.status);
+                        		}
+
+                        	});//end ajax
+                        	
+                        }
+            		},
+            		error : function(xhr, status, error){
+            			console.log('xhr.status : ', xhr.status);
+            		}
+
+            		
+            		
+            		
+            	});//end ajax..
+            	
+            	
+            	
+            });//end click
+            
+        });
+        
+        
+        
     </script>
 
 </head>
@@ -63,7 +184,7 @@
 
 
 
-<form action="som_member_insertOK.do" method="POST">
+<!-- <form action="som_member_insertOK.do" method="POST"> -->
     <div class="join_section">
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
@@ -71,8 +192,8 @@
             <img src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
-            <h1 class="main_tit" style="padding: 10px;">${vo2.som_title}</h1>
-            <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
+            <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
+            <p style="font-weight: 600; color: #999; padding-top: 0;">카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
             <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
 
             <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
@@ -81,79 +202,80 @@
         <div class="join_member">
             <h1>가입한 멤버</h1>
             <ul id="img_members">
-                <!--                 <li> -->
-                <!--                     <div class="round_box"> -->
-                <!--                         <i class="far fa-user"></i> -->
-                <!--                     </div> -->
-                <!--                 </li> -->
+	             <li>
+	                 <div class="round_box">
+	                     <i class="far fa-user"></i>
+	                 </div>
+	             </li>
+                
             </ul>
 
         </div>
         <div class="join_cal">
-            <h1>일정</h1>
-            <div class="cal_detail">
-                <div class="detail_info">
-                    <h1>06/17</h1>
-                    <br>
-                    <strong>서울여행</strong>
+<!--             <h1>일정</h1> -->
+<!--             <div class="cal_detail"> -->
+<!--                 <div class="detail_info"> -->
+<!--                     <h1>06/17</h1> -->
+<!--                     <br> -->
+<!--                     <strong>서울여행</strong> -->
 
-                    <p>일시: </p>
-                    <p>장소: </p>
-                    <p>회비: </p>
-                    <p>참여: </p>
-                </div>
-                <div class="detail_member">
-                    <h1>참석 멤버</h1>
-                    <ul>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="round_box">
-                                <i class="far fa-user"></i>
-                            </div>
-                        </li>
+<!--                     <p>일시: </p> -->
+<!--                     <p>장소: </p> -->
+<!--                     <p>회비: </p> -->
+<!--                     <p>참여: </p> -->
+<!--                 </div> -->
+<!--                 <div class="detail_member"> -->
+<!--                     <h1>참석 멤버</h1> -->
+<!--                     <ul> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="round_box"> -->
+<!--                                 <i class="far fa-user"></i> -->
+<!--                             </div> -->
+<!--                         </li> -->
 
-                    </ul>
-                </div>
-                <div class="detail_status">
-                    <button type="button"><a href="join_schedule.do?somoim_num=${vo2.num }">참석</a></button>
-                </div>
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="detail_status"> -->
+<%--                     <button type="button"><a href="join_schedule.do?somoim_num=${vo2.num }">참석</a></button> --%>
+<!--                 </div> -->
 
 
-            </div>
+<!--             </div> -->
         </div>
 
         <input type="hidden" name="user_id" value="${user_id}">
@@ -161,6 +283,7 @@
         <input type="hidden" name="som_title" value="${vo2.som_title}">
         <input type="hidden" name="save_name" value="${uvo2.save_name}">
         <input type="submit" id="som_register" value="모임 가입하기">
+        <a href="login.do" id="loginCheck">로그인이 필요합니다.</a>
         <br>
         <br>
         <a href="som_update.do"><input type="button" id="som_update" value="수정"></a>
@@ -168,7 +291,7 @@
 
     </div>
 
-</form>
+<!-- </form> -->
 <div class="footer">
     <div>
         <strong>온앤오프</strong>
@@ -208,6 +331,16 @@
         console.log('아닌데?');
         $('#som_update').hide();
         $('#som_delete').hide();
+    }
+    
+    if('${user_id}'==='') {
+    	console.log('로그인 풀렸어요;;');
+    	$('#som_register').hide();
+    	$('#loginCheck').show();
+    } else {
+    	console.log('로그인 OK');
+    	$('#loginCheck').hide();
+    	$('#som_register').show();
     }
 </script>
 

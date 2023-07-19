@@ -36,6 +36,7 @@
 				<value>classpath:jdbc/sqlMapper_userinfo.xml</value>
 				<value>classpath:jdbc/sqlMapper_events.xml</value>
 				<value>classpath:jdbc/sqlMapper_counting.xml</value>
+				<value>classpath:jdbc/sqlMapper_vote.xml</value>
 			</list>
 		</property>
 	</bean>

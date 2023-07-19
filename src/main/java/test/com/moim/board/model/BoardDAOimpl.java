@@ -19,9 +19,6 @@ public class BoardDAOimpl implements BoardDAO{
         log.info("Boardimpl()....");
     }
 
-
-
-
     @Override
     public List<Somoim_BoardVO> selectList(Somoim_BoardVO vo) {
 
@@ -115,6 +112,7 @@ public class BoardDAOimpl implements BoardDAO{
 //section  좋아요 좋아요 취소
     @Override
     public Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo) {
+        log.info("select_all_goodList", vo);
         return sqlSession.selectOne("SELECT_ALL_GOOD_LIST", vo);
     }
 
@@ -143,6 +141,59 @@ public class BoardDAOimpl implements BoardDAO{
         log.info("view_count_up VO...{}", vo);
         return sqlSession.update("SOM_VIEW-COUNT_UP", vo);
 
+    }
+
+    @Override
+    public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo) {
+        return sqlSession.selectList("JSON_SELECT_ALL");
+    }
+
+
+
+
+	@Override
+	public List<Somoim_ScheduleVO> som_schedule_selectOne(Somoim_ScheduleVO vo) {
+		log.info("som_schedule_selectOne....somoim_num:{}", vo);
+		return sqlSession.selectList("SOM_SCHEDULE_SELECTONE", vo);
+	}
+
+    @Override
+    public Somoim_Question_VoteVO vote_num(Somoim_Question_VoteVO vo) {
+        return sqlSession.selectOne("MAX_NUM",vo);
+    }
+
+    @Override
+    public int vote_insert(Somoim_Question_VoteVO vo) {
+
+        return sqlSession.insert("Vote_Insert", vo);
+
+
+
+    }
+
+    @Override
+    public int choice_num(Somoim_Choice_Vote vo) {
+        return sqlSession.insert("CHOICE_INSERT",vo);
+    }
+
+    @Override
+    public List<Somoim_Question_VoteVO> vote_selectList(Somoim_Question_VoteVO voteVos) {
+        return sqlSession.selectList("VOTE_SELECT_ALL",voteVos);
+    }
+
+    @Override
+    public int vote_update(Somoim_Choice_Vote vo) {
+        return sqlSession.update("VOTE_UPDATE",vo);
+    }
+
+    @Override
+    public int Join_Count(Somoim_BoardVO vo) {
+        return sqlSession.selectOne("Join_Count", vo);
+    }
+
+    @Override
+    public int Sch_Count(Somoim_ScheduleVO vo) {
+        return sqlSession.selectOne("Sch_Count", vo);
     }
 
 
