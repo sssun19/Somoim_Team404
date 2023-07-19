@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="resources/css/find.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
+	
+	
+	
 <script>
 $(document).ready(function() {
     // 비밀번호 변경 요청을 서버에 전송하는 Ajax 요청
@@ -51,6 +54,54 @@ $(document).ready(function() {
             }
         });
     });
+    // 비밀번호와 비밀번호 확인 입력 체크
+    $("form").submit(function(event) {
+        var newPassword = $("#newPassword").val();
+        var confirmPassword = $("#confirmPassword").val();
+
+        if (newPassword === '' || confirmPassword === '') {
+            event.preventDefault(); // 폼 전송 막기
+            alert("비밀번호를 입력해주세요.");
+        }
+    });
+	function onSubmit() {
+		if (grecaptcha.getResponse().length == 0) {
+			alert('reCAPTCHA를 확인해 주세요.');
+			return false;
+		}
+		
+		return true;
+	}
+    
+	$(function() {
+		$('#add_member_form').submit(function() {
+				var captcha = 1;
+				$.ajax({
+		            url: '/pro/VerifyRecaptcha',
+		            type: 'post',
+		            data: {
+		                recaptcha: $("#g-recaptcha-response").val()
+		            },
+		            success: function(data) {
+		                switch (data) {
+		                    case 0:
+		                        console.log("자동 가입 방지 봇 통과");
+		                        captcha = 0;
+		                		break;
+		                    case 1:
+		                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+		                        break;
+		                    default:
+		                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+		                   		break;
+		                }
+		            }
+		        });
+				if(captcha != 0) {
+					return false;
+				} 
+		});
+		});
 });
 
 </script>
@@ -124,15 +175,24 @@ $(document).ready(function() {
            
             <div class="test1" >
                     <div class="img_certi" >
-                        숫자 인증 api
+                        보안 코드를 입력해주세요.
                     </div>
             
-                    <input type="text" placeholder="자동 입력 방지 문자"  >     
+                <%--     <input type="text" placeholder="자동 입력 방지 문자"  >     
                     <img src="getCaptchaImg" alt="captcha image"> <!-- 캡차 이미지 표시 -->
-                
+                --%>
+<%-- 
+<form action="validation" method="POST" onsubmit="return onSubmit();">
+		<div class="g-recaptcha" data-sitekey="6LcEhS0nAAAAAO13FH2RqD3b6OeZ1ocpGuPf84Xj"></div>
+		<br/>
+		<input type="submit" value="Submit">
+    </form>
+--%>
+<div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
 
-                    <button style="width: 10%;" type="button"><h>확인</h></button>
-            		<button type="button" id="submitpass" >변경하기</button>
+
+                     <button id = "join_button" style="width: 10%;" type="button"></button>
+            		<button  type="button" id="submitpass" >변경하기</button>
             </div>
                     
 
