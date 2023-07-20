@@ -100,8 +100,14 @@
 
         </ul>
     </div>
+<<<<<<< HEAD
 
 </div>
+=======
+<div class="category_more"> -->
+<!--         <a>카테고리 더보기</a> -->
+<!--     </div> -->
+>>>>>>> branch 'master' of https://git@github.com/BeomV/Somoim_Team404.git
 
     <div class="rec_list">
         <div class="rec_list_top">
