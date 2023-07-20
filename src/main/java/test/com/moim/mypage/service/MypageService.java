@@ -10,6 +10,7 @@ import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.comments.model.som_commentsDAO;
 import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.community.model.CommunityDAO;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.member.model.MemberDAO;
 import test.com.moim.member.model.MemberVO;
@@ -36,6 +37,9 @@ public class MypageService {
 	
 	@Autowired
 	MemberDAO memberDao;
+	
+	@Autowired
+	CommunityDAO communityDao;
 
 
 	public UserinfoVO mypageSelectOne(UserinfoVO vo) {
@@ -77,7 +81,7 @@ public class MypageService {
 
 	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo) {
 		log.info("mypageMyactivity_communitybyme...{}", vo);
-		return null;
+		return communityDao.mypageMyactivity_communitybyme(vo);
 	}
 
 

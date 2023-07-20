@@ -83,4 +83,10 @@ public class CommunityDAOimpl implements CommunityDAO{
 		sqlSession.update("CB_good_count_UP",vo);
 	}
 
+	@Override
+	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo) {
+		log.info("mypageMyactivity_communitybyme....{}", vo);
+		return sqlSession.selectList("MYPAGE_COMMUNITYBYME", vo);
+	}
+
 }

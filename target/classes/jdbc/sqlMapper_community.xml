@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="test.com.moim.community">
+    <select id="MYPAGE_COMMUNITYBYME" resultType="test.com.moim.community.model.CommunityVO">
+       
+    </select>
+
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
         select *
         from community_board
