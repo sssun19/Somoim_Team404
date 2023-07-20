@@ -34,6 +34,12 @@
     			
     			$.each(vos, function(index, vo){
     				console.log(index, vo);
+    				let content = vo.content; // vo.content 값을 변수에 저장
+
+                    // content가 null이면 "게시글 내용이 없습니다." 출력
+                    if (content === null) {
+                        content = "==게시글 내용이 없습니다.==";
+                    }
     				
     				tag_vos += `
     				
@@ -49,8 +55,8 @@
     		              <div class="vertical_info">
     		                \${vo.user_id}
     		                <p style="font-size: 0.2rem;">\${vo.write_date}</p>
-    		                \${vo.title} <br>
-    		                \${vo.content}<br>
+    		                \${vo.title}<br>
+    		                \${content}<br>
     		               
     		              </div></a>
     		            </li>

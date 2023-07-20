@@ -30,5 +30,7 @@ public interface CommunityDAO {
 
 	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo);
 
+	public List<CommunityVO> mypageMyactivity_good(CommunityVO vo);
+
 
 }

@@ -321,7 +321,7 @@
                 쪽지함
             </h2>
             <div style=" text-align: right; margin-right: 3%;">
-                <button type="button" style="background-color: #5f6368;" onclick="openPopup()">쪽지 발송</button>
+                <button type="button" style="background-color: #5f6368;color: white;" onclick="openPopup()">쪽지 발송</button>
             </div>
             <button type="submit"> </button>
             <ul class="mypage_grid03">
@@ -378,7 +378,7 @@
         </head>
         <body>
             <h2>쪽지 발송</h2>
-            <form id="myForm" action="popup_message_insertOK" method="post">
+            <form id="myForm" action="message_sedningOK.do" method="post">
                 <input type="hidden" name="user_id" value="${user_id}">
 
                 <label for="sender">보내는 사람:</label>

@@ -68,6 +68,17 @@ public class MessageController {
 
     }
 
+    @RequestMapping(value = "/message_sedningOK.do" ,method = RequestMethod.POST)
+    public String message_sedningOK(Model model, MessageVO vo) {
+        log.info("josn_message_insertOK...vo...{}", vo);
+        log.info("josn_message_insertOK.do()......");
+        int result = service.mes_insert(vo);
+
+
+        return "redirect:mypage.do";
+
+
+    }
 
 
 
