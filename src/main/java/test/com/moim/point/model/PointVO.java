@@ -9,6 +9,6 @@ public class PointVO {
     private int point;
     private int cash;
     private int productqty;
-
+    private String category;
 
 }

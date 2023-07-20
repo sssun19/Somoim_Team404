@@ -180,13 +180,7 @@ public class MypageController {
 		vo.setUser_id(user_id);
 		
 		List<Somoim_BoardVO> vos = service.mypageMyactivity_boardbyme(vo);
-		
-		for (Somoim_BoardVO x : vos) {
-			log.info(x.getTitle());
-			log.info(x.getContent());
-		}
-		
-		
+			
 		return vos;
 	}
 	
@@ -199,12 +193,6 @@ public class MypageController {
 		vo.setUser_id(user_id);
 		
 		List<CommunityVO> vos = service.mypageMyactivity_communitybyme(vo);
-		
-		for (CommunityVO x : vos) {
-			log.info(x.getTitle());
-			log.info(x.getContent());
-		}
-		
 		
 		return vos;
 	}
@@ -236,17 +224,33 @@ public class MypageController {
 	@RequestMapping(value = "/mypage_myactivity_good.do", method = RequestMethod.GET)
 	public String mypage_myactivity_good() {
 		log.info("mypage_myactivity_good.do().....");
-		
-		
-		
 		return "mypage/mypage_myactivity_good";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/Rest_mypage_myactivity_good.do", method = RequestMethod.GET)
+	public List<CommunityVO> Rest_mypage_myactivity_good(String user_id) {
+		log.info("Rest_Mypage_myactivity_commbyme.do....{}", user_id);
+		
+		CommunityVO vo = new CommunityVO();
+		vo.setUser_id(user_id);
+		
+		List<CommunityVO> vos = service.mypageMyactivity_good(vo);
+		
+		return vos;
+	}
+	
 	@RequestMapping(value = "/Mypage_myactivity_likedboard.do", method = RequestMethod.GET)
-	public String Mypage_myactivity_likedboard() {
+	public String Mypage_myactivity_likedboard(String user_id, Model model) {
 		log.info("Mypage_myactivity_likedboard.do().....");
+		log.info("user_id : {}", user_id);
 		
+		Somoim_BoardVO vo = new Somoim_BoardVO();
+		vo.setUser_id(user_id);
 		
+		List<Somoim_BoardVO> vos = service.mypageMyactivity_likedboard(vo);
+			
+		model.addAttribute("vos", vos);
 		
 		return "mypage/Mypage_myactivity_likedboard";
 	}
