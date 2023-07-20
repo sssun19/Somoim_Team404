@@ -17,40 +17,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-<script type="text/javascript">
-// 	$(function() {
-
-// 		$("input[id='moim_btn']").on("click", function() {
-// 			const categoryVal = $("#category").val();
-// 			const somContentVal = $("#moim_content").val();
-// 			const somimgVal = $("#moim_profile").val();
-// 			const areaVal = $("#area").val();
-// 			const maxMemberVal = $("#max_member").val();
-			
-// 			$.ajax({
-// 				url : 'som_updateOK.do',
-// 				data : {
-// 					num : ${vo2.num},
-// 					category : categoryVal,
-// 					area : areaVal,
-// 					som_content : somContentVal,
-// 					somoim_img : somimgVal,
-// 					som_title : '${vo2.som_title}',
-// 					max_member : maxMemberVal
-					
-// 				},
-// 				method : 'POST',
-// 				success : function(response) {
-// 					console.log('response.....?! : ', response);
-// 				},
-// 				error : function(xhr, status, error){
-// 					console.log('xhr.status...:', xhr.status);
-// 				}
-// 			});//end ajax......
-// 		});//end click...
-// 	}); //end onload....
-</script>
-
 </head>
 <body>
 	<jsp:include page="../top_menu.jsp"></jsp:include>
@@ -67,7 +33,7 @@
 				</button>
 
 				<input type="text" id="area" name="area" placeholder="위치를 입력하세요"
-					style="margin-top: 10px;" value=${vo2.area}>
+					style="margin-top: 10px;" value=${vo2.area }>
 
 				<h1>모임 이름</h1>
 				<a href="#" style="color: red; font-size: 11px;">*포인트샵 바로가기</a>
@@ -99,14 +65,6 @@
 				</select>
 					<h1>대표 사진</h1> <input type="file" id="moim_profile" name="file">
 				</span> <input type="submit" id="moim_btn" value="수정 완료">
-				<%-- 메시지 출력 --%>
-				<%-- 				<c:if test="${param.message eq 'success'}"> --%>
-				<!-- 					<div class="success-message">수정 완료</div> -->
-				<%-- 				</c:if> --%>
-				<%-- 				<c:if test="${param.message eq 'fail'}"> --%>
-				<!-- 					<div class="error-message">수정 실패</div> -->
-				<%-- 				</c:if> --%>
-
 
 			</div>
 		</form>

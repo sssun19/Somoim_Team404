@@ -8,6 +8,10 @@
        select * from community_board where user_id=#{user_id} order by num desc
     </select>
 
+    <select id="MYPAGE_GOOD" resultType="test.com.moim.community.model.CommunityVO">
+       SELECT * FROM community_board WHERE num IN (SELECT num FROM community_good_count_list WHERE user_id = #{user_id})
+    </select>
+
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
         select *
         from community_board order by num desc

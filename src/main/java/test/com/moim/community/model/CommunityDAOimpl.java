@@ -102,4 +102,9 @@ public class CommunityDAOimpl implements CommunityDAO{
 		return sqlSession.update("CB_GOOD_COUNT_DOWN", vo);
 	}
 
+	@Override
+	public List<CommunityVO> mypageMyactivity_good(CommunityVO vo) {
+		return sqlSession.selectList("MYPAGE_GOOD", vo);
+	}
+
 }

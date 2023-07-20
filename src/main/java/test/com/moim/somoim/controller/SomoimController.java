@@ -96,7 +96,7 @@ public class SomoimController {
 //		map.put("vos", vos);
 		model.addAllAttributes(map);
 
-		return "board/som_selectOne?num="+vo.getNum();
+		return "board/som_selectOne";
 	}
 
 	@RequestMapping(value = "/som_searchList.do", method = RequestMethod.GET)

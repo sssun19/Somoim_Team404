@@ -85,6 +85,18 @@ public class MypageService {
 	}
 
 
+	public List<Somoim_BoardVO> mypageMyactivity_likedboard(Somoim_BoardVO vo) {
+		log.info("mypageMyactivity_likedboard....{}", vo.getUser_id());
+		return boardDao.mypageMyactivity_likedboard(vo);
+	}
+
+
+	public List<CommunityVO> mypageMyactivity_good(CommunityVO vo) {
+		log.info("mypageMyactivity_good....{}", vo);
+		return communityDao.mypageMyactivity_good(vo);
+	}
+
+
 
 
 
