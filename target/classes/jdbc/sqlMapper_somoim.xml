@@ -43,11 +43,11 @@
 		resultType="test.com.moim.somoim.model.SomoimVO"
 		parameterType="HashMap">
 		select * from somoim where area like #{searchWord} and
-		category=#{category} by num desc
+		category=#{category} order by num desc
 	</select>
 	<select id="SOMOIM_SEARCH_LIST_AREA2"
 		resultType="test.com.moim.somoim.model.SomoimVO">
-		select * from somoim where area like #{searchWord} by num desc
+		select * from somoim where area like #{searchWord} order by num desc
 	</select>
 
 	<select id="COUNT_SOMOIM" resultType="int">
