@@ -16,50 +16,147 @@
     <script type="text/javascript">
     $(function(){
     	console.log('onload....mypage');
-    	
+
     	$.ajax({
     		url:'mypageSelectSomoim.do',
     		success: function(vos){
-    			console.log('ajax successed...');
-    			console.log('data vos:{}', vos);
-    			
+    			// console.log('ajax successed...');
+    			// console.log('data vos:{}', vos);
+
     			let tag_vos = '';
-    			
+
     			$.each(vos,function(index,vo){
     				console.log(index,vo);
 	    			console.log('somoim_img : ', vo.somoim_img);
-	    			
+
     				tag_vos += `
-                        
+
     					<a href="som_selectOne.do?num=\${vo.num}"> <li>
                         <div>
-                            <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%;">
-    ​
+                            <img src="resources/uploadimg/\${vo.somoim_img}" width="230"; height="230"; style="border-radius:150%; border: 1px lightgray solid;">
                         </div>
   						  <p>\${vo.som_title}</p>
                   	    </li> </a>
-    				
+
         			`;
-        			
+
         			if(index>=3) {
 	    				console.log('3보다 많다.');
 	    				return false;
     				}
-        			        			
+
     			});
-    			
-    			
-    			
+
+
+
     			$('#img_somoim').html(tag_vos);
-    			
+
     		},
     		error: function(xhr, status, error){
     			console.log('xhr.status:', xhr.status);
     		}
-    		
+
     	});
     });
     
+    </script>
+    <%-- mypage 쪽지 기능 ajax 아래아래아래아래아래아래아래아래아래아래아래아래아래아래아래--%>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log('onload....json_message');
+
+            $.ajax({
+                url: 'josn_message.do',
+                success: function (vos) {
+                    console.log('ajax successed...');
+                    console.log('data vos:', vos);
+
+                    let tag_vos = '';
+
+                    $.each(vos, function (index, vo) {
+                        console.log(index, vo);
+                        console.log('user_id : ', vo.user_id);
+
+                        tag_vos += `
+                        <li>
+                            <div class="note_title">
+                                <strong>\${vo.sender}</strong>
+                                <br>
+                            <form action="message_insertOK.do">
+                                <button style="margin-top: 0.8%; background-color: transparent; border: none;" class="report-btn" type="submit">답장하기</button>
+                                <input type="hidden" name="sender" value="\${vo.receiver}">
+                                <input type="hidden" name="receiver" value="\${vo.sender}">
+                                <input type="hidden" name="user_id" value="\${vo.user_id}">
+                                <input type="hidden" name="content" value="\${vo.content}">
+                            </form>
+                            <form action="message_deleteOK.do">
+                                <button style="margin-top: 0.8%; background-color: transparent; border: none;" class="delete-btn" type="submit">삭제하기</button>
+                            </div>
+
+                            <div class="note_content" style="width: 40%; border: 1px gray solid;height: 45px;"  >
+                                \${vo.content}
+                            </div>
+                            <div>
+                                <input style="width: 400px; height: 45px;" type="text" name="content"  placeholder="답장을 입력하세요!" class="reply-input">
+                            </div>
+
+                            <div class="note_date">
+                                \${vo.sending_date}
+                            </div>
+                        </li>
+                    `;
+                    });
+
+                    $('.mypage_grid03').html(tag_vos);
+
+                    $('.report-btn').hover(
+                        function () {
+                            // 마우스를 올렸을 때의 스타일
+                            $(this).css({
+                                backgroundColor: 'transparent',
+                                color: 'lightgray',
+                            });
+                        },
+                        function () {
+                            // 마우스를 내렸을 때의 스타일 (원래 스타일)
+                            $(this).css({
+                                backgroundColor: 'transparent',
+                                color: 'black',
+                            });
+                        }
+                    );
+
+                    $('.delete-btn').hover(
+                        function () {
+                            // 마우스를 올렸을 때의 스타일
+                            $(this).css({
+                                backgroundColor: 'transparent',
+                                color: 'lightgray',
+                            });
+                        },
+                        function () {
+                            // 마우스를 내렸을 때의 스타일 (원래 스타일)
+                            $(this).css({
+                                backgroundColor: 'transparent',
+                                color: 'black',
+                            });
+                        }
+                    );
+
+                    // Handle the reply button click event
+                    $('.report-btn').on('click', function () {
+                        const inputTextValue = $(this).siblings('.reply-input').val();
+                        console.log("inputTextValue", inputTextValue);
+                        // Do whatever you want with the inputTextValue here
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log('xhr.status:', xhr.status);
+                }
+            });
+        });
     </script>
 </head>
 <body>
@@ -93,10 +190,10 @@
                         <p>${vo2.birthday }</p>
                     </li>
                     <li>
-                        <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id }">나의 활동</a>
+                        <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id}">나의 활동</a>
                     </li>
                     <li>
-                        <a href="myfeed_feed_mine.do?user_id=${vo2.user_id }">내 피드 들어가기</a>
+                        <a href="myfeed_feed_mine.do?user_id=${vo2.user_id}">내 피드 들어가기</a>
                     </li>
 ​
                 </ul>
@@ -129,52 +226,8 @@
                 쪽지함
             </h2>
             <ul class="mypage_grid03">
-                <li>
-                    <div class="note_title">
-                        <strong>영혼의 숨겨(user_id)</strong>
-                        <br>
-                        <a>답장하기</a>
-                        <a>신고하기</a>
-                        <a>삭제하기</a>
-                    </div>
-                    <div class="note_content">
-                        그날이 오고 있습니다...
-                    </div>
-                    <div class="note_date">
-                        방금 전
-                    </div>
-                </li>
-                <li>
-                    <div class="note_title">
-                        <strong>영혼의 숨겨(user_id)</strong>
-                        <br>
-                        <a>답장하기</a>
-                        <a>신고하기</a>
-                        <a>삭제하기</a>
-                    </div>
-                    <div class="note_content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem temporibus pariatur quod, velit optio nisi aliquam a ipsa asperiores vel obcaecati id esse! Vitae repellendus iste molestiae aspernatur sunt in.
-                    </div>
-                    <div class="note_date">
-                        방금 전
-                    </div>
-                </li>
-                </li>
-                <li>
-                    <div class="note_title">
-                        <strong>영혼의 숨겨(user_id)</strong>
-                        <br>
-                        <a>답장하기</a>
-                        <a>신고하기</a>
-                        <a>삭제하기</a>
-                    </div>
-                    <div class="note_content">
-                        그날이 오고 있습니다ffffffffffffff...
-                    </div>
-                    <div class="note_date">
-                        방금 전
-                    </div>
-                </li>
+
+
 ​
 ​
             </ul>
