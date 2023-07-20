@@ -291,14 +291,30 @@
         console.log(voteItemValue);
         console.log(voteVo_num);
 
-
         var VoteMember = $(buttonElement).find('.som_vote_member').val();
         console.log(VoteMember);
 
         // VoteMember를 '/'로 분할하고, userId가 있는지 확인
         var VoteMemberArray = VoteMember.split('/');
         if (VoteMemberArray.includes(userId)) {
-            alert("이미 선택한 항목입니다.");
+            $.ajax({
+                url: "vote_CancleOK.do",
+                data: {
+                    som_qvote_num: voteVo_num,
+                    choice: voteItemValue,
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function (response) {
+                    console.log('Success:', response);
+                    location.reload();
+
+                },
+                error: function (xhr) {
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
+                }
+            });
         } else {
             $.ajax({
                 url: "vote_UpdateOK.do",
@@ -309,16 +325,35 @@
                 method: 'POST',
                 dataType: 'text',
                 success: function (response) {
+                    console.log('Success:', response);
                     location.reload();
+
                 },
                 error: function (xhr) {
-                    console.log('xhr.status:', xhr.status);
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
                 }
             });
+
         }
-
-
     }
+
+    $(document).ready(function() {
+        var userId = "${user_id}";
+
+        // 모든 투표 항목을 순회
+        $('.vote_items').each(function() {
+            var buttonElement = $(this).parent(); // 현재 투표 항목의 부모 요소 (버튼 요소)를 선택
+            var VoteMember = buttonElement.find('.som_vote_member').val();
+            console.log("including member");
+
+            // VoteMember를 '/'로 분할하고, userId가 있는지 확인
+            var VoteMemberArray = VoteMember.split('/');
+            if (VoteMemberArray.includes(userId)) {
+                $(this).css('background-color', '#ccc'); // vote_items 요소의 배경색을 #ccc로 변경
+            }
+        });
+    });
 </script>
 
 

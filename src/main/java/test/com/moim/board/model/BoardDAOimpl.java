@@ -117,6 +117,22 @@ public class BoardDAOimpl implements BoardDAO{
     }
 
     @Override
+    public Somoim_Question_VoteVO SELECT_VOTE_NUM(Somoim_Question_VoteVO qvo) {
+        return sqlSession.selectOne("SELECT_VOTE_NUM", qvo);
+    }
+
+    @Override
+    public List<Somoim_Choice_Vote> SELECT_CHOICE_ITEM(Somoim_Choice_Vote chVo) {
+        return sqlSession.selectList("SELECT_CHOICE_ITEM", chVo);
+    }
+
+    @Override
+    public int vote_cancle(Somoim_Choice_Vote vo) {
+        return sqlSession.update("VOTE_CANCLE", vo);
+    }
+
+
+    @Override
     public int adding_good_count_list(Somoim_BoardVO vo) {
         return sqlSession.insert("ADDING_GOOD_COUNT_LIST", vo);
     }
