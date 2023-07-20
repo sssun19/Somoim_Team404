@@ -36,12 +36,11 @@
 					style="margin-top: 10px;" value=${vo2.area }>
 
 				<h1>모임 이름</h1>
-				<a href="#" style="color: red; font-size: 11px;">*포인트샵 바로가기</a> <input
-					type="text" readonly placeholder="모임 이름" id="som_title"
-					name="som_title" value=${vo2.som_title }> <input
-					type="hidden" name="somoim_master" value="${user_id }">
+				<a href="#" style="color: red; font-size: 11px;">*포인트샵 바로가기</a>
+				<input type="text" readonly placeholder="모임 이름" id="som_title" name="som_title" value=${vo2.som_title}>
+				<input type="hidden" name="somoim_master" value="${user_id}">
 				<h1>모임 소개</h1>
-				<textarea style="width: 100%; height: 500px; border: solid 1px #ccc; border-radius: 5px; resize: none; outline: none;" rows="4" name="som_content" id="moim_content"> ${vo2.som_content }</textarea>
+				<textarea style="width: 100%; height: 500px; border: solid 1px #ccc; border-radius: 5px; resize: none; outline: none;"	rows="4" name="som_content" placeholder="모임 내용" id="moim_content"> ${vo2.som_content} </textarea>
 				<span>
 					<h1>모임 정원</h1> <input type="text" placeholder="모임 최대 정원"
 					id="moim_max" name="max_member" value=${vo2.max_member }>
