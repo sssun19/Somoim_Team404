@@ -235,8 +235,13 @@
         var startYear = year - 65;
         var endYear = year - 15;
 
+        console.log($('select[name="birthday_year"]').val());
+
+
         for (var i = startYear; i <= endYear; i++) {
-            $('select[name="birthday_year"]').append('<option value="'+ i +'">'+ i +'</option>');
+            var option = '<option value="'+ i +'">'+ i +'</option>';
+            console.log(option); // 이 라인이 추가된 부분입니다.
+            $('select[name="birthday_year"]').append(option);
         }
 
         for (var i = 1; i <= 12; i++) {
@@ -248,7 +253,12 @@
             var day = (i < 10) ? '0' + i : i;
             $('select[name="birthday_day"]').append('<option value="'+ day +'">'+ day +'</option>');
         }
+
+        var firstOptionValue = $('select[name="birthday_year"] option:first').val();
+        console.log(firstOptionValue);
+
     });
+
 
 
 </script>
