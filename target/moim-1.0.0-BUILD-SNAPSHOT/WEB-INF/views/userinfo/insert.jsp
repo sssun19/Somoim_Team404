@@ -68,10 +68,7 @@
                 });
                 return false;
             });
-            $("#register").click(function() {
-                // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
-                window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
-            });
+
 
         });
         // 이메일 값을 저장하는 함수
@@ -79,12 +76,11 @@
             var email = $("input[name='email']").val();
             localStorage.setItem("email", email);
         }
-        <%--
+        
         function check(){
       	  if(insertform.user_id.value.length == 0){
       		  alert("아이디가 누락되었습니다.");
       		  insertform.user_id.focus();
-      		  event.preventDefault();
       		  return false;
       	  }
       	  if(insertform.pw.value.length == 0){
@@ -112,15 +108,19 @@
       		  insertform.email_token.focus();
       		  return false;
       	  }
-      	  return true;
+      	  return             
+      	  $("#register").click(function() {
+              // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
+              window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
+          });
         }
-        --%>
+
         </script>
 </head>
 <body>
 <%@ include file="../top_menu.jsp" %>
 <div class="register_section">
-    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" > <%-- name="insertform" onsubmit="return check(event); " --%>
+    <form action="u_insertOK.do" method="post" enctype="multipart/form-data" name="insertform" >
         <label for="user_id">아이디</label>
         <br>
         <input type="text" placeholder="아이디를 입력하세요." name="user_id" id="user_id" >
@@ -142,20 +142,14 @@
             <label>생년월일</label>
             <br>
             <select name="birthday_year">
-                <option value="2000">2000</option>
-                <option value="2001">2001</option>
-                <option value="2002">2002</option>
             </select>
+
             <select name="birthday_month">
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
             </select>
+
             <select name="birthday_day">
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
             </select>
+
         </span>
             <span>
             <label>성별</label>
@@ -172,7 +166,7 @@
         <br>
         <label for="user_interest">관심 태그 선택</label>
         <br>
-        <select name="interest" size="5">
+        <select name="interest" size="5" style="width: 30%; border: solid 1px #cccccc; padding: 4px; margin-top: 5px;">
 			<option value="야구">야구</option>
 			<option value="독서">독서</option>
 			<option value="요리">요리</option>
@@ -205,7 +199,7 @@
             <button id="btn_email_token">확인</button>
         </div>
         <br>
-        <input id="register" type="submit" value="회원가입">
+        <input id="register" type="submit" onClick="return check()" value="회원가입">
     </form>
 </div>
 <div class="footer">
@@ -234,4 +228,28 @@
     </div>
 </div>
 </body>
+
+<script>
+    $(document).ready(function() {
+        var year = new Date().getFullYear();
+        var startYear = year - 65;
+        var endYear = year - 15;
+
+        for (var i = startYear; i <= endYear; i++) {
+            $('select[name="birthday_year"]').append('<option value="'+ i +'">'+ i +'</option>');
+        }
+
+        for (var i = 1; i <= 12; i++) {
+            var month = (i < 10) ? '0' + i : i;
+            $('select[name="birthday_month"]').append('<option value="'+ month +'">'+ month +'</option>');
+        }
+
+        for (var i = 1; i <= 31; i++) {
+            var day = (i < 10) ? '0' + i : i;
+            $('select[name="birthday_day"]').append('<option value="'+ day +'">'+ day +'</option>');
+        }
+    });
+
+
+</script>
 </html>

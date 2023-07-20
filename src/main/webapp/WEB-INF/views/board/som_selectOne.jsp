@@ -189,11 +189,11 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
         <div class="img_info">
-            <img src="resources/uploadimg/${vo2.somoim_img}">
+            <img  src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
-            <h1 class="main_tit" style="padding: 10px;">${vo2.som_title}</h1>
-            <p style="font-weight: 600; color: #999";>카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
+            <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
+            <p style="font-weight: 600; color: #999; padding-top: 0;">카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
             <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
 
             <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>

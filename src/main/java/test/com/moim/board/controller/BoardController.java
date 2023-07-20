@@ -1,34 +1,30 @@
 package test.com.moim.board.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import lombok.extern.slf4j.Slf4j;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.board.model.Somoim_MemberVO;
-import test.com.moim.board.model.Somoim_ScheduleVO;
+import test.com.moim.board.model.*;
 import test.com.moim.board.service.BoardService;
 import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
+import test.com.moim.somoim.model.SomoimVO;
+import test.com.moim.somoim.service.SomoimService;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * Handles requests for the application home page.
@@ -48,6 +44,9 @@ public class BoardController {
 
     @Autowired
     ServletContext sContext;
+
+    @Autowired
+    SomoimService Somservice;
 
     @Autowired
     som_comm_comments_Service c_commService;
@@ -105,47 +104,93 @@ public class BoardController {
 //    }
 
     @RequestMapping(value = "/join_selectAll.do", method = RequestMethod.GET)
-    public String join_selectAll(Model model, Somoim_BoardVO vo) {
+    public String join_selectAll(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos, SomoimVO somoimVO) {
+
+        int startRow = (pageNo - 1) * pageSize + 1;
+        int endRow = pageNo * pageSize;
+
+        vo.setStartRow(startRow);
+        vo.setEndRow(endRow);
+
+
+        int totalPosts = service.Join_Count(vo);
+        int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
+
+        System.out.println("vo입니당깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔"+vo);
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO);
+
+        somoimVO.setNum(vo.getSomoim_num());
+        SomoimVO somoimVO2 = Somservice.selectOne(somoimVO);
+
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO2);
+        model.addAttribute("somoim_top_pic", somoimVO2);
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
-        List<Somoim_BoardVO> infos = service.select_user_info();
-        log.info("infos..{}", infos);
 
-        for (Somoim_BoardVO vo2 : vos) {
-            for (Somoim_BoardVO info : infos) {
-                log.info("검사 vo 아이디...{}", vo2.getUser_id());
-                log.info("검사 info 저장된 이름...{}", info.getUser_id());
-                if (vo2.getUser_id().equals(info.getUser_id())) {
-                    log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
-                    log.info("info 저장된 이름...{}", info.getUser_id());
-                    if (!vo2.getSave_name().equals(info.getSave_name())) {
-                        log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
-                        log.info("보드에 저장된 이름...{}", vo2.getSave_name());
-                        log.info("처음 가입 이미지 이름...{}", info.getSave_name());
-                        vo2.setSave_name(info.getSave_name());
-                        log.info("바뀐거 ::: vo2.getSave_name...{}", vo2.getSave_name());
-                    }
-                }
-            }
+        List<SomoimDto> dtos = new ArrayList<>();  // dto 리스트를 생성
+
+        for(Somoim_BoardVO vo2 : vos){
+
+
+
+
+
+
+
+
+
+
             log.info(vo2.toString());
+            int vo2Num = vo2.getNum();
 
+            SomoimDto dto = new SomoimDto();  // 새로운 dto를 생성
+            dto.setBoardVo(vo2);  // dto에 Somoim_BoardVO를 설정
+
+            if (vo2.getVote_num() != 0){
+                log.info(String.valueOf(vo2Num));
+                Vote_vos.setNum2(vo2Num);
+
+                List<Somoim_Question_VoteVO> vote_vos = service.vote_selectList(Vote_vos);
+                for(Somoim_Question_VoteVO vo3 : vote_vos) {
+                    log.info("TEST!! :    "+vo3.toString());
+                }
+
+                dto.setVoteVos(vote_vos);  // dto에 List<Somoim_Question_VoteVO>를 설정
+            }
+
+            List<Somoim_BoardVO> infos = service.select_user_info();
+            for (Somoim_BoardVO info : infos) {
+                log.info("인포 값"+ info.toString());
+                log.info("vo2값"+ vo2.toString());
+
+                if(vo2.getUser_id().equals(info.getUser_id())){
+                    vo2.setSave_name(info.getSave_name());
+                }
+
+            }
+
+            dtos.add(dto);  // dto 리스트에 dto를 추가
         }
 
-//
-//        for (Somoim_BoardVO vo2 : vos) {
-//            log.info(vo2.toString());
-//        }
-        model.addAttribute("vos", vos);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("dtos", dtos);
+        // 모델에 dto 리스트를 추가
 
         return "board/join_selectAll";
     }
 
+
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
-    public String join_selectOne(Somoim_BoardVO vo, Model model) {
+    public String join_selectOne(Somoim_BoardVO vo, Model model,Somoim_Question_VoteVO qvo,Somoim_Choice_Vote ch_vo) {
         log.info("join_selectOne.do().....{}", vo);
         List<Somoim_BoardVO> infos = service.select_user_info();
         log.info("infos..{}", infos);
+
+
 
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
@@ -159,6 +204,35 @@ public class BoardController {
 
 
         model.addAttribute("vo2", vo2);
+
+
+        if(vo2.getVote_num() != 0){
+
+            log.info("getVoteNum..."+vo2.getVote_num());
+            qvo.setNum(vo2.getVote_num());
+
+            Somoim_Question_VoteVO qvo2 = service.SELECT_VOTE_NUM(qvo);
+            log.info("qvo2_test...{}",qvo2);
+
+            model.addAttribute("qvo2", qvo2);
+
+            ch_vo.setSom_qvote_num(qvo2.getNum());
+            List<Somoim_Choice_Vote> ch_vo2 = service.SELECT_CHOICE_ITEM(ch_vo);
+            for(Somoim_Choice_Vote vo3 : ch_vo2){
+                log.info("여긴가?"+vo3.toString());
+
+            }
+
+            model.addAttribute("ch_vo2",ch_vo2);
+
+
+
+
+        }
+
+
+
+
 
         som_commentsVO cvo = new som_commentsVO();
         cvo.setSom_board_num(vo2.getNum());
@@ -212,6 +286,8 @@ public class BoardController {
         model.addAttribute("c_coms", c_coms);
         service.vvcountup(vo);
 
+
+
 		System.out.println("완료:::");
 //
 //		System.out.println("c_coms:::"+c_coms);
@@ -239,30 +315,27 @@ public class BoardController {
     public String join_insertOK(Somoim_BoardVO vo, HttpServletRequest request) throws IllegalStateException, IOException {
         log.info("join_insert.do().....{}", vo);
 
+        if (vo.getFile() != null && !vo.getFile().isEmpty()) {
+            String getOriginalFileName = vo.getFile().getOriginalFilename();
+            int fileNameLength = getOriginalFileName.length();
 
-        int fileNameLength = vo.getFile().getOriginalFilename().length();
-        String getOriginalFileName = vo.getFile().getOriginalFilename();
+            log.info("getOriginalFilename : {}", getOriginalFileName);
+            log.info("fileNameLength : {}", fileNameLength);
 
-        log.info("getOriginalFilename : {}", getOriginalFileName);
-        log.info("fileNameLength : {}", fileNameLength);
+            if (fileNameLength == 0) {
+                vo.setSave_image(getOriginalFileName);
+            } else {
+                vo.setSave_image(getOriginalFileName);
+                String realPath = sContext.getRealPath("resources/uploadimg");
 
-        vo.setSave_name(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+                log.info("realPath : {}", realPath);
 
-        if (getOriginalFileName.length() == 0) {
-            vo.setSave_name("아이유.png");
-
+                File f = new File(realPath + "\\" + vo.getSave_image());
+                vo.getFile().transferTo(f);
+            }
         } else {
-            vo.setSave_name(getOriginalFileName);
-            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
-            String realPath = sContext.getRealPath("resources/uploadimg");
-
-            log.info("realPath : {}", realPath);
-
-            File f = new File(realPath + "\\" + vo.getSave_name());
-            vo.getFile().transferTo(f);
-
-        } // end else
-
+            vo.setSave_image(null); // file이 null인 경우에 save_image도 null로 설정합니다.
+        }
 
         int result = service.join_insert(vo);
 
@@ -270,16 +343,30 @@ public class BoardController {
             log.info("됐냐?");
 
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
-
         } else {
             return "redirect:join_selectAll.do?somoim_num=" + vo.getSomoim_num();
         }
-
-
     }
 
+
+
     @RequestMapping(value = "/join_schedule.do", method = RequestMethod.GET)
-    public String join_schedule(Model model, Somoim_ScheduleVO vo) {
+    public String join_schedule(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Model model, Somoim_ScheduleVO vo) {
+
+            int startRow = (pageNo - 1) * pageSize + 1;
+            int endRow = pageNo * pageSize;
+
+            vo.setStartRow(startRow);
+            vo.setEndRow(endRow);
+
+
+            int totalPosts = service.Sch_Count(vo);
+            int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
+
+
         log.info("join_schedule.do().....{}", vo);
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
@@ -311,8 +398,7 @@ public class BoardController {
             }
         }
 
-
-
+        model.addAttribute("totalPage", totalPage);
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 
@@ -322,7 +408,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_update.do", method = RequestMethod.GET)
     public String join_update(Model model, Somoim_BoardVO vo) {
-        log.info("join_update.do().....");
+        log.info("join_update.do().....{}",vo);
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
         log.info("test...{}", vo2);
@@ -335,7 +421,7 @@ public class BoardController {
 
     @RequestMapping(value = "/join_updateOK.do", method = RequestMethod.POST)
     public String join_updateOK(Somoim_BoardVO vo) {
-        log.info("join_updateOK.do().....");
+        log.info("join_updateOK.do().....{}",vo);
 
         int result = service.update(vo);
 
@@ -459,7 +545,22 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_pay.do", method = RequestMethod.GET)
-    public String join_pay(Somoim_ScheduleVO vo, Model model) {
+    public String join_pay(
+            @RequestParam(defaultValue = "1") int pageNo,
+            @RequestParam(defaultValue = "5") int pageSize,
+            Somoim_ScheduleVO vo,Model model) {
+
+        int startRow = (pageNo - 1) * pageSize + 1;
+        int endRow = pageNo * pageSize;
+
+        vo.setStartRow(startRow);
+        vo.setEndRow(endRow);
+
+
+        int totalPosts = service.Sch_Count(vo);
+        int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
+
+
 
 
         List<Somoim_ScheduleVO> vos = service.sch_selelctList(vo);
@@ -492,6 +593,8 @@ public class BoardController {
         }
 
 
+
+        model.addAttribute("totalPage", totalPage);
         model.addAttribute("vos", vos);
         model.addAttribute("saveNamesMap", saveNamesMap); // Model에 saveNamesMap을 추가합니다.
 
@@ -526,6 +629,75 @@ public class BoardController {
             return "redirect:join_pay.do?somoium_num=" + vo.getSomoim_num();
         }
 
+    }
+
+    @RequestMapping(value = "/vote_insertOK.do", method = RequestMethod.POST)
+    public ResponseEntity<Integer> vote_insertOK(Somoim_Question_VoteVO vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        Somoim_Question_VoteVO vo2 = service.vote_num(vo);
+
+        vo.setNum(vo2.getNum()+1);
+        service.vote_insert(vo);
+        int num = vo.getNum();
+
+
+        // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+        return new ResponseEntity<>(num, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/choice_insertOK.do", method = RequestMethod.POST)
+    public String choice_insertOK(Somoim_Choice_Vote vo) {
+        log.info("choice_insertOK.do().....{}", vo);
+
+        service.choice_insert(vo);
+
+
+        // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+        return "SUCCESS";
+    }
+
+    @RequestMapping(value = "/vote_UpdateOK.do", method = RequestMethod.POST)
+    public ResponseEntity<String> vote_update(Somoim_Choice_Vote vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        String userId = (String) request.getSession().getAttribute("user_id");
+
+        vo.setSom_vote_user_id(userId);
+        log.info(vo.getSom_vote_user_id());
+
+        int result = service.vote_update(vo);
+
+
+        if (result == 1) {
+            // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+            return new ResponseEntity<>("Success!", HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>("Fail!", HttpStatus.OK);
+        }
+
+    }
+
+    @RequestMapping(value = "/vote_CancleOK.do", method = RequestMethod.POST)
+    public ResponseEntity<String> vote_CancleOK(Somoim_Choice_Vote vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        String userId = (String) request.getSession().getAttribute("user_id");
+
+        vo.setSom_vote_user_id(userId);
+        log.info(vo.getSom_vote_user_id());
+
+        int result = service.vote_cancle(vo);
+
+
+        if (result == 1) {
+            // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+            return new ResponseEntity<>("Success!", HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>("Fail!", HttpStatus.OK);
+        }
 
     }
 
@@ -571,6 +743,10 @@ public class BoardController {
     	model.addAttribute("vos", vos);
     	return vos;
     }
+
+
+
+
 
 
 

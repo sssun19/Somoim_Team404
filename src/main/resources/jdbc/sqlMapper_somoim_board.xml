@@ -9,12 +9,15 @@
 		join somoim c on a.somoim_num=c.num where user_id=#{user_id}
 	</select>
 	<select id="JOIN_SOMOIM_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
-		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM from somoim_board b
-	   INNER JOIN somoim_member m
-	 	on b.som_member_num = m.num
-		where b.somoim_num = #{somoim_num}
-		ORDER BY
-		b.num desc
+		SELECT * FROM (
+			SELECT rownum rnum, A.* FROM (
+				SELECT * FROM somoim_board b
+				INNER JOIN somoim_member m
+				on b.som_member_num = m.num
+				where b.somoim_num = #{somoim_num}
+				ORDER BY b.num desc
+				) A WHERE rownum &lt;= #{endRow}
+					  ) WHERE rnum >= #{startRow}
 	</select>
 
 	<select id="JOIN_SOMOIM_SELECT_SAVE_NAME" resultType="test.com.moim.board.model.Somoim_BoardVO">
@@ -24,7 +27,7 @@
 	<select id="JOIN_SOMOIM_SELECT_ONE"
 			resultType="test.com.moim.board.model.Somoim_BoardVO">
 
-		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM from somoim_board b
+		select m.user_id, b.NUM,b.TITLE,b.CONTENT,m.SAVE_NAME,b.WRITE_DATE,b.VIEW_COUNT,b.GOOD_COUNT,b.VOTE_NUM,b.SOM_MEMBER_NUM,b.SOMOIM_NUM ,b.save_image from somoim_board b
 		INNER JOIN somoim_member m
 	   on b.som_member_num = m.num
 		where b.num=#{num}
@@ -56,18 +59,19 @@
 	</delete>
 	<insert id="JOIN_INSERT">
 		insert into
-		somoim_board(num,title,content,som_member_num,somoim_num,write_date)
+			somoim_board(num, title, content, som_member_num, somoim_num, write_date, save_image,vote_num)
 		values(
-
-		seq_somoim_board.nextval,
-		#{title},
-		#{content},
-		(SELECT num FROM somoim_member WHERE user_id = #{user_id} and somoim_num =
-		#{somoim_num}),
-		#{somoim_num},
-		sysdate
-		)
+				  seq_somoim_board.nextval,
+				  #{title,jdbcType=VARCHAR},
+				  #{content,jdbcType=VARCHAR},
+				  (SELECT num FROM somoim_member WHERE user_id = #{user_id,jdbcType=VARCHAR} and somoim_num = #{somoim_num,jdbcType=INTEGER}),
+				  #{somoim_num,jdbcType=INTEGER},
+				  sysdate,
+				  #{save_image,jdbcType=VARCHAR},
+		    	#{vote_num}
+			  )
 	</insert>
+
 	<update id="SCH_PART_UPDATE">
 		UPDATE somoim_schedule
 		SET
@@ -123,5 +127,33 @@
 		set view_count = view_count + 1 where num=#{num}
 
 	</update>
+
+	<select id="JSON_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
+	select * from somoim_board where somoim_num = #{somoim_num}
+	</select>
+
+	<select id="Join_Count" resultType="int">
+		select count(*) from somoim_board b
+			INNER JOIN somoim_member m
+			on b.som_member_num = m.num
+		where b.somoim_num = #{somoim_num}
+	</select>
+
+	<select id="Sch_Count" resultType="int">
+		select count(*) from somoim_schedule
+		where somoim_num = #{somoim_num}
+	</select>
+
+	<select id="SELECT_VOTE_NUM" resultType="test.com.moim.board.model.Somoim_Question_VoteVO">
+		select * from somoim_question_vote
+		where num = #{num}
+	</select>
+
+	<select id="SELECT_CHOICE_ITEM" resultType="test.com.moim.board.model.Somoim_Choice_Vote">
+		select * from somoim_choice_vote
+		where som_qvote_num = #{som_qvote_num}
+	</select>
+
+
 
 </mapper>

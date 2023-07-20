@@ -24,13 +24,13 @@
     <div class="event_list_top">
         <h1>이벤트</h1>
     </div>
-    <ul class="event_list_grid">
+    <ul class="event_list_grid" style="width: 80%;">
         <c:forEach items="${vos}" var="vo2">
 
         <li>
-            <div class="event_img" style="align-items: center; height: 100%;">
+            <div class="event_img" style="align-items: center; height: 40%; background-color: transparent; display: flex; justify-content: center;">
                 <a href="eventsSelctOne.do?num=${vo2.num}">
-                <img style="width: 100%; height: 100%; " src="resources/uploadimg/${vo2.save_name}" >
+                <img style="width: 100%; height: 200px; border-radius: 5%" src="resources/uploadimg/${vo2.save_name}" >
                 </a>
             </div>
             <div><a href="eventsSelctOne.do?num=${vo2.num}">${vo2.title}</a></div>

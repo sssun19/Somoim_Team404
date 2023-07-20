@@ -21,6 +21,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,13 +171,11 @@ public class UserinfoController {
 
 
 	@RequestMapping(value = "/u_findId2.do", method = RequestMethod.GET)
-	public String u_findId2(UserinfoVO vo, Model model) {
-	    log.info("/u_findId2.do... {}", vo);
+	public String u_findId2(String email, Model model) {
+	    log.info("/u_findId2.do... {}", email);
 
 	    try {
-	        String email = vo.getEmail();
-
-	        // 이메일을 가진 아이디 조회
+	       
 	        UserinfoVO userinfoVO = service.findId(email);
 	        log.info("{}", userinfoVO);
 
@@ -287,6 +286,24 @@ public class UserinfoController {
 			}
 			
 		}
+		
+		@ResponseBody
+		@RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
+		public int VerifyRecaptcha(HttpServletRequest request) {
+		    VerifyRecaptcha.setSecretKey("시크릿 코드");
+		    String gRecaptchaResponse = request.getParameter("recaptcha");
+		    try {
+		       if(VerifyRecaptcha.verify(gRecaptchaResponse))
+		          return 0; // 성공
+		       else return 1; // 실패
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return -1; //에러
+		    }
+		}
+
+		
+		
 }
 
 

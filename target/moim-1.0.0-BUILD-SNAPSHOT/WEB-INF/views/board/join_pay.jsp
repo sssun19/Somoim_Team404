@@ -62,6 +62,34 @@
             </c:forEach>
 
         </ul>
+        <div class="Join_Paging">
+
+            <a href="<c:url value='join_pay.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo > 1) ? param.pageNo - 1 : param.pageNo}'/>
+
+                <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                </c:url>"><i class="fa-solid fa-angle-left"></i></a>
+
+
+
+            <c:forEach var="i" begin="1" end="${totalPage}">
+                <a href="<c:url value='join_pay.do'>
+                    <c:param name='somoim_num' value='${num}'/>
+                    <c:param name='pageNo' value='${i}'/>
+                    <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                    </c:url>">${i}</a>
+            </c:forEach>
+
+
+
+            <a href="<c:url value='join_pay.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo < totalPage) ? param.pageNo + 1 : param.pageNo}'/>
+                <c:param name='pageSize' value='${empty param.pageSize ? 5 : param.pageSize}'/>
+                </c:url>"><i class="fa-solid fa-angle-right"></i></a>
+
+        </div>
     </div>
 </div>
 <div class="footer">
@@ -92,7 +120,7 @@
 
 
 </body>
-<script src="/resources/js/pay.js"></script>
+<script src="resources/js/pay.js"></script>
 <script>
 
 </script>

@@ -33,9 +33,19 @@
         inputText.value = '${c_com.content}';
 
 
+
+
         var buttonSubmit = document.createElement('button');
         buttonSubmit.type = 'submit';
         buttonSubmit.textContent = '댓글 작성';
+        buttonSubmit.style.marginLeft = '10px';
+        buttonSubmit.style.width = '80px';
+        buttonSubmit.style.height = '40px';
+        buttonSubmit.style.fontSize = '0.7rem';
+        buttonSubmit.style.textAlign = 'center';
+        buttonSubmit.style.justifyContent = 'center';
+
+
 
         div.appendChild(inputText);
 
@@ -46,6 +56,92 @@
         parentDiv.replaceChild(div, button);
     }
 </script>
+
+
+<script>
+    function showPopup() {
+        // 팝업 창 생성
+        var popup = document.createElement("div");
+        popup.style.width = "300px";
+        popup.style.height = "300px";
+        popup.style.backgroundColor = "white";
+        popup.style.border = "1px solid black";
+        popup.style.position = "fixed";
+        popup.style.top = "50%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.padding = "20px";
+
+        // 신고자 정보 입력 필드 생성
+        var reporterInput = document.createElement("input");
+        reporterInput.type = "text";
+        reporterInput.name = "user_id";
+        reporterInput.value = "${user_id}";
+        reporterInput.style.width = "100%";
+        reporterInput.style.marginBottom = "10px";
+
+        // 신고당한 사람 정보 입력 필드 생성
+        var reportedUserInput = document.createElement("input");
+        reportedUserInput.type = "text";
+        reportedUserInput.name = "criminal";
+        reportedUserInput.value = "${vo2.user_id}";
+        reportedUserInput.style.width = "100%";
+        reportedUserInput.style.marginBottom = "10px";
+
+        // 신고 사유 선택 드롭다운 메뉴 생성
+        var reasonSelect = document.createElement("select");
+        reasonSelect.name = "reason";
+        reasonSelect.style.width = "100%";
+        reasonSelect.style.marginBottom = "10px";
+
+        // 옵션 생성 및 추가
+        var reasons = ["부적절한 단어가 포함된 게시물", "부적절한 사진이 포함된 게시물", "불쾌감을 조성하는 게시물", "타인을 비방하거나, 정치적 성향이 담긴 게시물"];
+        for (var i = 0; i < reasons.length; i++) {
+            var option = document.createElement("option");
+            option.value = reasons[i];
+            option.text = reasons[i];
+            reasonSelect.appendChild(option);
+        }
+
+        // 확인 버튼 생성
+        var button = document.createElement("button");
+        button.innerHTML = "확인";
+        button.style.width = "100%";
+        button.onclick = function() {
+            var reporter = reporterInput.value;
+            var reportedUser = reportedUserInput.value;
+            var reason = reasonSelect.value;
+
+            // AJAX를 사용하여 서버에 데이터 전송
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/reportsInsert.do?");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // 응답 처리
+                    alert("신고가 성공적으로 등록되었습니다.");
+                    document.body.removeChild(popup); // 팝업 창 제거
+                }
+            };
+            // div로 파티션 나누고, body에 릴레티브 주고, 팝업에 엡솔주고 top 50 lft 50 등등 >>>중앙 정렬
+            var numValue = encodeURIComponent('${vo2.num}');
+            var params = 'num=' + numValue; // 매개변수 문자열 생성
+
+            xhr.send(params);
+        };
+
+        // 생성한 요소들을 팝업 창에 추가
+        popup.appendChild(reporterInput);
+        popup.appendChild(reportedUserInput);
+        popup.appendChild(reasonSelect);
+        popup.appendChild(button);
+
+        // 팝업 창을 body 요소에 추가
+        document.body.appendChild(popup);
+    }
+
+</script>
+
 
 <body>
 
@@ -71,15 +167,17 @@
                 </span>
             </div>
             <div class="bbs_func">
-                <button type="button">
+                <button type="button" onclick="showPopup()">
                     <i class="fa-solid fa-lightbulb" style="color: red;"></i>
                 </button>
-                <%--                좋아요 파트--%>
-                <c:if test="${good_count_mem ==null}">
-                    <button type="button">
+
+                    <%--                좋아요 파트--%>
+                    <c:if test="${good_count_mem ==null}">
+                        <button type="button" >
                         <a href="good_count_up.do?user_id=${user_id}&num=${vo2.num}">
-                            <i class="far fa-heart"></i>
-                        </a>
+                        <i class="far fa-heart"></i>
+                    </a>
+
 
                     </button>
                 </c:if>
@@ -122,6 +220,7 @@
         </div>
         <div style=" text-align: right; margin-right: 10px;">
             <i class="fa-regular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
+            <i class="fa-regular fa-eye">${vo2.view_count}</i>
         </div>
 
     </div>
@@ -143,8 +242,9 @@
                                 <div class="user_info_profile_tooltip">
                                     <div class="com_top">
                                         <strong>${com.user_id}</strong>
+
                                         <span>
-                                            <c:if test="${vo2.user_id == user_id}">
+                                            <c:if test="${com.user_id == user_id}">
                                             <form id="myForm" action="som_comm_updateOK.do?num=${com.som_board_num}">
                                                 <input type="hidden" name="som_board_num" value="${com.som_board_num}">
                                                 <input type="hidden" name="num" value="${com.num}">
@@ -188,19 +288,27 @@
                                                            value="${c_com.som_board_num}">
 <%--                                                <input type="hidden" name="" value="${com.som_board_num}">--%>
                                                <c:if test="${c_com.user_id == user_id}">
+                                                <div class="bbs_func" style="width: 3%;">
+
                                                            <button type="submit">
                                                                    <i class="fas fa-edit"></i>
                                                            </button>
-
+                                                </div>
                                             </form>
                                             <form action="som_dcomm_deleteOK.do">
 
                                                    <input type="hidden" name="num" value="${c_com.num}">
+                                                   <input type="hidden" name="som_board_num" value="${com.som_board_num}">
+                                                                                                <div class="bbs_func">
+
+                                                         <button type="submit"  >
                                                    <input type="hidden" name="som_board_num"
                                                           value="${com.som_board_num}">
                                                          <button type="submit">
                                                              <i class="fas fa-trash-alt"></i>
                                                         </button>
+                                                                                                                                                    </div>
+
                                                 </form>
                                                 </c:if>
                                         </div>
@@ -226,11 +334,16 @@
         </c:forEach>
         <form action="som_comm_insertOK.do?som_board_num=${vo2.num}">
             <div class="join_commnets_insert_section">
-                <div class="comments_user_profile">
+                <div class="comments_user_profile" style="margin-right: 1.5%">
                     <div class="commnets_user_profile_img">
-                        <i class="far fa-user"></i>
+                        <div class="profile" style="background-color: red; ">
+
+                            <%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
+                            <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                 src="resources/uploadimg/${vo2.save_name}">
+                        </div>
                     </div>
-                    <p>닉네임</p>
+                    <p>${vo2.user_id}}</p>
                 </div>
                 <input type="hidden" name="som_board_num" value="${vo2.num}">
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">
@@ -238,10 +351,10 @@
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="hidden" name="save_name" value="${vo2.save_name}">
 
-                <input type="text" placeholder="댓글 작성" name="content">
+                <input  style="border-radius: 1%" type="text" placeholder="댓글 작성" name="content">
                 <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 
-                <button type="submit">댓글 작성</button>
+                <button style="margin-left: 10px; width: 80px; height:40px;  font-size: 0.7rem; text-align: center;  justify-content: center;" type="submit">댓글 작성</button>
             </div>
         </form>
     </div>

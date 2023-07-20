@@ -29,7 +29,7 @@
             <c:forEach items="${list}" var="list">
                 <li class="gallery_img_top" style="background-color: transparent; border: solid 1px #eee">
                     <input type="hidden" value="${list.num}">
-                    <img src="/resources/uploadimg/${list.image_name}">
+                    <img src="resources/uploadimg/${list.image_name}">
                     <span>
                         <p>${ErrorMessage}</p>
                         <a href="join_gallery_deleteOK.do?num=${list.num}&user_id=${list.user_id}&somoim_num=${list.somoim_num}"><i class="fas fa-trash-alt"></i> 삭제</a>
@@ -42,13 +42,39 @@
 
     </div>
 
+        <div class="Join_Paging">
+    <a href="<c:url value='join_gallery.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo > 1) ? param.pageNo - 1 : param.pageNo}'/>
 
 
+                </c:url>"><i class="fa-solid fa-angle-left"></i></a>
+
+
+
+    <c:forEach var="i" begin="1" end="${totalPage}">
+        <a href="<c:url value='join_gallery.do'>
+                    <c:param name='somoim_num' value='${num}'/>
+                    <c:param name='pageNo' value='${i}'/>
+
+                    </c:url>">${i}</a>
+    </c:forEach>
+
+
+
+    <a href="<c:url value='join_gallery.do'>
+                <c:param name='somoim_num' value='${num}'/>
+                <c:param name='pageNo' value='${(param.pageNo < totalPage) ? param.pageNo + 1 : param.pageNo}'/>
+                </c:url>"><i class="fa-solid fa-angle-right"></i></a>
+        </div>
 </div>
 
 
 
-<div class="footer">
+
+
+
+    <div class="footer">
     <div>
         <strong>온앤오프</strong>
         <ul>

@@ -6,22 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import test.com.moim.board.model.Somoim_BoardVO;
-import test.com.moim.comments.model.som_commentsVO;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.community.service.CommunityService;
 import test.com.moim.community_comments.model.Community_commentsVO;
 import test.com.moim.community_comments.model.Community_re_commentsVO;
 import test.com.moim.community_comments.service.Community_commentsService;
 import test.com.moim.community_comments.service.Community_re_commentsService;
-import test.com.moim.events.model.EventsVO;
-import test.com.moim.userinfo.model.UserinfoVO;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,90 +29,97 @@ import java.util.List;
 @Controller
 
 
-
 public class CommunityController {
-	
-	@Autowired
-	HttpSession session;
 
-	@Autowired
-	ServletContext sContext;
+    @Autowired
+    HttpSession session;
 
-	@Autowired
-	CommunityService service;
+    @Autowired
+    ServletContext sContext;
 
-	@Autowired
-	Community_commentsService community_comservice;
+    @Autowired
+    CommunityService service;
 
-	@Autowired
-	Community_re_commentsService community_re_comservice;
+    @Autowired
+    Community_commentsService community_comservice;
 
-
-	@RequestMapping(value = "/community_selectAll.do", method = RequestMethod.GET)
-	public String community_selectAll(Model model) {
-		log.info("community_selectAll.do().....{}");
-
-		List<CommunityVO> vos = service.selectAll();
-
-		for (CommunityVO vo : vos) {
-			log.info(vo.toString());
-		}
-
-		model.addAttribute("vos",vos);
-
-		return "community/selectAll";
-	}
-
-	@RequestMapping(value = "/community_selectOne.do", method = RequestMethod.GET)
-	public String community_selectOne(CommunityVO vo, Model model) {
-		log.info("community_selectOne.do().....");
-		List<CommunityVO> infos = service.select_user_info();
-		log.info("infos..{}", infos);
+    @Autowired
+    Community_re_commentsService community_re_comservice;
 
 
-		CommunityVO vo2 = service.selectOne(vo);
-		log.info("test...{}",vo2);
-		for (CommunityVO info : infos) {
-			if(vo2.getUser_id().equals(info.getUser_id()))
-			{vo2.setSave_name(info.getSave_name());
+    @RequestMapping(value = "/community_selectAll.do", method = RequestMethod.GET)
+    public String community_selectAll(Model model) {
+        log.info("community_selectAll.do().....{}");
+
+        List<CommunityVO> vos = service.selectAll();
+
+        for (CommunityVO vo : vos) {
+            log.info(vo.toString());
+        }
+
+        model.addAttribute("vos", vos);
+
+        return "community/selectAll";
+    }
+
+    @RequestMapping(value = "/community_selectOne.do", method = RequestMethod.GET)
+    public String community_selectOne(CommunityVO vo, Model model, RedirectAttributes redirectAttributes) {
+        log.info("community_selectOne.do().....");
+
+        // 로그인 상태를 확인하는 로직
+        String userId = (String) session.getAttribute("user_id");
+        if (userId == null) {
+            // 로그인되지 않은 경우, 로그인 페이지로 리디렉션
+            redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
+            return "redirect:/login.do";  // 로그인 페이지 URL로 변경해야 함
+        }
+
+        List<CommunityVO> infos = service.select_user_info();
+        log.info("infos..{}", infos);
 
 
-		}
-		}
-			  log.info("프로필수정...{}", vo2);
+        CommunityVO vo2 = service.selectOne(vo);
+        log.info("test...{}", vo2);
+        for (CommunityVO info : infos) {
+            if (vo2.getUser_id().equals(info.getUser_id())) {
+                vo2.setSave_name(info.getSave_name());
 
 
-
-		model.addAttribute("vo2",vo2);
-
-		Community_commentsVO vo3 = new Community_commentsVO();
-		vo3.setBoard_num(vo2.getNum());
-		/*vo3.setSave_name(vo2.getSave_name());*/
-		System.out.println("vo2.getNum!!!!!!!!!!!!:" + vo2.getNum());
-		List<Community_commentsVO> ccoms = community_comservice.selectAll(vo3);
+            }
+        }
+        log.info("프로필수정...{}", vo2);
 
 
-		for (Community_commentsVO com : ccoms) {
-			for (CommunityVO info : infos) {
-				log.info("검사 vo 아이디...{}", com.getUser_id());
-				log.info("검사 info 저장된 이름...{}", info.getUser_id());
-				if (com.getUser_id().equals(info.getUser_id())) {
-					log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
-					log.info("info 저장된 이름...{}", info.getUser_id());
-					log.info("vo2 저장된 getSave_name...{}", vo2.getSave_name());
-					log.info("info 저장된 getSave_name...{}", info.getSave_name());
-					if (!com.getSave_name().equals(info.getSave_name())) {
-						log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
-						log.info("보드에 저장된 이름...{}", vo2.getSave_name());
-						log.info("처음 가입 이미지 이름...{}", info.getSave_name());
-						com.setSave_name(info.getSave_name());
-						log.info("바뀐거 ::: vo2.getSave_name...{}", com.getSave_name());
-					}
-				}
-			}
-			log.info(com.toString());
+        model.addAttribute("vo2", vo2);
 
-		}
+        Community_commentsVO vo3 = new Community_commentsVO();
+        vo3.setBoard_num(vo2.getNum());
+        /*vo3.setSave_name(vo2.getSave_name());*/
+        System.out.println("vo2.getNum!!!!!!!!!!!!:" + vo2.getNum());
+        List<Community_commentsVO> ccoms = community_comservice.selectAll(vo3);
+
+
+        for (Community_commentsVO com : ccoms) {
+            for (CommunityVO info : infos) {
+                log.info("검사 vo 아이디...{}", com.getUser_id());
+                log.info("검사 info 저장된 이름...{}", info.getUser_id());
+                if (com.getUser_id().equals(info.getUser_id())) {
+                    log.info("vo2 저장된 아이디...{}", vo2.getUser_id());
+                    log.info("info 저장된 이름...{}", info.getUser_id());
+                    log.info("vo2 저장된 getSave_name...{}", vo2.getSave_name());
+                    log.info("info 저장된 getSave_name...{}", info.getSave_name());
+                    if (!com.getSave_name().equals(info.getSave_name())) {
+                        log.info("보드에 저장된 아이디...{}", vo2.getUser_id());
+                        log.info("보드에 저장된 이름...{}", vo2.getSave_name());
+                        log.info("처음 가입 이미지 이름...{}", info.getSave_name());
+                        com.setSave_name(info.getSave_name());
+                        log.info("바뀐거 ::: vo2.getSave_name...{}", com.getSave_name());
+                    }
+                }
+            }
+            log.info(com.toString());
+
+        }
 
 
 
@@ -129,72 +130,86 @@ public class CommunityController {
 		log.info("vo3...!!!!!!!!!!!!!!!!{}", vo3);
 
 		List<Community_commentsVO> ccoms = community_comservice.selectAll(vo3);*/
-		List<Community_commentsVO> filteredCcoms = new ArrayList<>();
+        List<Community_commentsVO> filteredCcoms = new ArrayList<>();
 
-		for (Community_commentsVO ccom : ccoms) {
-			if (ccom.getParent_com() == 0) {
-				filteredCcoms.add(ccom);
-			}
-		}
-		log.info("filteredCcoms...{}",filteredCcoms);
-		model.addAttribute("ccoms", filteredCcoms);
-		model.addAttribute("vo3", vo3);
+        for (Community_commentsVO ccom : ccoms) {
+            if (ccom.getParent_com() == 0) {
+                filteredCcoms.add(ccom);
+            }
+        }
+        log.info("filteredCcoms...{}", filteredCcoms);
+        model.addAttribute("ccoms", filteredCcoms);
+        model.addAttribute("vo3", vo3);
 
-		Community_re_commentsVO c_cvo = new Community_re_commentsVO();
-		c_cvo.setBoard_num(vo3.getBoard_num());
-		log.info("vo3.getnum..{}", vo3.getNum());
-		List<Community_re_commentsVO> filteredcoms = new ArrayList<>();
-		List<Community_re_commentsVO> c_coms = new ArrayList<Community_re_commentsVO>();
-		c_coms = community_re_comservice.selectAll(c_cvo);
-		for (Community_re_commentsVO dcom : c_coms) {
-			if (dcom.getParent_com() != 0) {
-				filteredcoms.add(dcom);
-			}
-		}
-		log.info("filteredcoms@@@@@@@@@@@@@@@@...{}",filteredcoms);
+        Community_re_commentsVO c_cvo = new Community_re_commentsVO();
+        c_cvo.setBoard_num(vo3.getBoard_num());
+        log.info("vo3.getnum..{}", vo3.getNum());
+        List<Community_re_commentsVO> filteredcoms = new ArrayList<>();
+        List<Community_re_commentsVO> c_coms = new ArrayList<Community_re_commentsVO>();
+        c_coms = community_re_comservice.selectAll(c_cvo);
+        for (Community_re_commentsVO dcom : c_coms) {
+            if (dcom.getParent_com() != 0) {
+                filteredcoms.add(dcom);
+            }
+        }
+        log.info("filteredcoms@@@@@@@@@@@@@@@@...{}", filteredcoms);
 
-		model.addAttribute("c_coms", filteredcoms);
-		return "community/selectOne";
-	}
-	
-	@RequestMapping(value = "/community_insert.do", method = RequestMethod.GET)
-	public String community_insert() {
+        model.addAttribute("c_coms", filteredcoms);
 
+        String user_id = (String) session.getAttribute("user_id");
 
-		log.info("community_insert.do().....");
+        vo.setUser_id(user_id);
+        CommunityVO good_count_mem = service.select_all_goodList(vo);
+        log.info("user_id..{}", user_id);
+        model.addAttribute("good_count_mem", good_count_mem);
+        log.info("good_count_mem..{}", good_count_mem);
 
+        return "community/selectOne";
+    }
 
-		return "community/insert";
-	}
+    @RequestMapping(value = "/community_insert.do", method = RequestMethod.GET)
+    public String community_insert(RedirectAttributes redirectAttributes) {
+        log.info("community_insert.do().....");
 
-	@RequestMapping(value = "/community_insertOK.do", method = RequestMethod.POST)
-	public String community_insertOK(CommunityVO vo) throws IllegalStateException, IOException {
+// 로그인 상태를 확인하는 로직
+        String userId = (String) session.getAttribute("user_id");
+        if (userId == null) {
+            // 로그인되지 않은 경우, 로그인 페이지로 리디렉션
+            redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
+            return "redirect:/login.do";  // 로그인 페이지 URL로 변경해야 함
+        }
 
-		log.info("community_insertOK.do().....{}", vo);
+        return "community/insert";
+    }
 
-		int fileNameLength = vo.getFile().getOriginalFilename().length();
-		String getOriginalFileName = vo.getFile().getOriginalFilename();
+    @RequestMapping(value = "/community_insertOK.do", method = RequestMethod.POST)
+    public String community_insertOK(CommunityVO vo) throws IllegalStateException, IOException {
 
-		log.info("getOriginalFilename : {}", getOriginalFileName);
-		log.info("fileNameLength : {}", fileNameLength);
+        log.info("community_insertOK.do().....{}", vo);
 
-		vo.setSave_img(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+        int fileNameLength = vo.getFile().getOriginalFilename().length();
+        String getOriginalFileName = vo.getFile().getOriginalFilename();
 
-		if (getOriginalFileName.length() == 0) {
-			vo.setSave_img("아이유.png");
+        log.info("getOriginalFilename : {}", getOriginalFileName);
+        log.info("fileNameLength : {}", fileNameLength);
 
-		} else {
-			vo.setSave_img(getOriginalFileName);
-			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
-			String realPath = sContext.getRealPath("resources/uploadimg");
+        vo.setSave_img(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
 
-			log.info("realPath : {}", realPath);
+        if (getOriginalFileName.length() == 0) {
+            vo.setSave_img("아이유.png");
 
-			File f = new File(realPath + "\\" + vo.getSave_img());
+        } else {
+            vo.setSave_img(getOriginalFileName);
+            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+            String realPath = sContext.getRealPath("resources/uploadimg");
 
-			vo.getFile().transferTo(f);
+            log.info("realPath : {}", realPath);
 
-			//// create thumbnail image/////////
+            File f = new File(realPath + "\\" + vo.getSave_img());
+
+            vo.getFile().transferTo(f);
+
+            //// create thumbnail image/////////
 			/*BufferedImage original_buffer_img = ImageIO.read(f);
 			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
@@ -204,17 +219,17 @@ public class CommunityController {
 			log.info("formatName : {}", formatName);
 			ImageIO.write(thumb_buffer_img, formatName, thumb_file);*/
 
-		} // end else
+        } // end else
 
-		log.info("{}", vo);
-		int result = service.insert(vo);
+        log.info("{}", vo);
+        int result = service.insert(vo);
 
-		log.info("result : {}", result);
-		if (result==1)
-			return "redirect:community_selectAll.do";
-		else
-			return "redirect:community_insert.do";
-	}
+        log.info("result : {}", result);
+        if (result == 1)
+            return "redirect:community_selectAll.do";
+        else
+            return "redirect:community_insert.do";
+    }
 	/*@RequestMapping(value = "/community_insertOK.do", method = RequestMethod.POST)
 	public String community_insertOK(CommunityVO vo){
 
@@ -230,71 +245,95 @@ public class CommunityController {
 		}
 		
 	}*/
-	
-	@RequestMapping(value = "/community_update.do", method = RequestMethod.GET)
-	public String community_update(CommunityVO vo, Model model) {
-		log.info("/community_update.do...{}", vo);
 
-		CommunityVO vo2 = service.selectOne(vo);
+    @RequestMapping(value = "/community_update.do", method = RequestMethod.GET)
+    public String community_update(CommunityVO vo, Model model) {
+        log.info("/community_update.do...{}", vo);
 
-		model.addAttribute("vo2", vo2);
-		log.info("vo2...{}", vo2);
+        CommunityVO vo2 = service.selectOne(vo);
 
-		return "community/update";
-	}
+        model.addAttribute("vo2", vo2);
+        log.info("vo2...{}", vo2);
 
-	@RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
-	public String community_updateOK(CommunityVO vo) throws IllegalStateException, IOException {
-		log.info("community_updateOK.do....{}", vo);
+        return "community/update";
+    }
 
-		log.info("사진 변경...{}", vo.getFile());
-		int fileNameLength = vo.getFile().getOriginalFilename().length();
-		String getOriginalFileName = vo.getFile().getOriginalFilename();
-		log.info("getOriginalFilename : {}", getOriginalFileName);
-		log.info("fileNameLength : {}", fileNameLength);
-		vo.setSave_img(getOriginalFileName.length() == 0 ? vo.getSave_img() : getOriginalFileName);
+    @RequestMapping(value = "/community_updateOK.do", method = RequestMethod.POST)
+    public String community_updateOK(CommunityVO vo) throws IllegalStateException, IOException {
+        log.info("community_updateOK.do....{}", vo);
 
-		CommunityVO vo2 = new CommunityVO();
-		vo2.setNum(vo.getNum());
-		vo2 = service.selectOne(vo2);
-		log.info("new vo2 vo2 vo2..{}",vo2 );
-		if (vo.getSave_img() == null || vo.getSave_img().equals("")) {
-			vo.setSave_img(vo2.getSave_img());
-		}
+        log.info("사진 변경...{}", vo.getFile());
+        int fileNameLength = vo.getFile().getOriginalFilename().length();
+        String getOriginalFileName = vo.getFile().getOriginalFilename();
+        log.info("getOriginalFilename : {}", getOriginalFileName);
+        log.info("fileNameLength : {}", fileNameLength);
+        vo.setSave_img(getOriginalFileName.length() == 0 ? vo.getSave_img() : getOriginalFileName);
 
-		if (getOriginalFileName.length() != 0) {
-			vo.setSave_img(getOriginalFileName);
-			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
-			String realPath = sContext.getRealPath("resources/uploadimg");
-			log.info("realPath : {}", realPath);
-			File f = new File(realPath + "\\" + vo.getSave_img());
-			vo.getFile().transferTo(f);
-		}
-		log.info("최종 변경 : {}", vo.getSave_img());
+        CommunityVO vo2 = new CommunityVO();
+        vo2.setNum(vo.getNum());
+        vo2 = service.selectOne(vo2);
+        log.info("new vo2 vo2 vo2..{}", vo2);
+        if (vo.getSave_img() == null || vo.getSave_img().equals("")) {
+            vo.setSave_img(vo2.getSave_img());
+        }
 
-		int result = service.update(vo);
-		log.info("result...{}", result);
+        if (getOriginalFileName.length() != 0) {
+            vo.setSave_img(getOriginalFileName);
+            // 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+            String realPath = sContext.getRealPath("resources/uploadimg");
+            log.info("realPath : {}", realPath);
+            File f = new File(realPath + "\\" + vo.getSave_img());
+            vo.getFile().transferTo(f);
+        }
+        log.info("최종 변경 : {}", vo.getSave_img());
 
-		if(result==1) {
-			return "redirect:community_selectOne.do?num="+vo.getNum();
-		}else {
-			return "redirect:community_update.do?num="+vo.getNum();
-		}
-	}
+        int result = service.update(vo);
+        log.info("result...{}", result);
 
-	@RequestMapping(value = "/community_deleteOK.do", method = RequestMethod.GET)
-	public String community_deleteOK(CommunityVO vo){
-		log.info("/community_deleteOK.do...{}", vo);
-		
-		int result = service.delete(vo);
-		log.info("result...{}", result);
-		
-		if(result==1) {
-			return "redirect:community_selectAll.do";
-		}else {
-			return "redirect:community_selectOne.do?num="+vo.getNum();
-		}
-		
-	}
-	
+        if (result == 1) {
+            return "redirect:community_selectOne.do?num=" + vo.getNum();
+        } else {
+            return "redirect:community_update.do?num=" + vo.getNum();
+        }
+    }
+
+    @RequestMapping(value = "/community_deleteOK.do", method = RequestMethod.GET)
+    public String community_deleteOK(CommunityVO vo) {
+        log.info("/community_deleteOK.do...{}", vo);
+
+        int result = service.delete(vo);
+        log.info("result...{}", result);
+
+        if (result == 1) {
+            return "redirect:community_selectAll.do";
+        } else {
+            return "redirect:community_selectOne.do?num=" + vo.getNum();
+        }
+
+    }
+
+    @RequestMapping(value = "/community_good_count_up.do", method = RequestMethod.GET)
+    public String good_count_up(CommunityVO vo) {
+        log.info("community_good_count_up.do...{}", vo);
+        service.good_count_up(vo);
+        service.adding_good_count_list(vo);
+
+
+        return "redirect:community_selectOne.do?num=" + vo.getNum();
+
+
+    }
+
+    @RequestMapping(value = "/community_good_count_down.do", method = RequestMethod.GET)
+    public String good_count_down(CommunityVO vo) {
+        log.info("community_good_count_down.do...{}", vo);
+        service.good_count_down(vo);
+        service.del_good_count_list(vo);
+
+
+        return "redirect:community_selectOne.do?num=" + vo.getNum();
+
+
+    }
+
 }

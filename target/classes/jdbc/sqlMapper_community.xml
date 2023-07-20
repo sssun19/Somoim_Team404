@@ -10,7 +10,7 @@
 
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
         select *
-        from community_board
+        from community_board order by num desc
     </select>
 
     <select id="CB_SELECT_ONE" resultType="test.com.moim.community.model.CommunityVO">
@@ -64,15 +64,38 @@
         select * from userinfo
     </select>
 
-    <!-- 	<update id="CB_good_count_UP" parameterType="test.com.moim.community.model.CommunityVO"> -->
-    <!-- 		update community_board set view_count=view_count+1 -->
-    <!-- 		where num = #{num} -->
-    <!-- 	</update> -->
-    <!-- 	#{user_id, jdbcType=VARCHAR} !!!!!!!!!!!!!!!!!-->
-    <!-- 	<update id="CB_view_count_UP" parameterType="test.com.moim.community.model.CommunityVO"> -->
-    <!-- 		update community_board set good_count=good_count+1 -->
-    <!-- 		where num = #{num} -->
-    <!-- 	</update> -->
+    <!--	GOOD COUNT LIST 를 불러온다.-->
+    <select id="CB_SELECT_ALL_GOOD_LIST" resultType="test.com.moim.community.model.CommunityVO">
+        select * from community_good_count_list where user_id=#{user_id} and num=#{num}
+    </select>
+
+
+
+    <!--	좋아요 버튼을 누를 때 작용한다.-->
+    <update id="CB_GOOD_COUNT_UP">
+        update community_board
+        set good_count = good_count + 1 where num=#{num}
+
+    </update>
+
+    <!--	좋아요를 누른 인원을 LIST에 추가한다.-->
+    <insert id="CB_ADDING_GOOD_COUNT_LIST">
+        insert into community_good_count_list(num, user_id, community_list_num) values (#{num}, #{user_id}, seq_community_good_count.nextval)
+    </insert>
+
+    <!--	좋아요가 눌려있는 버튼을 누를 때 작용한다.-->
+    <update id="CB_GOOD_COUNT_DOWN">
+        update community_board
+        set good_count = good_count - 1 where num=#{num}
+
+    </update>
+
+    <!--	좋아요 취소 누른 인원을 LIST에서 삭제한다..-->
+    <delete id="CB_DEL_GOOD_COUNT_LIST" >
+        delete from community_good_count_list where
+            num=#{num} and user_id=#{user_id}
+    </delete>
+
 
     <delete id="CB_DELETE">
         delete

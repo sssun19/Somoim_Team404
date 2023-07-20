@@ -66,13 +66,6 @@ $(document).ready(function() {
             });
             return false;
         });
-
-//	$("#register").click(function() {
-//		var userId = $("h4").text(); // 회원 아이디 추출
-//	    window.location.href = 'findId2.do?userId=' + userId;
-//	});
-   
-    
    
 });
 
@@ -81,33 +74,81 @@ function saveEmail() {
     var email = $("input[name='email']").val();
     localStorage.setItem("email", email);
 }
-function findID(){
-	console.log('findID()');
-	location.href='u_findId2.do?email='+$("input[name='email']").val();
+<%--
+function findID() {
+    console.log('findID()');
+    var name = $("input[name='name']").val();
+    var email = $("input[name='email']").val();
+    var email_token = $("input[name='email_token']").val();
+    
+
+    if (name === '') {
+        alert('이름을 입력해주세요.');
+        return;
+    }
+
+    if (email === '') {
+        alert('이메일을 입력해주세요.');
+        return;
+    }
+    
+  if (email_token === '') {
+    alert("인증번호를 입력해주세요.");
+	return;
+  }
 }
-        function showMessage() {
-         var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
-        alert(alertMessage);
+--%> 
+function showMessage() {
+    var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
+    alert(alertMessage);
+   }
+        
+ function checkEmailVerification(event) {
+        // 이메일 인증 여부 확인
+            var email = $("input[name='email']").val();
+            var email_token = $("input[name='email_token']").val();
+
+            if (email === '') {
+                alert('이메일을 입력해주세요.');
+                event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                return;
+            }
+
+            if (email_token === '') {
+                alert("인증번호를 입력해주세요.");
+                event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                return;
+            }
+
+            // 이메일 인증 확인을 위한 Ajax 요청
+            $.ajax({
+                url: 'send_email_token.do',
+                method: 'GET',
+                data: {
+                    email: email,
+                    email_token: email_token
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log("response:", response);
+                    if (response.result === 'OK') {
+                        alert('인증이 완료되었습니다.');
+                        // 인증 성공한 경우 버튼 클릭 이벤트 계속 진행
+                        window.location.href = 'u_findId2.do';
+                    } else {
+                        alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
+                        event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                    }
+                },
+                error: function() {
+                    alert('인증번호를 전송해주세요');
+                    event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                }
+            });
         }
+
         
-        
-<%--        
-        function check(event){
-      	  if(findidform.name.value.length == 0){
-      		  alert("이름이 누락되었습니다.");
-      		  findidform.name.focus();
-      	  	  event.preventDefault(); 
-      		  return false;
-      	  }
-      	  if(findidform.email.value.length == 0){
-      		  alert("이메일이 누락되었습니다.");
-      		  findidform.email.focus();
-      		  event.preventDefault(); 
-      		  return false;
-      	  }
-      	  return true;
-      }
-    --%>
+
     </script>
 
 <head>
@@ -149,9 +190,7 @@ function findID(){
 
     <div class="find_sec" >
     
-    <form action="findId.do" method="post" name="findidform" > <%--onsubmit="return check();" --%>
-    
-        <div class="insert_sec" >
+       <div class="insert_sec" >
 
         <div class="find_title" >
           <h2>아이디 찾기 </h2>           
@@ -179,9 +218,10 @@ function findID(){
                             <br>
                             <div class="injarea" style="text-align: center;">
                             <button id="inj" type="button" onclick="showMessage()">인증번호가 오지 않았나요?</button> <br>
-                             <button id="btn_email_token">확인</button>
+                          <button id="btn_email_token">확인</button> 
                             </div>
-                        <button type="submit" id="register" onclick="findID()">확인</button>
+                        <button type="submit" id="register" onclick="checkEmailVerification(event)">확인</button>
+                        
                         
 
                         <button type="button" id="submitpass" onclick="location.href='findPassword.do'">비밀번호 찾기</button>
@@ -189,8 +229,7 @@ function findID(){
                 </div>    
         </div>
     </div>
-    </form>            
-       
+
 </div>
 
    
