@@ -2,10 +2,9 @@ $(document).ready(function(){
     $('.point_list').show();
     $('.point_list2').hide();
 
-
     $(".point_category a").click(function(e){
         e.preventDefault();
-        
+
         var showValue= $(this).text();
 
         console.log(showValue);
@@ -20,8 +19,15 @@ $(document).ready(function(){
 
         // 모든 a 태그에서 'point_acitve' 클래스를 제거
         $('.point_category a').removeClass('point_acitve');
-        
+
         // 클릭된 a 태그에 'point_acitve' 클래스 추가
         $(this).addClass('point_acitve');
+    });
+
+    // purchase-btn을 클릭 했을 때의 이벤트 처리
+    $('.purchase-btn').on('click', function() {
+        var item = $(this).siblings('p').text();
+        var point = $(this).text();
+        alert('Item: ' + item + ', Point: ' + point);
     });
 });

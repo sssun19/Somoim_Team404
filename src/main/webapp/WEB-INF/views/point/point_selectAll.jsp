@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
     <link rel="stylesheet" href="resources/css/point.css">
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
@@ -23,68 +21,48 @@
 </div>
 
 <div class="point_list">
-    <c:forEach items="${vos}" var="vo">
         <ul class="point_somoim">
             <strong>소모임</strong>
             <br>
             <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
-            <li>
-                <p>${vo.item}</p>
-            </li>
-
+            <c:forEach items="${vos}" var="vo">
+                <c:if test="${vo.category == '소모임'}">
+                    <li>
+                        <p>${vo.item}</p>
+                        <button type="button" class="purchase-btn">${vo.cash}원</button>
+                    </li>
+                </c:if>
+            </c:forEach>
         </ul>
-    </c:forEach>
-    <ul class="point_somoim">
-        <strong>소모임</strong>
-        <br>
-        <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-    </ul>
-    <ul class="point_somoim">
-        <strong>내 피드</strong>
-        <br>
-        <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-    </ul>
-    <ul class="point_somoim">
-        <strong>유저 관리</strong>
-        <br>
-        <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-    </ul>
+
+        <ul class="point_somoim">
+            <strong>내 피드</strong>
+            <br>
+            <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
+            <c:forEach items="${vos}" var="vo">
+                <c:if test="${vo.category == '내피드'}">
+                    <li>
+                        <p>${vo.item}</p>
+                        <button type="button" class="purchase-btn">${vo.cash}원</button>
+                    </li>
+                </c:if>
+            </c:forEach>
+        </ul>
+
+        <ul class="point_somoim">
+            <strong>유저 관리</strong>
+            <br>
+            <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
+            <c:forEach items="${vos}" var="vo">
+                <c:if test="${vo.category == '유저관리'}">
+                    <li>
+                        <p>${vo.item}</p>
+                        <button type="button" class="purchase-btn">${vo.cash}원</button>
+                    </li>
+                </c:if>
+            </c:forEach>
+        </ul>
+
 </div>
 
 <div class="point_list2">
@@ -92,52 +70,42 @@
         <strong>소모임</strong>
         <br>
         <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
+        <c:forEach items="${vos}" var="vo">
+            <c:if test="${vo.category == '소모임'}">
+                <li>
+                    <p>${vo.item}</p>
+                    <button type="button" class="purchase-btn">${vo.point}p</button>
+                </li>
+            </c:if>
+        </c:forEach>
     </ul>
+
     <ul class="point_somoim">
         <strong>내 피드</strong>
         <br>
         <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
+        <c:forEach items="${vos}" var="vo">
+            <c:if test="${vo.category == '내피드'}">
+                <li>
+                    <p>${vo.item}</p>
+                    <button type="button" class="purchase-btn">${vo.point}p</button>
+                </li>
+            </c:if>
+        </c:forEach>
     </ul>
+
     <ul class="point_somoim">
         <strong>유저 관리</strong>
         <br>
         <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
-        <li>
-            <p>소모임 이름 변경 1회</p>
-            <button type="button">0000원</button>
-        </li>
+        <c:forEach items="${vos}" var="vo">
+            <c:if test="${vo.category == '유저관리'}">
+                <li>
+                    <p>${vo.item}</p>
+                    <button type="button" class="purchase-btn">${vo.point}p</button>
+                </li>
+            </c:if>
+        </c:forEach>
     </ul>
 </div>
 
@@ -195,5 +163,5 @@
 
 </div>
 </body>
-<script src="resources/js/point.js"></script>
+<script src="/resources/js/point.js"></script>
 </html>
