@@ -1,5 +1,7 @@
 package test.com.moim.userinfo.model;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -12,7 +14,7 @@ public class UserinfoVO {
 	private String pw;
 	private String name;
 	private String email;
-	private String birthday;
+	private Date birthday;
 	private String birthday_year;
 	private String birthday_month;
 	private String birthday_day;

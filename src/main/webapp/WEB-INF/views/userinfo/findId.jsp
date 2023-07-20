@@ -219,11 +219,12 @@ function showMessage() {
                             <br>
                             <div class="injarea" style="text-align: center;">
                             <button id="inj" type="button" onclick="showMessage()">인증번호가 오지 않았나요?</button> <br>
-                          <button id="btn_email_token">확인</button> 
+                         <button id="btn_email_token">확인</button>  
                             </div>
                         <button type="submit" id="submitpass" onclick="checkEmailVerification(event)">확인</button>
                         
-                        
+                        <br>
+                        <hr>
 
                         <button type="button" id="submitpass" onclick="location.href='findPassword.do'">비밀번호 찾기</button>
            
