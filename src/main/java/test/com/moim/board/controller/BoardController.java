@@ -16,6 +16,8 @@ import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
+import test.com.moim.somoim.model.SomoimVO;
+import test.com.moim.somoim.service.SomoimService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,9 @@ public class BoardController {
 
     @Autowired
     ServletContext sContext;
+
+    @Autowired
+    SomoimService Somservice;
 
     @Autowired
     som_comm_comments_Service c_commService;
@@ -102,7 +107,7 @@ public class BoardController {
     public String join_selectAll(
             @RequestParam(defaultValue = "1") int pageNo,
             @RequestParam(defaultValue = "5") int pageSize,
-            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos) {
+            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos, SomoimVO somoimVO) {
 
         int startRow = (pageNo - 1) * pageSize + 1;
         int endRow = pageNo * pageSize;
@@ -114,10 +119,14 @@ public class BoardController {
         int totalPosts = service.Join_Count(vo);
         int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
 
+        System.out.println("vo입니당깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔"+vo);
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO);
 
+        somoimVO.setNum(vo.getSomoim_num());
+        SomoimVO somoimVO2 = Somservice.selectOne(somoimVO);
 
-
-
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO2);
+        model.addAttribute("somoim_top_pic", somoimVO2);
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);

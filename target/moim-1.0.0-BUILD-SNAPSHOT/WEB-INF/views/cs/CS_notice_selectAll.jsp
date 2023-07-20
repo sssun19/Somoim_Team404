@@ -111,7 +111,7 @@
                       </div>
                     </li>
                   </ul>
-                  <li class="notice_img_enter"><a href="cs_notice_selectOne.do?num=${vo.num}"> <img src="resources/img/rightArrow.png"></a></li>
+                  <li class="notice_img_enter"><a href="cs_notice_selectOne.do?num=${vo.num}"> <img src="/resources/uploadimg/rightArrow.png"></a></li>
                   <input type="hidden" name="num" value="${vo.num}">
 
                   </li>
