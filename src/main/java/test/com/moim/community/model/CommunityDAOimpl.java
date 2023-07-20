@@ -82,6 +82,12 @@ public class CommunityDAOimpl implements CommunityDAO{
 	}
 
 	@Override
+
+	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo) {
+		log.info("mypageMyactivity_communitybyme....{}", vo);
+		return sqlSession.selectList("MYPAGE_COMMUNITYBYME", vo);
+	}
+
 	public int del_good_count_list(CommunityVO vo) {
 		return sqlSession.delete("CB_DEL_GOOD_COUNT_LIST", vo);
 	}
@@ -95,7 +101,5 @@ public class CommunityDAOimpl implements CommunityDAO{
 	public int good_count_down(CommunityVO vo) {
 		return sqlSession.update("CB_GOOD_COUNT_DOWN", vo);
 	}
-
-
 
 }

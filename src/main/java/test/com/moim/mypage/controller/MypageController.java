@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.community.model.CommunityVO;
 import test.com.moim.member.model.MemberVO;
 import test.com.moim.mypage.service.MypageService;
 import test.com.moim.somoim.model.SomoimVO;
@@ -163,6 +164,13 @@ public class MypageController {
 		return "mypage/Mypage_myactivity_boardbyme";
 	}
 	
+	@RequestMapping(value = "/Mypage_myactivity_communitybyme.do", method = RequestMethod.GET)
+	public String Mypage_myactivity_communitybyme(Model model, HttpServletRequest request) {
+		log.info("Mypage_myactivity_boardbyme.do....{}");
+		
+		return "mypage/Mypage_myactivity_comunitybyme";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/Rest_Mypage_myactivity_boardbyme.do", method = RequestMethod.GET)
 	public List<Somoim_BoardVO> Rest_Mypage_myactivity_boardbyme(HttpServletRequest request) {
@@ -174,6 +182,25 @@ public class MypageController {
 		List<Somoim_BoardVO> vos = service.mypageMyactivity_boardbyme(vo);
 		
 		for (Somoim_BoardVO x : vos) {
+			log.info(x.getTitle());
+			log.info(x.getContent());
+		}
+		
+		
+		return vos;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/Rest_Mypage_myactivity_communitybyme.do", method = RequestMethod.GET)
+	public List<CommunityVO> Rest_Mypage_myactivity_communitybyme(HttpServletRequest request) {
+		log.info("Rest_Mypage_myactivity_communitybyme.do....{}");
+		String user_id= request.getParameter("user_id");
+		CommunityVO vo = new CommunityVO();
+		vo.setUser_id(user_id);
+		
+		List<CommunityVO> vos = service.mypageMyactivity_communitybyme(vo);
+		
+		for (CommunityVO x : vos) {
 			log.info(x.getTitle());
 			log.info(x.getContent());
 		}
