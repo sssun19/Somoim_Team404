@@ -32,9 +32,20 @@
         inputText.name = 'content';
         inputText.value = '${c_com.content}';
 
+
+
+
         var buttonSubmit = document.createElement('button');
         buttonSubmit.type = 'submit';
         buttonSubmit.textContent = '댓글 작성';
+        buttonSubmit.style.marginLeft = '10px';
+        buttonSubmit.style.width = '80px';
+        buttonSubmit.style.height = '40px';
+        buttonSubmit.style.fontSize = '0.7rem';
+        buttonSubmit.style.textAlign = 'center';
+        buttonSubmit.style.justifyContent = 'center';
+
+
 
         div.appendChild(inputText);
 
@@ -143,6 +154,7 @@
     </div>
     <div class="view_content" style="height: auto; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 50px;">
         <div class="join_top">
+            <input type="hidden" value="${vo2.num}" id="vo2_num" style="display: none;">
             <div class="user_info">
                 <div class="profile" style="background-color: red">
 
@@ -200,12 +212,38 @@
             <p>
             <p>내용:
                 <br>
-                <c:if test="${vo2.save_name != null}">
-                    <img src="resources/uploadimg/${vo2.save_name}">
+                <c:if test="${vo2.save_image != null}">
+                    <img src="resources/uploadimg/${vo2.save_image}">
                 </c:if>
                 <br>
                 ${vo2.content}
             </p>
+            <div class="vote_one" style="width: 75%; margin: 0 auto;">
+                <h2 style="margin-bottom: 20px;">
+                    투표 제목 : <c:out value="${qvo2.question}"/>
+                </h2>
+                <c:forEach items="${ch_vo2}" var="ch_vo2">
+                    <ul class="vote_grid">
+                        <li>
+
+                            <button type="button" onclick="test(this)" style="position: relative; width: 100%; border: none; background-color: transparent;">
+                                <input type="hidden" value="${ch_vo2.som_vote_user_id}" style="display: none;"
+                                       class="som_vote_member">
+                                <input type="hidden" value="${qvo2.num}" id="voteVo_num"
+                                       style="display: none;">
+                                <input type="text" class="vote_items" value="${ch_vo2.choice}" readonly/>
+                                <div class="vote_count_section">
+                                    <strong style="text-align: right;">${ch_vo2.count}</strong>
+                                </div>
+
+                            </button>
+                        </li>
+                    </ul>
+
+                </c:forEach>
+            </div>
+
+
         </div>
         <div style=" text-align: right; margin-right: 10px;">
             <i class="fa-regular fa-heart" style="color: #ff4242;">${vo2.good_count}</i>
@@ -323,11 +361,16 @@
         </c:forEach>
         <form action="som_comm_insertOK.do?som_board_num=${vo2.num}">
             <div class="join_commnets_insert_section">
-                <div class="comments_user_profile">
+                <div class="comments_user_profile" style="margin-right: 1.5%">
                     <div class="commnets_user_profile_img">
-                        <i class="far fa-user"></i>
+                        <div class="profile" style="background-color: red; ">
+
+                            <%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
+                            <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                 src="resources/uploadimg/${vo2.save_name}">
+                        </div>
                     </div>
-                    <p>닉네임</p>
+                    <p>${vo2.user_id}}</p>
                 </div>
                 <input type="hidden" name="som_board_num" value="${vo2.num}">
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">
@@ -335,10 +378,10 @@
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="hidden" name="save_name" value="${vo2.save_name}">
 
-                <input  style="" type="text" placeholder="댓글 작성" name="content">
+                <input  style="border-radius: 1%" type="text" placeholder="댓글 작성" name="content">
                 <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 
-                <button type="submit">댓글 작성</button>
+                <button style="margin-left: 10px; width: 80px; height:40px;  font-size: 0.7rem; text-align: center;  justify-content: center;" type="submit">댓글 작성</button>
             </div>
         </form>
     </div>
@@ -391,7 +434,83 @@
 
         document.getElementById('myForm').submit();
     });
-</script>
 
+    function test(buttonElement) {
+        var userId = "${user_id}";
+        console.log(userId);
+
+        var voteItemValue = $(buttonElement).find('.vote_items').val();
+        var voteVo_num = $(buttonElement).find('#voteVo_num').val();
+        console.log(voteItemValue);
+        console.log(voteVo_num);
+
+        var VoteMember = $(buttonElement).find('.som_vote_member').val();
+        console.log(VoteMember);
+
+        // VoteMember를 '/'로 분할하고, userId가 있는지 확인
+        var VoteMemberArray = VoteMember.split('/');
+        if (VoteMemberArray.includes(userId)) {
+            $.ajax({
+                url: "vote_CancleOK.do",
+                data: {
+                    som_qvote_num: voteVo_num,
+                    choice: voteItemValue,
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function (response) {
+                    console.log('Success:', response);
+                    location.href="join_selectOne.do?num="+$("#vo2_num").val();
+
+                },
+                error: function (xhr) {
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
+                }
+            });
+        } else {
+            $.ajax({
+                url: "vote_UpdateOK.do",
+                data: {
+                    som_qvote_num: voteVo_num,
+                    choice: voteItemValue,
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function (response) {
+                    console.log('Success:', response);
+                    location.href="join_selectOne.do?num="+$("#vo2_num").val();
+
+                },
+                error: function (xhr) {
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
+                }
+            });
+
+        }
+    }
+
+
+
+</script>
 </body>
+<script>
+    $(document).ready(function() {
+        var userId = "${user_id}";
+
+        // 모든 투표 항목을 순회
+        $('.vote_items').each(function() {
+            var buttonElement = $(this).parent(); // 현재 투표 항목의 부모 요소 (버튼 요소)를 선택
+            var VoteMember = buttonElement.find('.som_vote_member').val();
+            console.log("including member");
+
+            // VoteMember를 '/'로 분할하고, userId가 있는지 확인
+            var VoteMemberArray = VoteMember.split('/');
+            if (VoteMemberArray.includes(userId)) {
+                $(this).css('background-color', '#ccc'); // vote_items 요소의 배경색을 #ccc로 변경
+            }
+        });
+    });
+</script>
 </html>

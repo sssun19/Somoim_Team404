@@ -189,7 +189,7 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
         <div class="img_info">
-            <img src="resources/uploadimg/${vo2.somoim_img}">
+            <img  src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
@@ -286,7 +286,7 @@
         <a href="login.do" id="loginCheck">로그인이 필요합니다.</a>
         <br>
         <br>
-        <a href="som_update.do"><input type="button" id="som_update" value="수정"></a>
+        <a href="som_update.do?num=${vo2.num }"><input type="button" id="som_update" value="수정"></a>
         <a href="som_delete.do?num=${vo2.num }&user_id=${user_id}"><input type="button" id="som_delete" value="삭제"></a>
 
     </div>
