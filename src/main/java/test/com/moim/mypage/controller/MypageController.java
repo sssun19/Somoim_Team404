@@ -168,7 +168,7 @@ public class MypageController {
 	public String Mypage_myactivity_communitybyme(Model model, HttpServletRequest request) {
 		log.info("Mypage_myactivity_boardbyme.do....{}");
 		
-		return "mypage/Mypage_myactivity_comunitybyme";
+		return "mypage/Mypage_myactivity_communitybyme";
 	}
 	
 	@ResponseBody

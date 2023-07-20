@@ -100,9 +100,8 @@
 
         </ul>
     </div>
-<div class="category_more"> -->
-<!--         <a>카테고리 더보기</a> -->
-<!--     </div> -->
+
+</div>
 
     <div class="rec_list">
         <div class="rec_list_top">
@@ -145,7 +144,7 @@
     <div class="board_list" style="margin-top: 1%;" >
         <form action="som_searchList.do">
             <div class="board_list_category_detail" style="margin-bottom: 1%;">
-                <!--                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a> -->
+<!--                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a> -->
                 <!-- 				<a href="som_selectAll.do?category=local"><button type="button" name="local">국내여행</button></a> -->
                 <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>-->
                 <select name="searchKey">
