@@ -48,6 +48,15 @@
 		where choice = #{choice} and som_qvote_num = #{som_qvote_num}
 	</update>
 
+	<update id="VOTE_CANCLE">
+		UPDATE somoim_choice_vote SET
+			 count = count - 1,
+			 som_vote_user_id = REGEXP_REPLACE(som_vote_user_id, '/' || #{som_vote_user_id}, '')
+		WHERE
+			choice = #{choice} AND som_qvote_num = #{som_qvote_num}
+
+	</update>
+
 
 
 
