@@ -31,7 +31,7 @@
               return;
           }
          $.ajax({
-            url: "/json_somoim_selectAll.do", // json 목록 가져오기
+            url: "json_somoim_selectAll.do", // json 목록 가져오기
             method: "GET",
             data: { page: currentPage, itemsPerPage: itemsPerPage },
             dataType: "json",

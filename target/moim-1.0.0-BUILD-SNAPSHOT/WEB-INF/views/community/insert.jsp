@@ -134,7 +134,7 @@
         var imageInput = document.getElementById('image');
 
         if (contentTextArea.value.trim() === '') {
-            alert('사진 선택과 본문 내용을 입력해주세요.');
+            alert('사진 선택과 내용을 입력해주세요.');
             contentTextArea.focus();
             return false;
         }
