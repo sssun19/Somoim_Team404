@@ -30,6 +30,7 @@
                <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
                <li>
                    <p>${vo.item}</p>
+                   <button type="button">${vo.cash}</button>
                </li>
 
            </ul>

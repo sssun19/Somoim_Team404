@@ -27,7 +27,7 @@ public class PointController {
     @RequestMapping(value = "/point_selectAll.do", method = RequestMethod.GET)
     public String point_selectAll(PointVO vo,Model model) {
 
-        log.info("point_selectAll.do()......");
+        log.info("point_selectAll.do()......{}", vo);
 
         List<PointVO> vos = service.selectList(vo);
 
