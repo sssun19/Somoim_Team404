@@ -26,7 +26,7 @@
 <jsp:include page="../top_menu.jsp"></jsp:include>
 
 <form action="community_insertOK.do" method="post"
-      enctype="multipart/form-data">
+      enctype="multipart/form-data" onsubmit="return validateForm();">
     <div class="community_section">
         <div class="c_insert_func">
 
@@ -125,6 +125,28 @@
         };
 
         reader.readAsDataURL(file);
+    }
+</script>
+
+<script>
+    function validateForm() {
+        var contentTextArea = document.getElementById('content');
+        var imageInput = document.getElementById('image');
+
+        if (contentTextArea.value.trim() === '') {
+            alert('사진 선택과 내용을 입력해주세요.');
+            contentTextArea.focus();
+            return false;
+        }
+
+        // If you want to enforce image selection, you can add the following check:
+        // if (imageInput.value === '') {
+        //     alert('사진을 선택해주세요.');
+        //     imageInput.focus();
+        //     return false;
+        // }
+
+        return true;
     }
 </script>
 

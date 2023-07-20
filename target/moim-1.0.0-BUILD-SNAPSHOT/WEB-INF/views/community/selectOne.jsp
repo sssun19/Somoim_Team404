@@ -200,9 +200,10 @@
             <div class="community_commnets_insert_section">
                 <div class="c_comments_user_profile">
                     <div class="c_commnets_user_profile_img">
-                        <i class="far fa-user"></i>
+                        <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%; margin-right: 1.5%;"
+                             src="resources/uploadimg/${vo2.save_name}">
                     </div>
-                    <p>닉네임</p>
+                    <p>${user_id}</p>
                 </div>
                 <input type="hidden" name="board_num" value="${vo3.board_num}">
                 <input type="hidden" name="num" value="${vo3.num}">
