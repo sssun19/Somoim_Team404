@@ -286,7 +286,7 @@
         <a href="login.do" id="loginCheck">로그인이 필요합니다.</a>
         <br>
         <br>
-        <a href="som_update.do"><input type="button" id="som_update" value="수정"></a>
+        <a href="som_update.do?num=${vo2.num }"><input type="button" id="som_update" value="수정"></a>
         <a href="som_delete.do?num=${vo2.num }&user_id=${user_id}"><input type="button" id="som_delete" value="삭제"></a>
 
     </div>

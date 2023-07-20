@@ -14,6 +14,21 @@
 <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 <script src="resources/js/board.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+function convertNewlines() {
+    const textarea = document.getElementById("moim_content");
+    const content = textarea.value;
+    console.log('data....', content);
+
+    // 엔터를 <br> 태그로 변환하여 줄바꿈 처리
+    const som_content = content.replace(new RegExp("\n", "g"), "<br>");
+    console.log('이게 변환 문장 : ', som_content);
+
+    // textarea의 값을 변환된 내용으로 설정
+    textarea.innerHTML = som_content;
+}
+
+</script>
 
 </head>
 <body>
@@ -35,9 +50,10 @@
 			<input type="text" placeholder="모임 이름" id="som_title" name="som_title">
 			<input type="hidden" name="somoim_master" value="${user_id }">
 			<h1>모임 소개</h1>
-<!-- 			<input type="text" placeholder="모임 내용" id="moim_content" name="som_content"> <span> -->
 			<textarea style="width: 100%; height:500px; border: solid 1px #ccc; border-radius: 5px; resize: none; outline: none;"
-			 rows="4" name="som_content" placeholder="모임 내용" id="moim_content"></textarea>
+			 rows="4" name="som_content" placeholder="모임 내용" id="moim_content" oninput="convertNewlines()">
+			 <c:out value="${som_content}" escapeXml="false" />
+			 </textarea>
 			<span>
 				<h1>모임 정원</h1>
 				<input type="text" placeholder="모임 최대 정원" id="moim_max" name="max_member">
