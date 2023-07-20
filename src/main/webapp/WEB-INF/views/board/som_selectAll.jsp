@@ -144,7 +144,7 @@
     <div class="board_list">
         <form action="som_searchList.do">
             <div class="board_list_category_detail">
-                <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a>
+<!--                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a> -->
                 <!-- 				<a href="som_selectAll.do?category=local"><button type="button" name="local">국내여행</button></a> -->
                 <!-- 				<a href="som_selectAll.do?category=foreign"><button type="button" name="foreign">해외여행</button></a>-->
                 <select name="searchKey">

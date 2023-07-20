@@ -10,6 +10,7 @@ import test.com.moim.board.model.BoardDAO;
 import test.com.moim.board.model.Somoim_BoardVO;
 import test.com.moim.comments.model.som_commentsDAO;
 import test.com.moim.comments.model.som_commentsVO;
+import test.com.moim.community.model.CommunityVO;
 import test.com.moim.member.model.MemberDAO;
 import test.com.moim.member.model.MemberVO;
 import test.com.moim.somoim.model.SomoimDAO;
@@ -71,6 +72,12 @@ public class MypageService {
 		log.info("somoim_member 테이블의 save_name 도 update ...{}", vo2.getSave_name());
 		log.info("구분하기 위한 user_id : {}", vo2.getUser_id());
 		return memberDao.mypage_update_member(vo2);
+	}
+
+
+	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo) {
+		log.info("mypageMyactivity_communitybyme...{}", vo);
+		return null;
 	}
 
 
