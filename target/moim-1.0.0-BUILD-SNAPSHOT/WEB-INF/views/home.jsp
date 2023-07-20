@@ -11,19 +11,15 @@
     <link rel="stylesheet" href="resources/css/min.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script type="text/javascript">
    $(document).ready(function() {
       var currentPage = 1; // 시작 페이지 번호
       var itemsPerPage = 4; //표시 항목 수
-
       $("#more_info").click(function() {
          currentPage++; // 페이지 번호 증가
          loadMoreItems();
       });
-
       function loadMoreItems() {
           if (currentPage > 2) {
               // Redirect to som_selectAll.do
@@ -43,20 +39,16 @@
                var html = "";
                var startIndex = (currentPage - 1) * itemsPerPage;
                var endIndex = startIndex + itemsPerPage;
-
                if (startIndex >= items.length) {
                   // 요청한 페이지에 추가 항목이 없는 경우
                   $(".more_but").hide();
                   alert("모든 게시글을 표시했습니다!");
-
                   return;
                }
-
                if (endIndex > items.length) {
                   // 마지막 페이지에서 아이템의 인덱스 조정
                   endIndex = items.length;
                }
-
                for (var i = startIndex; i < endIndex; i++) {
                   var vo = items[i];
                   console.log("vo[i]...{}", vo);
@@ -64,7 +56,6 @@
                   console.log("o.som_member_num...{}", vo.category);
                   console.log("vo.title...{}", vo.som_title);
                   console.log("vo.write_date...{}", vo.create_date);
-
                   html += '<li>';
                   html += ' <div class="moimst_list_01_img_box">';
                   html += ' <img style="height: 100%" src="resources/uploadimg/' + vo.somoim_img + '">';
@@ -76,7 +67,6 @@
                   html += ' </div>';
                   html += '</li>';
                }
-
                $(".selectAJAX").append(html);
             },
             error: function(xhr, status, error) {
@@ -85,19 +75,15 @@
          });
       }
    });
-
-
    // josn comu// josn comu// josn comu// josn comu// josn comu// josn comu// josn comu// josn comu// josn comu
    //
    $(document).ready(function() {
        var currentPage = 1; // 시작 페이지 번호
        var itemsPerPage = 4; //표시 항목 수
-
        $("#more_info_comu").click(function() {
            currentPage++; // 페이지 번호 증가
            loadMoreItems2();
        });
-
        function loadMoreItems2() {
            if (currentPage > 2) {
                // Redirect to som_selectAll.do
@@ -117,27 +103,22 @@
                    var html = "";
                    var startIndex = (currentPage - 1) * itemsPerPage;
                    var endIndex = startIndex + itemsPerPage;
-
                    if (startIndex >= items.length) {
                        // 요청한 페이지에 추가 항목이 없는 경우
                        $(".more_but").hide();
                        alert("모든 게시글을 표시했습니다!");
-
                        return;
                    }
-
                    if (endIndex > items.length) {
                        // 마지막 페이지에서 아이템의 인덱스 조정
                        endIndex = items.length;
                    }
-
                    for (var i = startIndex; i < endIndex; i++) {
                        var vo = items[i];
                        console.log("vo[i]...{}", vo);
                        console.log("vo.save_img...{}", vo.save_img);
                        console.log("vo.title...{}", vo.som_title);
                        console.log("vo.write_date...{}", vo.write_date);
-
                        html += '<li>';
                        html += ' <div class="moimst_list_02_img_box">';
                        html += ' <img style="height: 100%" src="resources/uploadimg/' + vo.save_img + '">';
@@ -148,7 +129,6 @@
                        html += ' </div>';
                        html += '</li>';
                    }
-
                    $(".selectAJAX_comu").append(html);
                },
                error: function(xhr, status, error) {
@@ -157,12 +137,7 @@
            });
        }
    });
-
-
-
 </script>
-
-
 <body>
 <jsp:include page="top_menu.jsp"></jsp:include>
 <div class="main_container">
@@ -196,23 +171,15 @@
                         <p class="sub_tit">${vo.som_title}</p>
                     </div>
                 </li>
-
-
-
-
         </c:if>
         </c:forEach></ul>
        <ul class ="selectAJAX" style="margin-top: 0px; padding-top: 0px;">
-
        </ul>
-
-
           <button id="more_info" style="margin-bottom: 1%;">더보기 ></button>
     </div>
     <div class="moim_list02" style="height: auto;">
        <strong>커뮤니티</strong>
        <ul>
-
            <c:forEach items="${comu_vos}" var="comu_vo" varStatus="loop_comu">
                <c:if test="${loop_comu.index < 4}">
                    <li>
@@ -228,16 +195,12 @@
            </c:forEach>
        </ul>
         <ul class ="selectAJAX_comu" style="margin-top: 0px; padding-top: 0px;">
-
         </ul>
-
-
        <button id="more_info_comu" style="margin-bottom: 2%">더보기 ></button>
     </div>
     <div class="main_section05">
        <img  src="resources/uploadimg/On&Off_home_foot_img.png">
     </div>
-
     <div class="main_section05" style="background-color: #FDF6F6; height: auto">
         <img  src="resources/uploadimg/home_foot_img2.png">
     </div>
