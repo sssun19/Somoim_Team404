@@ -28,63 +28,41 @@
                <strong>소모임</strong>
                <br>
                <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
+               <c:if test="${vo.category == '소모임'}">
                <li>
                    <p>${vo.item}</p>
+                   <button type="button">${vo.point}</button>
                </li>
+               </c:if>
 
            </ul>
+
+           <ul class="point_somoim">
+               <strong>내 피드</strong>
+               <br>
+               <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
+               <c:if test="${vo.category == '내피드'}">
+               <li>
+                   <p>${vo.item}</p>
+                   <button type="button">${vo.point}</button>
+               </li>
+
+               </c:if>
+           </ul>
+           <ul class="point_somoim">
+               <strong>유저 관리</strong>
+               <br>
+               <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
+               <c:if test="${vo.category == '유저관리'}">
+               <li>
+                   <p>${vo.item}</p>
+                   <button type="button">${vo.point}</button>
+               </li>
+               </c:if>
+           </ul>
        </c:forEach>
-       <ul class="point_somoim">
-           <strong>소모임</strong>
-           <br>
-           <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-       </ul>
-       <ul class="point_somoim">
-           <strong>내 피드</strong>
-           <br>
-           <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-       </ul>
-       <ul class="point_somoim">
-           <strong>유저 관리</strong>
-           <br>
-           <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-           <li>
-               <p>소모임 이름 변경 1회</p>
-               <button type="button">0000원</button>
-           </li>
-       </ul>
+
+
    </div>
 
    <div class="point_list2">
