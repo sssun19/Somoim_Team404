@@ -3,6 +3,7 @@ package test.com.moim.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +61,7 @@ public class MypageController {
 		log.info(vo2.getEmail());
 		log.info(vo2.getSom_title());
 		
-		String mypageBirth = vo2.getBirthday().substring(0, 10);
-		log.info(mypageBirth);
+		Date mypageBirth =  vo2.getBirthday();
 		vo2.setBirthday(mypageBirth);
 		
 //		SomoimVO vo3 = new SomoimVO();
@@ -168,7 +168,7 @@ public class MypageController {
 	public String Mypage_myactivity_communitybyme(Model model, HttpServletRequest request) {
 		log.info("Mypage_myactivity_boardbyme.do....{}");
 		
-		return "mypage/Mypage_myactivity_comunitybyme";
+		return "mypage/Mypage_myactivity_communitybyme";
 	}
 	
 	@ResponseBody
