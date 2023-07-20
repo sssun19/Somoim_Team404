@@ -16,6 +16,8 @@ import test.com.moim.com_comments.model.som_comm_commentsVO;
 import test.com.moim.com_comments.service.som_comm_comments_Service;
 import test.com.moim.comments.model.som_commentsVO;
 import test.com.moim.comments.service.som_comments_Service;
+import test.com.moim.somoim.model.SomoimVO;
+import test.com.moim.somoim.service.SomoimService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,9 @@ public class BoardController {
 
     @Autowired
     ServletContext sContext;
+
+    @Autowired
+    SomoimService Somservice;
 
     @Autowired
     som_comm_comments_Service c_commService;
@@ -102,7 +107,7 @@ public class BoardController {
     public String join_selectAll(
             @RequestParam(defaultValue = "1") int pageNo,
             @RequestParam(defaultValue = "5") int pageSize,
-            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos) {
+            Model model, Somoim_BoardVO vo, Somoim_Question_VoteVO Vote_vos, SomoimVO somoimVO) {
 
         int startRow = (pageNo - 1) * pageSize + 1;
         int endRow = pageNo * pageSize;
@@ -114,10 +119,14 @@ public class BoardController {
         int totalPosts = service.Join_Count(vo);
         int totalPage = (int) Math.ceil((double) totalPosts / pageSize);
 
+        System.out.println("vo입니당깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔깔깔깔깎ㄹ깔"+vo);
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO);
 
+        somoimVO.setNum(vo.getSomoim_num());
+        SomoimVO somoimVO2 = Somservice.selectOne(somoimVO);
 
-
-
+        System.out.println("somoimVO깔깔갈깔깔깔깔깔깔"+somoimVO2);
+        model.addAttribute("somoim_top_pic", somoimVO2);
         log.info("join_selectAll().....", vo);
 
         List<Somoim_BoardVO> vos = service.selectList(vo);
@@ -176,10 +185,12 @@ public class BoardController {
 
 
     @RequestMapping(value = "/join_selectOne.do", method = RequestMethod.GET)
-    public String join_selectOne(Somoim_BoardVO vo, Model model) {
+    public String join_selectOne(Somoim_BoardVO vo, Model model,Somoim_Question_VoteVO qvo,Somoim_Choice_Vote ch_vo) {
         log.info("join_selectOne.do().....{}", vo);
         List<Somoim_BoardVO> infos = service.select_user_info();
         log.info("infos..{}", infos);
+
+
 
 
         Somoim_BoardVO vo2 = service.selectJoin(vo);
@@ -193,6 +204,35 @@ public class BoardController {
 
 
         model.addAttribute("vo2", vo2);
+
+
+        if(vo2.getVote_num() != 0){
+
+            log.info("getVoteNum..."+vo2.getVote_num());
+            qvo.setNum(vo2.getVote_num());
+
+            Somoim_Question_VoteVO qvo2 = service.SELECT_VOTE_NUM(qvo);
+            log.info("qvo2_test...{}",qvo2);
+
+            model.addAttribute("qvo2", qvo2);
+
+            ch_vo.setSom_qvote_num(qvo2.getNum());
+            List<Somoim_Choice_Vote> ch_vo2 = service.SELECT_CHOICE_ITEM(ch_vo);
+            for(Somoim_Choice_Vote vo3 : ch_vo2){
+                log.info("여긴가?"+vo3.toString());
+
+            }
+
+            model.addAttribute("ch_vo2",ch_vo2);
+
+
+
+
+        }
+
+
+
+
 
         som_commentsVO cvo = new som_commentsVO();
         cvo.setSom_board_num(vo2.getNum());
@@ -624,16 +664,39 @@ public class BoardController {
         String userId = (String) request.getSession().getAttribute("user_id");
 
         vo.setSom_vote_user_id(userId);
+        log.info(vo.getSom_vote_user_id());
 
         int result = service.vote_update(vo);
 
 
         if (result == 1) {
             // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
-            return new ResponseEntity<>("투표 성공!", HttpStatus.OK);
+            return new ResponseEntity<>("Success!", HttpStatus.OK);
 
         }else{
-            return new ResponseEntity<>("투표 실패!", HttpStatus.OK);
+            return new ResponseEntity<>("Fail!", HttpStatus.OK);
+        }
+
+    }
+
+    @RequestMapping(value = "/vote_CancleOK.do", method = RequestMethod.POST)
+    public ResponseEntity<String> vote_CancleOK(Somoim_Choice_Vote vo, HttpServletRequest request) {
+        log.info("vote_insertOK.do().....{}", vo);
+
+        String userId = (String) request.getSession().getAttribute("user_id");
+
+        vo.setSom_vote_user_id(userId);
+        log.info(vo.getSom_vote_user_id());
+
+        int result = service.vote_cancle(vo);
+
+
+        if (result == 1) {
+            // HTTP 상태 코드 200(OK)와 함께 num 값을 응답 본문에 담아 반환합니다.
+            return new ResponseEntity<>("Success!", HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>("Fail!", HttpStatus.OK);
         }
 
     }

@@ -29,7 +29,7 @@
             <c:forEach items="${list}" var="list">
                 <li class="gallery_img_top" style="background-color: transparent; border: solid 1px #eee">
                     <input type="hidden" value="${list.num}">
-                    <img src="/resources/uploadimg/${list.image_name}">
+                    <img src="resources/uploadimg/${list.image_name}">
                     <span>
                         <p>${ErrorMessage}</p>
                         <a href="join_gallery_deleteOK.do?num=${list.num}&user_id=${list.user_id}&somoim_num=${list.somoim_num}"><i class="fas fa-trash-alt"></i> 삭제</a>

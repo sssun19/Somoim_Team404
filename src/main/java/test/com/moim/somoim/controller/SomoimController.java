@@ -224,24 +224,58 @@ public class SomoimController {
 	}
 	
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
-	public String som_update(SomoimVO vo) {
+	public String som_update(SomoimVO vo, Model model) {
 		log.info("som_update.do().....{}", vo);
 		log.info("update 할 소모임의 번호 : {}", vo.getNum());
 
-//		int result = service.update(vo);
+		SomoimVO vo2 = service.selectOne(vo);
+		log.info("...{}", vo2.getSom_title());
+		log.info("...{}", vo2.getSom_content());
 
+		model.addAttribute("vo2", vo2);
 
-		return "board/som_selectAll";
+		return "board/som_update";
 	}
 
-	@RequestMapping(value = "/som_updateOK.do", method = RequestMethod.GET)
-	public String som_updateOK(SomoimVO vo) {
-		log.info("som_update.do().....{}", vo);
+	@RequestMapping(value = "/som_updateOK.do", method = RequestMethod.POST)
+	public String som_updateOK(SomoimVO vo) throws IllegalStateException, IOException {
+		log.info("som_update.do().....바뀐 내역 : {}", vo);
+
+		int fileNameLength = vo.getFile().getOriginalFilename().length();
+		String getOriginalFileName = vo.getFile().getOriginalFilename();
+
+		log.info("getOriginalFilename : {}", getOriginalFileName);
+		log.info("fileNameLength : {}", fileNameLength);
+
+		vo.setSomoim_img(getOriginalFileName.length() == 0 ? "아이유.png" : getOriginalFileName);
+
+		if (getOriginalFileName.length() == 0) {
+			vo.setSomoim_img("아이유.png");
+
+		} else {
+			vo.setSomoim_img(getOriginalFileName);
+			// 웹 어플리케이션이 갖는 실제 경로 : 이미지를 업로드할 대상 경로를 찾아서 파일 저장
+			String realPath = sContext.getRealPath("resources/uploadimg");
+
+			log.info("realPath : {}", realPath);
+
+			File f = new File(realPath + "\\" + vo.getSomoim_img());
+
+			vo.getFile().transferTo(f);
+
+
+		} // end else
+		log.info("somoim_img : {}", vo.getSomoim_img());
+		log.info("somoim_content : {}", vo.getSom_content());
+		log.info("바뀐 somoim_ :{}", vo.getArea());
+		log.info("바뀐 카테고리....:{}", vo.getCategory());
 
 		int result = service.update(vo);
 
-
-		return "redirect:selectAll.do";
+		if(result==1)
+			return "redirect:som_selectOne.do?num="+vo.getNum()+"&message=success";
+		else
+			return "redirect:home.do?message=fail";
 	}
 
 	@RequestMapping(value = "/som_delete.do", method = RequestMethod.GET)

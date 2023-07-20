@@ -18,7 +18,7 @@
 
         $.ajax({
             url: 'findId2.do',
-            method: 'POST',
+            method: 'GET',
             data: {
                 name: name,
                 email: email
