@@ -5,7 +5,7 @@
 
 <mapper namespace="test.com.moim.community">
     <select id="MYPAGE_COMMUNITYBYME" resultType="test.com.moim.community.model.CommunityVO">
-       
+       select * from community_board where user_id=#{user_id} order by num desc
     </select>
 
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
@@ -75,7 +75,6 @@
     <update id="CB_GOOD_COUNT_UP">
         update community_board
         set good_count = good_count + 1 where num=#{num}
-
     </update>
 
     <!--	좋아요를 누른 인원을 LIST에 추가한다.-->
@@ -87,7 +86,6 @@
     <update id="CB_GOOD_COUNT_DOWN">
         update community_board
         set good_count = good_count - 1 where num=#{num}
-
     </update>
 
     <!--	좋아요 취소 누른 인원을 LIST에서 삭제한다..-->
