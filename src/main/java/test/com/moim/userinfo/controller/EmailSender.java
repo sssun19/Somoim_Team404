@@ -16,9 +16,11 @@ public class EmailSender {
 
 	public void SendEmail(Email email) throws Exception {
 		MimeMessage msg = mailSender.createMimeMessage();
+//		msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+//		msg.setContent(email.getContent(), "UTF-8");
 		msg.setSubject(email.getSubject());
 		msg.setText(email.getContent());
-		msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciver()));
+		msg.setRecipient(RecipientType.TO, new InternetAddress(email.getReceiver()));
 
 		mailSender.send(msg);
 	}

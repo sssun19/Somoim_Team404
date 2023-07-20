@@ -215,7 +215,7 @@
             <artifactId>spring-web</artifactId>
             <version>3.1.1.RELEASE</version>
         </dependency>
-<<<<<<< HEAD
+
         <!-- 구글 리캡챠 -->
         <dependency>
             <groupId>net.tanesha.recaptcha4j</groupId>
@@ -242,8 +242,7 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.5</version>
         </dependency>
-    </dependencies>
-=======
+
 
 		<!-- WebSocket -->
 		<dependency>
@@ -257,7 +256,7 @@
 			<version>6.0.10</version>
 		</dependency>
 	</dependencies>
->>>>>>> 3d35c8f84a423bb40b8d93949bf624077e1da207
+	
     <build>
         <plugins>
             <plugin>
