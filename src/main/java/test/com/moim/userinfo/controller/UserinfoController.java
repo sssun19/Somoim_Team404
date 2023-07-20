@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,10 +79,18 @@ public class UserinfoController {
 	@RequestMapping(value = "/u_insertOK.do", method = RequestMethod.POST)
 	public String u_insertOK(UserinfoVO vo) throws IllegalStateException, IOException {
 
-		log.info("/u_insertOK.do...{}", vo);
-		vo.setBirthday(vo.getBirthday_year()+"/"+vo.getBirthday_month()+"/"+vo.getBirthday_day());
-		log.info("/u_insertOK.do...{}", vo);
+		
+        log.info("/u_insertOK.do...{}", vo);
 
+        // 생년월일을 Date 타입으로 변환하여 vo에 저장
+        int birthday_year = Integer.parseInt(vo.getBirthday_year());
+        int birthday_month = Integer.parseInt(vo.getBirthday_month());
+        int birthday_day = Integer.parseInt(vo.getBirthday_day());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(birthday_year, birthday_month - 1, birthday_day); // month는 0부터 시작하므로 month-1
+        vo.setBirthday(calendar.getTime());
+
+        log.info("/u_insertOK.do...{}", vo);
 		String getOriginalFilename = vo.getFile().getOriginalFilename();
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
 		log.info("getOriginalFilename:{}", getOriginalFilename);

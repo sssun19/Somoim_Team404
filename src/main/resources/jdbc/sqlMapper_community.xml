@@ -5,7 +5,7 @@
 
 <mapper namespace="test.com.moim.community">
     <select id="MYPAGE_COMMUNITYBYME" resultType="test.com.moim.community.model.CommunityVO">
-       
+       select * from community_board where user_id=#{user_id} order by num desc
     </select>
 
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
