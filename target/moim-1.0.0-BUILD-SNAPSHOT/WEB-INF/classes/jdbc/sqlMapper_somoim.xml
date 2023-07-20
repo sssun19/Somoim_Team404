@@ -78,8 +78,8 @@
 
 	<update id="SOMOIM_UPDATE"
 		parameterType="test.com.moim.somoim.model.SomoimVO">
-		update somoim set category=#{category.val},
-		area=#{area}, som_content=#{som_content} where num = #{num}
+		update somoim set category=#{category},
+		area=#{area}, som_content=#{som_content}, max_member=#{max_member}, somoim_img=#{somoim_img} where num = #{num}
 	</update>
 
 	<delete id="SOMOIM_DELETE">
