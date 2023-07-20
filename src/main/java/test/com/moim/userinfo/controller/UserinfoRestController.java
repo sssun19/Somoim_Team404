@@ -74,7 +74,7 @@ public class UserinfoRestController {
 
 		// 이메일 객체 생성
 		Email email1 = new Email();
-		email1.setReciver(email); // 수신자 설정
+		email1.setReceiver(email); // 수신자 설정
 		email1.setSubject("이메일 제목"); // 이메일 제목 설정
 
 		// 인증번호 생성

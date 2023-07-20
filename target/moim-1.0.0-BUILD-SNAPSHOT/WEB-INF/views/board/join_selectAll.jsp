@@ -116,7 +116,9 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="img_info">
-        이미지
+
+        <img style="width: 100%;height: 100%;" src="resources/uploadimg/${somoim_top_pic.somoim_img}">
+
     </div>
     <div class="top_func">
         <button type="button"><a href="join_insert.do" style="color: white">글쓰기</a></button>
@@ -163,8 +165,8 @@
                             <p>내용:</p>
                         </div>
                         <c:if test="${dto.boardVo.save_image != null}">
-                        <div class="content_img_box" style="text-align: center">
-                            <img src="resources/uploadimg/${dto.boardVo.save_image}">
+                        <div class="content_img_box" style="text-align: center; ">
+                            <img style="width: 40%; height: 30%;" src="resources/uploadimg/${dto.boardVo.save_image}">
                         </div>
                         </c:if>
 
@@ -291,14 +293,30 @@
         console.log(voteItemValue);
         console.log(voteVo_num);
 
-
         var VoteMember = $(buttonElement).find('.som_vote_member').val();
         console.log(VoteMember);
 
         // VoteMember를 '/'로 분할하고, userId가 있는지 확인
         var VoteMemberArray = VoteMember.split('/');
         if (VoteMemberArray.includes(userId)) {
-            alert("이미 선택한 항목입니다.");
+            $.ajax({
+                url: "vote_CancleOK.do",
+                data: {
+                    som_qvote_num: voteVo_num,
+                    choice: voteItemValue,
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function (response) {
+                    console.log('Success:', response);
+                    location.reload();
+
+                },
+                error: function (xhr) {
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
+                }
+            });
         } else {
             $.ajax({
                 url: "vote_UpdateOK.do",
@@ -309,16 +327,35 @@
                 method: 'POST',
                 dataType: 'text',
                 success: function (response) {
+                    console.log('Success:', response);
                     location.reload();
+
                 },
                 error: function (xhr) {
-                    console.log('xhr.status:', xhr.status);
+                    ;
+                    alert('Error occurred. Status: ' + xhr.status);
                 }
             });
+
         }
-
-
     }
+
+    $(document).ready(function() {
+        var userId = "${user_id}";
+
+        // 모든 투표 항목을 순회
+        $('.vote_items').each(function() {
+            var buttonElement = $(this).parent(); // 현재 투표 항목의 부모 요소 (버튼 요소)를 선택
+            var VoteMember = buttonElement.find('.som_vote_member').val();
+            console.log("including member");
+
+            // VoteMember를 '/'로 분할하고, userId가 있는지 확인
+            var VoteMemberArray = VoteMember.split('/');
+            if (VoteMemberArray.includes(userId)) {
+                $(this).css('background-color', '#ccc'); // vote_items 요소의 배경색을 #ccc로 변경
+            }
+        });
+    });
 </script>
 
 

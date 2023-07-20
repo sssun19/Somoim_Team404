@@ -32,9 +32,20 @@
         inputText.name = 'content';
         inputText.value = '${c_com.content}';
 
+
+
+
         var buttonSubmit = document.createElement('button');
         buttonSubmit.type = 'submit';
         buttonSubmit.textContent = '댓글 작성';
+        buttonSubmit.style.marginLeft = '10px';
+        buttonSubmit.style.width = '80px';
+        buttonSubmit.style.height = '40px';
+        buttonSubmit.style.fontSize = '0.7rem';
+        buttonSubmit.style.textAlign = 'center';
+        buttonSubmit.style.justifyContent = 'center';
+
+
 
         div.appendChild(inputText);
 
@@ -350,11 +361,16 @@
         </c:forEach>
         <form action="som_comm_insertOK.do?som_board_num=${vo2.num}">
             <div class="join_commnets_insert_section">
-                <div class="comments_user_profile">
+                <div class="comments_user_profile" style="margin-right: 1.5%">
                     <div class="commnets_user_profile_img">
-                        <i class="far fa-user"></i>
+                        <div class="profile" style="background-color: red; ">
+
+                            <%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
+                            <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
+                                 src="resources/uploadimg/${vo2.save_name}">
+                        </div>
                     </div>
-                    <p>닉네임</p>
+                    <p>${vo2.user_id}}</p>
                 </div>
                 <input type="hidden" name="som_board_num" value="${vo2.num}">
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">
@@ -362,10 +378,10 @@
                 <input type="hidden" name="user_id" value="${user_id}">
                 <input type="hidden" name="save_name" value="${vo2.save_name}">
 
-                <input  style="" type="text" placeholder="댓글 작성" name="content">
+                <input  style="border-radius: 1%" type="text" placeholder="댓글 작성" name="content">
                 <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 
-                <button type="submit">댓글 작성</button>
+                <button style="margin-left: 10px; width: 80px; height:40px;  font-size: 0.7rem; text-align: center;  justify-content: center;" type="submit">댓글 작성</button>
             </div>
         </form>
     </div>

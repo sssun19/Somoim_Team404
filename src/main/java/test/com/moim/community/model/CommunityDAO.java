@@ -1,7 +1,5 @@
 package test.com.moim.community.model;
 
-import test.com.moim.board.model.Somoim_BoardVO;
-
 import java.util.List;
 
 public interface CommunityDAO {
@@ -29,5 +27,7 @@ public interface CommunityDAO {
 	int good_count_up(CommunityVO vo);
 	int good_count_down(CommunityVO vo);
 
+
+	public List<CommunityVO> mypageMyactivity_communitybyme(CommunityVO vo);
 
 }

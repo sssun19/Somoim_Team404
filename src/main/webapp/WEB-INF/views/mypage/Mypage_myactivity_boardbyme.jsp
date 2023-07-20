@@ -85,6 +85,7 @@
 		<div class="Mypage_myactivity_selection">
 			<ul>
 				<li><a href="Mypage_myactivity_boardbyme.do?user_id=${user_id }">내가 쓴 글</a></li>
+				<li><a href="Mypage_myactivity_communitybyme.do?user_id=${user_id }">내가 쓴 커뮤니티</a></li>
 				<li><a href="Mypage_myactivity_commbyme.do?user_id=${user_id }">내가 쓴 댓글</a></li>
 				<li><a href="mypage_myactivity_good.do?user_id=${user_id }">좋아요 사진</a></li>
 				<li><a href="Mypage_myactivity_likedboard.do?user_id=${user_id }">좋아요 게시글</a></li>

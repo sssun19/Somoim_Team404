@@ -7,10 +7,10 @@ public class Email {
     private String regdate;
     private String receiver;
      
-    public String getReciver() {
+    public String getReceiver() {
         return receiver;
     }
-    public void setReciver(String email) {
+    public void setReceiver(String email) {
         this.receiver = email;
     }
 

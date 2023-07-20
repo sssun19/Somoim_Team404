@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="resources/css/style.css">
@@ -60,15 +60,18 @@
                             $("#register").prop('disabled', false);
                         } else {
                             alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
+                         // 인증 실패한 경우 회원가입 버튼 비활성화
+                            $("#register").prop('disabled', true);
                         }
                     },
                     error: function() {
                         alert('서버와의 통신에 실패했습니다.');
+                        // 통신 실패한 경우 회원가입 버튼 비활성화
+                        $("#register").prop('disabled', true);
                     }
                 });
                 return false;
             });
-
 
         });
         // 이메일 값을 저장하는 함수
