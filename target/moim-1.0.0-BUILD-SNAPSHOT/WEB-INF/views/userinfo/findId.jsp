@@ -222,6 +222,10 @@ function showMessage() {
                          <button id="btn_email_token">확인</button>  
                             </div>
                         <button type="submit" id="submitpass" onclick="checkEmailVerification(event)">확인</button>
+<<<<<<< HEAD
+=======
+                        
+>>>>>>> 7a18e9eb9fadfc56b3aabaa5622201d57a962859
                         
                         <br>
                         <hr>
