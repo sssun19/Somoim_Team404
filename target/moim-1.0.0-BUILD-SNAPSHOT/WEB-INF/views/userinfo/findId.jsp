@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -102,6 +102,7 @@ function showMessage() {
     var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
     alert(alertMessage);
    }
+<%----%>   
         
  function checkEmailVerification(event) {
         // 이메일 인증 여부 확인
@@ -220,7 +221,7 @@ function showMessage() {
                             <button id="inj" type="button" onclick="showMessage()">인증번호가 오지 않았나요?</button> <br>
                           <button id="btn_email_token">확인</button> 
                             </div>
-                        <button type="submit" id="register" onclick="checkEmailVerification(event)">확인</button>
+                        <button type="submit" id="submitpass" onclick="checkEmailVerification(event)">확인</button>
                         
                         
 

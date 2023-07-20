@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="UTF-8">
         <script
     	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
@@ -83,6 +83,7 @@
                         console.log("response:", response);
                         if (response.result === 'OK') {
                             alert('인증이 완료되었습니다.');
+                            sessionStorage.setItem("email_ok",response.result);
                             // 인증 성공한 경우 회원가입 버튼 활성화
                             $("#register").prop('disabled', false);
                         } else {
@@ -104,13 +105,18 @@
                     alert("인증번호를 입력해주세요.");
                     return false;
                 } else {
-                    // 비밀번호 재설정 페이지로 이동
-                    location.href = "resetPassword.do?user_id=${param.user_id}";
+                	console.log(sessionStorage.getItem("email_ok") );
+                    if (sessionStorage.getItem("email_ok") === 'OK') {
+                        // 이메일 인증이 완료된 경우 비밀번호 재설정 페이지로 이동
+                        location.href = "resetPassword.do?user_id=${param.user_id}";
+                        sessionStorage.setItem("email_ok","");
+                    } else {
+                        // 이메일 인증이 완료되지 않은 경우 팝업을 띄웁니다.
+                        alert('이메일 인증을 해주세요.');
+                    }
                 }
             });
         });
-
-
     </script>
 <head>
     <meta charset="UTF-8">
