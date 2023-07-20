@@ -31,7 +31,7 @@
 
 
 
-	<!-- <interceptors> <interceptor> <mapping path="/*.do" /> <beans:bean class="test.com.moim.Interceptor.LoginInterceptor"/> 
-		</interceptor> </interceptors> -->
+	<interceptors> <interceptor> <mapping path="/*.do" /> <beans:bean class="test.com.moim.Interceptor.LoginInterceptor"/> 
+		</interceptor> </interceptors>
 
 </beans:beans>

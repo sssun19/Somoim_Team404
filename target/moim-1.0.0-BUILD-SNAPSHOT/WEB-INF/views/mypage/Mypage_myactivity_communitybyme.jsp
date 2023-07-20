@@ -22,7 +22,7 @@
     	console.log('onload........');
     	
     	$.ajax({
-    		url:'Rest_Mypage_myactivity_boardbyme.do',
+    		url:'Rest_Mypage_myactivity_communitybyme.do',
     		data: {
         		user_id:'${param.user_id}'
         	},
@@ -45,7 +45,7 @@
 
     		              
     		            </li>
-    		        <a href="join_selectOne.do?num=\${vo.num}">  <li class="info_item2">
+    		        <a href="community_selectOne.do?num=\${vo.num}">  <li class="info_item2">
     		              <div class="vertical_info">
     		                \${vo.user_id}
     		                <p style="font-size: 0.2rem;">\${vo.write_date}</p>
