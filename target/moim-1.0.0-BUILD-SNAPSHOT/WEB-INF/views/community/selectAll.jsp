@@ -34,7 +34,7 @@
                     if (startIndex >= items.length) {
                         // 요청한 페이지에 추가 항목이 없는 경우
                         $(".more_but").hide();
-                        alert("더 이상 공지가 없습니다.");
+                        alert("더 이상 피드가 없습니다.");
                         return;
                     }
                     if (endIndex > items.length) {

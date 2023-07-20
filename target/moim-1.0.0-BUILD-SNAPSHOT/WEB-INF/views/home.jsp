@@ -142,7 +142,10 @@
 <jsp:include page="top_menu.jsp"></jsp:include>
 <div class="main_container">
     <div class="img_banner">
-       <img src="resources/uploadimg/Switch between On&Off.png">
+       <img src="resources/uploadimg/onandoff_bg.png">
+        <div>
+            <h2 class="title">ONANDOFF</h2>
+        </div>
     </div>
     <div class="main_pictogram">
        <ul>
