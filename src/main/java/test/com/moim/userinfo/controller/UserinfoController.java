@@ -231,8 +231,10 @@ public class UserinfoController {
 
 	    return "userinfo/findPassword2";
 	}
-
 	
+	
+	
+
 	@RequestMapping(value = "/resetPassword.do", method = RequestMethod.GET)
 	public String resetPassword(UserinfoVO vo, Model model) {
 		log.info("/resetPassword.do..{}",vo);
