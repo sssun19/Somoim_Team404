@@ -118,8 +118,6 @@ b
 Nsrc/main/java/test/com/moim/community_comments/model/Community_commentsVO.java,9\6\9676517b893b6de21da0bf073040cc47bca8a46e
 Å
 Qsrc/main/java/test/com/moim/community_comments/model/Community_re_commentsVO.java,c\7\c7458051070312eae96167381b84192108f32496
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
 e
 5src/main/java/test/com/moim/board/model/BoardDAO.java,1\3\13b925760b1a5b37786b50c06a3dcd8caa60f6a0
 k
