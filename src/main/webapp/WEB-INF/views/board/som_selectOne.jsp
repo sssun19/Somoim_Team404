@@ -197,7 +197,7 @@
             <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
 
             <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
-            <p>${vo2.som_content}</p>
+            <p style="white-space: pre-wrap">${vo2.som_content}</p>
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
