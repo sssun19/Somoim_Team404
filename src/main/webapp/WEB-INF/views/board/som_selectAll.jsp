@@ -100,9 +100,8 @@
 
         </ul>
     </div>
-    <div class="category_more">
-        <a>카테고리 더보기</a>
-    </div>
+
+</div>
 
     <div class="rec_list">
         <div class="rec_list_top">
