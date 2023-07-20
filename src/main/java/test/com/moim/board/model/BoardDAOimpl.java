@@ -212,5 +212,10 @@ public class BoardDAOimpl implements BoardDAO{
         return sqlSession.selectOne("Sch_Count", vo);
     }
 
+	@Override
+	public List<Somoim_BoardVO> mypageMyactivity_likedboard(Somoim_BoardVO vo) {
+		return sqlSession.selectList("MYPAGE_LIKEDBOARD", vo);
+	}
+
 
 }
