@@ -32,7 +32,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src=".">
+										<img src="/resources/uploadimg/Qimg.png">
 									</div>
 								</div>
 
@@ -42,7 +42,51 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="resources/img/Aimg.png" >
+										<img src="/resources/uploadimg/Aimg.png" >
+									</div>
+								</div>
+
+							</li>
+						</div>
+						<ul>
+							<li class="cs_info_item2" style="margin-top: 10px;">
+								<div class="cs_vertical_info">
+									<h3>한 사람이 모임에 최대 몇 개까지 가입 가능한가요?</h3>
+									<br>
+								</div>
+							</li>
+							<li>
+								<h4>N개까지 가능합니다.</h4>
+							</li>
+						</ul>
+
+					</ul>
+
+				</div>
+
+
+
+			</li>
+
+			<li>
+				<div class="CS_FAQ_List_board">
+					<ul class="CS_board_profile_info">
+						<div class="imgQA">
+							<li class="cs_info_item1">
+
+								<div class="cs_img">
+									<div class="cs_circle">
+										<img src="/resources/uploadimg/Qimg.png"  >
+									</div>
+								</div>
+
+							</li>
+
+							<li class="cs_info_item1">
+
+								<div class="cs_img">
+									<div class="cs_circle">
+										<img src="/resources/uploadimg/Aimg.png"  >
 									</div>
 								</div>
 
@@ -76,7 +120,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="resources/img/Qimg.png"  >
+										<img src="/resources/uploadimg/Qimg.png"  >
 									</div>
 								</div>
 
@@ -86,51 +130,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="/uploadimg/Aimg.png"  >
-									</div>
-								</div>
-
-							</li>
-						</div>
-						<ul>
-							<li class="cs_info_item2">
-								<div class="cs_vertical_info">
-									<h3>한 사람이 모임에 최대 몇 개까지 가입 가능한가요?</h3>
-									<br>
-								</div>
-							</li>
-							<li>
-								<h4>N개까지 가능합니다.</h4>
-							</li>
-						</ul>
-
-					</ul>
-
-				</div>
-
-
-
-			</li>
-
-			<li>
-				<div class="CS_FAQ_List_board">
-					<ul class="CS_board_profile_info">
-						<div class="imgQA">
-							<li class="cs_info_item1">
-
-								<div class="cs_img">
-									<div class="cs_circle">
-										<img src="/uploadimg/Qimg.png"  >
-									</div>
-								</div>
-
-							</li>
-
-							<li class="cs_info_item1">
-
-								<div class="cs_img">
-									<div class="cs_circle">
-										<img src="/uploadimg/Aimg.png"  >
+										<img src="/resources/uploadimg/Aimg.png"  >
 									</div>
 								</div>
 
@@ -164,7 +164,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="/uploadimg/Qimg.png"  >
+										<img src="/resources/uploadimg/Qimg.png"  >
 									</div>
 								</div>
 
@@ -174,7 +174,7 @@
 
 								<div class="cs_img">
 									<div class="cs_circle">
-										<img src="/uploadimg/Aimg.png"  >
+										<img src="/resources/uploadimg/Aimg.png"  >
 									</div>
 								</div>
 

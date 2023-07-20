@@ -171,14 +171,14 @@
     </div>
     <div class="main_pictogram">
        <ul>
-          <li><i class="fa-solid fa-plane-departure"></i></li>
-          <li><i class="fa-solid fa-person-running"></i></li>
-          <li><i class="fa-solid fa-people-group"></i></li>
-          <li><i class="fa-solid fa-gamepad"></i></li>
-          <li><i class="fa-solid fa-person-hiking"></i></li>
-          <li><i class="fa-solid fa-paw"></i></li>
-          <li><i class="fa-solid fa-laptop-file"></i></li>
-          <li><i class="fa-solid fa-language"></i></li>
+          <li><a href="eventsSelctOne.do?num=22"><i class="fa-solid fa-plane-departure"></i></a></li>
+           <li><a href="eventsSelctOne.do?num=23"><i class="fa-solid fa-person-running"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=24"><i class="fa-solid fa-people-group"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=25"><i class="fa-solid fa-gamepad"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=28"><i class="fa-solid fa-person-hiking"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=29"><i class="fa-solid fa-paw"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=30"><i class="fa-solid fa-laptop-file"></i></a></li>
+          <li><a href="eventsSelctOne.do?num=31"><i class="fa-solid fa-language"></i></a></li>
        </ul>
     </div>
     <div class="moim_list01" style="height: auto">

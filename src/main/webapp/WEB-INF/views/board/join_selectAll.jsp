@@ -116,7 +116,9 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="img_info">
-        이미지
+
+        <img style="width: 100%;height: 100%;" src="resources/uploadimg/${somoim_top_pic.somoim_img}">
+
     </div>
     <div class="top_func">
         <button type="button"><a href="join_insert.do" style="color: white">글쓰기</a></button>
@@ -163,8 +165,8 @@
                             <p>내용:</p>
                         </div>
                         <c:if test="${dto.boardVo.save_image != null}">
-                        <div class="content_img_box" style="text-align: center">
-                            <img src="resources/uploadimg/${dto.boardVo.save_image}">
+                        <div class="content_img_box" style="text-align: center; ">
+                            <img style="width: 40%; height: 30%;" src="resources/uploadimg/${dto.boardVo.save_image}">
                         </div>
                         </c:if>
 
