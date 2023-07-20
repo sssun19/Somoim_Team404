@@ -4,18 +4,15 @@
 <%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var currentPage = 1; // 시작 페이지 번호
         var itemsPerPage = 9; //표시 항목 수
-
         $(".more_but").click(function () {
             currentPage++; // 페이지 번호 증가
             loadMoreItems();
         });
-
         function loadMoreItems() {
             $.ajax({
                 url: "json_community_selectAll.do", // json 목록 가져오기
@@ -28,30 +25,24 @@
                     var html = "";
                     var startIndex = (currentPage - 1) * itemsPerPage;
                     var endIndex = startIndex + itemsPerPage;
-
                     if (startIndex >= items.length) {
                         // 요청한 페이지에 추가 항목이 없는 경우
                         $(".more_but").hide();
                         alert("더 이상 공지가 없습니다.");
-
                         return;
                     }
-
                     if (endIndex > items.length) {
                         // 마지막 페이지에서 아이템의 인덱스 조정
                         endIndex = items.length;
                     }
-
                     for (var i = startIndex; i < endIndex; i++) {
                         var vo = items[i];
-
                         html += '<div><a href="community_selectOne.do?num=' + vo.num + '">';
                         html += '<img src="resources/uploadimg/' + vo.save_img + '">';
                         html += '<br>';
                         html += '<strong>' + vo.title + '</strong>';
                         html += '</a></div>';
                     }
-
                     $(".ajaxLoop").append(html); // 가져온 항목을 추가합니다
                 },
                 error: function (xhr, status, error) {
@@ -61,7 +52,6 @@
         }
     });
 </script>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,13 +59,10 @@
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
     <link rel="stylesheet" href="resources/css/community.css">
-
-
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
 <body>
-
 <div class="community_section_top">
     <div class="community_title">
         <h2>
@@ -84,10 +71,8 @@
         <p>
             나와 비슷한 멤버를 찾아 팔로우하면 <br> 언제 어디서나 더 가볍게 연결할 수 있어요.
         </p>
-
     </div>
 </div>
-
 <div class="community_navigation">
     <div class="community_navigation_func">
         <a></a> <a></a>
@@ -98,7 +83,6 @@
         <a href="community_insert.do">피드 작성</a>
     </button>
 </div>
-
 <div class="community_review_section">
     <div class="community_review_view">
         <div>
@@ -118,11 +102,8 @@
                 <button class="more_but">더 보기</button>
             </div>
         </div>
-
-
     </div>
 </div>
-
 <div class="footer">
     <div>
         <strong>온앤오프</strong>
@@ -137,7 +118,6 @@
         <ul>
             <li>인스타그램</li>
             <li>네이버 블로그</li>
-
         </ul>
     </div>
     <div class="footer_company">
@@ -148,7 +128,6 @@
             <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
         </ul>
     </div>
-
 </div>
 </body>
 </html>
