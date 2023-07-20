@@ -140,8 +140,16 @@ public class BoardService {
          dao.del_good_count_list(vo);
     }
 
-    public List<Somoim_BoardVO> JSON_SELECT_ALL(Somoim_BoardVO vo){
-        return dao.JSON_SELECT_ALL(vo);
+    public Somoim_Question_VoteVO SELECT_VOTE_NUM(Somoim_Question_VoteVO qvo) {
+        return dao.SELECT_VOTE_NUM(qvo);
+
     }
 
+    public List<Somoim_Choice_Vote> SELECT_CHOICE_ITEM(Somoim_Choice_Vote chVo) {
+        return dao.SELECT_CHOICE_ITEM(chVo);
+    }
+
+    public int vote_cancle(Somoim_Choice_Vote vo) {
+        return dao.vote_cancle(vo);
+    }
 }

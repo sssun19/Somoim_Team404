@@ -67,4 +67,10 @@ public interface BoardDAO {
 
 	Somoim_BoardVO select_all_goodList(Somoim_BoardVO vo);
 
+    Somoim_Question_VoteVO SELECT_VOTE_NUM(Somoim_Question_VoteVO qvo);
+
+
+    List<Somoim_Choice_Vote> SELECT_CHOICE_ITEM(Somoim_Choice_Vote chVo);
+
+    int vote_cancle(Somoim_Choice_Vote vo);
 }
