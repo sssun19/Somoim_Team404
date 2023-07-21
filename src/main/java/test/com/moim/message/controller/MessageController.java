@@ -12,6 +12,7 @@ import test.com.moim.community.model.CommunityVO;
 import test.com.moim.message.model.MessageVO;
 import test.com.moim.message.service.MessageService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -29,21 +30,35 @@ public class MessageController {
     @RequestMapping(value = "/josn_message.do" ,method = RequestMethod.GET)
     public List<MessageVO> josn_message(Model model, MessageVO vo) {
 
-        log.info("josn_message_insertOK.do()......");
+        log.info("josn_message.do()......");
         String user_id = (String)session.getAttribute("user_id");
         vo.setUser_id((String)session.getAttribute("user_id"));
         log.info("vo입니다. 제이슨!..{}", vo );
         List<MessageVO> vos = service.message_selectAll(vo);
-        log.info("vos는 impl을 다녀온 값입니다!");
+        log.info("vos는 impl을 다녀온 값입니다!...{}", vos);
 
         return vos;
 
 
     }
 
+
+    @RequestMapping(value = "/message_selectAll.do" ,method = RequestMethod.GET)
+    public String message_selectAll(Model model, MessageVO vo) {
+        log.info("josn_message_insertOK...vo...{}", vo);
+        log.info("josn_message_insertOK.do()......");
+        vo.setUser_id((String) session.getAttribute("user_id"));
+        List<MessageVO> mes_selectAll = service.message_selectAll(vo);
+        System.out.println("mes_selectAll : " + mes_selectAll);
+        model.addAttribute("mes_selectAll", mes_selectAll);
+
+        return "mypage/mypage";
+    }
+
+
     @RequestMapping(value = "/message_insertOK.do" ,method = RequestMethod.GET)
     public String josn_message_insertOK(Model model, MessageVO vo) {
-
+        log.info("josn_message_insertOK...vo...{}", vo);
         log.info("josn_message_insertOK.do()......");
         int result = service.mes_insert(vo);
 
@@ -53,11 +68,26 @@ public class MessageController {
 
     }
 
+    @RequestMapping(value = "/popup_message_sedningOK.do" ,method = RequestMethod.POST)
+    public String popup_message_sedningOK(Model model, MessageVO vo) {
+        log.info("popup_message_sedningOK...vo...{}", vo);
+        log.info("popup_message_sedningOK.do()......");
+        int result = service.mes_insert(vo);
+
+        if (result > 0) {
+            return "closeWindow";
+        } else {
+            return "redirect:mypage.do";
+        }
+    }
+
+
+
 
     @RequestMapping(value = "/message_deleteOK.do" ,method = RequestMethod.GET)
-    public String josn_message_deleteOK(Model model, MessageVO vo) {
+    public String message_deleteOK(Model model, MessageVO vo) {
 
-        log.info("josn_message_insertOK.do()......");
+        log.info("message_deleteOK.do()......");
         int result = service.mes_delete(vo);
 
         return "redirect:mypage.do";

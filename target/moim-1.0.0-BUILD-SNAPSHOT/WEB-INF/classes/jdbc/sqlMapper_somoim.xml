@@ -86,4 +86,15 @@
 		delete from somoim where num = #{num}
 	</delete>
 
+
+
+
+
+
+	<select id="SOMOIM_TOTAL_SEARCHING"
+			resultType="test.com.moim.somoim.model.SomoimVO"
+			parameterType="HashMap">
+		select * from somoim where som_title like '%' || #{searchKey} || '%'
+								OR category like '%' || #{searchKey} || '%'
+	</select>
 </mapper>

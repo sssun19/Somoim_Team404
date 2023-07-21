@@ -5,12 +5,26 @@
 
 <mapper namespace="test.com.moim.message">
 	<select id="SELECT_ALL_MESSAGE" resultType="test.com.moim.message.model.MessageVO">
-	select * from message where receiver = #{user_id}
+	select * from message where receiver = #{user_id} order by SENDING_DATE desc
     </select>
-<!--	-->
-<!--	<select id="SELECT_ONE_MESSAGE" resultSetType="test.com.moim.message.model.MessageVO">-->
-<!--		select *from message where user_id = #{user_id} and -->
-<!--	</select>-->
+
+
+
+
+	<insert id="MESSAGE_INSERT" >
+		insert into message (num,receiver,SEND_RECEIVE,content,sender,user_id,save_name)
+		values (SEQ_MESSAGE.nextval,#{receiver, jdbcType=VARCHAR},1,#{content, jdbcType=VARCHAR},
+		        #{sender, jdbcType=VARCHAR},#{user_id, jdbcType=VARCHAR},#{save_name, jdbcType=VARCHAR})
+	</insert>
+
+	
+	<delete id="MESSAGE_DELETE">
+			delete from message where num = #{num, jdbcType=VARCHAR}
+	</delete>
+
+
+
+
 
 
 </mapper>

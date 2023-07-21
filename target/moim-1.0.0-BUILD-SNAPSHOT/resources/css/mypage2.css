@@ -327,4 +327,5 @@ h3 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+    border: #4f4f4f 1px solid;
 }

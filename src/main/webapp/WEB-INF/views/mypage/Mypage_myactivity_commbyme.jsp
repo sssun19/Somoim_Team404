@@ -37,6 +37,12 @@
     			
     			$.each(vos, function(index, vo){
     				console.log(index, vo);
+    				let content = vo.content; // vo.content 값을 변수에 저장
+
+                    // content가 null이면 "게시글 내용이 없습니다." 출력
+                    if (content === null) {
+                        content = "==게시글 내용이 없습니다.==";
+                    }
     				
     				tag_vos += `
     				
@@ -52,7 +58,7 @@
     										<a href="join_selectOne.do?num=\${vo.som_board_num}" style="font-size: 0.2rem; display: inline;">\${vo.write_date}</a>
     									</div>
     								</li>
-    								<li><a href="join_selectOne.do?num=\${vo.som_board_num}" value="작성한 댓글입니다">\${vo.content}</a></li></a>
+    								<li><a href="join_selectOne.do?num=\${vo.som_board_num}" value="작성한 댓글입니다">\${content}</a></li></a>
     							</ul>
     						</ul>
 
