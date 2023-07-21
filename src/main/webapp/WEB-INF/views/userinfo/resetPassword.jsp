@@ -163,8 +163,9 @@ $(document).ready(function() {
 		<input type="submit" value="Submit">
     </form>
 --%>
-<div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
 
+<%-- <div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
+--%>
 
                      <button id = "join_button" style="width: 10%;" type="button"></button>
             		<button  type="button" id="submitpass" >변경하기</button>
