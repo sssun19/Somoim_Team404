@@ -164,10 +164,10 @@
     <div class="mypage_sec">
         <div class="mypage_top_sec">
             <div class="mypage_left_profile">
-                <div class="mypage_myprofile">
-                    <img src="resources/uploadimg/${vo2.save_name }" width="220" height="220">
-                    
-                </div>
+<!--                 <div class="mypage_myprofile"> -->
+                    <img src="resources/uploadimg/${vo2.save_name }" width="180" height="180">
+                    <br>
+<!--                 </div> -->
                 <button type="button" id="update_profile"><a href="mypage_update.do">프로필 편집</a></button>
 ​
             </div>
