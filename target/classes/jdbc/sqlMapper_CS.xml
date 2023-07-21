@@ -42,6 +42,12 @@
 		delete from notice where num=#{num}
 	</delete>
 
+	<select id="CS_TOTAL_SEARCHING"
+			resultType="test.com.moim.cs.model.CsVO">
+		select * from notice where title like '%' || #{searchKey} || '%'
+								OR content like '%' || #{searchKey} || '%'
+	</select>
+
 	<!--
 	<select id="b_SELECT_ONE"
 		resultType="test.com.semi.board.model.BoardVO">
