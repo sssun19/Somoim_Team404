@@ -29,6 +29,7 @@
                 <c:if test="${vo.category == '소모임'}">
                     <li>
                         <p>${vo.item}</p>
+                        <input type="hidden" value="${vo.cash}" class="point_cash">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
@@ -43,6 +44,7 @@
                 <c:if test="${vo.category == '내피드'}">
                     <li>
                         <p>${vo.item}</p>
+                        <input type="hidden" value="${vo.cash}" class="point_cash">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
@@ -57,6 +59,7 @@
                 <c:if test="${vo.category == '유저관리'}">
                     <li>
                         <p>${vo.item}</p>
+                        <input type="hidden" value="${vo.cash}" class="point_cash">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
@@ -74,6 +77,7 @@
             <c:if test="${vo.category == '소모임'}">
                 <li>
                     <p>${vo.item}</p>
+                    <input type="hidden" value="${vo.point}" class="point_cash">
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>
@@ -88,6 +92,7 @@
             <c:if test="${vo.category == '내피드'}">
                 <li>
                     <p>${vo.item}</p>
+                    <input type="hidden" value="${vo.point}" class="point_cash">
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>
@@ -102,6 +107,7 @@
             <c:if test="${vo.category == '유저관리'}">
                 <li>
                     <p>${vo.item}</p>
+                    <input type="hidden" value="${vo.point}" class="point_cash">
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>

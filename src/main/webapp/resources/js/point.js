@@ -27,7 +27,40 @@ $(document).ready(function(){
     // purchase-btn을 클릭 했을 때의 이벤트 처리
     $('.purchase-btn').on('click', function() {
         var item = $(this).siblings('p').text();
-        var point = $(this).text();
-        alert('Item: ' + item + ', Point: ' + point);
+        var point = $(this).siblings('input').val();
+        console.log(item,point);
+
+        var check = confirm("구매하신 항목은 "+item+" 입니다."+"\n"+
+            point+" 결제하시겠습니까?");
+        if (check == true){
+            console.log('yes');
+
+            $.ajax({
+                url: "point_purchase.do",
+                data: {
+                    num: $('#update_num').val(),
+                    title: $('#update_title').val(),
+                    content: $('#update_content').text(),
+
+                },
+                method: 'POST',
+                dataType: 'text',
+                success: function(response) {
+                    console.log('ajax....success', response);
+                    alert("성공");
+                    location.href="join_selectAll.do?somoim_num="+$('#somoim_num').val();
+
+                },
+                error:function(xhr,status,error){
+                    console.log('xhr.status:', xhr.status);
+                }
+            });
+        }else{
+            console.log('no');
+        }
+
+
+
+
     });
 });
