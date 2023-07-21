@@ -8,6 +8,12 @@
 		select * from somoim_board a join somoim_member b on a.som_member_num=b.num 
 		join somoim c on a.somoim_num=c.num where user_id=#{user_id}
 	</select>
+	
+	<select id="MYPAGE_LIKEDBOARD"
+		resultType="test.com.moim.board.model.Somoim_BoardVO">
+		select * from somoim_board a join good_count_list b on a.num=b.num where user_id=#{user_id}
+	</select>
+	
 	<select id="JOIN_SOMOIM_SELECT_ALL" resultType="test.com.moim.board.model.Somoim_BoardVO">
 		SELECT * FROM (
 			SELECT rownum rnum, A.* FROM (

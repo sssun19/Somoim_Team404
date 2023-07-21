@@ -8,6 +8,10 @@
        select * from community_board where user_id=#{user_id} order by num desc
     </select>
 
+    <select id="MYPAGE_GOOD" resultType="test.com.moim.community.model.CommunityVO">
+       SELECT * FROM community_board WHERE num IN (SELECT num FROM community_good_count_list WHERE user_id = #{user_id})
+    </select>
+
     <select id="CB_SELECT_ALL" resultType="test.com.moim.community.model.CommunityVO">
         select *
         from community_board order by num desc
@@ -75,7 +79,6 @@
     <update id="CB_GOOD_COUNT_UP">
         update community_board
         set good_count = good_count + 1 where num=#{num}
-
     </update>
 
     <!--	좋아요를 누른 인원을 LIST에 추가한다.-->
@@ -87,7 +90,6 @@
     <update id="CB_GOOD_COUNT_DOWN">
         update community_board
         set good_count = good_count - 1 where num=#{num}
-
     </update>
 
     <!--	좋아요 취소 누른 인원을 LIST에서 삭제한다..-->
@@ -102,5 +104,13 @@
         from community_board
         where num = #{num}
     </delete>
+
+    <select id="COM_TOTAL_SEARCHING"
+            resultType="test.com.moim.community.model.CommunityVO">
+        select * from community_board where title like '%' || #{searchKey} || '%'
+                                OR content like '%' || #{searchKey} || '%'
+    </select>
+
+
 
 </mapper>

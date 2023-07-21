@@ -8,11 +8,17 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var currentPage = 1; // 시작 페이지 번호
-        var itemsPerPage = 9; //표시 항목 수
-        $(".more_but").click(function () {
-            currentPage++; // 페이지 번호 증가
-            loadMoreItems();
+        var itemsPerPage = 9; // 표시 항목 수
+
+        // 스크롤 이벤트 추가
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                // 사용자가 페이지의 끝에 도달하면 더 많은 항목을 로드합니다.
+                currentPage++;
+                loadMoreItems();
+            }
         });
+
         function loadMoreItems() {
             $.ajax({
                 url: "json_community_selectAll.do", // json 목록 가져오기
@@ -20,7 +26,7 @@
                 data: {page: currentPage, itemsPerPage: itemsPerPage},
                 dataType: "json",
                 success: function (response) {
-                    //불러온 항목 처리 및 가공, 출력(html에 추가)
+                    // 불러온 항목 처리 및 가공, 출력(html에 추가)
                     var items = response;
                     var html = "";
                     var startIndex = (currentPage - 1) * itemsPerPage;
@@ -28,7 +34,7 @@
                     if (startIndex >= items.length) {
                         // 요청한 페이지에 추가 항목이 없는 경우
                         $(".more_but").hide();
-                        alert("더 이상 공지가 없습니다.");
+                        alert("더 이상 피드가 없습니다.");
                         return;
                     }
                     if (endIndex > items.length) {
@@ -98,9 +104,6 @@
                 </c:forEach>
             </div>
             <div class="ajaxLoop"></div>
-            <div class="more_but_position">
-                <button class="more_but">더 보기</button>
-            </div>
         </div>
     </div>
 </div>

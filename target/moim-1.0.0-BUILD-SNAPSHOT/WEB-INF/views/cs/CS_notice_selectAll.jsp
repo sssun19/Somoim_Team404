@@ -24,7 +24,6 @@
           data: { page: currentPage, itemsPerPage: itemsPerPage },
           dataType: "json",
           success: function(response) {
-            //불러온 항목 처리 및 가공, 출력(html에 추가) 
             var items = response;
             var html = "";
             var startIndex = (currentPage - 1) * itemsPerPage;
@@ -64,7 +63,7 @@
               html += '</div>';
             }
 
-            $(".ajaxLoop").append(html); // 가져온 항목을 추가합니다
+            $(".ajaxLoop").append(html); // 가져온 항목을 추가
           },
           error: function(xhr, status, error) {
             console.error(error);
@@ -77,10 +76,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CS_notice_selectAll</title>
-<link rel="stylesheet" href="./resources/css/min.css">
-<link rel="stylesheet" href="./resources/css/style.css">
-<link rel="stylesheet" href="./resources/css/CS_FAQ.do.css">
-<link rel="stylesheet" href="./resources/css/CS_notice_selectAll.css">
+<link rel="stylesheet" href="resources/css/min.css">
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/CS_FAQ.do.css">
+<link rel="stylesheet" href="resources/css/CS_notice_selectAll.css">
 
 
 </head>

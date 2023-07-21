@@ -11,7 +11,46 @@
     <link rel="stylesheet" href="resources/css/myfeed.css">
     <link rel="stylesheet" href="resources/css/mypage_myactivity.css">
     <link rel="stylesheet" href="resources/css/board.css">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+    	console.log('onload....');
+    	$.ajax({
+    		url : 'Rest_mypage_myactivity_good.do',
+    		data : {
+    			user_id:'${param.user_id}'
+    		},
+        	success : function(vos) {
+        		console.log('ajax successed.....', vos);
+        		
+       			let mypage_good = '';
+        		$.each(vos, function(index, vo) {
+        			console.log(index,vo);
+        			
+        			mypage_good += `
+        				<div class="mypage_myactivity_imgbox">
+        				<ul class="mypage_myactivity_img_grid">
+                        <li><img src="resources/uploadimg/\${vo.save_img}" style="width:400px; height:400px;"></li>
+                        </ul>
+                        </div>
+        			
+        			`;
+        			
+        		});
+        		
+        		$("#areamypage").html(mypage_good);
+        		
+        	},
+        	error : function(xhr, status, error){
+        		console.log('xhr.status : ', xhr.status);
+        	}
+    	});
+    });
+    
+    
+    </script>
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
@@ -26,23 +65,24 @@
 				<li><a href="Mypage_myactivity_likedboard.do?user_id=${user_id }">좋아요 게시글</a></li>
         </ul>
     </div>
-            
-        <div class="mypage_myactivity_imgbox">
-            <ul class="mypage_myactivity_img_grid">
-                <li>이미지 1</li>
-                <li>이미지 2</li>
-                <li>이미지 3</li>
-                <li>이미지 4</li>
-                <li>이미지 5</li>
-                <li>이미지 5</li>
-                <li>이미지 5</li>
-                <li>이미지 5</li>
-                <li>이미지 5</li>
+    <div id="areamypage">        
+<!--         <div class="mypage_myactivity_imgbox"> -->
+<!--             <ul class="mypage_myactivity_img_grid"> -->
+<!--                 <li>이미지 1</li> -->
+<!--                 <li>이미지 2</li> -->
+<!--                 <li>이미지 3</li> -->
+<!--                 <li>이미지 4</li> -->
+<!--                 <li>이미지 5</li> -->
+<!--                 <li>이미지 5</li> -->
+<!--                 <li>이미지 5</li> -->
+<!--                 <li>이미지 5</li> -->
+<!--                 <li>이미지 5</li> -->
 
-            </ul>
+<!--             </ul> -->
 
-        </div>
+<!--         </div> -->
     </div>
+</div>
 
     <div class="footer">
         <div>

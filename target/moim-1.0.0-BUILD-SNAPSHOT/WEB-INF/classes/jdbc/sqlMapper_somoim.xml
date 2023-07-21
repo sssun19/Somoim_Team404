@@ -43,11 +43,11 @@
 		resultType="test.com.moim.somoim.model.SomoimVO"
 		parameterType="HashMap">
 		select * from somoim where area like #{searchWord} and
-		category=#{category} by num desc
+		category=#{category} order by num desc
 	</select>
 	<select id="SOMOIM_SEARCH_LIST_AREA2"
 		resultType="test.com.moim.somoim.model.SomoimVO">
-		select * from somoim where area like #{searchWord} by num desc
+		select * from somoim where area like #{searchWord} order by num desc
 	</select>
 
 	<select id="COUNT_SOMOIM" resultType="int">
@@ -86,4 +86,15 @@
 		delete from somoim where num = #{num}
 	</delete>
 
+
+
+
+
+
+	<select id="SOMOIM_TOTAL_SEARCHING"
+			resultType="test.com.moim.somoim.model.SomoimVO"
+			parameterType="HashMap">
+		select * from somoim where som_title like '%' || #{searchKey} || '%'
+								OR category like '%' || #{searchKey} || '%'
+	</select>
 </mapper>
