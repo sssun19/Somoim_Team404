@@ -33,9 +33,8 @@
                         console.log('save_name : ', vo.save_name);
                         tag_vo += `
                         <li>
-                            <div class="round_box">
+                            
                                 <img src="resources/uploadimg/\${vo.save_name}" width="50"; height="50"; style="border-radius:25px;" >
-                            </div>
                         </li>
         			`;
                     });
