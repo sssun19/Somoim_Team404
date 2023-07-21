@@ -39,7 +39,10 @@
 				<value>classpath:jdbc/sqlMapper_vote.xml</value>
 				<value>classpath:jdbc/sqlMapper_message.xml</value>
 				<value>classpath:jdbc/sqlMapper_point.xml</value>
+<<<<<<< HEAD
+=======
 
+>>>>>>> ffd127e859fc469cdc23d414038f01bb9c76ac47
 			</list>
 		</property>
 	</bean>
@@ -65,6 +68,7 @@
 			</props>
 		</property>
 	</bean>
+
 
 
 </beans>

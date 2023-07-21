@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	language="java"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,14 +44,19 @@
 
 			</div>
 
+<c:if test="${user_id eq null}">
+	로그인을 해주시기 바랍니다.
+</c:if>
+
 			<div class="bug_but_position">
-				<button class="bug_but" type="submit">제 출</button>
+				<button class="bug_but" type="submit" id="submitButton">제 출</button>
 			</div>
 			</form>
 		</div>
 
 
 	</div>
+
 
 
 
@@ -85,6 +90,24 @@
 		</div>
 
 	</div>
+
+	<c:if test="${user_id ne null}">
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const submitButton = document.getElementById('submitButton');
+				submitButton.style.display = 'block'; // 버튼이 보이도록 설정
+			});
+		</script>
+	</c:if>
+	<c:if test="${user_id eq null}">
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				const submitButton = document.getElementById('submitButton');
+				submitButton.style.display = 'none'; // 버튼을 숨김
+			});
+		</script>
+	</c:if>
+
 </body>
 </html>
 </body>
