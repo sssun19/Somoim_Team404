@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+         language="java"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,11 +43,10 @@
         <br>
         <br>
         <br>
-        <c:if test="${user_id eq 'tester'}">
+        <c:if test="${not empty user_id and user_id eq 'tester'}">
             <a href="InsertEvents.do"><button>작성</button></a>
             <a href="updateEvents.do?num=${vo2.num}"><button>수정</button></a>
             <a href="deleteOKEvents.do?num=${vo2.num}"><button>삭제</button></a>
-            관리자 계정 "tester"만 보이는 메뉴
         </c:if>
     </div>
 

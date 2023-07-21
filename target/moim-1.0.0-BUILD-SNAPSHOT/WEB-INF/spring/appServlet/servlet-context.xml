@@ -30,7 +30,7 @@
 		base-package="test.com.moim" />
 
 
-
+<beans:bean id="naverLoginBO" class="test.com.moim.userinfo.loginapi.NaverLoginBO" />
 	<interceptors> <interceptor> <mapping path="/*.do" /> <beans:bean class="test.com.moim.Interceptor.LoginInterceptor"/> 
 		</interceptor> </interceptors>
 

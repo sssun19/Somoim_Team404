@@ -105,4 +105,12 @@
         where num = #{num}
     </delete>
 
+    <select id="COM_TOTAL_SEARCHING"
+            resultType="test.com.moim.community.model.CommunityVO">
+        select * from community_board where title like '%' || #{searchKey} || '%'
+                                OR content like '%' || #{searchKey} || '%'
+    </select>
+
+
+
 </mapper>

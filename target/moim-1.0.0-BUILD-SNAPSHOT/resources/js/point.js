@@ -2,9 +2,16 @@ $(document).ready(function(){
     $('.point_list').show();
     $('.point_list2').hide();
 
+<<<<<<< HEAD
     $(".point_category a").click(function(e){
         e.preventDefault();
 
+=======
+
+    $(".point_category a").click(function(e){
+        e.preventDefault();
+        
+>>>>>>> ffd127e859fc469cdc23d414038f01bb9c76ac47
         var showValue= $(this).text();
 
         console.log(showValue);
@@ -19,6 +26,7 @@ $(document).ready(function(){
 
         // 모든 a 태그에서 'point_acitve' 클래스를 제거
         $('.point_category a').removeClass('point_acitve');
+<<<<<<< HEAD
 
         // 클릭된 a 태그에 'point_acitve' 클래스 추가
         $(this).addClass('point_acitve');
@@ -64,3 +72,10 @@ $(document).ready(function(){
 
     });
 });
+=======
+        
+        // 클릭된 a 태그에 'point_acitve' 클래스 추가
+        $(this).addClass('point_acitve');
+    });
+});
+>>>>>>> ffd127e859fc469cdc23d414038f01bb9c76ac47

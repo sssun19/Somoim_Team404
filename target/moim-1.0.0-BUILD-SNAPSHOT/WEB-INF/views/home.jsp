@@ -9,6 +9,7 @@
     <title>On&Off</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
+
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -166,6 +167,7 @@
         <c:forEach items="${vos}" var="vo" varStatus="loop">
         <c:if test="${loop.index < 4}">
                 <li>
+                    <a href="som_selectOne.do?num=${vo.num}">
                     <div class="moimst_list_01_img_box">
                        <img  src="resources/uploadimg/${vo.somoim_img}"></div>
                     <div class="main_selectList">
@@ -173,6 +175,7 @@
                         <h1>${vo.som_title}</h1>
                         <p class="sub_tit">${vo.som_title}</p>
                     </div>
+                    </a>
                 </li>
         </c:if>
         </c:forEach></ul>
@@ -186,6 +189,7 @@
            <c:forEach items="${comu_vos}" var="comu_vo" varStatus="loop_comu">
                <c:if test="${loop_comu.index < 4}">
                    <li>
+                       <a href="community_selectOne.do?num=${comu_vo.num}">
                        <div class="moimst_list_02_img_box">
                              <img style="height: 100%" src="resources/uploadimg/${comu_vo.save_img}">
                        </div>
@@ -193,6 +197,7 @@
                            <h1>${comu_vo.title}</h1>
                            <p class="sub_tit">${comu_vo.write_date}</p>
                        </div>
+                       </a>
                    </li>
                </c:if>
            </c:forEach>

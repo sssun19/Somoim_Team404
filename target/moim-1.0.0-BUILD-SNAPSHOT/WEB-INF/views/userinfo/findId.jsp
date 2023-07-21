@@ -99,7 +99,7 @@ function findID() {
 }
 --%> 
 function showMessage() {
-    var alertMessage = "[알림] 네이버가 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
+    var alertMessage = "[알림] 발송한 메일이 스팸 메일로 분류된 것은 아닌지 확인해 주세요. 스팸 메일함에도 메일이 없다면, 다시 한 번 '인증번호 받기'를 눌러주세요.";
     alert(alertMessage);
    }
 <%----%>   
@@ -108,7 +108,8 @@ function showMessage() {
         // 이메일 인증 여부 확인
             var email = $("input[name='email']").val();
             var email_token = $("input[name='email_token']").val();
-
+			
+            console.log("email",email);
             if (email === '') {
                 alert('이메일을 입력해주세요.');
                 event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
@@ -135,7 +136,7 @@ function showMessage() {
                     if (response.result === 'OK') {
                         alert('인증이 완료되었습니다.');
                         // 인증 성공한 경우 버튼 클릭 이벤트 계속 진행
-                        window.location.href = 'u_findId2.do';
+                        window.location.href = 'u_findId2.do?email='+email;
                     } else {
                         alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
                         event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
@@ -159,35 +160,10 @@ function showMessage() {
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
     <link rel="stylesheet" href="resources/css/find.css">
+
 </head>
-    
-    
 <body>
-        <div class="header">
-        <div class="gnb">
-            <div class="logo">
-                <img src="resources/uploadimg/logo.png">
-            </div>
-            <nav>
-                <ul>
-                    <li><a>원데이</a></li>
-                    <li><a>소모임</a></li>
-                    <li><a>이벤트</a></li>
-                    <li><a>커뮤니티</a></li>
-                    <li><a>고객센터</a></li>
-                </ul>
-            </nav>
-            <div class="main_search">
-                <input type="search" placeholder="검색">
-            </div>
-            <div class="login">
-                <a href="login.do">로그인</a>
-                <a href="logout.do">로그아웃</a>
-            </div>
-
-        </div>
-
-    </div>
+<%@ include file="../top_menu.jsp" %>
 
     <div class="find_sec" >
     
