@@ -46,7 +46,7 @@
 
                 });//end ajax
             });//end click
-            
+
             $("input[id='searchbutton']").on('click', function(){
             	console.log('클릭 감지!');
             	$('#paging').hide();
@@ -60,7 +60,7 @@
 
 
         // 	}
-        
+
         function selChange() {
     		var sel = document.getElementById('cntPerPage').value;
     		location.href="som_selectAll.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
