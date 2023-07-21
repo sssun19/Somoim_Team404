@@ -117,7 +117,7 @@
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="img_info">
 
-        <img style="width: 100%;height: 100%;" src="resources/uploadimg/${somoim_top_pic.somoim_img}">
+        <img src="resources/uploadimg/${somoim_top_pic.somoim_img}">
 
     </div>
     <div class="top_func">
@@ -216,9 +216,6 @@
 
 
 
-<div class="more_but_position">
-    <button class="more_but">더 보기 ></button>
-</div>
 <div class="Join_Paging">
 
     <a href="<c:url value='join_selectAll.do'>

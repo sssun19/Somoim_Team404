@@ -29,7 +29,7 @@ public class MongoBoardConfig {
     @Bean
     public MongoCollection<Document> gallery() {
 //		MongoCollection<Document> collection = mongoDatabase().getCollection("member");
-        MongoCollection<Document> collection = mongoDatabase_ncp().getCollection("member");
+        MongoCollection<Document> collection = mongoDatabase_ncp().getCollection("gallery");
         log.info("Create Bean member...");
         return collection;
     }
