@@ -7,8 +7,8 @@
 
 		<div class="CS_FAQ_selection">
 			<ul>
-				<li><a href="notice.do">공지사항</a></li>
-				<li><a href="cs_notice.do">자주 묻는 질문 FAQ</a></li>
+				<li><a href="cs_notice.do">공지사항</a></li>
+				<li><a href="notice.do">자주 묻는 질문 FAQ</a></li>
 				<li><a href="bug_notice_insert.do">버그 신고</a></li>
 
 			</ul>
