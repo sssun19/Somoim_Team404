@@ -36,7 +36,7 @@
     .main_container {
         width: 100%;
     }
-    .img_banner,
+
     .main_pictogram,
     .main_section04,
     .moim_list01 {
@@ -44,16 +44,44 @@
         text-align: center;
         margin: 0 auto;
     }
-    .img_banner {
-        display: flex;
-        justify-content: center;
-        overflow: hidden; 
-        height: 300px;
-
+    .img_banner{
+        width: 100%;
+        margin: 0 auto;
+        background-color: white;
+        margin-top: 10px;
+        text-align: center;
+        position: relative;
     }
+
+    .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 2em;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1.0);
+    }
+
+    .title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 2px;
+        background: white;
+        margin: 20px auto;
+    }
+
     .img_banner img{
         width: 100%;
+        background-size: cover;
     }
+
+
+
+
+
     .main_pictogram {
         width: 100%;
         margin: 0 auto;
@@ -281,6 +309,26 @@
         height: 100%;
     }
 
+    .main_section05{
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main_section05 img{
+        width: 70%;
+    }
+
+    #more_info_comu{
+        background-color: white;
+        border: none;
+        border-radius: 5px;
+        width: 100px;
+        padding: 5px 0px;
+
+    }
 
 
 

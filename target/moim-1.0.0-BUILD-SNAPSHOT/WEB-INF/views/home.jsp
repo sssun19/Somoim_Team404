@@ -209,7 +209,7 @@
     <div class="main_section05">
        <img  src="resources/uploadimg/On&Off_home_foot_img.png">
     </div>
-    <div class="main_section05" style="background-color: #FDF6F6; height: auto">
+    <div class="main_section05" style="background-color: #FDF6F6; height: auto;">
         <img  src="resources/uploadimg/home_foot_img2.png">
     </div>
 </div>
