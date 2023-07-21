@@ -163,11 +163,11 @@
                         });
                     });
 
-                    setTimeout(longPolling, 100000);
+                    setTimeout(longPolling, 5000);
                 },
                 error: function (xhr, status, error) {
                     console.log('xhr.status:', xhr.status);
-                    setTimeout(longPolling, 500000);
+                    setTimeout(longPolling, 5000);
                 },
             });
         }

@@ -216,9 +216,6 @@
 
 
 
-<div class="more_but_position">
-    <button class="more_but">더 보기 ></button>
-</div>
 <div class="Join_Paging">
 
     <a href="<c:url value='join_selectAll.do'>

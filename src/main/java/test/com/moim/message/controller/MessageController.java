@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.moim.community.model.CommunityVO;
 import test.com.moim.message.model.MessageVO;
 import test.com.moim.message.service.MessageService;
+import test.com.moim.userinfo.model.UserinfoVO;
+import test.com.moim.userinfo.service.UserinfoService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,8 @@ public class MessageController {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    UserinfoService user_service;
     @ResponseBody
     @RequestMapping(value = "/josn_message.do" ,method = RequestMethod.GET)
     public List<MessageVO> josn_message(Model model, MessageVO vo) {
@@ -44,13 +48,15 @@ public class MessageController {
 
 
     @RequestMapping(value = "/message_selectAll.do" ,method = RequestMethod.GET)
-    public String message_selectAll(Model model, MessageVO vo) {
+    public String message_selectAll(Model model, MessageVO vo, UserinfoVO user_vo) {
         log.info("josn_message_insertOK...vo...{}", vo);
         log.info("josn_message_insertOK.do()......");
         vo.setUser_id((String) session.getAttribute("user_id"));
         List<MessageVO> mes_selectAll = service.message_selectAll(vo);
         System.out.println("mes_selectAll : " + mes_selectAll);
         model.addAttribute("mes_selectAll", mes_selectAll);
+        List<UserinfoVO> unser_vos = user_service.selectAll();
+        model.addAttribute("unser_vos", unser_vos);
 
         return "mypage/mypage";
     }
