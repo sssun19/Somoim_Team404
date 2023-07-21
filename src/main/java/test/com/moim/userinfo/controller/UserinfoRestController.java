@@ -126,6 +126,32 @@ public class UserinfoRestController {
 		}
 	}
 
+	// Email 인증번호 검증을 위한 엔드포인트
+	@ResponseBody
+	@RequestMapping(value = "/verify_email_token.do", method = RequestMethod.GET)
+	public String verifyEmailToken(String email, String email_token) {
+	    log.info("이메일 인증 코드 확인");
+	    log.info("이메일: " + email);
+	    log.info("인증 코드: " + email_token);
+
+	    // 세션에서 저장된 인증번호 가져오기
+	    HttpSession session = request.getSession();
+	    Object verificationCodeObject = session.getAttribute("verificationCode");
+	    int savedVerificationCode = 0;
+
+	    if (verificationCodeObject != null) {
+	        savedVerificationCode = (Integer) verificationCodeObject;
+	    }
+
+	    // 이메일과 인증 코드 비교
+	    boolean isTokenValid = (savedVerificationCode == Integer.parseInt(email_token));
+
+	    if (isTokenValid) {
+	        return "{\"result\":\"OK\"}"; // 인증 코드 일치 시 성공 결과 반환
+	    } else {
+	        return "{\"result\":\"FAIL\"}"; // 인증 코드 불일치 시 실패 결과 반환
+	    }
+	}
 
 
 
