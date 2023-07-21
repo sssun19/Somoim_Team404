@@ -14,6 +14,7 @@
                     <li><a href="eventSelectAll.do">이벤트</a></li>
                     <li><a href="community_selectAll.do">커뮤니티</a></li>
                     <li><a href="cs_notice.do">고객센터</a></li>
+                    <li><a href="point_selectAll.do">포인트몰</a></li>
                 </ul>
             </nav>
             <form action="searching_all.do">

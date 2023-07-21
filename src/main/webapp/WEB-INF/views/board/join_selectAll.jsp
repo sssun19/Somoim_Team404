@@ -117,7 +117,7 @@
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
     <div class="img_info">
 
-        <img style="width: 100%;height: 100%;" src="resources/uploadimg/${somoim_top_pic.somoim_img}">
+        <img src="resources/uploadimg/${somoim_top_pic.somoim_img}">
 
     </div>
     <div class="top_func">
