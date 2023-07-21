@@ -24,7 +24,6 @@
           data: { page: currentPage, itemsPerPage: itemsPerPage },
           dataType: "json",
           success: function(response) {
-            //불러온 항목 처리 및 가공, 출력(html에 추가) 
             var items = response;
             var html = "";
             var startIndex = (currentPage - 1) * itemsPerPage;
@@ -64,7 +63,7 @@
               html += '</div>';
             }
 
-            $(".ajaxLoop").append(html); // 가져온 항목을 추가합니다
+            $(".ajaxLoop").append(html); // 가져온 항목을 추가
           },
           error: function(xhr, status, error) {
             console.error(error);
