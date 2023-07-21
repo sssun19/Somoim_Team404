@@ -9,6 +9,7 @@
     <title>On&Off</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
+
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -142,7 +143,10 @@
 <jsp:include page="top_menu.jsp"></jsp:include>
 <div class="main_container">
     <div class="img_banner">
-       <img src="resources/uploadimg/Switch between On&Off.png">
+       <img src="resources/uploadimg/onandoff_bg.png">
+        <div>
+            <h2 class="title">ONANDOFF</h2>
+        </div>
     </div>
     <div class="main_pictogram">
        <ul>

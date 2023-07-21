@@ -9,6 +9,7 @@
     <title>On&Off</title>
     <link rel="stylesheet" href="resources/css/style.css">
     <link rel="stylesheet" href="resources/css/min.css">
+
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

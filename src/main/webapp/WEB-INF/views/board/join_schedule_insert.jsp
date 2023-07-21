@@ -21,9 +21,7 @@
 
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
-        <div class="img_info">
-            이미지
-        </div>
+
 
         <div class="schedule_insert_section" style="margin-top: 50px;">
             <div class="schedule_insert_section_box">
