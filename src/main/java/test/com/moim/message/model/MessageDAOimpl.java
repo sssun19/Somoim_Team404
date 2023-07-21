@@ -26,7 +26,7 @@ public class MessageDAOimpl implements MessageDAO {
 
     @Override
     public int mes_insert(MessageVO vo) {
-        return 0;
+        return sqlSession.insert("MESSAGE_INSERT", vo);
     }
 
     @Override
@@ -36,6 +36,6 @@ public class MessageDAOimpl implements MessageDAO {
 
     @Override
     public int mes_delete(MessageVO vo) {
-        return 0;
+        return sqlSession.delete("MESSAGE_DELETE", vo );
     }
 }
