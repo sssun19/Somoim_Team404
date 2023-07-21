@@ -17,9 +17,13 @@
                     <li><a href="cs_notice.do">고객센터</a></li>
                 </ul>
             </nav>
+            <form action="searching_all.do">
             <div class="main_search">
-                <input type="search" placeholder="검색">
+
+                <input type="text" name="searchKey" placeholder="검색" id="searchInput">
+
             </div>
+            </form>
             <div class="login">
             	<a href="#">🔔</a>
            		<a href="mypage.do">${user_id } 님</a> 
@@ -42,4 +46,5 @@
 		$("a[href='login.do']").hide();
 	}
     </script>
-    
+
+

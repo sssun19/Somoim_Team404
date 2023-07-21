@@ -68,25 +68,26 @@ public class MessageController {
 
     }
 
-    @RequestMapping(value = "/message_sedningOK.do" ,method = RequestMethod.POST)
-    public String message_sedningOK(Model model, MessageVO vo) {
-        log.info("josn_message_insertOK...vo...{}", vo);
-        log.info("josn_message_insertOK.do()......");
+    @RequestMapping(value = "/popup_message_sedningOK.do" ,method = RequestMethod.POST)
+    public String popup_message_sedningOK(Model model, MessageVO vo) {
+        log.info("popup_message_sedningOK...vo...{}", vo);
+        log.info("popup_message_sedningOK.do()......");
         int result = service.mes_insert(vo);
 
-
-        return "redirect:mypage.do";
-
-
+        if (result > 0) {
+            return "closeWindow";
+        } else {
+            return "redirect:mypage.do";
+        }
     }
 
 
 
 
     @RequestMapping(value = "/message_deleteOK.do" ,method = RequestMethod.GET)
-    public String josn_message_deleteOK(Model model, MessageVO vo) {
+    public String message_deleteOK(Model model, MessageVO vo) {
 
-        log.info("josn_message_insertOK.do()......");
+        log.info("message_deleteOK.do()......");
         int result = service.mes_delete(vo);
 
         return "redirect:mypage.do";
