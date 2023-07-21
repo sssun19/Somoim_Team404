@@ -329,7 +329,17 @@
         padding: 5px 0px;
 
     }
+    .moimst_list_01_img_box, .moimst_list_02_img_box{
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .moim_list01 li a, .moim_list02 li a{
+        display: flex;
+        justify-content: center;
+    }
 
 
 
