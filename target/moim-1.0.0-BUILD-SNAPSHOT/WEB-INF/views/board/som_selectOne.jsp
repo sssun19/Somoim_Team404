@@ -194,10 +194,10 @@
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
             <p style="font-weight: 600; color: #999; padding-top: 0;">카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
-            <p style="font-weight: 600; color: #999";>모임장: ${vo2.somoim_master }</p>
+            <p style="font-weight: 600; color: #999;">모임장: ${vo2.somoim_master }</p>
 
             <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
-            <p>${vo2.som_content}</p>
+            <p style="white-space: pre-wrap">${vo2.som_content}</p>
         </div>
         <div class="join_member">
             <h1>가입한 멤버</h1>
@@ -212,70 +212,7 @@
 
         </div>
         <div class="join_cal">
-<!--             <h1>일정</h1> -->
-<!--             <div class="cal_detail"> -->
-<!--                 <div class="detail_info"> -->
-<!--                     <h1>06/17</h1> -->
-<!--                     <br> -->
-<!--                     <strong>서울여행</strong> -->
 
-<!--                     <p>일시: </p> -->
-<!--                     <p>장소: </p> -->
-<!--                     <p>회비: </p> -->
-<!--                     <p>참여: </p> -->
-<!--                 </div> -->
-<!--                 <div class="detail_member"> -->
-<!--                     <h1>참석 멤버</h1> -->
-<!--                     <ul> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="round_box"> -->
-<!--                                 <i class="far fa-user"></i> -->
-<!--                             </div> -->
-<!--                         </li> -->
-
-<!--                     </ul> -->
-<!--                 </div> -->
-<!--                 <div class="detail_status"> -->
-<%--                     <button type="button"><a href="join_schedule.do?somoim_num=${vo2.num }">참석</a></button> --%>
-<!--                 </div> -->
-
-
-<!--             </div> -->
         </div>
 
         <input type="hidden" name="user_id" value="${user_id}">
@@ -314,7 +251,7 @@
         <ul>
             <li>대표: 팀404 개인정보관리책임자: 팀404</li>
             <li>이메일: Team404@Team404.com 대표번호: 123-1234-1234</li>
-            <li>주소: 서울시 강남구 태헤란로 ~~~~~</li>
+            <li>주소: 서울시 강남구 태헤란로</li>
         </ul>
     </div>
 

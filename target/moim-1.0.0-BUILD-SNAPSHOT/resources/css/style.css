@@ -41,6 +41,9 @@ body {
 }
 
 .img_banner{
+    background-color: white;
+    width: 1440px;
+    height: 810px;
     overflow: hidden; 
     display: flex;
     justify-content: center;
@@ -95,14 +98,37 @@ nav > ul > li{
     width: 100%;
 }
 
+
+
 .img_banner{
     width: 1440px;
     margin: 0 auto;
-    background-color: #999;
+    background-color: white;
     height: 400px;
     margin-top: 10px;
     text-align: center;
+    position: relative;
 }
+
+    .title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 3em;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1.0);
+    }
+
+    .title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 2px;
+        background: white;
+        margin: 20px auto;
+    }
 
 .main_pictogram{
     width: 1440px;
