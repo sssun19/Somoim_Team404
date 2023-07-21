@@ -46,7 +46,7 @@
 
                 });//end ajax
             });//end click
-            
+
             $("input[id='searchbutton']").on('click', function(){
             	console.log('클릭 감지!');
             	$('#paging').hide();
@@ -60,7 +60,7 @@
 
 
         // 	}
-        
+
         function selChange() {
     		var sel = document.getElementById('cntPerPage').value;
     		location.href="som_selectAll.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
@@ -103,13 +103,12 @@
 
 </div>
 
-    <div class="rec_list">
-        <div class="rec_list_top">
+    <div class="rec_list" style="width: 1440px;">
+        <div class="rec_list_top" style="width:1440px; ">
             <h1>🔥 신규 모임 리스트 🔥</h1>
             <a href="som_insert.do"><button type="button" id="som_insert-btn">모임 만들기</button></a>
         </div>
-
-        <ul class="rec_list_grid">
+        <ul class="rec_list_grid" style="width: 1440px;" >
             <c:forEach var="vo" items="${vos}" end="3">
                 <li >
                     <a href="som_selectOne.do?num=${vo.num}">
@@ -132,16 +131,15 @@
 
         </ul>
 
-    </div>
-    <div style="float: right;">
-		<select id="cntPerPage" name="sel" onchange="selChange()">
-			<option value="12"
-				<c:if test="${paging.cntPerPage == 12}">selected</c:if>>간략하게 볼래요</option>
-			<option value="20"
-				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>많이 볼래요</option>
-		</select>
-	</div>
-    <div class="board_list" style="margin-top: 1%;" >
+
+    <div class="board_list" style="margin-top: 1%;width: 1440px;"  >
+        <select style="float :right; margin-right: 14%;" id="cntPerPage" name="sel" onchange="selChange()">
+            <option value="12"
+                    <c:if test="${paging.cntPerPage == 12}">selected</c:if>>간략하게 볼래요</option>
+            <option value="20"
+                    <c:if test="${paging.cntPerPage == 20}">selected</c:if>>많이 볼래요</option>
+        </select>
+
         <form action="som_searchList.do">
             <div class="board_list_category_detail" style="margin-bottom: 1%;">
 <!--                 <a href="som_selectAll.do?category=all"><button type="button" class="list_active" name="all">전체</button></a> -->
@@ -159,7 +157,7 @@
 
 
 
-        <div class="list_selectAll">
+        <div class="list_selectAll" style=" width: 1440px;">
             <ul class="list_grid" >
                 <c:forEach var="vo" items="${viewAll}">
                     <c:if test="${vo.category eq param.category }">
@@ -280,6 +278,7 @@
     </div>
 
 </div>
+
 </body>
 <script src="resources/js/board.js"></script>
 </html>

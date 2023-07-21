@@ -39,7 +39,7 @@
 				<value>classpath:jdbc/sqlMapper_vote.xml</value>
 				<value>classpath:jdbc/sqlMapper_message.xml</value>
 				<value>classpath:jdbc/sqlMapper_point.xml</value>
-
+				<value>classpath:jdbc/sqlMapper_myfeed.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -65,6 +65,7 @@
 			</props>
 		</property>
 	</bean>
+
 
 
 </beans>

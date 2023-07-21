@@ -14,6 +14,7 @@ import test.com.moim.point.model.PointVO;
 import test.com.moim.point.service.PointService;
 import test.com.moim.somoim.model.SomoimVO;
 import test.com.moim.somoim.service.SomoimService;
+import test.com.moim.userinfo.model.UserinfoVO;
 
 import java.util.List;
 
@@ -27,11 +28,27 @@ public class PointController {
     @RequestMapping(value = "/point_selectAll.do", method = RequestMethod.GET)
     public String point_selectAll(PointVO vo,Model model) {
 
-        log.info("point_selectAll.do()......");
+        log.info("point_selectAll.do()......{}", vo);
 
         List<PointVO> vos = service.selectList(vo);
 
         model.addAttribute("vos", vos);
+
+
+
+        return "point/point_selectAll";
+
+
+
+    }
+
+    @RequestMapping(value = "/point_purchase.do", method = RequestMethod.POST)
+    public String point_purchase(UserinfoVO vo) {
+        log.info("point_purchase.do()......{}", vo);
+
+
+
+
 
 
 

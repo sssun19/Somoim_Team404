@@ -176,12 +176,20 @@
 			<version>3.2.8</version>
 		</dependency>
 
-		<!-- mongodb -->
+		<!-- mongodb ncp연동시는 버전업 필수-->
+		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.2.2</version>
+			<version>3.12.14</version>
 		</dependency>
+
+		<!-- mongodb 로컬은 하위버전 사용가능-->
+		<!-- <dependency> -->
+		<!-- <groupId>org.mongodb</groupId> -->
+		<!-- <artifactId>mongo-java-driver</artifactId> -->
+		<!-- <version>3.2.2</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
@@ -244,7 +252,6 @@
 			<version>2.9.5</version>
 		</dependency>
 
-
 		<!-- WebSocket -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -256,7 +263,20 @@
 			<artifactId>spring-websocket</artifactId>
 			<version>6.0.10</version>
 		</dependency>
+		<!-- naver -->
+	<dependency>
+	<groupId>com.github.scribejava</groupId>
+	<artifactId>scribejava-core</artifactId>
+	<version>2.8.1</version>
+	</dependency>
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+
 	</dependencies>
+
 
 
 	<build>

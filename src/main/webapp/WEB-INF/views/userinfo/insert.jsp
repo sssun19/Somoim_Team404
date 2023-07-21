@@ -10,6 +10,8 @@
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript">
+
+
         $(document).ready(function() {
             $("#mail_check_button").click(function() {
                 console.log("mail_check_button...click");
@@ -36,7 +38,8 @@
                     }
                 });
                 return false;
-            });
+           
+        });
             $("#btn_email_token").click(function() {
                 console.log("btn_email_token...click");
                 var email = $("input[name='email']").val();
@@ -58,6 +61,7 @@
                             alert('인증이 완료되었습니다.');
                             // 인증 성공한 경우 회원가입 버튼 활성화
                             $("#register").prop('disabled', false);
+                            sessionStorage.setItem("email_ok",response.result);
                         } else {
                             alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
                          // 인증 실패한 경우 회원가입 버튼 비활성화
@@ -69,6 +73,7 @@
                         // 통신 실패한 경우 회원가입 버튼 비활성화
                         $("#register").prop('disabled', true);
                     }
+
                 });
                 return false;
             });
@@ -111,12 +116,78 @@
       		  insertform.email_token.focus();
       		  return false;
       	  }
-      	  return             
+      	  if(sessionStorage.getItem("email_ok")!=="OK"){
+      		  alert("인증 누락되었습니다.");
+      		  return false;
+      	  }
+      	  
+
+          // 비밀번호와 사용자 아이디를 가져옴
+          var pw = $("input[name='pw']").val();
+          var pw_check = $("input[name='pw_check']").val();
+
+          // 비밀번호와 사용자 아이디 비교
+          if (pw !== pw_check) {
+              alert("비밀번호와 비밀번호 확인이 같지 않습니다. 확인해주세요.");
+              return false; // 회원가입 중지
+          }
+
+      	             
       	  $("#register").click(function() {
               // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
               window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
+              sessionStorage.setItem("email_ok","");
           });
         }
+        
+        
+
+        function checkEmailVerification(event) {
+               // 이메일 인증 여부 확인
+                   var email = $("input[name='email']").val();
+                   var email_token = $("input[name='email_token']").val();
+
+                   if (email === '') {
+                       alert('이메일을 입력해주세요.');
+                       event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                       return;
+                   }
+
+                   if (email_token === '') {
+                       alert("인증번호를 입력해주세요.");
+                       event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                       return;
+                   }
+
+                   // 이메일 인증 확인을 위한 Ajax 요청
+                   $.ajax({
+                       url: 'send_email_token.do',
+                       method: 'GET',
+                       data: {
+                           email: email,
+                           email_token: email_token
+                       },
+                       dataType: "json",
+                       success: function(response) {
+                           console.log("response:", response);
+                           if (response.result === 'OK') {
+                               alert('인증이 완료되었습니다.');
+                               // 인증 성공한 경우 버튼 클릭 이벤트 계속 진행
+                               window.location.href = 'u_findId2.do';
+                           } else {
+                               alert('인증 코드가 일치하지 않습니다. 다시 확인해주세요.');
+                               event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                           }
+                       },
+                       error: function() {
+                           alert('인증번호를 전송해주세요');
+                           event.preventDefault(); // 기본 동작 중단 (버튼 클릭 이벤트 취소)
+                       }
+                   });
+               }
+
+      
+
 
         </script>
 </head>
@@ -198,11 +269,11 @@
         </div>
         <br>
         <div class="register_input_flex">
-            <input type="text" placeholder="인증번호 입력" name="email_token" id="email_token" >
-            <button id="btn_email_token">확인</button>
+            <input type="text" placeholder="인증번호 입력" name="email_token" id="email_token"  >
+            <button id="btn_email_token"   >확인</button>
         </div>
         <br>
-        <input id="register" type="submit" onClick="return check()" value="회원가입">
+        <input id="register" type="submit" onClick="return check()"  value="회원가입">
     </form>
 </div>
 <div class="footer">
@@ -266,3 +337,4 @@
 
 </script>
 </html>
+

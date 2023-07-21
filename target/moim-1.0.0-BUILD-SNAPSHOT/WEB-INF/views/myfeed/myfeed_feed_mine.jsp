@@ -13,6 +13,53 @@
     <link rel="stylesheet" href="resources/css/board.css">
     <script src="https://kit.fontawesome.com/1652357a48.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script type="text/javascript">
+    
+    $(function(){
+    	$("#updatebutton").hide();
+    	console.log('onload....');
+    });
+    
+    function myfeed_update() {
+    	console.log('눌렀다!');
+    	
+    	//li 태그 가져오기
+    	let liElement = document.getElementById("letmeintroduce");
+    	//input 태그 생성
+    	let inputElement = document.createElement("input");
+    	//input type="text"
+    	inputElement.type="text";
+    	inputElement.value=liElement.innerText;
+    	
+    	//li <-> input
+    	liElement.parentNode.replaceChild(inputElement, liElement);
+    	
+
+		$("#updatebutton").show();
+    	
+    	
+    }
+    
+    
+    
+    function myfeed_updateOK() {
+    	console.log('눌렸다');
+    	$.ajax({
+    		url : 'myfeed_feedupdate.do',
+    		data : {
+    			user_id : '${param.user_id}'
+    		},
+    		success : function(response) {
+    			console.log('ajax successed...:', response);
+    		},
+    		error : function(xhr, status, error){
+    			console.log('xhr.status : ', xhr.status);
+    		}
+    	});
+    }
+    
+    </script>
 </head>
 <body>
     <div class="header">
@@ -25,7 +72,6 @@
             <div class="myfeed_left_profile">
                 <div class="myfeed_myprofile" style="background-color:white"><img src="resources/uploadimg/${vo2.save_name }" style="height:120px; weight:120px;">
 <!--                     <i class="far fa-user"></i> -->
-				
                 </div>
             </div>
             <div class="myfeed_right_info">
@@ -34,11 +80,11 @@
                         <h2>${vo2.name }</h2>
                     </li>
                     <br/>
-                    <li>#반려동물</li>
-                    <li>#공연관람</li>
+                    <li style="color:green;" id="letmeintroduce">${vo3.introduce }</li>
                 </ul>
+                    <input type="button" id="updatebutton" onclick="myfeed_updateOK()" value="수정완료">
                 <div class="top_follow" id="feed_mine">
-                    <button type="button" style="padding: 5px 12px;">수정하기</button>
+                    <button type="button" style="padding: 5px 12px;" onclick="myfeed_update()">수정하기</button>
                     <button type="button" style="padding: 5px 12px;">사진추가</button>
                     <button type="button" style="padding: 5px 12px;">포인트샵</button>           
                 </div>

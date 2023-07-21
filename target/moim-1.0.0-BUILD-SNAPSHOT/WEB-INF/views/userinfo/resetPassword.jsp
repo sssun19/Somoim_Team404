@@ -116,34 +116,9 @@ $(document).ready(function() {
     
 
     
+</head>
 <body>
-     
-    <div class="header">
-        <div class="gnb">
-            <div class="logo">
-                <img src="resources/uploadimg/logo.png">
-            </div>
-            <nav>
-                <ul>
-                    <li><a>원데이</a></li>
-                    <li><a>소모임</a></li>
-                    <li><a>이벤트</a></li>
-                    <li><a>커뮤니티</a></li>
-                    <li><a>고객센터</a></li>
-                </ul>
-            </nav>
-            <div class="main_search">
-                <input type="search" placeholder="검색">
-            </div>
-            <div class="login">
-                <a href="login.do">로그인</a>
-                <a href="logout.do">로그아웃</a>
-            </div>
-
-        </div>
-
-    </div>
-    
+<%@ include file="../top_menu.jsp" %>
    <div class="find_sec" >
     
         <div class="insert_sec" >
@@ -188,8 +163,9 @@ $(document).ready(function() {
 		<input type="submit" value="Submit">
     </form>
 --%>
-<div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
 
+<%-- <div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
+--%>
 
                      <button id = "join_button" style="width: 10%;" type="button"></button>
             		<button  type="button" id="submitpass" >변경하기</button>
