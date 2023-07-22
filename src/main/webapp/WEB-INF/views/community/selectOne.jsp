@@ -179,10 +179,10 @@
                                         </div>
                                         </c:if>
                                     </c:forEach>
-									<form action="Community_re_comments_insertOK.do">
+									<form action="Community_re_comments_insertOK.do" onsubmit="return validateAndSubmitForm(this);">
                                     <div class="community_re_commnets_insert_section">
                                         <input type="hidden" name="parent_com" value="${ccoms.num}">
-                                        <input type="hidden" name="user_id" value="${user_id}">
+                                        <input type="hidden" name="user_id" value="${ccoms.user_id}">
                                         <input type="hidden" name="board_num" value="${ccoms.board_num}">
                                         <div style="display: flex; justify-content: center;">
                                         <button class="lovely_insert_button"
