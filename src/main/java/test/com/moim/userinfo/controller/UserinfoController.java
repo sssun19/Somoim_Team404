@@ -188,11 +188,14 @@ public class UserinfoController {
 
 
         OAuth2AccessToken oauthToken;
+       
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
  
+        log.info("oauthToken", oauthToken);
+        
         //1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken);  //String형식의 json데이터
-		log.info(apiResult);
+		log.info("apiResult", apiResult);
 		
 		/** apiResult json 구조
 		{"resultcode":"00",
@@ -231,8 +234,9 @@ public class UserinfoController {
             // 이 부분은 상황에 따라 적절한 처리를 해주어야 합니다.
             log.error("Failed to insert user info to the database.");
         }
-        // 모델에 user_id를 추가하여 뷰에서 사용할 수 있도록 함
-        model.addAttribute("user_id", userId);
+       
+		// 모델에 user_id를 추가하여 뷰에서 사용할 수 있도록 함
+     
         model.addAttribute("result", apiResult);
 		return "userinfo/home";
     }
