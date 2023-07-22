@@ -60,7 +60,7 @@ public class SomoimController {
 
 		model.addAttribute("viewAll",vos);
 
-		return "board/som_selectAll";
+		return "board/som_selectAll2";
 	}
 
 	@RequestMapping(value = "/som_selectOne.do", method = RequestMethod.GET)
