@@ -5,10 +5,6 @@ b
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 b
 2src/main/webapp/WEB-INF/views/board/som_update.jsp,3\4\34379e1cb854aed270ec63d29f93ce83aade016b
-s
-Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
-_
-/src/main/webapp/WEB-INF/views/mypage/mypage.jsp,f\b\fbde0636e9411a83c0556df8f97ae0eb3f812382
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 l

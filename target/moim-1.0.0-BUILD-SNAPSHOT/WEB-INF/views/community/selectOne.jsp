@@ -124,25 +124,25 @@
 									<div class="c_com_top">
 										<strong>${ccoms.user_id}</strong>
 										<span>
-                                            <c:if test="${vo2.user_id == user_id}">
-											<form id="myForm" action="Community_comments_updateOK.do?num=${ccoms.num}">
-												<input type="hidden" name="board_num" value="${ccoms.board_num}">
-                                                <input type="hidden" name="num" value="${ccoms.num}">
-                                                <input type="hidden" name="content" id="hidden_content_input"
-                                                       value="${ccoms.content}">
-											<button id="submitButton" type="submit">
-												<i class="fas fa-edit"></i>
-												<%-- 수정 --%>
-											</button>
-											</form>
-											<form action="Community_comments_deleteOK.do?num=${ccoms.num}">
-												<input type="hidden" name="board_num" value="${ccoms.board_num}">
-                                                <input type="hidden" name="num" value="${ccoms.num}">
-											<button type="submit">
-												<i class="fas fa-trash-alt"></i>
-												<%-- 삭제 --%>
-											</button>
-											</form>
+                                            <c:if test="${ccoms.user_id eq loginUserInfo.user_id}">
+                                                <form id="myForm" action="Community_comments_updateOK.do?num=${ccoms.num}">
+                                                    <input type="hidden" name="board_num" value="${ccoms.board_num}">
+                                                    <input type="hidden" name="num" value="${ccoms.num}">
+                                                    <input type="hidden" name="content" id="hidden_content_input"
+                                                           value="${ccoms.content}">
+                                                <button id="submitButton" type="submit">
+                                                    <i class="fas fa-edit"></i>
+                                                    <%-- 수정 --%>
+                                                </button>
+                                                </form>
+                                                <form action="Community_comments_deleteOK.do?num=${ccoms.num}">
+                                                    <input type="hidden" name="board_num" value="${ccoms.board_num}">
+                                                    <input type="hidden" name="num" value="${ccoms.num}">
+                                                <button type="submit">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                    <%-- 삭제 --%>
+                                                </button>
+                                                </form>
                                             </c:if>
 										</span>
 									</div>
@@ -203,13 +203,13 @@
                 <div class="c_comments_user_profile">
                     <div class="c_commnets_user_profile_img">
                         <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%; margin-right: 1.5%;"
-                             src="resources/uploadimg/${vo2.save_name}">
+                             src="resources/uploadimg/${loginUserInfo.save_name}">
                     </div>
-                    <p>${user_id}</p>
+                    <p>${loginUserInfo.user_id}</p>
                 </div>
                 <input type="hidden" name="board_num" value="${vo3.board_num}">
                 <input type="hidden" name="num" value="${vo3.num}">
-                <input type="hidden" name="user_id" value="${user_id}">
+                <input type="hidden" name="user_id" value="${loginUserInfo.user_id}">
                 <input type="text" placeholder="댓글 작성" name="content">
                 <button type="submit">댓글 작성</button>
             </div>
