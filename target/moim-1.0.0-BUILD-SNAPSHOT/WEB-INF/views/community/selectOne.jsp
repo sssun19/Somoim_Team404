@@ -81,6 +81,7 @@
                         </a>
                     </button>
                 </c:if>
+                <c:if test="${vo2.user_id == user_id}">
                 <a href="community_update.do?num=${param.num}" class="button-link">
                     <button type="button" class="edit-button">
                         <i class="fas fa-edit"></i>
@@ -90,6 +91,7 @@
                 <button type="button" class="delete-button">
                     <i class="fas fa-trash-alt"></i>
                 </button>
+                </c:if>
             </a>
             </div>
         </div>
