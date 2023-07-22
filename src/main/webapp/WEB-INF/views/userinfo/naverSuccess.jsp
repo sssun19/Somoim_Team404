@@ -39,6 +39,17 @@ h3 {
     <br>
     <h2 style="text-align: center" id="name"></h2>
     <h4 style="text-align: center" id="email"></h4>
- 
+    
+  <script>
+    $(function () {
+      $("body").hide();
+      $("body").fadeIn(1000);  // 1초 뒤에 사라 지자 
+     
+      setTimeout(function(){$("body").fadeOut(1000);},1000);
+      setTimeout(function(){location.href= "/home.do"},2000);
+// 2초 뒤에 메인 화면 으로 가자  
+    
+    })
+  </script>
 </body>
 </html>

@@ -55,19 +55,47 @@
     justify-content: center;
     margin: 0 auto;
 }
+
 .community_review_img {
     width: 100%;
     padding-bottom: 100%;
     background-color: #5F2B2B;
+    position: relative;
 }
+
+.review_grid div img,
+.ajaxLoop div img {
+    width: 100%;
+    height: 300px; /* 초기 높이를 300px로 설정합니다. */
+    max-width: 300px;
+    object-fit: cover;
+}
+
+/* 뷰포트 너비가 600px 이하일 때 이미지 높이 조정 */
+@media (max-width: 600px) {
+    .community_review_img {
+        padding-bottom: 50%; /* 이미지 높이를 150px로 변경 */
+    }
+
+    .review_grid div img,
+    .ajaxLoop div img {
+        height: 150px; /* 이미지 높이를 150px로 변경 */
+    }
+}
+
+/*.community_review_img {
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: #5F2B2B;
+}*/
 .review_grid div {
     width: 95%;
 }
-.review_grid div img {
+/*.review_grid div img {
     width: 300px;
     height: 300px;
     object-fit: cover;
-}
+}*/
 .review_grid {
     display: grid;
     grid-gap: 10px;
@@ -76,11 +104,11 @@
 .ajaxLoop div {
     width: 95%;
 }
-.ajaxLoop div img {
+/*.ajaxLoop div img {
     width: 300px;
     height: 300px;
     object-fit: cover;
-}
+}*/
 .ajaxLoop {
     display: grid;
     grid-gap: 10px;
