@@ -179,10 +179,10 @@
                                         </div>
                                         </c:if>
                                     </c:forEach>
-									<form action="Community_re_comments_insertOK.do">
+									<form action="Community_re_comments_insertOK.do" onsubmit="return validateAndSubmitForm(this);">
                                     <div class="community_re_commnets_insert_section">
                                         <input type="hidden" name="parent_com" value="${ccoms.num}">
-                                        <input type="hidden" name="user_id" value="${user_id}">
+                                        <input type="hidden" name="user_id" value="${ccoms.user_id}">
                                         <input type="hidden" name="board_num" value="${ccoms.board_num}">
                                         <div style="display: flex; justify-content: center;">
                                         <button class="lovely_insert_button"
@@ -198,7 +198,7 @@
 				</ul>
 			</span>
         </c:forEach>
-        <form action="Community_comments_insertOK.do?num=${vo2.num}">
+        <form action="Community_comments_insertOK.do?num=${vo2.num}" onsubmit="return validateAndSubmitForm(this);">
             <div class="community_commnets_insert_section">
                 <div class="c_comments_user_profile">
                     <div class="c_commnets_user_profile_img">
@@ -244,6 +244,22 @@
     </div>
 
 </div>
+
+<script>
+    function validateAndSubmitForm(form) {
+        var contentInput = form.querySelector('input[name="content"]');
+        var contentValue = contentInput.value.trim();
+
+        if (contentValue === '') {
+            alert('댓글 내용을 입력해주세요!');
+            return false; // 폼 제출을 막습니다.
+        }
+
+        // 댓글 내용이 비어있지 않으면, 폼을 제출합니다.
+        return true;
+    }
+</script>
+
 <script>
     const submitButton = document.getElementById('submitButton');
     console.log("submitButton", submitButton);
