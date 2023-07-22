@@ -31,8 +31,6 @@ W
 'src/main/webapp/resources/css/board.css,7\3\732b25c4fc672147994adeb6a07ae7fd3a83f508
 e
 5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
-[
-+src/main/webapp/resources/css/community.css,7\7\7710278bcfb590234e01dc18be996c0fe72a5434
 b
 2src/main/webapp/WEB-INF/views/event/event_List.jsp,c\5\c5c96ad45e8357c8ca9063b7b294e0d89b61d286
 ]
@@ -43,3 +41,5 @@ e
 5src/main/webapp/WEB-INF/views/board/som_selectAll.jsp,e\e\ee5fb07547aae31ed484a32bfd6c3ed3cef65620
 e
 5src/main/webapp/WEB-INF/views/board/som_selectOne.jsp,1\6\16e0a48ea5038ec3a3293190f5f0ce9bd4ba3556
+U
+%src/main/webapp/resources/css/Bug.css,1\d\1dcef6157553bf3a4adf2462e27fdb55b2ca89f9
