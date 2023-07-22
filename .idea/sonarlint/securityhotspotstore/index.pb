@@ -11,3 +11,5 @@ b
 2src/main/webapp/WEB-INF/views/board/som_update.jsp,3\4\34379e1cb854aed270ec63d29f93ce83aade016b
 y
 Isrc/main/java/test/com/moim/community/controller/CommunityController.java,8\e\8e15b57d304f4e54d55660e0f0cda30c776591ec
+s
+Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
