@@ -96,6 +96,13 @@ public class SomoimDAOimpl implements SomoimDAO {
 		return session.selectList("PAGING_SOMOIM", vo);
 	}
 
+	@Override
+	public List<SomoimVO> selectSomoim_user_id(SomoimVO vo) {
+		log.info("selectSomoim_user_id....{}", vo);
+
+		return session.selectList("SOMOIM_NUM_USER_ID", vo);
+	}
+
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info("profilesearch()....{}", uvo);
 //		log.info("이건  mapper 에 있음");

@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -176,11 +177,10 @@
         
         
     </script>
-
+  
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
-
 
 
 <!-- <form action="som_member_insertOK.do" method="POST"> -->

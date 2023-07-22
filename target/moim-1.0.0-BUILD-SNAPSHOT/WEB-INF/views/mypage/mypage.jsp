@@ -120,13 +120,7 @@
                         <div class="note_title">
                             <strong>\${mes_one.sender}</strong>
                             <br>
-                            <form id="myForm" action="message_insertOK.do">
-                                <input type="hidden" name="user_id" value="${user_id}">
-                                <input type="hidden" name="receiver" value="\${mes_one.sender}">
-                                <input type="hidden" name="sender" value="\${mes_one.receiver}">
-                                <input  id="hidden_content_input" style="width:45%" type="hidden" name="content"  value="\${mes_one.content}">
-                                <button style="background-color: transparent;" id="submitButton" type="submit">답장하기</button>
-                            </form>
+
                             <form action="message_deleteOK.do ">
                                 <input type="hidden" name="num" value="\${mes_one.num}">
 
@@ -137,8 +131,15 @@
                             \${mes_one.content}
                         </div>
                         <div style="width:30%">
-                            <input id="join_comments" style="height:83%; width:90%" type="text" name="content" placeholder="댓글을 입력해주세요!">
+                            <input id="join_comments" style="height:83%; width:100%" type="text" name="content" placeholder="답장을 입력해주세요!">
                         </div>
+ <form id="myForm" action="message_insertOK.do">
+                                <input type="hidden" name="user_id" value="${user_id}">
+                                <input type="hidden" name="receiver" value="\${mes_one.sender}">
+                                <input type="hidden" name="sender" value="\${mes_one.receiver}">
+                                <input  id="hidden_content_input" style="width:45%" type="hidden" name="content"  value="\${mes_one.content}">
+                                <button style="background-color: transparent;" id="submitButton" type="submit">답장하기</button>
+                            </form>
                         <div class="note_date">
                             \${mes_one.sending_date}
                         </div>
