@@ -2,6 +2,8 @@ package test.com.moim.somoim.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +60,7 @@ public class SomoimController {
 
 		model.addAttribute("viewAll",vos);
 
-		return "board/som_selectAll";
+		return "board/som_selectAll2";
 	}
 
 	@RequestMapping(value = "/som_selectOne.do", method = RequestMethod.GET)
@@ -85,6 +87,9 @@ public class SomoimController {
 
 		List<SomoimVO> somoimUser_id = service.selectSomoim_user_id(vo2);
 		log.info("somoimUser_id)..{}", somoimUser_id);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String formattedDate = dateFormat.format(vo2.getCreate_date());
 //		MemberVO vo3 = new MemberVO();
 //		vo3.setNum((Integer)session.getAttribute("num"));
 //		log.info("......여기의 num 은 : {}", vo3.getNum());
@@ -98,6 +103,7 @@ public class SomoimController {
 		map.put("vo2", vo2);
 		map.put("uvo2", uvo2);
 		map.put("somoimUser_id", somoimUser_id);
+		map.put("formattedDate", formattedDate);
 		model.addAllAttributes(map);
 
 		return "board/som_selectOne";
@@ -113,7 +119,7 @@ public class SomoimController {
 
 		model.addAttribute("viewAll", vos);
 
-		return "board/som_selectAll";
+		return "board/som_selectAll2";
 	}
 
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)

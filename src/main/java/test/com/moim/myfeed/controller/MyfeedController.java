@@ -43,7 +43,14 @@ public class MyfeedController {
 		log.info("id?? : {}", vo.getUser_id());
 		
 		UserinfoVO vo2 = mypageService.mypageSelectOne(vo);
+		
 		MyfeedVO vo3 = myfeedService.selectOne(vo4);
+		
+		if(vo3==null) {
+			log.info("null이다");
+			int result = myfeedService.insert(user_id);
+			log.info("성공했남? : {}", result);
+		}
 		
 		log.info("vo3....{}", vo3);
 		
@@ -53,18 +60,19 @@ public class MyfeedController {
 		return "myfeed/myfeed_feed_mine";
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/myfeed_feedupdate.do", method = RequestMethod.GET)
-	public int myfeed_feedupdate(String user_id, Model model) {
+	public String myfeed_feedupdate(String user_id, Model model, String introduce) {
 		log.info("user_id : {}", user_id);
+		log.info("자기소개내용 : {}", introduce);
 		MyfeedVO vo = new MyfeedVO();
 		vo.setUser_id(user_id);
+		vo.setIntroduce(introduce);
 		
 		int result = myfeedService.update(vo);
 		log.info("result....:{}", result);
 		
 		
-		return result;
+		return "redirect:myfeed_feed_mine.do?user_id="+user_id;
 	}
 	
 	
