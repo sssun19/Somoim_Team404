@@ -124,7 +124,7 @@
 									<div class="c_com_top">
 										<strong>${ccoms.user_id}</strong>
 										<span>
-                                            <c:if test="${ccoms.user_id == user_id}">
+                                            <c:if test="${vo2.user_id == user_id}">
 											<form id="myForm" action="Community_comments_updateOK.do?num=${ccoms.num}">
 												<input type="hidden" name="board_num" value="${ccoms.board_num}">
                                                 <input type="hidden" name="num" value="${ccoms.num}">
