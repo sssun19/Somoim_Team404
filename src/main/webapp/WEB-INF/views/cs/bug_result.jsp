@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	language="java"%>
-<%@ page session="false"%>
+		 language="java"%>
+<%@ page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +24,10 @@ width:100px;
 	<hr>
 <body>
 	<div class="bug_total">
-  <div class="bug_position">
+  <div class="bug_position" style="justify-content: center; display: flex;">
          
 
-            <div class="bug_insert_sec">
+            <div class="bug_insert_sec" style="justify-content: center"; >
                 <span>
                     <form action="home.do">
 						<div class="area_bug_titent">
@@ -39,7 +39,7 @@ width:100px;
 							<h3>빠른 시일내에 검토하겠습니다</h3>
 								</div>
 								<div class="bug_but_position">
-							<button class="bug_but" type="submit">제 출</button>
+							<button class="bug_but" type="submit">돌아가기</button>
 						</div>
 						<input type="hidden" name="user_id" value="${user_id}">
 					</form>
@@ -84,6 +84,7 @@ width:100px;
 			</ul>
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>
