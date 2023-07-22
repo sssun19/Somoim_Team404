@@ -45,4 +45,8 @@ public class MemberService {
 		log.info("som_maxmember_check....som_title:{}", vo.getSom_title());
 		return dao.som_maxmember_check(vo);
 	}
+//	public List<MemberVO> mysomoim_selectAll(MemberVO vo) {
+//		log.info("mysomoim_selectAll()...{}", vo);
+//		return dao.mysomoim_selectAll(vo);
+//	}
 }

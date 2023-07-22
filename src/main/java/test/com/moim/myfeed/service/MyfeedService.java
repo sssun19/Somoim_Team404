@@ -26,5 +26,11 @@ public class MyfeedService {
 		return dao.selectOne(vo4);
 	}
 
+
+	public int insert(String user_id) {
+		log.info("first myfeed insert....{}", user_id);
+		return dao.insert(user_id);
+	}
+
 	
 }

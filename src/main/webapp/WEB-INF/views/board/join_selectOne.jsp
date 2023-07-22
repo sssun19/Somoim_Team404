@@ -227,7 +227,7 @@
             </p>
             <div class="vote_one" style="width: 75%; margin: 0 auto;">
                 <h2 style="margin-bottom: 20px;">
-                    투표 제목 : <c:out value="${qvo2.question}"/>
+                    <c:out value="${qvo2.question}"/>
                 </h2>
                 <c:forEach items="${ch_vo2}" var="ch_vo2">
                     <ul class="vote_grid">

@@ -24,9 +24,7 @@
             $("input[name='category']").on('click', function() {
                 console.log("onload...");
                 var category = $(this).val();
-                var clickedButton = $(this);
                 console.log($(this).val());
-
                 $.ajax({
                     url : 'somz_selectAll.do',
                     method:'GET',
@@ -36,10 +34,9 @@
                     success : function(data){
                         console.log('category', category);
                         console.log('data', data);
+
                         $('body').html(data);
-                        $("input[name='category']").removeClass('category_active'); // remove active class from all categories
-                        $("input[value='" + category + "']").addClass('category_active'); // add active class to clicked category
-                        $('#paging').hide();
+                        $('.paging').hide();
                     },
                     error : function(xhr, status, error){
                         console.log('xhr.status : ', xhr.status);
@@ -230,29 +227,7 @@
 
             </ul>
 
-				<div style="display: block; text-align: center; margin-top: 2%;" >
-<%-- 					<c:if test="${paging.startPage != 1 }"> --%>
-<%-- 						<a href="som_selectAll.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a> --%>
-<%-- 					</c:if> --%>
-					<span>
-					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-						<c:choose>
-							<c:when test="${p == paging.nowPage }">
-								<b>${p }</b>
-							</c:when>
-							<c:when test="${p != paging.nowPage }">
-								<a href="som_selectAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-							</c:when>
-							<c:when test="${paging.cntPerPage eq null }">
-								<a href="#"></a>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-					</span>
-<%-- 					<c:if test="${paging.endPage != paging.lastPage}"> --%>
-<%-- 						<a href="som_selectAll.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a> --%>
-<%-- 					</c:if> --%>
-				</div>
+				
 			</div>
 
     </div>

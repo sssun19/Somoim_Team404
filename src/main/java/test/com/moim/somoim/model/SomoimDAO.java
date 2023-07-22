@@ -19,5 +19,7 @@ public interface SomoimDAO {
 	public int countSomoim();
 	public List<SomoimVO> selectSomoim(PagingVO vo);
 	List<SomoimVO> selectSomoim_user_id(SomoimVO vo);
+	public List<SomoimVO> mysomoim_selectAll(String user_id);
+	public List<SomoimVO> somoimbyme_selectAll(String user_id);
 
 }

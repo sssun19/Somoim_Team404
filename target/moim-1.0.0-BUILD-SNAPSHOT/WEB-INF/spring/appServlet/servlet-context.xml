@@ -28,7 +28,10 @@
 
 	<context:component-scan
 		base-package="test.com.moim" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 942bda80e58d7711f32bd0fd90621275fe8f0b4e
 			<!-- NaverLoginBO 빈 등록 -->
 		<beans:bean id="naverLoginBO" class="test.com.moim.userinfo.controller.NaverLoginBO" />
 		
