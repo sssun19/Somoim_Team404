@@ -24,7 +24,9 @@
             $("input[name='category']").on('click', function() {
                 console.log("onload...");
                 var category = $(this).val();
+                var clickedButton = $(this);
                 console.log($(this).val());
+
                 $.ajax({
                     url : 'somz_selectAll.do',
                     method:'GET',
@@ -34,8 +36,9 @@
                     success : function(data){
                         console.log('category', category);
                         console.log('data', data);
-
                         $('body').html(data);
+                        $("input[name='category']").removeClass('category_active'); // remove active class from all categories
+                        $("input[value='" + category + "']").addClass('category_active'); // add active class to clicked category
                         $('#paging').hide();
                     },
                     error : function(xhr, status, error){
