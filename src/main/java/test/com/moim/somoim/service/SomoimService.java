@@ -72,7 +72,11 @@ public class SomoimService {
 		log.info("selectSomoim...{}", vo);
 		return dao.selectSomoim(vo);
 	}
+	public List<SomoimVO> selectSomoim_user_id(SomoimVO vo) {
+		log.info("selectSomoim_user_id....{}", vo);
 
+		return dao.selectSomoim_user_id(vo);
+	}
 	
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info(".....!!{}", uvo);

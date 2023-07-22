@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -33,9 +34,8 @@
                         console.log('save_name : ', vo.save_name);
                         tag_vo += `
                         <li>
-                            <div class="round_box">
+                            
                                 <img src="resources/uploadimg/\${vo.save_name}" width="50"; height="50"; style="border-radius:25px;" >
-                            </div>
                         </li>
         			`;
                     });
@@ -177,11 +177,10 @@
         
         
     </script>
-
+  
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
-
 
 
 <!-- <form action="som_member_insertOK.do" method="POST"> -->
@@ -189,7 +188,7 @@
         <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
         <div class="img_info">
-            <img  src="resources/uploadimg/${vo2.somoim_img}">
+            <img style="width: 100%;height: 100%;" src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>

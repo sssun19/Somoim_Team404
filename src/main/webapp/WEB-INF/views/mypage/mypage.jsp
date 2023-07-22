@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -97,7 +98,9 @@
 
 
 
-</script>
+
+
+    </script>
 
     <script>
         function longPolling() {
@@ -107,77 +110,80 @@
 
                 success: function (mes) {
                     console.log('mes ajax successed...');
-                    console.log('mes data vos:', mes);
+                    console.log('mes data vos:' , mes);
                     console.log(mes);
                     let tag_mes = '';
                     $.each(mes, function (index, mes_one) {
                         console.log('mes_one... ', mes_one);
                         tag_mes += `
-                <li>
-    <div class="note_title">
-        <strong>\${mes_one.sender}</strong>
-        <br>
-        <form id="myForm" action="message_insertOK.do">
-            <input type="hidden" name="user_id" value="${user_id}">
-            <input type="hidden" name="receiver" value="\${mes_one.sender}">
-            <input type="hidden" name="sender" value="\${mes_one.receiver}">
-            <input id="hidden_content_input" type="hidden" name="content" value="\${mes_one.content}">
-            <button class="custom-button reply-button" id="submitButton" type="submit">답장하기</button>
-        </form>
-        <form action="message_deleteOK.do">
-            <input type="hidden" name="num" value="\${mes_one.num}">
-            <button class="custom-button delete-button" type="submit">삭제하기</button>
-        </form>
-    </div>
-    <div class="note_content" style="border: 1px solid gray; padding: 5px; margin: 5px 0; width:50%;">
-        \${mes_one.content}
-    </div>
-    <div style="display: flex; width:35%">
-        <input id="join_comments" type="text" name="content" placeholder="답장을 입력하세요!" style="flex: 1; padding: 5px; height: 75%; width:35%">
-        <div class="note_date" style="padding: 5px; height: 30px;">
-            \${mes_one.sending_date}
-        </div>
-    </div>
-</li>`;
+                    <li>
+                        <div class="note_title">
+                            <strong>\${mes_one.sender}</strong>
+                            <br>
+
+                            <form action="message_deleteOK.do ">
+                                <input type="hidden" name="num" value="\${mes_one.num}">
+
+                                <button style="background-color: transparent;" type="submit">삭제하기</button>
+                            </form>
+                        </div>
+                        <div style="border: 1px solid gray; width:50%;" class="note_content">
+                            \${mes_one.content}
+                        </div>
+                        <div style="width:30%">
+                            <input id="join_comments" style="height:83%; width:100%" type="text" name="content" placeholder="답장을 입력해주세요!">
+                        </div>
+ <form id="myForm" action="message_insertOK.do">
+                                <input type="hidden" name="user_id" value="${user_id}">
+                                <input type="hidden" name="receiver" value="\${mes_one.sender}">
+                                <input type="hidden" name="sender" value="\${mes_one.receiver}">
+                                <input  id="hidden_content_input" style="width:45%" type="hidden" name="content"  value="\${mes_one.content}">
+                                <button style="background-color: transparent;" id="submitButton" type="submit">답장하기</button>
+                            </form>
+                        <div class="note_date">
+                            \${mes_one.sending_date}
+                        </div>
+                    </li>`;
                     });
 
-                    $('.mypage_grid03').html(tag_mes);
 
-                    // Add button styles using jQuery
-                    $('.reply-button, .delete-button').css({
-                        'color': 'gray',
-                        'text-decoration': 'underline',
-                        'cursor': 'pointer',
-                        'background-color': 'transparent',
-                        'border': 'none'
-                    });
 
-                    // Button hover effect
-                    $('.reply-button, .delete-button').hover(function () {
-                        $(this).css({
-                            'color': 'lightgray'
+                                $('.mypage_grid03').html(tag_mes);
+
+
+
+                                const submitButton = document.getElementById('submitButton');
+                                const joinCommentsInput = document.getElementById('join_comments');
+                                const hiddenContentInput = document.getElementById('hidden_content_input');
+
+                                submitButton.addEventListener('click', function (event) {
+                                    event.preventDefault();
+
+                                    const inputTextValue = joinCommentsInput.value;
+                                    console.log("inputTextValue: ", inputTextValue);
+
+                                    hiddenContentInput.value = inputTextValue;
+                                    console.log("hiddenContentInput.value: ", hiddenContentInput.value);
+
+                                    document.getElementById('myForm').submit();
+                                });
+
+                                setTimeout(longPolling, 10000);
+                            },
+                            error: function (xhr, status, error) {
+                                console.log('xhr.status:', xhr.status);
+                                setTimeout(longPolling, 5000);
+                            },
                         });
-                    }, function () {
-                        $(this).css({
-                            'color': 'gray'
-                        });
+                    }
+
+                    $(function () {
+                        longPolling();
                     });
 
-                    setTimeout(longPolling, 100000);
-                },
-                error: function (xhr, status, error) {
-                    console.log('xhr.status:', xhr.status);
-                    setTimeout(longPolling, 500000);
-                },
-            });
-        }
 
-        $(function () {
-            longPolling();
-        });
+
     </script>
-
-
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
@@ -208,7 +214,9 @@
                     </li>
                     <li>
                         <h2>나의 생일</h2>
-                        <p>${vo2.birthday }</p>
+                        <p>
+                            <fmt:formatDate value="${vo2.birthday}" pattern="yyyy-MM-dd" />
+                        </p>
                     </li>
                     <li>
                         <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id}">나의 활동</a>
@@ -300,7 +308,7 @@
         <!DOCTYPE html>
         <html>
         <head>
-            <title>쪽지</title>
+            <title>팝업 폼</title>
         </head>
         <body>
             <h2>쪽지 발송</h2>
@@ -324,76 +332,5 @@
         popupWindow.document.close();
     }
 </script>
-
-<%--<script>--%>
-<%--    function openPopup() {--%>
-<%--        const popupWidth = 800;--%>
-<%--        const popupHeight = 900;--%>
-<%--        const popupLeft = (window.innerWidth - popupWidth) / 2;--%>
-<%--        const popupTop = (window.innerHeight - popupHeight) / 2;--%>
-
-<%--        const popupContainer = document.createElement('div');--%>
-<%--        popupContainer.className = 'popup-container';--%>
-<%--        popupContainer.style.display = 'flex';--%>
-<%--        popupContainer.style.justifyContent = 'center';--%>
-<%--        popupContainer.style.alignItems = 'center';--%>
-
-<%--        const popupContent = document.createElement('div');--%>
-<%--        popupContent.className = 'popup-content';--%>
-<%--        popupContent.style.width = popupWidth + 'px';--%>
-<%--        popupContent.style.height = popupHeight + 'px';--%>
-<%--        popupContent.style.backgroundColor = '#fff';--%>
-<%--        popupContent.style.padding = '20px';--%>
-<%--        popupContent.style.borderRadius = '5px';--%>
-<%--        popupContent.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';--%>
-<%--        popupContent.style.overflow = 'auto';--%>
-
-<%--        const formHTML = `--%>
-<%--                <h2>쪽지 발송</h2>--%>
-<%--                <form id="myForm" action="popup_message_sedningOK.do" method="post">--%>
-<%--                    <input type="hidden" name="user_id" value="${user_id}">--%>
-<%--                    <label for="sender">보내는 사람:</label>--%>
-<%--                    <input type="text" id="sender" name="sender" readonly value="${user_id}" required><br>--%>
-<%--                    <label for="receiver">받는 사람:</label>--%>
-<%--                    <input type="text" id="receiver" name="receiver" required><br>--%>
-<%--                    <label for="content">내용:</label>--%>
-<%--                    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>--%>
-<%--                    <button type="submit" onclick="closePopup()">제출</button>--%>
-<%--                </form>--%>
-<%--            `;--%>
-
-<%--        popupContent.innerHTML = formHTML;--%>
-
-<%--        popupContainer.appendChild(popupContent);--%>
-<%--        document.body.appendChild(popupContainer);--%>
-
-<%--        // 팝업창 중앙 정렬--%>
-<%--        popupContainer.style.position = 'fixed';--%>
-<%--        popupContainer.style.top = '0';--%>
-<%--        popupContainer.style.left = '0';--%>
-<%--        popupContainer.style.width = '100%';--%>
-<%--        popupContainer.style.height = '100%';--%>
-<%--        popupContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';--%>
-
-<%--        // 스크롤 방지--%>
-<%--        document.body.style.overflow = 'hidden';--%>
-<%--    }--%>
-
-<%--    function closePopup() {--%>
-<%--        const popupContainer = document.querySelector('.popup-container');--%>
-<%--        popupContainer.remove();--%>
-
-<%--        // 스크롤 활성화--%>
-<%--        document.body.style.overflow = 'auto';--%>
-<%--    }--%>
-
-<%--    // Your other existing scripts here--%>
-
-<%--    $(function () {--%>
-<%--        longPolling();--%>
-<%--    });--%>
-<%--</script>--%>
-
-
 </body>
 </html>
