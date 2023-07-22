@@ -3,7 +3,7 @@
   }
 
   .event .event_top {
-    width: 1440PX;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .event .event_content {
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
     text-align: center; /* 내용을 가운데 정렬하는 속성 */
     display: flex;
@@ -52,7 +52,7 @@
   }
 
   .event_list .event_list_top {
-    width: 1440PX;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@
   }
 
   .event_list_grid {
-    width: 1440PX;
+    width: 100%;
     margin: 0 auto;
     justify-content: space-between;
     padding: 10px 0px;
@@ -82,7 +82,7 @@
 
   .event_list_grid .event_img {
   margin: 10px auto; /* 가로 여백을 자동으로 조정하여 가운데 정렬 */
-  width: 420px;
+  width: 50%;
   height: 150px;
   display: flex;
   border: 1px solid #e6e6e6;

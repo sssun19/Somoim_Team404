@@ -77,6 +77,18 @@ public class SomoimService {
 
 		return dao.selectSomoim_user_id(vo);
 	}
+
+
+	public List<SomoimVO> mysomoim_selectAll(String user_id) {
+		log.info("mypage mysomoim_selectAll....{}", user_id);
+		return dao.mysomoim_selectAll(user_id);
+	}
+
+
+	public List<SomoimVO> somoimbyme_selectAll(String user_id) {
+		log.info("somoimbyme_selectAll...{}", user_id);
+		return dao.somoimbyme_selectAll(user_id);
+	}
 	
 //	public UserinfoVO selectprofileOne(UserinfoVO uvo) {
 //		log.info(".....!!{}", uvo);
