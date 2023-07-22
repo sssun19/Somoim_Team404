@@ -28,4 +28,8 @@ public interface UserinfoDAO {
 
 	int resetPassword_update(UserinfoVO vo);
 
+	int userhome(UserinfoVO vo);
+
+	
+
 }

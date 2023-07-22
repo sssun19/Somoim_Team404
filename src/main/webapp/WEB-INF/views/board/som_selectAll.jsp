@@ -52,7 +52,7 @@
 
             $("input[id='searchbutton']").on('click', function(){
             	console.log('클릭 감지!');
-            	$('#paging').hide();
+            	$('.paging').hide();
             });//end click
 
         });//end ready
@@ -234,7 +234,7 @@
 <%-- 					<c:if test="${paging.startPage != 1 }"> --%>
 <%-- 						<a href="som_selectAll.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a> --%>
 <%-- 					</c:if> --%>
-					<span id="paging">
+					<span>
 					<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 						<c:choose>
 							<c:when test="${p == paging.nowPage }">
@@ -242,6 +242,9 @@
 							</c:when>
 							<c:when test="${p != paging.nowPage }">
 								<a href="som_selectAll.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							</c:when>
+							<c:when test="${paging.cntPerPage eq null }">
+								<a href="#"></a>
 							</c:when>
 						</c:choose>
 					</c:forEach>

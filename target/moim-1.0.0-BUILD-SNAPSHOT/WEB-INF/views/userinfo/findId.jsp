@@ -169,42 +169,55 @@ function showMessage() {
     
        <div class="insert_sec" >
 
-        <div class="find_title" >
-          <h2>아이디 찾기 </h2>           
-        </div>
+
 
 
             <div class="total" >
-                <div class="insert_id">
-                    <h3 style="height: 4px; margin-right: 50%;">이름</h3>
-                    <input type="text"  placeholder="이름을 입력하세요" id="name" name="name" style="width: 50%;" > <br>       
-                </div>   
-                    <div class="email" >
-                        <div class="emailtitle" >
+                <div style="background-color: white; width: 80%; height: auto;">
+                    <div class="find_title" >
+                        <h2>아이디 찾기 </h2>
+                    </div>
+
+                    <div class="insert_id" style="width: 100%">
+                        <h3 style="height: 4px;margin-right:75%;">이름</h3>
+                        <input style="width: 75%" type="text"  placeholder="이름을 입력하세요" id="name" name="name" style="width: 50%;" > <br>
+                    </div>
+                    <div class="email"style="width: 100%" >
+                        <div class="emailtitle" style="width: 100%; margin-left: 8.5%" >
                             <h3  style="height: 4px; ">이메일</h3>
                             <h5 >본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</h5>
                         </div>
-                        <div class="inser_email">
-                            <input type="email" placeholder="이메일을 입력하세요" name="email" class="mail_check_input" onchange="saveEmail()">     
+                        <div class="inser_email" style="width: 100%" >
+                            <input style="width: 60.5%; margin-left: 8%;"type="email" placeholder="이메일을 입력하세요" name="email"  onchange="saveEmail()">
                             <button type="button" class="mail_check_button" id="mail_check_button" >인증 번호 전송</button>
                         </div>
                     </div>    
                 
-                    <div class="insert_certi" >  
-                            <input type="text" placeholder="인증 번호 6자리를 입력해주세요"  id="email_token" name="email_token">                 
-                            <br>
+                    <div class="insert_certi" style="text-align: left; margin:0 0 0 0;">
+                        <div style="justify-content: left ">
+                            <div style="width: 100%;margin-left: 12%;background-color: white; display: flex;">
+                                <input style="margin:0;width: 60%; text-align: left" type="text" placeholder="인증 번호 6자리를 입력해주세요"  id="email_token" name="email_token">
+                                 <button style="width: 18%; margin-top: 1%; margin-left: 3%;height: 68%;  border: none; background-color: gray; color: white " id="btn_email_token">확인</button>
+                            </div>
+
+
+                        </div>
                             <div class="injarea" style="text-align: center;">
                             <button id="inj" type="button" onclick="showMessage()">인증번호가 오지 않았나요?</button> <br>
-                         <button id="btn_email_token">확인</button>  
                             </div>
-                        <button type="submit" id="submitpass" onclick="checkEmailVerification(event)">확인</button>
-                        
+                        <br>
+                        <div style="text-align: center; justify-content: center; " >
+                            <div style="display: flex; flex-direction: row; justify-content: center;margin-left: 15%;">
+                                <button style="width: 30%; height: 10%; margin-top: 3.5%" type="submit" id="" onclick="checkEmailVerification(event)">확인</button>
+                                <button style="width: 30%; height: 10%;" type="button" id="submitpass" onclick="location.href='findPassword.do'">비밀번호 찾기</button>
+                            </div>
+                    </div>
                         <br>
                         <hr>
 
-                        <button type="button" id="submitpass" onclick="location.href='findPassword.do'">비밀번호 찾기</button>
-           
-                </div>    
+
+                </div>
+                </div>
         </div>
     </div>
 

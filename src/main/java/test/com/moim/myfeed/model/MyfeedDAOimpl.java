@@ -25,4 +25,10 @@ public class MyfeedDAOimpl implements MyfeedDAO {
 		return session.selectOne("MYFEED_SELECTONE", vo4);
 	}
 
+	@Override
+	public int insert(String user_id) {
+		log.info("first myfeed insert....{}", user_id);
+		return session.insert("MYFEED_INSERT", user_id);
+	}
+
 }

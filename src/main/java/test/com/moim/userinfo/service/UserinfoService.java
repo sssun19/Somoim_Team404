@@ -29,6 +29,11 @@ public class UserinfoService {
 		return dao.insert(vo);
 	}
 	
+	public int userhome(UserinfoVO vo) {
+		return dao.userhome(vo);
+	}
+	
+	
 	public UserinfoVO login(UserinfoVO vo) {
 		return dao.login(vo);
 	}

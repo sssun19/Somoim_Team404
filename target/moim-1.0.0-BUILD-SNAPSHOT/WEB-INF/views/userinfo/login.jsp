@@ -46,7 +46,7 @@
             <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="1234">
             <br>
             <div class="sub_login">
-                <label><input type="checkbox" id="auto_login">자동로그인</label>
+      
                 <span>
                 <a href="u_findId.do">아이디/비밀번호 찾기</a>
                 <a href="u_insert.do">회원가입</a>
@@ -57,17 +57,14 @@
         </form>
         	<p>${message}</p>
     </div>
-    
-   <%--  <div style="background-color:#15a181; width: 100%; height: 50px;text-align: center; color: white; "><h3>SIST Login</h3></div>--%>
-<%-- 
-<!-- 네이버 로그인 화면으로 이동 시키는 URL -->
+        
+<%--  네이버 로그인 화면으로 이동 시키는 URL
 <!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
-			<!-- 네이버 로그인 창으로 이동 -->
-			<div id="naver_id_login" style="text-align:center"><a href="${url}">
-			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
-			<br>	
-</div>
---%>
+<div id="naver_id_login" style="text-align:center"><a href="${url}">
+<img width="223" src="resources/uploadimg/naver_login.png"/></a></div>
+<br>
+ --%>   
+
 <br>
 
     <div class="footer">

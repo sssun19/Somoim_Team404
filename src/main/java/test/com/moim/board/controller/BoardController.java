@@ -304,10 +304,10 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/join_insert.do", method = RequestMethod.GET)
-    public String join_insert() {
+    public String join_insert(@RequestParam("somoim_img") String somoim_img, Model model) {
         log.info("join_insert.do().....");
-
-
+        log.info("somoim_img: " + somoim_img); // 파라미터 값 확인
+        model.addAttribute("somoim_img", somoim_img);
         return "board/join_insert";
     }
 

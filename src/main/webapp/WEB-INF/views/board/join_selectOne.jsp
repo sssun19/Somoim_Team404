@@ -26,11 +26,15 @@
         var div = document.createElement('div');
         div.className = 'join_commnets_insert_section';
 
-        var inputText = document.createElement('input');
+        var inputText = document.createElement('input')
         inputText.type = 'text';
-        inputText.placeholder = '댓글 작성';
+        inputText.placeholder = '대댓글 작성';
         inputText.name = 'content';
         inputText.value = '${c_com.content}';
+        inputText.style.width = '80%';
+        inputText.style.borderTop = 'none';
+        inputText.style.borderLeft = 'none';
+        inputText.style.borderRight = 'none';
 
 
 
@@ -45,10 +49,13 @@
         buttonSubmit.style.textAlign = 'center';
         buttonSubmit.style.justifyContent = 'center';
 
+        var arrowRightIcon = document.createElement('i');
+        arrowRightIcon.className = 'fa-solid fa-arrow-right';
 
+
+        div.appendChild(arrowRightIcon);
 
         div.appendChild(inputText);
-
         div.appendChild(buttonSubmit);
 
         form.appendChild(div);
@@ -301,11 +308,12 @@
                                                id="join_comments">
                                     </div>
                                 <h4 style="margin-left: 4%; margin-top: 2%;">대댓글</h4>
-
                                 <c:forEach var="c_com" items="${c_coms}">
                                     <c:if test="${c_com.parent_com eq com.num}">
                                         <div class="com_func" style="width: auto; margin: 0 0; margin-left: 50px; ">
-                                            <h5>${c_com.user_id}</h5>
+                                            <div style="justify-content: center; display: flex;">
+                                            <h5 style="margin-top: 30%;">${c_com.user_id}</h5>
+                                                </div>
                                             <form action="som_dcomm_updateOK.do"
                                                   style=" width: 100%; display: flex; justify-content: space-between;">
                                                     <input type="text" placeholder="댓글 목록" name="content"
@@ -360,7 +368,7 @@
             </span>
         </c:forEach>
         <form action="som_comm_insertOK.do?som_board_num=${vo2.num}">
-            <div class="join_commnets_insert_section">
+            <div class="join_commnets_insert_section" style="width: 90%;">
                 <div class="comments_user_profile" style="margin-right: 1.5%">
                     <div class="commnets_user_profile_img">
                         <div class="profile" style="background-color: red; ">
@@ -370,7 +378,7 @@
                                  src="resources/uploadimg/${vo2.save_name}">
                         </div>
                     </div>
-                    <p>${vo2.user_id}}</p>
+                    <p>${vo2.user_id}</p>
                 </div>
                 <input type="hidden" name="som_board_num" value="${vo2.num}">
                 <input type="hidden" name="somoim_num" value="${vo2.somoim_num}">

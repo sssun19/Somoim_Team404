@@ -19,5 +19,6 @@ public class SomoimVO {
 	private String somoim_img;
 	private MultipartFile file;
 	private String somoim_master;
+	private String user_id;
 
 }

@@ -15,6 +15,15 @@
 		insert into userinfo(num,user_id,pw,name,email,save_name,point,birthday)
 		values(seq_userinfo.nextval,#{user_id},#{pw},#{name},#{email},#{save_name},#{point},#{birthday})
 	</insert>
+	
+		<insert id="userhome"
+		parameterType="test.com.moim.userinfo.model.UserinfoVO">
+		insert into userinfo(num,user_id,pw,name,email,save_name,point,birthday)
+		values(seq_userinfo.nextval,#{user_id},#{pw},#{name},#{email},#{save_name},#{point},#{birthday})
+	</insert>
+	
+	
+	
 	<select id="LOGIN"
 		resultType="test.com.moim.userinfo.model.UserinfoVO">
 		select * from userinfo where user_id = #{user_id} and pw = #{pw}

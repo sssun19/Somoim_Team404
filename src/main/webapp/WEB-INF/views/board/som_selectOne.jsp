@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTP-8">
 <head>
@@ -176,11 +177,10 @@
         
         
     </script>
-
+  
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
-
 
 
 <!-- <form action="som_member_insertOK.do" method="POST"> -->
@@ -192,7 +192,7 @@
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
-            <p style="font-weight: 600; color: #999; padding-top: 0;">카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${vo2.create_date}</p>
+            <p style="font-weight: 600; color: #999; padding-top: 0;">카테고리: ${vo2.category} ㅣ 모임 정원: ${vo2.max_member} ㅣ 모임 개설일: ${formattedDate}</p>
             <p style="font-weight: 600; color: #999;">모임장: ${vo2.somoim_master }</p>
 
             <%--            <p>모임 개설일: ${vo2.create_date}</p>--%>
