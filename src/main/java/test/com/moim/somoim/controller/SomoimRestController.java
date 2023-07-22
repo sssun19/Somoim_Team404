@@ -46,6 +46,36 @@ public class SomoimRestController {
         return jsonsomoim;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/mysomoim_selectAll.do", method = RequestMethod.GET)
+    public List<SomoimVO> mysomoim_selectAll(String user_id){
+    	log.info("user_id : {}", user_id);
+    	
+    	List<SomoimVO> vos = service.mysomoim_selectAll(user_id);
+    	for (SomoimVO x : vos) {
+			log.info(x.getSom_title());
+			log.info(x.getSomoim_img());
+			log.info("{}", x.getNum());
+		}
+
+    	return vos;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/somoimbyme_selectAll.do", method = RequestMethod.GET)
+    public List<SomoimVO> somoimbyme_selectAll(String user_id){
+    	log.info("user_id : {}", user_id);
+    	
+    	List<SomoimVO> vos = service.somoimbyme_selectAll(user_id);
+    	for (SomoimVO x : vos) {
+    		log.info(x.getSom_title());
+    		log.info(x.getSomoim_img());
+    		log.info("{}", x.getNum());
+    	}
+    	
+    	return vos;
+    }
+    
 
 
 

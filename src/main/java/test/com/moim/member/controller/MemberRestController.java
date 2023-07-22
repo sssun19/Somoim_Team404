@@ -66,6 +66,7 @@ public class MemberRestController {
 		return vos;
 
 	}
+
 	
 	@ResponseBody
 	@RequestMapping(value = "/som_maxmember_check.do", method = RequestMethod.GET)
