@@ -30,10 +30,7 @@
             <span>
                 <i class="fas fa-vote-yea"><a id="vote_link">투표</a></i>
                 <i class="fas fa-image"><a href="#" id="imageUploadLink">이미지</a></i>
-
-
             </span>
-
     </div>
     <div class="join_insert_secction">
         <form id="insert_form" enctype="multipart/form-data" method="POST">
