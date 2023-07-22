@@ -43,6 +43,16 @@ public class UserinfoDAOimpl implements UserinfoDAO {
 	}
 	
 	@Override
+	public int userhome(UserinfoVO vo) {
+		log.info("userhome()..{}",vo);
+		
+		return sqlSession.insert("userhome",vo);
+	}
+	
+	
+	
+	
+	@Override
 	public UserinfoVO login(UserinfoVO vo) {
 		log.info("login()..{}",vo);
 		return sqlSession.selectOne("LOGIN",vo);

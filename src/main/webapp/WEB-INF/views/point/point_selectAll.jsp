@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -18,52 +18,8 @@
 <div class="point_category">
     <a class="point_acitve" id="point_payment">유료결제</a>
     <a>포인트</a>
+    ${message}
 </div>
-
-<<<<<<< HEAD
-   <div class="point_list">
-       <c:forEach items="${vos}" var="vo">
-           <ul class="point_somoim">
-               <strong>소모임</strong>
-               <br>
-               <p class="sub_txt">(모임장 권한을 가진 사용자만 이용이 가능합니다.)</p>
-               <c:if test="${vo.category == '소모임'}">
-               <li>
-                   <p>${vo.item}</p>
-                   <button type="button">${vo.point}</button>
-               </li>
-               </c:if>
-
-           </ul>
-
-           <ul class="point_somoim">
-               <strong>내 피드</strong>
-               <br>
-               <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-               <c:if test="${vo.category == '내피드'}">
-               <li>
-                   <p>${vo.item}</p>
-                   <button type="button">${vo.point}</button>
-               </li>
-
-               </c:if>
-           </ul>
-           <ul class="point_somoim">
-               <strong>유저 관리</strong>
-               <br>
-               <p class="sub_txt">(모든 이용자가 구매 가능합니다.)</p>
-               <c:if test="${vo.category == '유저관리'}">
-               <li>
-                   <p>${vo.item}</p>
-                   <button type="button">${vo.point}</button>
-               </li>
-               </c:if>
-           </ul>
-       </c:forEach>
-
-
-   </div>
-=======
 <div class="point_list">
         <ul class="point_somoim">
             <strong>소모임</strong>
@@ -73,7 +29,8 @@
                 <c:if test="${vo.category == '소모임'}">
                     <li>
                         <p>${vo.item}</p>
-                        <input type="hidden" value="${vo.cash}" class="point_cash">
+                        <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                        <input type="hidden" value="${vo.cash}" class="point_cash" style="display: none">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
@@ -88,13 +45,13 @@
                 <c:if test="${vo.category == '내피드'}">
                     <li>
                         <p>${vo.item}</p>
-                        <input type="hidden" value="${vo.cash}" class="point_cash">
+                        <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                        <input type="hidden" value="${vo.cash}" class="point_cash" style="display: none">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
             </c:forEach>
         </ul>
->>>>>>> 1bea58170a6a902d7259e2f8284a57f998f96e67
 
         <ul class="point_somoim">
             <strong>유저 관리</strong>
@@ -104,7 +61,8 @@
                 <c:if test="${vo.category == '유저관리'}">
                     <li>
                         <p>${vo.item}</p>
-                        <input type="hidden" value="${vo.cash}" class="point_cash">
+                        <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                        <input type="hidden" value="${vo.cash}" class="point_cash" style="display: none">
                         <button type="button" class="purchase-btn">${vo.cash}원</button>
                     </li>
                 </c:if>
@@ -122,7 +80,8 @@
             <c:if test="${vo.category == '소모임'}">
                 <li>
                     <p>${vo.item}</p>
-                    <input type="hidden" value="${vo.point}" class="point_cash">
+                    <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                    <input type="hidden" value="${vo.point}" class="point_point" style="display: none">
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>
@@ -137,7 +96,8 @@
             <c:if test="${vo.category == '내피드'}">
                 <li>
                     <p>${vo.item}</p>
-                    <input type="hidden" value="${vo.point}" class="point_cash">
+                    <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                    <input type="hidden" value="${vo.point}" class="point_point" style="display: none">
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>
@@ -152,7 +112,8 @@
             <c:if test="${vo.category == '유저관리'}">
                 <li>
                     <p>${vo.item}</p>
-                    <input type="hidden" value="${vo.point}" class="point_cash">
+                    <input type="hidden" value="${vo.item}" class="point_item" style="display: none">
+                    <input type="hidden" value="${vo.point}" class="point_point" style="display: none">>
                     <button type="button" class="purchase-btn">${vo.point}p</button>
                 </li>
             </c:if>
@@ -213,6 +174,14 @@
     </div>
 
 </div>
+<c:if test="${not empty point}">
+    <script>
+        alert("${point}");
+    </script>
+</c:if>
+
 </body>
 <script src="/resources/js/point.js"></script>
+
+
 </html>

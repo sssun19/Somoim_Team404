@@ -1,13 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
-Built-By: Jun
-=======
-Built-By: bshoo
->>>>>>> 50c4ee319f8cfd97ae630954688b916e48ec2fb9
-=======
 Built-By: LG
->>>>>>> 1bea58170a6a902d7259e2f8284a57f998f96e67
 Build-Jdk: 11.0.2
 Created-By: Maven Integration for Eclipse
 
