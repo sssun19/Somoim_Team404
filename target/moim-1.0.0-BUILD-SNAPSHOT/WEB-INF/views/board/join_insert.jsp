@@ -21,7 +21,9 @@
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
     <div class="img_info">
-        이미지
+
+        <img style="width: 100%; height: 100%;" src="resources/uploadimg/${somoim_img}">
+
     </div>
 
     <div class="insert_func">

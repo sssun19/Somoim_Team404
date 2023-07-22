@@ -59,7 +59,7 @@
     </div>
     
    <%--  <div style="background-color:#15a181; width: 100%; height: 50px;text-align: center; color: white; "><h3>SIST Login</h3></div>--%>
-
+<%-- 
 <!-- 네이버 로그인 화면으로 이동 시키는 URL -->
 <!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
 			<!-- 네이버 로그인 창으로 이동 -->
@@ -67,6 +67,7 @@
 			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
 			<br>	
 </div>
+--%>
 <br>
 
     <div class="footer">

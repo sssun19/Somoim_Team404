@@ -67,7 +67,7 @@ public class SomoimController {
 
 		SomoimVO vo2 = service.selectOne(vo);
 		String user_id = (String)session.getAttribute("user_id")==null?"tester":(String)session.getAttribute("user_id");
-
+		log.info("vo2..{}",vo2);
 		log.info("user_id : {}", user_id);
 
 		UserinfoVO uvo = new UserinfoVO();
@@ -75,12 +75,16 @@ public class SomoimController {
 
 		log.info("이걸확인해!!{}", uvo.getUser_id());
 		UserinfoVO uvo2 = service.searchSavename(uvo);
+		log.info("uvo2..{}", uvo);
 
 		log.info("이것도{}", uvo2.getSave_name());
 		log.info("profile!!!:{}", uvo2.getSave_name());
 
 		session.setAttribute("num",vo.getNum());
-		
+
+
+		List<SomoimVO> somoimUser_id = service.selectSomoim_user_id(vo2);
+		log.info("somoimUser_id)..{}", somoimUser_id);
 //		MemberVO vo3 = new MemberVO();
 //		vo3.setNum((Integer)session.getAttribute("num"));
 //		log.info("......여기의 num 은 : {}", vo3.getNum());
@@ -93,7 +97,7 @@ public class SomoimController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vo2", vo2);
 		map.put("uvo2", uvo2);
-//		map.put("vos", vos);
+		map.put("somoimUser_id", somoimUser_id);
 		model.addAllAttributes(map);
 
 		return "board/som_selectOne";

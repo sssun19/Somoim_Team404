@@ -97,4 +97,11 @@
 		select * from somoim where som_title like '%' || #{searchKey} || '%'
 								OR category like '%' || #{searchKey} || '%'
 	</select>
+
+
+	<select id="SOMOIM_NUM_USER_ID"
+			resultType="test.com.moim.somoim.model.SomoimVO"
+			parameterType="HashMap">
+		select * from somoim_member where somoim_num=#{num}
+	</select>
 </mapper>
