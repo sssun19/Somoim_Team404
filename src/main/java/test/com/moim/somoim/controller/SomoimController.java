@@ -119,7 +119,7 @@ public class SomoimController {
 
 		model.addAttribute("viewAll", vos);
 
-		return "board/som_selectAll";
+		return "board/som_selectAll2";
 	}
 
 	@RequestMapping(value = "/som_insert.do", method = RequestMethod.GET)
