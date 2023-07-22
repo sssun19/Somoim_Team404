@@ -69,6 +69,7 @@ public class SomoimController {
 
 		SomoimVO vo2 = service.selectOne(vo);
 		String user_id = (String)session.getAttribute("user_id")==null?"tester":(String)session.getAttribute("user_id");
+		model.addAttribute("user_id", user_id);
 		log.info("vo2..{}",vo2);
 		log.info("user_id : {}", user_id);
 
