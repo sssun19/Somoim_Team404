@@ -198,7 +198,7 @@
 				</ul>
 			</span>
         </c:forEach>
-        <form action="Community_comments_insertOK.do?num=${vo2.num}">
+        <form action="Community_comments_insertOK.do?num=${vo2.num}" onsubmit="return validateAndSubmitForm(this);">
             <div class="community_commnets_insert_section">
                 <div class="c_comments_user_profile">
                     <div class="c_commnets_user_profile_img">
@@ -244,6 +244,22 @@
     </div>
 
 </div>
+
+<script>
+    function validateAndSubmitForm(form) {
+        var contentInput = form.querySelector('input[name="content"]');
+        var contentValue = contentInput.value.trim();
+
+        if (contentValue === '') {
+            alert('댓글 내용을 입력해주세요!');
+            return false; // 폼 제출을 막습니다.
+        }
+
+        // 댓글 내용이 비어있지 않으면, 폼을 제출합니다.
+        return true;
+    }
+</script>
+
 <script>
     const submitButton = document.getElementById('submitButton');
     console.log("submitButton", submitButton);
