@@ -28,8 +28,19 @@
 
 	<context:component-scan
 		base-package="test.com.moim" />
-<!--  
- <beans:bean id="naverLoginBO" class="test.com.moim.userinfo.loginapi.NaverLoginBO" />
-	<interceptors> <interceptor> <mapping path="/*.do" /> <beans:bean class="test.com.moim.Interceptor.LoginInterceptor"/>
--->
+
+			<!-- NaverLoginBO 빈 등록 -->
+		<beans:bean id="naverLoginBO" class="test.com.moim.userinfo.controller.NaverLoginBO" />
+		
+	
+	<context:component-scan base-package="test.com.moim" />
+	
+	<interceptors>
+    <!-- 인터셉터 등록 -->
+        <interceptor>
+            <mapping path="/*.do" />
+            <beans:bean class="test.com.moim.Interceptor.LoginInterceptor" />
+        </interceptor>
+	</interceptors>
+
 </beans:beans>
