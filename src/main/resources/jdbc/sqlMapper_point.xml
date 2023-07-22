@@ -7,9 +7,21 @@
 
 	<select id="POINT_SELECT_LIST" resultType="test.com.moim.point.model.PointVO">
 		select * from point
+	</select>
 
+	<select id="POINT_SELECT_ONE" resultType="test.com.moim.userinfo.model.UserinfoVO">
+		select point from userinfo
+		where user_id = #{user_id}
 
 	</select>
+
+	<update id="POINT_PURCHASE">
+		update userinfo set
+			point =point - #{point},
+			item_list=item_list || '/' || #{item_list}
+			where user_id =#{user_id}
+	</update>
+
 
 
 

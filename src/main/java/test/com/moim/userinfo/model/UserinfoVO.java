@@ -27,5 +27,6 @@ public class UserinfoVO {
 	private String msg;
 	private String alert;
 	private int point;
+	private String item_list;
 
 }

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -213,7 +214,9 @@
                     </li>
                     <li>
                         <h2>나의 생일</h2>
-                        <p>${vo2.birthday }</p>
+                        <p>
+                            <fmt:formatDate value="${vo2.birthday}" pattern="yyyy-MM-dd" />
+                        </p>
                     </li>
                     <li>
                         <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id}">나의 활동</a>

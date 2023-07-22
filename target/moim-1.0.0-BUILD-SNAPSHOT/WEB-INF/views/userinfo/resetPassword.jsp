@@ -144,19 +144,17 @@ $(document).ready(function() {
                          <input type="text" placeholder="비밀번호를 입력하세요" id="confirmPassword" value="1234">      
   		             </div>
                     </div>    
-                
-            <hr>
-            <br>
-           
+          
+      <%--     
             <div class="test1" >
                     <div class="img_certi" >
                         보안 코드를 입력해주세요.
                     </div>
             
-                <%--     <input type="text" placeholder="자동 입력 방지 문자"  >     
+                    <input type="text" placeholder="자동 입력 방지 문자"  >     
                     <img src="getCaptchaImg" alt="captcha image"> <!-- 캡차 이미지 표시 -->
-                --%>
-<%-- 
+                
+ 
 <form action="validation" method="POST" onsubmit="return onSubmit();">
 		<div class="g-recaptcha" data-sitekey="6LcEhS0nAAAAAO13FH2RqD3b6OeZ1ocpGuPf84Xj"></div>
 		<br/>
@@ -165,9 +163,10 @@ $(document).ready(function() {
 --%>
 
 <%-- <div class="g-recaptcha" data-sitekey="6Lfp6C0nAAAAAD2m0o0pjNlneNBHJxYQY_InOY5j"></div>
---%>
+
 
                      <button id = "join_button" style="width: 10%;" type="button"></button>
+--%>
             		<button  type="button" id="submitpass" >변경하기</button>
             </div>
                     
