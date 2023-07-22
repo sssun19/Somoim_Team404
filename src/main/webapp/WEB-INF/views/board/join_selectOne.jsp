@@ -176,7 +176,7 @@
             </div>
             <div class="bbs_func">
                 <button type="button" onclick="showPopup()">
-                    <i class="fa-solid fa-lightbulb" style="color: red;"></i>
+<%--                    <i class="fa-solid fa-lightbulb" style="color: red;"></i>--%>
                 </button>
 
                     <%--                좋아요 파트--%>
