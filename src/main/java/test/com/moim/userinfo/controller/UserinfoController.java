@@ -129,9 +129,6 @@ public class UserinfoController {
 
 	// loginOK
 	
-
-
-    
  @RequestMapping(value = "/loginOK.do", method = RequestMethod.POST)
   public String loginOK(UserinfoVO vo) {
  		log.info("/loginOK.do...{}", vo);
@@ -142,7 +139,9 @@ public class UserinfoController {
 		if (vo2 == null) {
 			return "redirect:login.do?message=fail";
 		} else {
-			session.setAttribute("user_id", vo2.getUser_id());
+			session.setAttribute("user_id", vo2.getUser_id()); // 기존에 주던거
+
+			session.setAttribute("num", vo2.getNum()); // PK 필요해서 추가.
 			return "redirect:home.do";
 		}
 
