@@ -57,6 +57,10 @@
         </form>
         	<p>${message}</p>
     </div>
+<<<<<<< HEAD
+        
+
+=======
 
 <%--  네이버 로그인 화면으로 이동 시키는 URL
 <!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
@@ -64,6 +68,7 @@
 <img width="223" src="resources/uploadimg/naver_login.png"/></a></div>
 <br>
  --%>
+>>>>>>> 4ec3530da5d235e2b166ec493c77a2c222e37b40
 
 <br>
 
