@@ -190,13 +190,8 @@ public class UserinfoController {
         OAuth2AccessToken oauthToken;
        
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
-<<<<<<< HEAD
  		log.info("oauthToken", oauthToken);
-=======
- 
-        log.info("oauthToken", oauthToken);
-        
->>>>>>> 942bda80e58d7711f32bd0fd90621275fe8f0b4e
+
         //1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken);  //String형식의 json데이터
 		log.info("apiResult", apiResult);

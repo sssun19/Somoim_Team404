@@ -69,7 +69,6 @@ public class SomoimController {
 
 		SomoimVO vo2 = service.selectOne(vo);
 		String user_id = (String)session.getAttribute("user_id")==null?"tester":(String)session.getAttribute("user_id");
-		model.addAttribute("user_id", user_id);
 		log.info("vo2..{}",vo2);
 		log.info("user_id : {}", user_id);
 
@@ -88,7 +87,7 @@ public class SomoimController {
 
 		List<SomoimVO> somoimUser_id = service.selectSomoim_user_id(vo2);
 		log.info("somoimUser_id)..{}", somoimUser_id);
-		
+
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String formattedDate = dateFormat.format(vo2.getCreate_date());
 //		MemberVO vo3 = new MemberVO();
@@ -204,7 +203,7 @@ public class SomoimController {
 	public String somoimPaging(PagingVO vo, Model model
 			, @RequestParam(value="nowPage", required=false)String nowPage
 			, @RequestParam(value="cntPerPage", required=false)String cntPerPage) {
-		
+
 		int total = service.countSomoim();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -214,26 +213,26 @@ public class SomoimController {
 		} else if(cntPerPage == null) {
 			cntPerPage = "12";
 		}
-		
+
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		
+
 		log.info("이거 확인하기...{}", vo);
-		
+
 		SomoimVO vo2 = new SomoimVO();
 		List<SomoimVO> vos = service.selectAll(vo2);
-		
+
 //		for (SomoimVO x : vos) {
 //			log.info("얘도 확인....{}", x);
 //		}
-		
+
 		model.addAttribute("vos",vos);
 		model.addAttribute("paging", vo);
 		model.addAttribute("viewAll", service.selectSomoim(vo));
-		
-		
+
+
 		return "board/som_selectAll";
 	}
-	
+
 	@RequestMapping(value = "/som_update.do", method = RequestMethod.GET)
 	public String som_update(SomoimVO vo, Model model) {
 		log.info("som_update.do().....{}", vo);
