@@ -199,6 +199,7 @@
                     </button>
                 </c:if>
                 <%--                좋아요 파트 끝--%>
+                <c:if test="${vo2.user_id == user_id}">
                 <button type="button">
                     <a href="join_update.do?num=${vo2.num}">
 
@@ -212,6 +213,7 @@
                     </a>
 
                 </button>
+                </c:if>
             </div>
         </div>
         <div class="content_text">
