@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Repository
 public class MyfeedDAOimpl implements MyfeedDAO {
-	
+
 	@Autowired
 	SqlSession session;
 
@@ -30,5 +30,12 @@ public class MyfeedDAOimpl implements MyfeedDAO {
 		log.info("first myfeed insert....{}", user_id);
 		return session.insert("MYFEED_INSERT", user_id);
 	}
+
+	@Override
+	public int imginsert(MyfeedVO vo) {
+		log.info("myfeed imginsert....{}", vo);
+		return session.update("MYFEED_IMGINSERT", vo);
+	}
+
 
 }
