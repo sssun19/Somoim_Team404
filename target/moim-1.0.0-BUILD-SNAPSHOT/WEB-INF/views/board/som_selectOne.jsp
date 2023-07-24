@@ -256,7 +256,7 @@
             </div>
         </c:if>
         <div class="img_info">
-            <img style="height:100%; width:100%;" src="resources/uploadimg/${vo2.somoim_img}">
+            <img style="width:100%;" src="resources/uploadimg/${vo2.somoim_img}">
         </div>
         <div class="som_tit">
             <h1 class="main_tit" style="padding: 20px;">${vo2.som_title}</h1>
