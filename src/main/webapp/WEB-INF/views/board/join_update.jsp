@@ -19,9 +19,6 @@
 <div class="join_section">
     <jsp:include page="./som_top_menu.jsp"></jsp:include>
 
-    <div class="img_info">
-        이미지
-    </div>
 
     <div class="insert_func">
             <span>
