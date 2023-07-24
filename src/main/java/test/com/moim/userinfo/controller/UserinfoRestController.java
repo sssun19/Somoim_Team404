@@ -41,9 +41,11 @@ public class UserinfoRestController {
 		UserinfoVO vo2 = service.idCheck(vo);
 		log.info("{}",vo2);
 		if(vo2!=null) {
-			return "{\"result\":\"OK\"}";
-		}else {
+			log.info("{\"result\":\"NotOK\"}");
 			return "{\"result\":\"NotOK\"}";
+		}else {
+			log.info("{\"result\":\"Ok\"}");
+			return "{\"result\":\"Ok\"}";
 		}
 	}
 	@ResponseBody
@@ -125,10 +127,6 @@ public class UserinfoRestController {
 			return "{\"result\":\"FAIL\"}"; // 인증 코드 불일치 시 실패 결과 반환
 		}
 	}
-
-
-
-
 
 }
 
