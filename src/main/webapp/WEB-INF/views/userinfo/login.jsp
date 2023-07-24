@@ -27,23 +27,58 @@
 	  }
   }
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#checkButton").click(function () {
+                var username = $("#user_id").val();
+
+                // Ajax 호출
+                $.ajax({
+                    url: 'json_m_idCheck.do',
+                    method: 'GET',
+                    data: { user_id: username },
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log(response);
+
+                        // 서버에서 반환된 JSON 데이터의 result 값을 확인하여 메시지 출력
+                        if (response.result === 'OK') {
+                            $("#resultMessage").text('생성 가능한 아이디입니다.');
+                        } else if (response.result === 'NotOK') {
+                            $("#resultMessage").text('이미 생성된 아이디가 있습니다.');
+                        } else {
+                            $("#resultMessage").text('오류가 발생하였습니다.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('xhr.status : ', xhr.status);
+                        $("#resultMessage").text('오류가 발생하였습니다.');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
    <jsp:include page="../top_menu.jsp"></jsp:include>
 
     <div class="login_section">
 
+
+
        <form action="loginOK.do" method="post" name="loginform" onsubmit="return check();">
 
             <label for="user_id">아이디</label>
             <br>
-            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" value="test111">
+            <input type="text" placeholder="아이디를 입력하세요." id="user_id" name="user_id" placeholder="아이디를 입력해주세요">
 
-            <br>
+
+           <br>
 
             <label for="user_pw">비밀번호</label>
             <br>
-            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" value="1234">
+            <input type="password" placeholder="비밀번호를 입력하세요." id="user_pw" name="pw" placeholder="비밀번호를 입력해주세요.">
             <br>
             <div class="sub_login">
       
