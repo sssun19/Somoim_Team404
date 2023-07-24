@@ -328,22 +328,27 @@ public class SomoimController {
 		log.info("num : {}", num);
 		log.info("somoim....{}", somoim.getNum());
 
+
+		int result = service.delete(somoim);
 		String path = "";
-		if (vo2 == null) {
+		if(vo2==null) {
 			log.info("로그인 실패");
-			path = "redirect:som_delete.do?num=" + num + "&user_id=" + user_id;
-			return path;
-
-
-		} else {
+			path = "redirect:som_delete.do?num="+num+"&user_id="+user_id;
+		}
+		else {
 			log.info("로그인 성공");
 			path = "redirect:som_selectAll.do";
-			int result = service.delete(somoim);
-			return path;
-
-
 		}
 
+		log.info("path......====={}", path);
 
+		if (result==1)
+			return path;
+		else
+			return path;
 	}
+
+
+
+
 }
