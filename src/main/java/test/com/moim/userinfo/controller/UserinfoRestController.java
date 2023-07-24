@@ -128,9 +128,5 @@ public class UserinfoRestController {
 		}
 	}
 
-
-
-
-
 }
 
