@@ -71,8 +71,6 @@ _
 /src/main/webapp/WEB-INF/views/mypage/mypage.jsp,f\b\fbde0636e9411a83c0556df8f97ae0eb3f812382
 k
 ;src/main/webapp/WEB-INF/views/board/join_gallery_insert.jsp,1\2\124aa979f3f048d5838c21d00da6485933383612
-b
-2src/main/webapp/WEB-INF/views/community/insert.jsp,1\3\139ce1b19b6cc0d0ba775461557e16e8f0d56b8b
 s
 Csrc/main/java/test/com/moim/community/service/CommunityService.java,3\5\355583d7f1ff571b53feb85e6af4ff0957ed1ab2
 m
