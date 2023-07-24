@@ -897,6 +897,17 @@
   background-color: #1785F2;
 }
 
+#som_exit{
+  width: 50%;
+  margin-top: 100px;
+  padding: 5px 0px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #1785F2;
+}
+
+
 .gallery_img_top{
   overflow: hidden;
   position: relative;
