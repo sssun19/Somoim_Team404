@@ -30,8 +30,6 @@ b
 W
 'src/main/webapp/resources/css/event.css,f\6\f6d2b6d5f27469541f5ba5f2c7cda5f1686ce616
 e
-5src/main/webapp/WEB-INF/views/board/som_selectAll.jsp,e\e\ee5fb07547aae31ed484a32bfd6c3ed3cef65620
-e
 5src/main/webapp/WEB-INF/views/board/som_selectOne.jsp,1\6\16e0a48ea5038ec3a3293190f5f0ce9bd4ba3556
 U
 %src/main/webapp/resources/css/Bug.css,1\d\1dcef6157553bf3a4adf2462e27fdb55b2ca89f9
@@ -83,19 +81,17 @@ e
 5src/main/webapp/WEB-INF/views/community/selectAll.jsp,b\3\b30a51ab0b9d360b6d83cd3ea3a4e6aa665957d9
 f
 6src/main/java/test/com/moim/myfeed/model/MyfeedVO.java,e\e\ee097d9df7357900efed3b1b02f5ce8e08d9177f
-l
-<src/main/java/test/com/moim/community/model/CommunityVO.java,e\4\e42ae8d9aca7ee9e848a1b6938a4355efd2c2507
 i
 9src/main/webapp/WEB-INF/views/myfeed/myfeed_feed_mine.jsp,1\4\14f23b2d6474d4769e88128ce84a588e3521ceaa
 s
 Csrc/main/java/test/com/moim/myfeed/controller/MyfeedController.java,2\4\2417b1b83345dfab8ee005ff0d2dd3718dfd16d3
 w
 Gsrc/main/java/test/com/moim/userinfo/controller/UserinfoController.java,a\d\ad329835b636e658462d3e7f8f7391d9b07283dc
-y
-Isrc/main/java/test/com/moim/community/controller/CommunityController.java,8\e\8e15b57d304f4e54d55660e0f0cda30c776591ec
 ‹
 [src/main/java/test/com/moim/community_comments/controller/Community_commentsController.java,7\d\7d38722c615ebf4440b285d367c0b6852cfbfc30
 Ž
 ^src/main/java/test/com/moim/community_comments/controller/Community_re_commnetsController.java,d\8\d8f6933a66d465d2eed7db1cf17c422643a92772
 t
 Dsrc/main/java/test/com/moim/report/controller/ReportsController.java,0\9\0986803181642f2f6690153169600eeeec1a584f
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
