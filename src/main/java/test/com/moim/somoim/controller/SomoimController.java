@@ -78,6 +78,8 @@ public class SomoimController {
 		log.info("vo2..{}",vo2);
 		log.info("user_id : {}", user_id);
 
+
+
 		UserinfoVO uvo = new UserinfoVO();
 		uvo.setUser_id(user_id);
 
