@@ -68,8 +68,12 @@ public class SomoimController {
 		log.info("som_selectOne.do().....{}", vo);
 
 		SomoimVO vo2 = service.selectOne(vo);
+		log.info("user_id...{}", (String)session.getAttribute("user_id"));
 
-		String user_id = (String)session.getAttribute("user_id")==null?"test111":(String)session.getAttribute("user_id");
+		String user_id = (String) session.getAttribute("user_id");
+		if (user_id == null) {
+			return "redirect:/login.do"; // 로그인 페이지 경로로 변경해주세요.
+		}
 		model.addAttribute("user_id", user_id);
 		log.info("vo2..{}",vo2);
 		log.info("user_id : {}", user_id);
