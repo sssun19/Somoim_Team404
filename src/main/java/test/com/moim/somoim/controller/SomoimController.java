@@ -162,7 +162,7 @@ public class SomoimController {
 
 			log.info("realPath : {}", realPath);
 
-			File f = new File(realPath + "\\" + vo.getSomoim_img());
+			File f = new File(realPath + "/" + vo.getSomoim_img());
 
 			vo.getFile().transferTo(f);
 
@@ -277,7 +277,7 @@ public class SomoimController {
 
 			log.info("realPath : {}", realPath);
 
-			File f = new File(realPath + "\\" + vo.getSomoim_img());
+			File f = new File(realPath + "/" + vo.getSomoim_img());
 
 			vo.getFile().transferTo(f);
 
