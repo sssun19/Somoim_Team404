@@ -173,11 +173,61 @@
             });//end click
             
         });
-        
-        
+
+
         
     </script>
-  
+<script>
+    //페이지 로딩시, 가입 멤버와 마스터 아이디, 세션에 저장된 아이디(로그인된 아이디) 대조
+    // 마스터와 아이디와 세션에 저장된 아이디를 1차적으로 비교하고, 참값을 얻었을 경우, 가입된 멤버와 대조하여 가입이 되어
+    //있지 않다면 가입이 진행되게 !
+        $(document).ready(function () {
+            // 함수 실행 플래그를 선언하여 최초 1회만 가입되도록 처리합니다.
+            let isInitialJoin = true;
+
+            function autoJoinAsMaster() {
+                if (isInitialJoin) {
+                    // 세션에 기록된 아이디와 소모임 마스터 정보가 같은지 비교합니다.
+                    const userId = '${user_id}';
+                    const somoimMaster = '${vo2.somoim_master}';
+
+                    if (userId === somoimMaster) {
+        // 최초 1회만 가입되도록 플래그를 false로 변경합니다.
+        isInitialJoin = false;
+
+        // 모임 가입을 자동으로 처리합니다.
+        $.ajax({
+        url: 'som_member_insertOK.do',
+        method: 'POST',
+        data: {
+        user_id: userId,
+        num: ${vo2.num},
+        som_title: '${vo2.som_title}',
+        save_name: '${uvo2.save_name}'
+    },
+        success: function (response) {
+        console.log('ajax successed...');
+        console.log('response : ', response);
+
+        if (response === 'OK') {
+        location.reload();
+    } else {
+    }
+    },
+        error: function (xhr, status, error) {
+        console.log('xhr.status : ', xhr.status);
+    }
+    });
+    }
+    }
+    }
+
+        // 페이지가 로딩되면 자동으로 가입 함수를 호출합니다.
+        autoJoinAsMaster();
+    });
+</script>
+
+
 </head>
 <body>
 <jsp:include page="../top_menu.jsp"></jsp:include>
