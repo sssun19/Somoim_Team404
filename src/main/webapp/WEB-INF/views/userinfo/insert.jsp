@@ -325,7 +325,7 @@
             <button id="btn_email_token"   >확인</button>
         </div>
         <br>
-        <input id="register" type="submit" onClick="return check()"  value="회원가입">
+        <button id="register" type="submit" onClick="return check()"  value="회원가입">회원가입</button>
     </form>
 </div>
 <div class="footer">
