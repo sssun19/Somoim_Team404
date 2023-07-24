@@ -169,7 +169,7 @@
                 <li>
                     <a href="som_selectOne.do?num=${vo.num}">
                     <div class="moimst_list_01_img_box">
-                       <img  src="resources/uploadimg/${vo.somoim_img}"></div>
+                       <img style="height: 100%;" src="resources/uploadimg/${vo.somoim_img}"></div>
                     <div class="main_selectList">
                         <p class="hashtag">${vo.category}</p>
                         <h1>${vo.som_title}</h1>
