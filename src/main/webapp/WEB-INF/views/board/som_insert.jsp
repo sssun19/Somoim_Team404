@@ -22,13 +22,13 @@
 
 
 	<div class="board_section">
-	
+
 		<form action="som_insertOK.do" enctype="multipart/form-data" method="post">
 		<div class="moim_insert">
 			<h1>지역</h1>
 			<button type="button" id="moim_location">
 				<i class="fas fa-map-marker-alt"></i>지역 설정 </button>
-			
+
 				<input type="text" id="area" name="area" placeholder="위치를 입력하세요"
 					style="margin-top: 10px;">
 
@@ -41,7 +41,7 @@
 				<h1>모임 정원</h1>
 				<input type="text" placeholder="모임 최대 정원" id="moim_max" name="max_member">
 				<h1>카테고리</h1>
-				
+
 				<select name="category" id="category">
 					<option value="야구">야구</option>
 					<option value="독서">독서</option>
