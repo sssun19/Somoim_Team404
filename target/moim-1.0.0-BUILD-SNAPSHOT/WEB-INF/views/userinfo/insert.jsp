@@ -84,60 +84,75 @@
             var email = $("input[name='email']").val();
             localStorage.setItem("email", email);
         }
-        
-        function check(){
-      	  if(insertform.user_id.value.length == 0){
-      		  alert("아이디가 누락되었습니다.");
-      		  insertform.user_id.focus();
-      		  return false;
-      	  }
-      	  if(insertform.pw.value.length == 0){
-      		  alert("비밀번호가 누락되었습니다.");
-      		  insertform.pw.focus();
-      		  return false;
-      	  }
-      	  if(insertform.pw_check.value.length == 0){
-      		  alert("비밀번호 재입력이 누락되었습니다.");
-      		  insertform.pw_check.focus();
-      		  return false;
-      	  }
-      	  if(insertform.name.value.length == 0){
-      		  alert("이름이 누락되었습니다.");
-      		  insertform.name.focus();
-      		  return false;
-      	  }
-      	  if(insertform.email.value.length == 0){
-      		  alert("이메일이 누락되었습니다.");
-      		  insertform.email.focus();
-      		  return false;
-      	  }
-      	  if(insertform.email_token.value.length == 0){
-      		  alert("인증번호가 누락되었습니다.");
-      		  insertform.email_token.focus();
-      		  return false;
-      	  }
-      	  if(sessionStorage.getItem("email_ok")!=="OK"){
-      		  alert("인증 누락되었습니다.");
-      		  return false;
-      	  }
-      	  
 
-          // 비밀번호와 사용자 아이디를 가져옴
-          var pw = $("input[name='pw']").val();
-          var pw_check = $("input[name='pw_check']").val();
+        function check() {
+            // 중복 체크 결과 메시지를 가져옴
+            var message = $("#resultMessage").text();
 
-          // 비밀번호와 사용자 아이디 비교
-          if (pw !== pw_check) {
-              alert("비밀번호와 비밀번호 확인이 같지 않습니다. 확인해주세요.");
-              return false; // 회원가입 중지
-          }
+            if (message !== '생성 가능한 아이디입니다.') {
+                alert('아이디 중복 체크를 해주세요.');
+                return false;
+            }
 
-      	             
-      	  $("#register").click(function() {
-              // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
-              window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
-              sessionStorage.setItem("email_ok","");
-          });
+            if (insertform.user_id.value.length === 0) {
+                alert("아이디가 누락되었습니다.");
+                insertform.user_id.focus();
+                return false;
+            }
+
+            if (insertform.pw.value.length === 0) {
+                alert("비밀번호가 누락되었습니다.");
+                insertform.pw.focus();
+                return false;
+            }
+
+            if (insertform.pw_check.value.length === 0) {
+                alert("비밀번호 재입력이 누락되었습니다.");
+                insertform.pw_check.focus();
+                return false;
+            }
+
+            if (insertform.name.value.length === 0) {
+                alert("이름이 누락되었습니다.");
+                insertform.name.focus();
+                return false;
+            }
+
+            if (insertform.email.value.length === 0) {
+                alert("이메일이 누락되었습니다.");
+                insertform.email.focus();
+                return false;
+            }
+
+            if (insertform.email_token.value.length === 0) {
+                alert("인증번호가 누락되었습니다.");
+                insertform.email_token.focus();
+                return false;
+            }
+
+            if (sessionStorage.getItem("email_ok") !== "OK") {
+                alert("인증 누락되었습니다.");
+                return false;
+            }
+
+            // 비밀번호와 사용자 아이디를 가져옴
+            var pw = $("input[name='pw']").val();
+            var pw_check = $("input[name='pw_check']").val();
+
+            // 비밀번호와 사용자 아이디 비교
+            if (pw !== pw_check) {
+                alert("비밀번호와 비밀번호 확인이 같지 않습니다. 확인해주세요.");
+                return false; // 회원가입 중지
+            }
+
+            $("#register").click(function () {
+                // 회원가입 버튼을 클릭할 때 로그인 창으로 이동
+                window.location.href = 'login.jsp'; // 로그인 페이지 URL로 변경해야 합니다.
+                sessionStorage.setItem("email_ok", "");
+            });
+
+            // 회원가입 폼 제출
+            return true;
         }
         
         
@@ -197,6 +212,12 @@
             $("#checkButton").click(function () {
                 var username = $("#user_id").val();
 
+                // 아이디가 비어있는지 확인
+                if (username.trim() === '') {
+                    $("#resultMessage").text('아이디를 입력해주세요.');
+                    return;
+                }
+
                 // Ajax 호출
                 $.ajax({
                     url: '/json_m_idCheck.do',
@@ -220,20 +241,6 @@
                 });
             });
         });
-
-        function check() {
-            // 중복 체크 결과 메시지를 가져옴
-            var message = $("#resultMessage").text();
-
-            if (message === '생성 가능한 아이디입니다.') {
-                // 회원가입 폼 제출
-                return true;
-            } else {
-                // 중복 체크가 성공하지 않았으므로 회원가입 폼 제출 안되게.
-                alert('아이디 중복 체크를 해주세요.');
-                return false;
-            }
-        }
     </script>
 
 </head>
