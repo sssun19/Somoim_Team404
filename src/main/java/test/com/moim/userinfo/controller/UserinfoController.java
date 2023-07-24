@@ -124,6 +124,7 @@ public class UserinfoController {
 			session.setAttribute("user_id", vo2.getUser_id()); // 기존에 주던거
 
 			session.setAttribute("num", vo2.getNum()); // PK 필요해서 추가.
+			log.info("!!!!!!!!!!!!!!!!!!!최초 로그인 시 vo2.getNum...{}", vo2.getNum());
 			return "redirect:home.do";
 		}
 
