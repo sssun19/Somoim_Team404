@@ -328,6 +328,7 @@ public class SomoimController {
 		log.info("num : {}", num);
 		log.info("somoim....{}", somoim.getNum());
 
+
 		int result = service.delete(somoim);
 		String path = "";
 		if(vo2==null) {
@@ -346,6 +347,8 @@ public class SomoimController {
 		else
 			return path;
 	}
+
+
 
 
 }
