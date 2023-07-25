@@ -64,8 +64,6 @@
 	<form action="som_insertOK.do" enctype="multipart/form-data" method="post" onsubmit="return validateForm();">
 		<div class="moim_insert">
 			<h1>지역</h1>
-			<button type="button" id="moim_location">
-				<i class="fas fa-map-marker-alt"></i>지역 설정 </button>
 
 			<input type="text" id="area" name="area" placeholder="위치를 입력하세요"
 				   style="margin-top: 10px;">
