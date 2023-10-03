@@ -1,9 +1,21 @@
 
 f	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É§ô
-f	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”—Š¹
+f	java:S117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”—Š¹
+l	java:S117Q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Õ8±¯À«1
+r	java:S117]"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äÖÚ«ùÿÿÿÿ8±¯À«1
+m	java:S117d"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú‹µé8±¯À«1
 h	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾˜˜úÿÿÿÿ
 c
 java:S4488""HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(­ÄÏÿÿÿÿÿ
-c	java:S100@"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”—Š¹
+c	java:S100A"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”—Š¹
 ^
-java:S4488?"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦ô›
+java:S4488@"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦ô›
+i	java:S100Q"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Õ8™°À«1
+j
+java:S4488P"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(›™«ùÿÿÿÿ8š°À«1
+o	java:S100]"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äÖÚ«ùÿÿÿÿ8°À«1
+e
+java:S4488\"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(À‰å­8°À«1
+j	java:S100d"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú‹µé8Ÿ°À«1
+l
+java:S4488c"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÖÚ¬éÿÿÿÿÿ8 °À«1

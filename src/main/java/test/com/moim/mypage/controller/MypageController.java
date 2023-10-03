@@ -61,8 +61,8 @@ public class MypageController {
 		log.info(vo2.getEmail());
 		log.info(vo2.getSom_title());
 		
-		Date mypageBirth =  vo2.getBirthday();
-		vo2.setBirthday(mypageBirth);
+		String mypageBirth =  vo2.getBirthday_year();
+		vo2.setBirthday_year(mypageBirth);
 		
 //		SomoimVO vo3 = new SomoimVO();
 //		vo3.setSom_title(vo2.getSom_title());
@@ -104,6 +104,7 @@ public class MypageController {
 		
 		
 		log.info("변경사항.....{}", vo.getName());
+		log.info("===============생일 변경사항.....{}", vo.getBirthday_year());
 		log.info("프로필사진 변경...{}", vo.getFile());
 		
 		

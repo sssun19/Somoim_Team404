@@ -481,6 +481,7 @@ public class BoardController {
 
         int result = service.Sch_insert(vo);
 
+        log.info("this....", result);
 
         return "board/join_schedule_insert";
 

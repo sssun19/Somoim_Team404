@@ -59,7 +59,7 @@
         update userinfo set som_title=concat(som_title, #{som_title}) where user_id=#{user_id}
     </update>
     <update id="MYPAGE_UPDATE_OK" parameterType="test.com.moim.userinfo.model.UserinfoVO">
-        update userinfo set name=#{name},pw=#{pw},email=#{email},interest=#{interest},save_name=#{save_name} where num=#{num}
+        update userinfo set name=#{name},pw=#{pw},email=#{email},interest=#{interest},save_name=#{save_name}, birthday_year=#{birthday_year} where num=#{num}
     </update>
     
     <select id="SEARCH_SAVENAME" resultType="test.com.moim.userinfo.model.UserinfoVO">

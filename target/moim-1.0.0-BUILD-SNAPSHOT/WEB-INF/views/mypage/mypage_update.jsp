@@ -131,12 +131,17 @@ function handleImageSelect(dataValue) {
 									<h2 class="mem_info">이메일</h2>
 									<input type="text" name="email" placeholder="닉네임를 입력하세요" id="nickname"
 										value="${vo2.email }">
-								</div class="insert_area_id">
+								</div>
 								<!-- 비밀번호 -->
 								<div class="insert_area_id">
 									<h2 class="mem_info">비밀번호</h2>
 									<input type="text" name="pw" placeholder="비밀번호를 입력하세요" id="password"
 										value="${vo2.pw }">
+								</div>
+								<!-- 생년월일 -->
+								<div class="insert_area_id">
+									<h2 class="mem_info">생년월일</h2>
+									<input type="text" name="birthday_year" placeholder="생년월일을 입력하세요(예시 2000-00-00)" id="birthday_year">
 								</div>
 								<!-- 나의 주소 -->
 								<div class="insert_area_id">
