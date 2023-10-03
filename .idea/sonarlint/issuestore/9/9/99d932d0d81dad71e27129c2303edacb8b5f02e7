@@ -1,0 +1,5 @@
+
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÛýæÉûÿÿÿÿ
+^
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¾©ªö
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÚÔ”Žýÿÿÿÿ

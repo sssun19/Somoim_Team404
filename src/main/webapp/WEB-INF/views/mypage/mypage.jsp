@@ -309,9 +309,7 @@
                     </li>
                     <li>
                         <h2>나의 생일</h2>
-                        <p>
-                            <fmt:formatDate value="${vo2.birthday}" pattern="yyyy-MM-dd" />
-                        </p>
+                        <p>${vo2.birthday_year}</p>
                     </li>
                     <li>
                         <a href="Mypage_myactivity_boardbyme.do?user_id=${vo2.user_id}">나의 활동</a>

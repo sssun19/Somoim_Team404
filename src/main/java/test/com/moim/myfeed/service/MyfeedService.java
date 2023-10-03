@@ -16,7 +16,8 @@ public class MyfeedService {
 
 
 	public int update(MyfeedVO vo) {
-		log.info("myfeed_update....{}", vo.getUser_id());
+		log.info("myfeed_update user_id....{}", vo.getUser_id());
+		log.info("myfeed_update introduce....{}", vo.getIntroduce());
 		return dao.update(vo);
 	}
 
