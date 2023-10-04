@@ -74,29 +74,6 @@ values (seq_userinfo.nextval, 'admin', 'hi111', 'park1134', 'parkeeda@google.com
 insert into userinfo (num, user_id, pw, name, email, birthday, save_name)
 values (seq_userinfo.nextval, 'sssun19', 'hi111', 'kim', 'djdjdj@google.com', sysdate, '스크린샷 2023-06-17 135449');
 
-select * from userinfo where user_id='admin2';
-
-select somoim_num from somoim_member where user_id='tester1';
-select somoim_num from somoim_member a join somoim b on a.somoim_num=b.num where user_id='tester1';
-select * from somoim_member a join somoim b on a.somoim_num=b.num where somoim_num=51;
-select som_title from userinfo where user_id='tester1';
-update userinfo set som_title=som_title||'/안녕?' where user_id='admin2';
-select * from userinfo where som_title like '%강아지사진%';
-select save_name from somoim where som_title like '%강아지사진%';
-select * from somoim a join somoim_member b on a.som_title=b.som_title where user_id='dev_s';
-select save_name from somoim_member where user_id='dev_s';
-select save_name from somoim_member where user_id='tester1';
-select * from somoim_member where user_id='tester1' and somoim_num=68;
-update userinfo set name='뻥카지롱', pw='hi12' where user_id='tester1';
-select * from userinfo where user_id='tester1';
-delete from somoim where num=86;
---
---insert into userinfo (num, user_id, pw, name, email, point) 
---values (seq_userinfo.nextval, 'tester1', 'hi111', 'kim55', 'aaxcvz@naver.com', 300); 
---
---select * from userinfo; 
---
---delete from userinfo where num=2;
 
 ------------point
 CREATE TABLE POINT 
@@ -172,12 +149,6 @@ COMMENT ON COLUMN MYFEED.HATE_COUNT IS '신고';
 create sequence seq_myfeed; 
 --drop sequence seq_myfeed; 
 
---insert into myfeed (num, user_id, good_count, hate_count) 
---values (seq_myfeed.nextval, 'tester', 33, 2);
---
---select * from myfeed; 
---
---truncate table myfeed;
 ----------------------------somoim
 CREATE TABLE SOMOIM (  
 NUM NUMBER NOT NULL , 
@@ -243,25 +214,6 @@ DROP CONSTRAINT SOMOIM_MEMBER_FK3;
 
 create sequence seq_somoim; 
 --drop sequence seq_somoim; 
---
---insert into somoim (num, som_title, category) 
---values (seq_somoim.nextval, '오늘홍대에서놀사람급구', '사교/인맥');
-
-insert into somoim (num,som_title,category,max_member,create_date,area, som_content, save_name) 
-		values(seq_somoim.nextval,'ㅇㅋㅇㅇㅈㅋㄹㅇㅇ','사교/인맥',34,sysdate,'서울', 'ㅇㅇㅇㅇ', 'ㅇㅋㅇㅋ');
-        
-select * from somoim where som_title like 'ㅇ' and category='야구';
---
---insert into somoim (num, som_title, category) 
---values (seq_somoim.nextval, '노는게제일조아', '사교/인맥');
---
---insert into somoim (num, som_title, category, max_member, area)
---values (seq_somoim.nextval, '즐거운코딩시간', '취미', 100, '서울/경기');
-
-
-select * from somoim;
-
-
 
 ----------------------somoim_member
 CREATE TABLE SOMOIM_MEMBER 
@@ -328,12 +280,6 @@ COMMENT ON COLUMN SOMOIM_MEMBER.SAVE_NAME IS '이미파일명';
 
 create sequence seq_somoim_member;
 --drop sequence seq_somoim_member;
---
---insert into somoim_member (num, user_id, som_title) 
---values (seq_somoim_member.nextval, 'tester', '오늘홍대에서놀사람급구');
---
---insert into somoim_member (num, user_id, som_title) 
---values (seq_somoim_member.nextval, 'tester1', '노는게제일조아');
 
 select * from somoim_member;
 
@@ -367,10 +313,6 @@ COMMENT ON COLUMN SOMOIM_QUESTION_VOTE.QUESTION IS '투표 제목';
 create sequence seq_somoim_question_vote; 
 --drop sequence seq_somoim_question_vote; 
 
---insert into somoim_question_vote (num, som_member_num, question) 
---values (seq_somoim_question_vote.nextval, 1, '7월 정기모임 식사 메뉴 선정');
-
-
 select * from somoim_question_vote;
 
 
@@ -403,14 +345,7 @@ COMMENT ON COLUMN SOMOIM_CHOICE_VOTE.COUNT IS '투표수';
 create sequence seq_somoim_choice_vote; 
 --drop sequence seq_somoim_choice_vote; 
 
---insert into somoim_choice_vote (num, som_qvote_num, choice) 
---values (seq_somoim_choice_vote.nextval, 1, '한식');
---insert into somoim_choice_vote (num, som_qvote_num, choice) 
---values (seq_somoim_choice_vote.nextval, 1, '일식');
-
 select * from somoim_choice_vote;
-
-
 
 -----------------------------somoim_board
 CREATE TABLE SOMOIM_BOARD 
@@ -460,12 +395,6 @@ COMMENT ON COLUMN SOMOIM_BOARD.SOM_MEMBER_NUM IS '게시글 작성자 고유번�
 create sequence seq_somoim_board;
 --drop sequence seq_somoim_board;
 
---insert into somoim_board (num, title, content, som_member_num) 
---values (seq_somoim_board.nextval, '테스트게시글입니다.', '테스트 아아 마이크테스트', 1);
---
---insert into somoim_board (num, title, content, som_member_num, save_name) 
---values (seq_somoim_board.nextval, '더미데이터', '테스트용 더미 데이터입니다.', 2, 'boardimg.png');
-
 select * from somoim_board;
 
 ---------- somoim_board_comments
@@ -509,9 +438,6 @@ COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.SOM_BOARD_NUM IS '게시글 번호';
 
 create sequence seq_somoim_board_comments; 
 --drop sequence seq_somoim_board_comments; 
---
---insert into somoim_board_comments (num, som_member_num, content, good_count, som_board_num) 
---values (SEQ_SOMOIM_BOARD_COMMENTS.nextval, 1, '좋은 글 감사합니다',33,1); 
 
 select * from somoim_board_comments;
 
@@ -555,14 +481,6 @@ COMMENT ON COLUMN NOTICE.SAVE_NAME IS '이지미파일명';
 create sequence seq_notice;
 --drop sequence seq_notice;
 
---insert into notice (num, user_id, title, content) 
---values (seq_notice.nextval, 'tester1', '테스트공지입니다.', '테스트공지마이크테스트아아하나둘하나둘');
---insert into notice (num, user_id, title, content, SAVE_NAME) 
---values (seq_notice.nextval, 'tester', '테스트공지입니다.', '테스트공지마이크테스트아아하나둘하나둘', 
---'hinotice.png');
-
-select * from notice;
-3:58
 
 ----------------------------schedule // 참가자 칼럼(PARTICIPANT)은 데이터가 중복될 수도 있어서 UK 지정 불가 
 CREATE TABLE SOMOIM_SCHEDULE ( 
@@ -611,9 +529,6 @@ COMMENT ON COLUMN SOMOIM_SCHEDULE.SOMOIM_NUM IS '해당 소모임 고유번호';
 create sequence seq_somoim_schedule; 
 --drop sequence seq_somoim_schedule; 
 
---insert into somoim_schedule (num, schedule_date, schedule_time, schedule_title, place, money, som_member_num, participant, participant_count) 
---values (seq_somoim_schedule.nextval, '20230701', '19:00', '7월정기모임','강남역',10000, 1,'김철수/김영희/tester',3);
-
 select * from somoim_schedule;
 
 
@@ -655,11 +570,6 @@ COMMENT ON COLUMN SOMOIM_PAY.PARTICIPANT IS '참여자 목록';
 
 create sequence seq_somoim_pay; 
 --drop sequence seq_somoim_pay; 
---
---insert into somoim_pay (num, money, som_schedule_num, bank_account, pay_complete_participant, sadari, participant) --백단에서 처리
---values (seq_somoim_pay.nextval, 20000, 1,'110-259-626110','김철수/tester', '사다리타기', 'tseter');
-
-select * from somoim_pay;
 
 ----------------------------following
 CREATE TABLE FOLLOWING
@@ -693,9 +603,6 @@ COMMENT ON COLUMN FOLLOWING.FOLLOWING_COUNT IS '팔로잉 수';
 
 create sequence seq_following;
 --drop sequence seq_following;
-
---insert into following (num, user_id, following_count, FOLLOWING_ID)
---values (SEQ_FOLLOWING.nextval, 'tester1', 1, 'tester');
 
 select * from following;
 
@@ -733,9 +640,6 @@ COMMENT ON COLUMN FOLLOWER.follower_COUNT IS '팔로워 수';
 
 create sequence seq_follower;
 --drop sequence seq_follower;
-
---insert into follower (num, user_id, follower_count, FOLLOWER_ID)
---values (SEQ_FOLLOWER.nextval, 'tester1',1,'TESTER');
 
 select * from follower;
 
@@ -778,9 +682,6 @@ COMMENT ON COLUMN community_BOARD.GOOD_COUNT IS '좋아요';
 create sequence seq_community_board;
 --drop sequence seq_community_board;
 
---insert into community_board (num, title, USER_ID, content,SAVE_NAME, VIEW_COUNT, GOOD_COUNT)
---values (seq_community_board.nextval, '테스트 제목','tester', '테스트 내용', 'reviewimg.png',5,5);
-
 select * from community_board;
 
 ---------------------alert
@@ -804,9 +705,6 @@ COMMENT ON COLUMN ALERT.USER_ID IS '받는사람';
 
 create sequence seq_alert;
 --drop sequence seq_alert;
-
---insert into alert (num, user_id, alert_content) 
---values (seq_alert.nextval, 'tester1', '이 게시글에 댓글이 달렸어요!');
 
 select * from alert;
 
@@ -920,9 +818,6 @@ COMMENT ON COLUMN MESSAGE.READ_YN IS '읽음표시';
 
 create sequence seq_message;
 --drop sequence seq_message;
-
---insert into message (num, user_id, gubun, msg_title, receiver_id, create_date, msg_content, sender_id, read_yn)
---values (seq_message.nextval, 'tester', 0, '안녕하세여??', 'tester', '2023-06-29', '오늘비가옴하늘이어두컴컴', 'tester1', 1);
 
 select * from message;
 
