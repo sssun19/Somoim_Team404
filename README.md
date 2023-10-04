@@ -7,9 +7,10 @@
 비밀번호 : hi111
 ```
 
- 브랜치 스위치
+* oracle user
 ```ruby
-git checkout 브랜치명
+oracle.USER=ONANDOFF
+oracle.PASSWORD=hi123456
 ```
 
 
