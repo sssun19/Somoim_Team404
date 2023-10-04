@@ -26,6 +26,23 @@ ADD (BIRTHDAY DATE NOT NULL);
 
 COMMENT ON COLUMN USERINFO.BIRTHDAY IS '생년월일';
 
+ALTER TABLE USERINFO 
+ADD (SOM_TITLE VARCHAR2(2000) );
+
+ALTER TABLE USERINFO
+ADD CONSTRAINT USERINFO_FK1 FOREIGN KEY
+(
+  SOM_TITLE 
+)
+REFERENCES SOMOIM
+(
+  SOM_TITLE 
+)
+ENABLE;
+
+COMMENT ON COLUMN USERINFO.SOM_TITLE IS '해당 유저가 가입한 소모임';
+
+
 COMMENT ON COLUMN USERINFO.NUM IS 'pk'; 
 COMMENT ON COLUMN USERINFO.USER_ID IS '아이디'; 
 COMMENT ON COLUMN USERINFO.PW IS '비밀번호'; 
@@ -35,6 +52,10 @@ COMMENT ON COLUMN USERINFO.SAVE_NAME IS '프로필사진명';
 COMMENT ON COLUMN USERINFO.MSG IS '쪽지'; 
 COMMENT ON COLUMN USERINFO.ALERT IS '알림'; 
 COMMENT ON COLUMN USERINFO.POINT IS '포인트';  
+ALTER TABLE USERINFO 
+ADD (INTEREST VARCHAR2(100) DEFAULT '(해당사항 없음)' NOT NULL);
+
+COMMENT ON COLUMN USERINFO.INTEREST IS '관심 태그';
 --drop table userinfo; 
 
 create sequence seq_userinfo;
@@ -43,6 +64,32 @@ create sequence seq_userinfo;
 insert into userinfo (num, user_id, pw, name, email, point, birthday) 
 values (seq_userinfo.nextval, 'tester', 'hi111', 'kim12', 'ddjsjdf@naver.com', 300, sysdate); 
 select * from userinfo where user_id = 'tester' and pw = 'hi111';
+
+insert into userinfo (num, user_id, pw, name, email, birthday)
+values (seq_userinfo.nextval, 'tester1', 'hi111', 'park1134', 'parkeeda@google.com', sysdate);
+
+insert into userinfo (num, user_id, pw, name, email, birthday)
+values (seq_userinfo.nextval, 'admin', 'hi111', 'park1134', 'parkeeda@google.com', sysdate);
+
+insert into userinfo (num, user_id, pw, name, email, birthday, save_name)
+values (seq_userinfo.nextval, 'sssun19', 'hi111', 'kim', 'djdjdj@google.com', sysdate, '스크린샷 2023-06-17 135449');
+
+select * from userinfo where user_id='admin2';
+
+select somoim_num from somoim_member where user_id='tester1';
+select somoim_num from somoim_member a join somoim b on a.somoim_num=b.num where user_id='tester1';
+select * from somoim_member a join somoim b on a.somoim_num=b.num where somoim_num=51;
+select som_title from userinfo where user_id='tester1';
+update userinfo set som_title=som_title||'/안녕?' where user_id='admin2';
+select * from userinfo where som_title like '%강아지사진%';
+select save_name from somoim where som_title like '%강아지사진%';
+select * from somoim a join somoim_member b on a.som_title=b.som_title where user_id='dev_s';
+select save_name from somoim_member where user_id='dev_s';
+select save_name from somoim_member where user_id='tester1';
+select * from somoim_member where user_id='tester1' and somoim_num=68;
+update userinfo set name='뻥카지롱', pw='hi12' where user_id='tester1';
+select * from userinfo where user_id='tester1';
+delete from somoim where num=86;
 --
 --insert into userinfo (num, user_id, pw, name, email, point) 
 --values (seq_userinfo.nextval, 'tester1', 'hi111', 'kim55', 'aaxcvz@naver.com', 300); 
@@ -50,6 +97,59 @@ select * from userinfo where user_id = 'tester' and pw = 'hi111';
 --select * from userinfo; 
 --
 --delete from userinfo where num=2;
+
+------------point
+CREATE TABLE POINT 
+(
+  USER_ID VARCHAR2(20 BYTE) NOT NULL 
+, POINT VARCHAR2(20 BYTE) 
+, ITEM VARCHAR2(20 BYTE) 
+, CASH VARCHAR2(20 BYTE) 
+, CATEGORY VARCHAR2(20 BYTE) 
+, CONSTRAINT POINT_PK PRIMARY KEY 
+  (
+    USER_ID 
+  )
+  USING INDEX 
+  (
+      CREATE UNIQUE INDEX POINT_PK ON POINT (USER_ID ASC) 
+      LOGGING 
+      TABLESPACE SYSTEM 
+      PCTFREE 10 
+      INITRANS 2 
+      STORAGE 
+      ( 
+        INITIAL 65536 
+        NEXT 1048576 
+        MINEXTENTS 1 
+        MAXEXTENTS UNLIMITED 
+        FREELISTS 1 
+        FREELIST GROUPS 1 
+        BUFFER_POOL DEFAULT 
+      ) 
+      NOPARALLEL 
+  )
+  ENABLE 
+) 
+LOGGING 
+TABLESPACE SYSTEM 
+PCTFREE 10 
+PCTUSED 40 
+INITRANS 1 
+STORAGE 
+( 
+  INITIAL 65536 
+  NEXT 1048576 
+  MINEXTENTS 1 
+  MAXEXTENTS UNLIMITED 
+  FREELISTS 1 
+  FREELIST GROUPS 1 
+  BUFFER_POOL DEFAULT 
+) 
+NOPARALLEL;
+
+
+
 --------------------------myfeed 
 CREATE TABLE MYFEED (  
 NUM NUMBER NOT NULL , 
@@ -117,6 +217,28 @@ ADD (SAVE_NAME VARCHAR2(200) DEFAULT '0112.png' NOT NULL);
 
 COMMENT ON COLUMN SOMOIM.SAVE_NAME IS '소모임 대표사진';
 
+ALTER TABLE SOMOIM RENAME COLUMN SAVE_NAME TO SOMOIM_IMG;
+
+ALTER TABLE SOMOIM 
+ADD (SOMOIM_MASTER VARCHAR2(100) NOT NULL);
+
+ALTER TABLE SOMOIM
+ADD CONSTRAINT SOMOIM_FK1 FOREIGN KEY
+(
+  SOMOIM_MASTER 
+)
+REFERENCES USERINFO
+(
+  USER_ID 
+)
+ENABLE;
+
+COMMENT ON COLUMN SOMOIM.SOMOIM_MASTER IS '모임장 아이디';
+
+ALTER TABLE SOMOIM_MEMBER 
+DROP CONSTRAINT SOMOIM_MEMBER_FK3;
+
+
 --drop table somoim; 
 
 create sequence seq_somoim; 
@@ -138,6 +260,7 @@ select * from somoim where som_title like 'ㅇ' and category='야구';
 
 
 select * from somoim;
+
 
 
 ----------------------somoim_member
@@ -214,6 +337,8 @@ create sequence seq_somoim_member;
 
 select * from somoim_member;
 
+select * from userinfo a join somoim_member b on a.user_id=b.user_id where b.somoim_num=40;
+select save_name from userinfo where user_id='admin1';
 
 ----------------------------somoim_question_vote
 CREATE TABLE SOMOIM_QUESTION_VOTE ( 
@@ -450,6 +575,7 @@ MONEY NUMBER,
 SOM_MEMBER_NUM NUMBER NOT NULL, 
 PARTICIPANT VARCHAR2(2000 BYTE) , 
 PARTICIPANT_COUNT NUMBER,
+SOMOIM_NUM NUMBER , 
 CONSTRAINT SOMOIM_SCHEDULE_PK PRIMARY KEY  (NUM)  ENABLE ); 
  
 ALTER TABLE SOMOIM_SCHEDULE 
@@ -463,6 +589,11 @@ REFERENCES SOMOIM_MEMBER
 ) 
 ENABLE;
 
+ALTER TABLE SOMOIM_SCHEDULE 
+ADD (MAX_PARTICIPANT NUMBER NOT NULL);
+
+COMMENT ON COLUMN SOMOIM_SCHEDULE.MAX_PARTICIPANT IS '해당 일정 최대정원';
+
 
 COMMENT ON COLUMN SOMOIM_SCHEDULE.NUM IS 'pk'; 
 COMMENT ON COLUMN SOMOIM_SCHEDULE.SCHEDULE_DATE IS '일정 날짜'; 
@@ -473,6 +604,7 @@ COMMENT ON COLUMN SOMOIM_SCHEDULE.MONEY IS '참가비'; -- 삭제하기로 함, 
 COMMENT ON COLUMN SOMOIM_SCHEDULE.SOM_MEMBER_NUM IS '일정 작성자 고유번호';
 COMMENT ON COLUMN SOMOIM_SCHEDULE.PARTICIPANT IS '참가자 목록';
 COMMENT ON COLUMN SOMOIM_SCHEDULE.PARTICIPANT_COUNT IS '참가자 수';
+COMMENT ON COLUMN SOMOIM_SCHEDULE.SOMOIM_NUM IS '해당 소모임 고유번호';
 
 --drop table somoim_schedule;
 
@@ -835,3 +967,184 @@ select * from cs_bug;
 --insert into cs_bug (num, user_id, title, content) 
 --values (seq_cs_bug.nextval, 'tester', 'ddd', 'dddd');
 
+CREATE TABLE SOMOIM_BOARD_COMMENTS
+(
+  NUM NUMBER NOT NULL
+, SOM_MEMBER_NUM NUMBER NOT NULL
+, CONTENT VARCHAR2(2000 BYTE) NOT NULL
+, WRITE_DATE DATE DEFAULT sysdate NOT NULL
+, GOOD_COUNT NUMBER DEFAULT 0 NOT NULL
+, SOM_BOARD_NUM NUMBER DEFAULT NULL NOT NULL
+, PARENT_COM NUMBER DEFAULT 0 NOT NULL
+, SOM_COMMENT_DEPTH NUMBER DEFAULT 0 NOT NULL
+, SOMOIM_NUM NUMBER
+, CONSTRAINT SOMOIM_BOARD_COMMENTS_PK PRIMARY KEY
+  (
+    NUM
+  )
+  USING INDEX
+  (
+      CREATE UNIQUE INDEX SOMOIM_BOARD_COMMENTS_PK ON SOMOIM_BOARD_COMMENTS (NUM ASC)
+      LOGGING
+      TABLESPACE SYSTEM
+      PCTFREE 10
+      INITRANS 2
+      STORAGE
+      (
+        INITIAL 65536
+        NEXT 1048576
+        MINEXTENTS 1
+        MAXEXTENTS UNLIMITED
+        FREELISTS 1
+        FREELIST GROUPS 1
+        BUFFER_POOL DEFAULT
+      )
+      NOPARALLEL
+  )
+  ENABLE
+)
+LOGGING
+TABLESPACE SYSTEM
+PCTFREE 10
+PCTUSED 40
+INITRANS 1
+STORAGE
+(
+  INITIAL 65536
+  NEXT 1048576
+  MINEXTENTS 1
+  MAXEXTENTS UNLIMITED
+  FREELISTS 1
+  FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT
+)
+NOPARALLEL;
+ALTER TABLE SOMOIM_BOARD_COMMENTS
+ADD CONSTRAINT SOMOIM_BOARD_COMMENTS_FK1 FOREIGN KEY
+(
+  SOM_BOARD_NUM
+)
+REFERENCES SOMOIM_BOARD
+(
+  NUM
+)
+ENABLE;
+ALTER TABLE SOMOIM_BOARD_COMMENTS
+ADD CONSTRAINT SOMOIM_BOARD_COMMENTS_FK2 FOREIGN KEY
+(
+  SOM_MEMBER_NUM
+)
+REFERENCES SOMOIM_MEMBER
+(
+  NUM
+)
+ENABLE;
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.NUM IS 'PK';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.SOM_MEMBER_NUM IS '댓글 작성자 고유번호';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.CONTENT IS '댓글 내용';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.WRITE_DATE IS '댓글 작성 날짜';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.GOOD_COUNT IS '좋아요';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.SOM_BOARD_NUM IS '게시글 번호';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.PARENT_COM IS '부모 댓글 num';
+COMMENT ON COLUMN SOMOIM_BOARD_COMMENTS.SOM_COMMENT_DEPTH IS '댓글 대댓글 구분';
+
+
+--select * from somoim_member where user_id='tester' and somoim_num=40;
+
+
+CREATE TABLE EVENTS
+(
+  USER_ID VARCHAR2(50 BYTE) NOT NULL
+, TITLE VARCHAR2(100 BYTE) NOT NULL
+, NUM VARCHAR2(20 BYTE) NOT NULL
+, CONTENT VARCHAR2(1000 BYTE) NOT NULL
+, EVENT_WDATE DATE DEFAULT sysdate NOT NULL
+, SAVE_NAME VARCHAR2(50 BYTE) DEFAULT 123123 NOT NULL
+, START_EVENTS DATE
+, END_DATE DATE
+, WINNER NUMBER DEFAULT 0
+, EVENT_TARGET VARCHAR2(100 BYTE)
+, PRESENT VARCHAR2(100 BYTE)
+, CONSTRAINT EVENTS_PK PRIMARY KEY
+  (
+    NUM
+  )
+  USING INDEX
+  (
+      CREATE UNIQUE INDEX EVENTS_PK ON EVENTS (NUM ASC)
+      LOGGING
+      TABLESPACE SYSTEM
+      PCTFREE 10
+      INITRANS 2
+      STORAGE
+      (
+        INITIAL 65536
+        NEXT 1048576
+        MINEXTENTS 1
+        MAXEXTENTS UNLIMITED
+        FREELISTS 1
+        FREELIST GROUPS 1
+        BUFFER_POOL DEFAULT
+      )
+      NOPARALLEL
+  )
+  ENABLE
+)
+LOGGING
+TABLESPACE SYSTEM
+PCTFREE 10
+PCTUSED 40
+INITRANS 1
+STORAGE
+(
+  INITIAL 65536
+  NEXT 1048576
+  MINEXTENTS 1
+  MAXEXTENTS UNLIMITED
+  FREELISTS 1
+  FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT
+)
+NOPARALLEL;
+create sequence seq_events;
+COMMENT ON COLUMN EVENTS.USER_ID IS '작성자 아이디';
+COMMENT ON COLUMN EVENTS.TITLE IS '공지 제목';
+COMMENT ON COLUMN EVENTS.NUM IS 'pk';
+COMMENT ON COLUMN EVENTS.CONTENT IS '공지 내용';
+COMMENT ON COLUMN EVENTS.EVENT_WDATE IS '등록 날짜';
+COMMENT ON COLUMN EVENTS.SAVE_NAME IS '등록 사진';
+COMMENT ON COLUMN EVENTS.START_EVENTS IS '이벤트 시작 일시';
+COMMENT ON COLUMN EVENTS.END_DATE IS '이벤트 종료 일시';
+COMMENT ON COLUMN EVENTS.WINNER IS '당첨 인원';
+COMMENT ON COLUMN EVENTS.EVENT_TARGET IS '이벤트 대상';
+COMMENT ON COLUMN EVENTS.PRESENT IS '당첨 상품';
+
+
+--------------------------------------------------------
+--  DDL for Table GOOD_COUNT_LIST
+--------------------------------------------------------
+
+  CREATE TABLE "ONANDOFF"."GOOD_COUNT_LIST" 
+   (   "USER_ID" VARCHAR2(200 BYTE), 
+   "LIST_NUM" NUMBER, 
+   "NUM" NUMBER, 
+   "GOOD_COUNT" NUMBER DEFAULT 1
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table GOOD_COUNT_LIST
+--------------------------------------------------------
+
+  ALTER TABLE "ONANDOFF"."GOOD_COUNT_LIST" MODIFY ("GOOD_COUNT" NOT NULL ENABLE);
+  ALTER TABLE "ONANDOFF"."GOOD_COUNT_LIST" MODIFY ("NUM" NOT NULL ENABLE);
+  ALTER TABLE "ONANDOFF"."GOOD_COUNT_LIST" MODIFY ("LIST_NUM" NOT NULL ENABLE);
+  ALTER TABLE "ONANDOFF"."GOOD_COUNT_LIST" MODIFY ("USER_ID" NOT NULL ENABLE);
+  
+  -------------------------------------------------------
+--  DDL for Sequence SEQ_GOOD_COUNT
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "ONANDOFF"."SEQ_GOOD_COUNT"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
