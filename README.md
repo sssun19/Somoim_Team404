@@ -89,12 +89,11 @@ $(function() {
 				<div class="moim_img" >
 					<div class="img_box">
 						<img src="resources/uploadimg/${vo.somoim_img}"></div>
-				<span>
+					<span>
 					<h1>${vo.som_title}</h1>
 					<p class="sub_tit">소셜링 📌 ${vo.area}</p>
 					<p class="sub_tit">⏱ ${vo.create_date }</p>
-				</span>
-
+					</span>
 				</div>
 			</a>
 		</li>
