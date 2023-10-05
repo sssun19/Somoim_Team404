@@ -163,8 +163,18 @@ title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동�
 카테고리를 선택하지 않고 키워드를 검색하면 sqlMapper 파일에서 #_NONCATEGORY 을 찾아가도록 구현했습니다. <br/>
 
 - AJAX 소모임 홈 화면에서 모임 일정 disp
-> 소모임 일정 테이블의 데이터를 조회해 현재 시간과 비교하여 아직 지나지 않은, 가장 가까운 일정만 홈 화면에 노출하는 로직입니다.
+> 소모임 일정 테이블의 데이터를 조회해 현재 시간과 비교하여 아직 지나지 않은, 가장 가까운 일정만 홈 화면에 노출하는 로직입니다.<br/>
+now 변수에 Date 클래스를 이용해 현재 시간을 할당하고 scheduleTime 변수에 data 로 받아온 소모임 일정들의 시간을 할당합니다.<br/>
+SOM_SCHEDULE_SELECTONE의 SQL 문은 다음과 같습니다.
 
+#### sqlMapper.xml
+```
+<select id="SOM_SCHEDULE_SELECTONE" resultType="test.com.moim.board.model.Somoim_ScheduleVO">
+	select * from somoim_schedule where somoim_num=#{somoim_num}
+</select>
+```
+
+#### ajax 로직
 ```
 $.ajax({
 	url: 'som_schedule_selectOne.do',
