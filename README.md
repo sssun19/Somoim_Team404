@@ -247,19 +247,149 @@ $.ajax({
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a0234e88-ca70-4414-a2cc-26d6098689e3)
 
+#### MemberVO
+````
+@Data
+public class MemberVO {
+	private int num;
+	private String user_id;
+	private Timestamp join_date;
+	private String position;
+	private String som_title;
+	private String save_name;
+	private int somoim_num;
+}
+````
+
 - max_member 칼럼으로 해당 모임 정원을 초과하면 가입할 수 없도록 처리하는 로직을 구현했습니다.
+> 해당 소모임에 가입 중인 전체 모임원의 수를 값을 받아옵니다. 받아온 값과 소모임 생성 당시 설정한 최대 인원 수를 비교합니다.
 
+#### sqlMapper.xml
+```
+<select id="SOM_MAXMEMBER_CHECK" resultType="int">
+	select count(*) from somoim_member where som_title=#{som_title}
+</select>
+```
 
+#### ajax 로직
+```
+$("input[id='som_register']").on("click", function(){
+	$.ajax({
+		url:'som_maxmember_check.do',
+		data: {
+		som_title:'${vo2.som_title}'
+		},
+		success : function(response){
+			console.log('response......:', response);
+
+		if (response >= ${vo2.max_member}) {
+			alert('가입 실패: 소모임 인원이 초과되었습니다.    모임 정원:${vo2.max_member} 명'); // max_member는 서버에서 설정한 최대 인원 수
+		} else {
+			$.ajax({
+				url:'som_member_insertOK.do',
+				method:'POST',
+				data: {
+					user_id:'${user_id}',
+					num:${vo2.num},
+					som_title:'${vo2.som_title}',
+					save_name:'${uvo2.save_name}'
+				},
+				success : function(response) {
+					console.log('ajax successed...');
+					console.log('response : ', response);
+				
+					if(response==='OK') {
+						alert('가입 완료되었습니다.');
+						location.reload(); //가입이 완료되면 페이지를 새로고침하여 홈 페이지에 자신의 프로필 사진이 뜰 수 있도록 함.
+					} else {
+						alert('가입 실패: 이미 가입한 소모임입니다.');
+					}
+				},
+				error : function(xhr, status, error){
+					console.log('xhr.status : ', xhr.status);
+				}
+			});//end ajax
+		}
+	},
+	error : function(xhr, status, error){
+		console.log('xhr.status : ', xhr.status);
+		}
+	});//end ajax..
+});//end click
+```
 
 
 **myfeed 테이블**
 
-
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a94a7419-b49c-4de8-9b14-af860d579edb)
 
+#### myfeedVO
+````
+@Data
+public class MyfeedVO {
 
+	private int num;
+	private String user_id;
+	private String save_name;
+	private int good_count;
+	private int hate_count;
+	private String introduce;
 
+}
+````
 
+- introduce 칼럼으로 나를 소개할 수 있는 피드를 구현해 보았습니다.
+
+#### sqlMapper.xml
+
+#### 버튼 클릭 시 javascript
+````
+function myfeed_update() {
+	console.log('눌렀다!');
+
+	// li 태그 가져오기
+	let liElement = document.getElementById("letmeintroduce");
+	// input 태그 생성
+	let inputElement = document.createElement("input");
+
+	inputElement.type = "text";
+	inputElement.value = liElement.innerText;
+	inputElement.id = "introduce";
+
+	// li <-> input
+	liElement.parentNode.replaceChild(inputElement, liElement);
+	let inputValue = document.getElementById("introduce");
+
+	$("#updatebutton").show();
+}
+````
+> 버튼을 누르면 input 태그를 생성하고 기존의 li 태그와 교체하는 작업입니다.<br/>
+아직 웹 페이지 상 생성되지 않은 input 태그를 li 태그와 교체해 수정한 자기소개 텍스트 데이터가 화면상으로 노출됩니다.
+
+#### ajax 로직
+````
+function myfeed_updateOK() {
+	console.log('눌렸다');
+
+	let updatedIntroduce = $('#introduce').val();
+
+	$.ajax({
+			url: 'myfeed_feedupdate.do',
+			data: {
+					user_id: '${param.user_id}',
+					introduce: updatedIntroduce
+			},
+			success: function(response) {
+					console.log('ajax successed...:', response);
+					$('#letmeintroduce').text(updatedIntroduce);
+					location.reload();
+			},
+			error: function(xhr, status, error) {
+					console.log('xhr.status : ', xhr.status);
+			}
+	});
+}
+````
 
 
 
