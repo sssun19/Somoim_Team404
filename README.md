@@ -50,7 +50,7 @@
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/92f787a9-faeb-42bb-9057-36f5cf5a4f13)
 
 - som_title 칼럼에 UK 제약조건을 걸어 소모임 이름으로 중복 데이터가 들어오는 것을 방지했습니다.<br/>
-- category 를 구분해 소모임 전체 조회 페이지에서 카테고리별 검색이 가능하도록 구현했습니다.<br/>
+- category 를 구분해 소모임 페이지에서 카테고리별 조회가 가능하도록 구현했습니다.<br/>
  해당 로직은 jsp 파일에서 AJAX 비동기 통신을 이용했습니다.
 
 ```
@@ -58,7 +58,7 @@ $(function() {
    $("input[name='category']").on('click', function() {
       console.log("onload...");
       var category = $(this).val();
-      console.log($(this).val());
+
       $.ajax({
          url : 'somz_selectAll.do',
          method:'GET',
@@ -70,7 +70,6 @@ $(function() {
             console.log('data', data);
 
             $('body').html(data);
-            $('.paging').hide();
          },
          error : function(xhr, status, error){
             console.log('xhr.status : ', xhr.status);
@@ -78,8 +77,35 @@ $(function() {
       });//end ajax
 });//end click
 
+....
+
+<c:forEach var="vo" items="${viewAll}">
+	<c:if test="${vo.category eq param.category }">
+		<li style="border: 1px solid lightgray; border-radius: 5%; text-align: center; display: flex; justify-content: center; align-items: center;">
+			<a href="som_selectOne.do?num=${vo.num}">
+				<input type="hidden" value="${vo.num}">
+				<input type="hidden" value="${vo.create_date}">
+				<input type="hidden" value="${vo.category}">
+				<div class="moim_img" >
+					<div class="img_box">
+						<img src="resources/uploadimg/${vo.somoim_img}"></div>
+				<span>
+					<h1>${vo.som_title}</h1>
+					<p class="sub_tit">소셜링 📌 ${vo.area}</p>
+					<p class="sub_tit">⏱ ${vo.create_date }</p>
+				</span>
+
+				</div>
+			</a>
+		</li>
+	</c:if>
+</c:forEach>
 ```
 
+> controller 에서 model.addAttribute 메서드를 통해 "viewAll" 이라는 변수로 jsp 파일에 넘겨주었습니다.<br/>
+> jsp 파일에서는 해당 값을 받아와 forEach 구문으로 데이터를 조회해 파라미터로 넘어온 카테고리 값(선택한 카테고리 값)과 일치하는 카테고리의 소모임이 있다면 조회할 수 있도록 구현했습니다.
+
+<br/><br/>
 - som_title 칼럼을 이용해 select 조회로 키워드 검색 기능을 구현했습니다.
 
 #### controller
