@@ -272,6 +272,7 @@ $.ajax({
 	}
 });//end ajax...
 ```
+---
 
 **somoim_member 테이블**
 
@@ -293,7 +294,7 @@ public class MemberVO {
 ````
 
 - max_member 칼럼으로 해당 모임 정원을 초과하면 가입할 수 없도록 처리하는 로직을 구현했습니다.
-> 해당 소모임에 가입 중인 전체 모임원의 수를 값을 받아옵니다. 받아온 값과 소모임 생성 당시 설정한 최대 인원 수를 비교합니다.
+> 해당 소모임에 가입 중인 모임원 명수를 받아옵니다. 받아온 값과 소모임 생성 당시 설정한 최대 인원 수를 비교합니다.
 
 #### sqlMapper.xml
 ```
@@ -353,6 +354,8 @@ $("input[id='som_register']").on("click", function(){
 아주 단순한 코드 location.reload() 한 줄 만으로 사용자의 불편을 해결할 수 있다는 것이 신기하고도 재밌게 느껴졌습니다.<br/>
 이와 같이 사용자의 불편을 해결해 줄 수 있는 개발자가 되고 싶다고 생각했습니다.
 
+---
+
 **myfeed 테이블**
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a94a7419-b49c-4de8-9b14-af860d579edb)
@@ -371,6 +374,48 @@ public class MyfeedVO {
 
 }
 ````
+
+- 내 피드 조회하기
+
+### controller
+```
+@RequestMapping(value = "/myfeed_feed_mine.do", method = RequestMethod.GET)
+public String myfeed_feed_mine(Model model) {
+	log.info("myfeed_feed_mine.do().....");
+	String user_id = (String) session.getAttribute("user_id");
+	MyfeedVO feedVo = new MyfeedVO();
+	feedVo.setUser_id(user_id);
+
+	MyfeedVO myfeedVo = myfeedService.selectOne(feedVo);
+
+
+	if(myfeedVo==null) {
+		log.info("null");
+		int result = myfeedService.insert(user_id);
+		log.info("result : {}", result);
+	}
+
+	log.info("myfeedVo....{}", myfeedVo);
+
+	model.addAttribute("myfeedVo", myfeedVo);
+	return "myfeed/myfeed_feed_mine";
+}
+```
+
+### sqlMapper.xml
+```
+<select id="MYFEED_SELECTONE"
+		resultType="test.com.moim.myfeed.model.MyfeedVO">
+	select * from myfeed where user_id=#{user_id}
+</select>
+
+<insert id="MYFEED_INSERT"
+		parameterType="test.com.moim.myfeed.model.MyfeedVO">
+	insert into myfeed (num, user_id) values (seq_myfeed.nextval, #{user_id})
+</insert>
+```
+
+> Myfeed 테이블이 존재하지 않는 사용자를 만나면 MYFEED_INSERT 매퍼로 insert query를 실행합니다.
 
 - introduce 칼럼으로 나를 소개할 수 있는 피드를 구현해 보았습니다.
 
@@ -428,6 +473,168 @@ function myfeed_updateOK() {
 로그를 군데군데 찍어 서버에서 입력한 텍스트 값을 받아오기는 하는지, DB 상으로 수정은 됐는지 등을 확인하고도 문제가 해결이 되지 않아 결국 강사님께 도움을 청했습니다. <br/>
 답은 parentNode.replaceChild() 에 있었습니다. 부모 노드에서 li 태그를 찾아 새로 만든 input 태그와 수정해야 한다는 사실을 깨달았습니다. 검색이나 강사님의 도움이 없었다면 혼자서 해결할 수 없는 문제였던 것 같습니다. 이 계기로 데이터 구조나 node 에 관해 많은 관심이 생겼습니다.
 
+
+### 기타 로직
+1. jquery로 파라미터 아이디와 로그인 아이디 조회하기
+```
+<script type="text/javascript">
+	if('${param.user_id}'==='${vo2.user_id}') {
+			console.log('내가 피드 주인!');
+			$('#feed_mine').show();
+			$('#feed_notmine').hide();
+	} else {
+			console.log('나는 구경꾼!');
+			$('#feed_notmine').show();
+			$('#feed_mine').hide();
+	}
+</script>
+```
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/6a791224-f481-4683-b025-ecffdc79a129)
+
+<br/>
+내 피드로 들어갔을 경우
+<br/>
+
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/cdaa0432-4c1e-46bb-9852-ab188c35e33d)
+
+<br/>
+다른 유저의 피드로 들어갔을 경우
+
+2. 마이페이지 나의 활동 조회
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/9d063481-0535-4a5f-8ba4-18d2e0b3b803)
+<br/>
+
+#### Restcontroller
+```
+@ResponseBody
+@RequestMapping(value = "/Rest_Mypage_myactivity_boardbyme.do", method = RequestMethod.GET)
+public List<Somoim_BoardVO> Rest_Mypage_myactivity_boardbyme(HttpServletRequest request) {
+	log.info("Mypage_myactivity_boardbyme.do....{}");
+	String user_id= request.getParameter("user_id");
+	Somoim_BoardVO vo = new Somoim_BoardVO();
+	vo.setUser_id(user_id);
+	
+	List<Somoim_BoardVO> vos = service.mypageMyactivity_boardbyme(vo);
+		
+	return vos;
+}
+```
+
+#### sqlMapper.xml
+````
+<select id="MYPAGE_BOARDBYME"
+	resultType="test.com.moim.board.model.Somoim_BoardVO">
+	select * from somoim_board a join somoim_member b on a.som_member_num=b.num 
+	join somoim c on a.somoim_num=c.num where user_id=#{user_id}
+</select>
+````
+
+> somoim_board 테이블과 somoim_member 테이블을 select join 문으로 동시에 조회<br/>
+user_id 칼럼으로 해당 사용자가 작성한 모든 소모임의 게시글을 조회할 수 있었습니다.
+
+
+#### ajax 로직
+```
+$(function(){
+	console.log('onload........');
+	
+	$.ajax({
+		url:'Rest_Mypage_myactivity_boardbyme.do',
+		data: {
+				user_id:'${param.user_id}'
+			},
+		success: function(vos){
+			console.log('response.......:{}', vos);
+			
+			let tag_vos = '';
+			
+			$.each(vos, function(index, vo){
+				console.log(index, vo);
+
+				// Unix timestamp를 Date 객체로 변환
+					const date = new Date(vo.write_date);
+
+					// 날짜를 한국 시간대로 변환하여 "yyyy.MM.dd" 형식으로 표시
+					const formattedDate = date.toLocaleString("ko-KR", {
+						timeZone: "Asia/Seoul",
+						year: "numeric",
+						month: "2-digit",
+						day: "2-digit",
+					});
+
+				tag_vos += `
+				 //생략
+				`;
+				
+			});
+			$('#selectComm').html(tag_vos);
+		},
+		error : function(xhr, status, error){
+			console.log('xhr.status : ', xhr.status);
+		}
+	});
+});
+```
+
+3. 내가 만든 소모임 조회
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/366effc3-dc12-4cf7-9e19-ca58ff3cae87)
+<br/>
+내가 가입한 모든 소모임
+<br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/691dcfc3-9663-46e7-a702-496ec6b1552f)
+<br/>
+내가 만든 소모임 버튼 클릭 시 조회 가능
+
+#### controller
+```
+@ResponseBody
+@RequestMapping(value = "/somoimbyme_selectAll.do", method = RequestMethod.GET)
+	public List<SomoimVO> somoimbyme_selectAll(String user_id){
+		log.info("user_id : {}", user_id);
+
+		List<SomoimVO> vos = service.somoimbyme_selectAll(user_id);
+		return vos;
+}
+```
+
+#### sqlMapper.xml
+```
+<select id="SOMOIMBYME_SELECT_ALL"
+	resultType="test.com.moim.somoim.model.SomoimVO">
+	select * from somoim where somoim_master = #{user_id}
+</select>
+```
+
+#### ajax 로직
+```
+function somoimbyme_selectAll(){
+	$.ajax({
+		url : 'somoimbyme_selectAll.do',
+		data : {
+			user_id : '${user_id}'
+		},
+		success : function(vos) {
+			console.log('ajax successed... somoimbyme : ', vos);
+			
+			let tag_vos = '';
+
+			$.each(vos,function(index,vo){
+				console.log(index,vo);
+				console.log('somoim_img : ', vo.somoim_img);
+				
+				tag_vos += `
+						//생략
+					`;
+			});
+
+			$('#img_somoim').html(tag_vos);	
+		},
+		error : function(xhr,status,error){
+			console.log('xhr.status:', xhr.status);
+		}
+	});
+}
+```
 
 ---
 ## 마무리
