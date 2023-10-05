@@ -575,15 +575,16 @@ $(function(){
 });
 ```
 
-3. 내가 만든 소모임 조회
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/366effc3-dc12-4cf7-9e19-ca58ff3cae87)
-<br/>
-내가 가입한 모든 소모임
-<br/>
+3. 소모임 조회
 
+가입한 모든 소모임 조회<br/><br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/366effc3-dc12-4cf7-9e19-ca58ff3cae87)
+<br/><br/>
+
+내가 만든 소모임 보기 버튼 클릭 시
+<br/><br/>
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/691dcfc3-9663-46e7-a702-496ec6b1552f)
-<br/>
-내가 만든 소모임 버튼 클릭 시 조회 가능
+
 
 #### controller
 ```
