@@ -162,7 +162,8 @@ public List<SomoimVO> searchList(String searchKey, String searchWord, String cat
 title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동시에 두 값을 전달하였습니다.<br/>
 카테고리를 선택하지 않고 키워드를 검색하면 sqlMapper 파일에서 #_NONCATEGORY 을 찾아가도록 구현했습니다. <br/>
 
-- 소모임 홈 화면에서 모임 일정 disp
+- AJAX 소모임 홈 화면에서 모임 일정 disp
+> 소모임 일정 테이블의 데이터를 조회해 현재 시간과 비교하여 아직 지나지 않은, 가장 가까운 일정만 홈 화면에 노출하는 로직입니다.
 
 ```
 $.ajax({
@@ -189,7 +190,7 @@ $.ajax({
 			closestSchedule = data;
 			closestTimeDiff = timeDiff;
 			}
-	});
+		});
 
 	if (closestSchedule) {
 		var schedule_selectOne = `
