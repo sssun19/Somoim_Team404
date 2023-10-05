@@ -7,11 +7,11 @@
 
 
 ### 테스트용 계정
-> 아이디 : tester
+> 아이디 : tester <br/>
 > 비밀번호 : hi111
 
 ### DB 유저 정보
-> oracle.USER=ONANDOFF
+> oracle.USER=ONANDOFF <br/>
 > oracle.PASSWORD=hi123456
 
 ### 기술 스택
@@ -49,9 +49,9 @@
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/92f787a9-faeb-42bb-9057-36f5cf5a4f13)
 
-> som_title 칼럼에 UK 제약조건을 걸어 소모임 이름으로 중복 데이터가 들어오는 것을 방지했습니다.<br/>
-> category 를 구분해 소모임 전체 조회 페이지에서 카테고리별 검색이 가능하도록 구현했습니다.<br/>
-> 해당 로직은 jsp 파일에서 AJAX 비동기 통신을 이용했습니다.
+- som_title 칼럼에 UK 제약조건을 걸어 소모임 이름으로 중복 데이터가 들어오는 것을 방지했습니다.<br/>
+- category 를 구분해 소모임 전체 조회 페이지에서 카테고리별 검색이 가능하도록 구현했습니다.<br/>
+ 해당 로직은 jsp 파일에서 AJAX 비동기 통신을 이용했습니다.
 
 ```
 $(function() {
@@ -80,6 +80,58 @@ $(function() {
 
 ```
 
+- som_title 칼럼을 이용해 select 조회로 키워드 검색 기능을 구현했습니다.
+
+#### controller
+
+```
+@RequestMapping(value = "/som_searchList.do", method = RequestMethod.GET)
+public String som_searchList(String searchKey, String searchWord, String category, Model model) {
+   List<SomoimVO> vos = service.searchList(searchKey, searchWord, category);
+   model.addAttribute("viewAll", vos);
+
+   return "board/som_selectAll2";
+}
+```
+
+#### DAOimpl
+```
+public List<SomoimVO> searchList(String searchKey, String searchWord, String category) {
+   log.info("searchList()...{}, {}", searchKey, searchWord);
+   log.info("searchList()...category : {}", category);
+
+   Map<String, String> map = new HashMap<String, String>();
+   map.put("searchWord",  "%"+searchWord+"%");
+   map.put("category", category);
+
+   if(searchKey.equals("소모임 이름")) {
+      if(category=="") {
+         return session.selectList("SOMOIM_SEARCH_LIST_TITLE_NONCATEGORY", "%"+searchWord+"%");
+      }
+			return session.selectList("SOMOIM_SEARCH_LIST_TITLE",map);
+		}
+   else {
+      if(category=="")
+         return session.selectList("SOMOIM_SEARCH_LIST_AREA_NONCATEGORY", "%"+searchWord+"%");
+      return session.selectList("SOMOIM_SEARCH_LIST_AREA",map);
+   }
+}
+```
+
+#### sqlMapper
+```
+<select id="SOMOIM_SEARCH_LIST_TITLE"
+   resultType="test.com.moim.somoim.model.SomoimVO"
+   parameterType="HashMap">
+   select * from somoim where som_title like #{searchWord}
+   and category=#{category} order by num desc
+</select>
+
+<select id="SOMOIM_SEARCH_LIST_TITLE_NONCATEGORY"
+   resultType="test.com.moim.somoim.model.SomoimVO">
+   select * from somoim where som_title like #{searchWord} order by num desc
+</select>
+```
 
 
 
