@@ -162,12 +162,83 @@ public List<SomoimVO> searchList(String searchKey, String searchWord, String cat
 title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동시에 두 값을 전달하였습니다.<br/>
 카테고리를 선택하지 않고 키워드를 검색하면 sqlMapper 파일에서 #_NONCATEGORY 을 찾아가도록 구현했습니다. <br/>
 
+- 소모임 홈 화면에서 모임 일정 disp
+
+```
+$.ajax({
+	url: 'som_schedule_selectOne.do',
+	data: {
+	somoim_num: ${param.num}
+	},
+	success: function(response) {
+		console.log('ajax successsed...response:', response);
+		var now = new Date();
+		console.log('현재 시각:', now); // 현재 시간 체크
+		var closestSchedule = null; // 가장 가까운 일정 저장할 변수 초기화
+		var closestTimeDiff = Infinity;
+
+		$.each(response, function(index, data) {
+			console.log(index, data);
+			
+			var scheduleTime = new Date(data.schedule_date + ' ' + data.schedule_time);
+			var timeDiff = scheduleTime - now;
+			console.log('시간 확인:', scheduleTime);
+			console.log('남은 시간:', timeDiff);
+
+			if (timeDiff >= 0 && timeDiff < closestTimeDiff) {
+			closestSchedule = data;
+			closestTimeDiff = timeDiff;
+			}
+	});
+
+	if (closestSchedule) {
+		var schedule_selectOne = `
+			<h1>일정</h1>
+			<div class="cal_detail">
+				<div class="detail_info">
+					<h1>06/17</h1>
+					<br>
+					<strong>\${closestSchedule.schedule_title}</strong>
+					<p>일시: \${closestSchedule.schedule_date} \${closestSchedule.schedule_time}</p>
+					<p>장소: \${closestSchedule.place}</p>
+					<p>회비: \${closestSchedule.money}</p>
+				</div>
+				<div class="detail_member">
+					<!-- 참석 멤버 목록 -->
+					<h1>참석 멤버</h1>
+					<ul>
+						<li>
+							<div class="round_box">
+								<i class="far fa-user"></i>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="detail_status">
+					<button type="button"><a href="join_schedule.do?somoim_num=${vo2.num}">참석</a></button>
+				</div>
+			</div>
+		`;
+
+		$('.join_cal').html(schedule_selectOne);
+	} else {
+			$('.join_cal').html('<p>가까운 일정이 없습니다.</p>');
+		}
+	},
+	error: function(xhr, status, error) {
+		console.log('xhr.status:', xhr.status);
+	}
+});//end ajax...
+```
+
 **somoim_member 테이블**
 
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a0234e88-ca70-4414-a2cc-26d6098689e3)
 
-> max_member 칼럼으로 해당 모임 정원을 초과하면 가입할 수 없도록 처리하는 로직을 구현했습니다.
+- max_member 칼럼으로 해당 모임 정원을 초과하면 가입할 수 없도록 처리하는 로직을 구현했습니다.
+
+
 
 
 **myfeed 테이블**
