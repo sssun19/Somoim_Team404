@@ -1,20 +1,17 @@
 # Somoim_Team404
 멀티캠퍼스 파이널 프로젝트
 
-* 테스트용 계정
+* info
 ```ruby
+테스트용 계정
 아이디 : tester
 비밀번호 : hi111
-```
 
-* oracle user
-```ruby
+DB 유저 정보
 oracle.USER=ONANDOFF
 oracle.PASSWORD=hi123456
-```
 
-* 맡은 파트
-```ruby
+맡은 파트
 전반적인 DB 테이블 설계
 
 somoim_member (소모임 가입, 탈퇴)
