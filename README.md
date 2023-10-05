@@ -7,12 +7,12 @@
 
 
 ### 테스트용 계정
-- 아이디 : tester
-- 비밀번호 : hi111
+> 아이디 : tester
+> 비밀번호 : hi111
 
 ### DB 유저 정보
-- oracle.USER=ONANDOFF
-- oracle.PASSWORD=hi123456
+> oracle.USER=ONANDOFF
+> oracle.PASSWORD=hi123456
 
 ### 기술 스택
 - Framework: **Spring Framework**
@@ -41,11 +41,46 @@
 ### DB 테이블 전체 구조
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/942359c6-0131-4f28-b43f-da84f2764f3a)
 
-#### 맡은 파트 테이블 구조
+
 **somoim 테이블**
 
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/f97be8ab-972a-4b7f-b0d9-d7b90f7cb4b6)
+
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/92f787a9-faeb-42bb-9057-36f5cf5a4f13)
+
+> som_title 칼럼에 UK 제약조건을 걸어 소모임 이름으로 중복 데이터가 들어오는 것을 방지했습니다.<br/>
+> category 를 구분해 소모임 전체 조회 페이지에서 카테고리별 검색이 가능하도록 구현했습니다.<br/>
+> 해당 로직은 jsp 파일에서 AJAX 비동기 통신을 이용했습니다.
+
+```
+$(function() {
+   $("input[name='category']").on('click', function() {
+      console.log("onload...");
+      var category = $(this).val();
+      console.log($(this).val());
+      $.ajax({
+         url : 'somz_selectAll.do',
+         method:'GET',
+         data : {
+            'category':category
+         },
+         success : function(data){
+            console.log('category', category);
+            console.log('data', data);
+
+            $('body').html(data);
+            $('.paging').hide();
+         },
+         error : function(xhr, status, error){
+            console.log('xhr.status : ', xhr.status);
+         }
+      });//end ajax
+});//end click
+
+```
+
+
 
 
 **somoim_member 테이블**
@@ -53,11 +88,15 @@
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a0234e88-ca70-4414-a2cc-26d6098689e3)
 
+> max_member 칼럼으로 해당 모임 정원을 초과하면 가입할 수 없도록 처리하는 로직을 구현했습니다.
+
 
 **myfeed 테이블**
 
 
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/a94a7419-b49c-4de8-9b14-af860d579edb)
+
+
 
 
 
