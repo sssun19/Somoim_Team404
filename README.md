@@ -1,7 +1,7 @@
 # Somoim_Team404
 멀티캠퍼스 파이널 프로젝트
 
-* info
+# info
 
 테스트용 계정
 아이디 : tester
