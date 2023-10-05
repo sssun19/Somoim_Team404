@@ -130,18 +130,18 @@ public List<SomoimVO> searchList(String searchKey, String searchWord, String cat
    map.put("searchWord",  "%"+searchWord+"%");
    map.put("category", category);
 
-   if(searchKey.equals("소모임 이름")) {
-      if(category=="") {
-         return session.selectList("SOMOIM_SEARCH_LIST_TITLE_NONCATEGORY", "%"+searchWord+"%");
-      }
-			return session.selectList("SOMOIM_SEARCH_LIST_TITLE",map);
+	if(searchKey.equals("소모임 이름")) {
+		if(category=="") {
+			return session.selectList("SOMOIM_SEARCH_LIST_TITLE_NONCATEGORY", "%"+searchWord+"%");
 		}
-   else {
-      if(category=="")
-         return session.selectList("SOMOIM_SEARCH_LIST_AREA_NONCATEGORY", "%"+searchWord+"%");
-      return session.selectList("SOMOIM_SEARCH_LIST_AREA",map);
-   }
-}
+		return session.selectList("SOMOIM_SEARCH_LIST_TITLE",map);
+		}
+		else {
+			if(category=="")
+				return session.selectList("SOMOIM_SEARCH_LIST_AREA_NONCATEGORY", "%"+searchWord+"%");
+			return session.selectList("SOMOIM_SEARCH_LIST_AREA",map);
+		}
+	}
 ```
 
 #### sqlMapper
@@ -159,7 +159,9 @@ public List<SomoimVO> searchList(String searchKey, String searchWord, String cat
 </select>
 ```
 
-
+> MyBatis 를 이용했기 때문에 sqlMapper 를 작성했습니다.<br/>
+title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동시에 두 값을 전달하였습니다.<br/>
+카테고리를 선택하지 않고 키워드를 검색하면 sqlMapper 파일에서 #_NONCATEGORY 을 찾아가도록 구현했습니다.
 
 **somoim_member 테이블**
 
