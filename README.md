@@ -36,7 +36,7 @@
 1. somoim_member (소모임 가입, 탈퇴)
 2. somoim (소모임 생성, 소모임 삭제, 소모임 전체보기, 카테고리 선택, 키워드 검색)
 3. mypage (마이페이지 조회, 개인정보 수정, 가입한 소모임 조회, 내가 생성한 소모임 조회)
-4. mypage_... (내가 누른 좋아요, 내가 단 댓글, 내가 쓴 게시글 조회)
+4. mypage_# (내가 누른 좋아요, 내가 단 댓글, 내가 쓴 게시글 조회)
 5. myfeed (자기소개 수정)
 
 
@@ -106,6 +106,7 @@ $(function() {
 
 > controller 에서 model.addAttribute 메서드를 통해 "viewAll" 이라는 변수로 jsp 파일에 넘겨주었습니다.<br/>
 > jsp 파일에서는 해당 값을 받아와 forEach 구문으로 데이터를 조회해 파라미터로 넘어온 카테고리 값(선택한 카테고리 값)과 일치하는 카테고리의 소모임이 있다면 조회할 수 있도록 구현했습니다.
+> 소모임 카테고리와 파라미터로 넘어온 카테고리를 비교하는 방법으로 jstl 을 선택했습니다. 프로젝트를 진행하는 기간이 길어지면서 로직이 엄청나게 길어졌고 jstl 문법으로 비교적 간결하고 간단하게 원하는 값을 받아올 수 있었기 때문입니다.
 
 <br/><br/>
 - som_title 칼럼을 이용해 select 조회로 키워드 검색 기능을 구현했습니다.
@@ -167,6 +168,8 @@ title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동�
 > 어떻게 해결할지 고민을 하다가 파라미터로 카테고리까지 같이 받아서 다중 if문으로 처리해 주기로 하였습니다.<br/>
 카테고리를 선택하지 않고 키워드를 검색하면 sqlMapper 파일에서 #_NONCATEGORY 을 찾아가도록 구현했습니다. <br/>
 
+<br/><br/>
+
 - AJAX 소모임 홈 화면에서 모임 일정 disp
 > 소모임 일정 테이블의 데이터를 조회해 현재 시간과 비교하여 아직 지나지 않은, 가장 가까운 일정만 홈 화면에 노출하는 로직입니다.<br/>
 now 변수에 Date 클래스를 이용해 현재 시간을 할당하고 scheduleTime 변수에 data 로 받아온 소모임 일정들의 시간을 할당합니다.<br/>
@@ -178,6 +181,28 @@ SOM_SCHEDULE_SELECTONE의 SQL 문은 다음과 같습니다.
 	select * from somoim_schedule where somoim_num=#{somoim_num}
 </select>
 ```
+
+#### controller
+````
+@ResponseBody
+@RequestMapping(value = "/som_schedule_selectOne.do", method = RequestMethod.GET)
+	public List<Somoim_ScheduleVO> som_schedule_SelectOne(Integer somoim_num, Model model) {
+		log.info("som_schedule_SelectOne.do().....somoim_num:{}", somoim_num);
+		Somoim_ScheduleVO vo = new Somoim_ScheduleVO();
+		vo.setSomoim_num(somoim_num);
+		
+		List<Somoim_ScheduleVO> vos = service.som_schedule_selectOne(vo);
+		log.info("======={}", vos);
+		
+		for (Somoim_ScheduleVO x : vos) {
+			log.info("place : {}",x.getPlace());
+			log.info(x.getSchedule_title());
+		}
+		
+		model.addAttribute("vos", vos);
+		return vos;
+}
+````
 
 #### ajax 로직
 ```
