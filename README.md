@@ -476,6 +476,15 @@ function myfeed_updateOK() {
 
 ### 기타 로직
 1. jquery로 파라미터 아이디와 로그인 아이디 조회하기
+
+내 피드로 들어갔을 경우
+<br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/6a791224-f481-4683-b025-ecffdc79a129)
+<br/>
+다른 유저의 피드로 들어갔을 경우
+<br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/cdaa0432-4c1e-46bb-9852-ab188c35e33d)
+
 ```
 <script type="text/javascript">
 	if('${param.user_id}'==='${vo2.user_id}') {
@@ -489,16 +498,6 @@ function myfeed_updateOK() {
 	}
 </script>
 ```
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/6a791224-f481-4683-b025-ecffdc79a129)
-
-<br/>
-내 피드로 들어갔을 경우
-<br/>
-
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/cdaa0432-4c1e-46bb-9852-ab188c35e33d)
-
-<br/>
-다른 유저의 피드로 들어갔을 경우
 
 2. 마이페이지 나의 활동 조회
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/9d063481-0535-4a5f-8ba4-18d2e0b3b803)
