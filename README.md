@@ -580,6 +580,7 @@ $(function(){
 <br/>
 내가 가입한 모든 소모임
 <br/>
+
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/691dcfc3-9663-46e7-a702-496ec6b1552f)
 <br/>
 내가 만든 소모임 버튼 클릭 시 조회 가능
