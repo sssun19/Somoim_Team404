@@ -1,0 +1,63 @@
+
+t
+java:S2293n"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ºöºıÿÿÿÿ
+p
+java:S2293´"YReplace the type specification in this constructor call with the diamond operator ("<>").(«üÎŒ
+e
+java:S1192™"NDefine a constant instead of duplicating this literal "ì•„ì´ìœ .png" 4 times.(“Ïİ˜
+^
+java:S1192="HDefine a constant instead of duplicating this literal "viewAll" 3 times.(¢ÛÀà
+c
+java:S1192G"HDefine a constant instead of duplicating this literal "user_id" 4 times.(¤Ï·ñşÿÿÿÿ
+f	java:S117I"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É§ô
+f	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰Éöä
+g	java:S117Ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É§ô
+U
+java:S1226á"?Introduce a new variable instead of reusing the parameter "vo".(Á³­1
+h	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ¨üšüÿÿÿÿ
+c
+java:S44885"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÎÌıÍøÿÿÿÿ
+Q	java:S125;"<This block of commented-out lines of code should be removed.(Ñ°›Ğ
+c	java:S100C"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹¸¤ò
+^
+java:S4488B"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(öõò®
+V	java:S125e"<This block of commented-out lines of code should be removed.(´³™ûÿÿÿÿ
+h	java:S100y"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı®¹Ûøÿÿÿÿ
+c
+java:S4488x"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¤ÕÂÀşÿÿÿÿ
+i	java:S100†"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëæÄ°ıÿÿÿÿ
+_
+java:S4488…"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÃÛâß
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Ã¿¦
+f
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(òš÷ëùÿÿÿÿ
+B
+java:S1075¥"&Remove this hard-coded path-delimiter.(×•Äûÿÿÿÿ
+W	java:S125ª"<This block of commented-out lines of code should be removed.(ú®»Æüÿÿÿÿ
+W	java:S125¸"<This block of commented-out lines of code should be removed.(øñÂõúÿÿÿÿ
+_
+java:S4488Ò"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Ï¯®š
+W	java:S125è"<This block of commented-out lines of code should be removed.(ÿñß‰ùÿÿÿÿ
+d	java:S100õ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á€Éˆ
+^
+java:S4488ô"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¾ÍÃY
+i	java:S100ƒ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÒÏÂ¡ùÿÿÿÿ
+`
+java:S4488‚"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ó’õ_
+B
+java:S1075˜"&Remove this hard-coded path-delimiter.(×•Äûÿÿÿÿ
+i	java:S100¬"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚²ñùÿÿÿÿ
+R
+java:S1854¹";Remove this useless assignment to local variable "message".(Ûû‚
+_
+java:S4488«"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¼ïÛÆ
+R	java:S125²"<This block of commented-out lines of code should be removed.(‹ûõ‹
+i	java:S100À"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹ö»ùÿÿÿÿ
+Q
+java:S1854Ì":Remove this useless assignment to local variable "result".(¨™Î¥
+f
+java:S4488¿"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ëîÌªøÿÿÿÿ
+B
+java:S1481Ì"+Remove this unused "result" local variable.(¨™Î¥
+E
+java:S1481Í")Remove this unused "path" local variable.(ö¹¡Èşÿÿÿÿ

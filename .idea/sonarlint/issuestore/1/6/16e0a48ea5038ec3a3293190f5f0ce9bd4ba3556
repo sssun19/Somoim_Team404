@@ -1,2 +1,5 @@
 
-QWeb:AvoidCommentedOutCodeCheckø"Remove this commented out code.(¹ôÿä8—•ø•—1
+VWeb:AvoidCommentedOutCodeCheckõ"Remove this commented out code.(Ä·ÒŞşÿÿÿÿ8Ã©ûõ¯1
+u%Web:ItemTagNotWithinContainerTagCheck‡"<Surround this <li> item tag by a <ul> or <ol> container one.(è¾Ûî8Ã©ûõ¯1
+NWeb:ImgWithoutAltCheck‹"%Add an "alt" attribute to this image.(‚28Ã©ûõ¯1
+QWeb:AvoidCommentedOutCodeCheck¹"Remove this commented out code.(¹ôÿä8—•ø•—1
