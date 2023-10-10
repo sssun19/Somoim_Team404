@@ -125,6 +125,21 @@ function connect() {
 }
 
 </script>
+
+<script>
+	$(document).ready( function(){
+			$('#btnSend').on('click', function(evt) {
+					evt.preventDefault();
+	
+					if (socket.readyState !== 1) return;
+					let msg = $('input#msg').val();
+					socket.send(msg);
+			});
+	
+			connect();
+	});
+</script>
+
 ```
 
 
