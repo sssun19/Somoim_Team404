@@ -680,9 +680,60 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ReplyEchoHandler extends TextWebSocketHandler {
 
+	@Override
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception { //connection 이 연결 됐을 때
+			System.out.println("afterConnectionEstablished:" + session);
+	}
+	
+	@Override
+	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception { //socket에 message를 보냈을 때
+
+	}
+
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception { //connection close 됐을 때
+
+	}
 }
 ```
-> 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 받기
+> 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 (이미지 전송을 원하면 BinaryWebSocketHandler 상속)<br/>
+
+- read.jsp
+```
+<script>
+const ws = new WebSocket("ws://localhost:3004/replyEcho?bno=1234");
+
+ws.onopen = function() {
+		console.log('Info: connection opened.');
+
+		function connect() {
+				console.log('connect success...');
+		}
+
+		setTimeout( function(){ connect(); }, 1000);
+
+		ws.onmessage = function (event) {
+				console.log(event.data+'\n');
+		};
+	};
+
+
+
+ws.onclose = function (event) { console.log('Info: connection closed.'); };
+ws.onerror = function(event) { console.log('Info: connection closed.'); };
+
+$('#btnSend').on('click', function(evt) {
+		evt.preventDefault();
+
+		if (socket.readyState !== 1) return;
+		let msg = $('input#msg').val();
+		ws.send(msg);
+	});
+
+</script>
+```
+
+
 
 ---
 ## 마무리
