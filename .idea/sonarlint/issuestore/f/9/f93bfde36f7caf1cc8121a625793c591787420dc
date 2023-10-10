@@ -1,0 +1,13 @@
+
+h	java:S100 "NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•Ê¦¥ùÿÿÿÿ
+`
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‘°î™
+h	java:S1008"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü–Ö’üÿÿÿÿ
+c
+java:S44887"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¦Öóáıÿÿÿÿ
+c	java:S100H"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•¶ƒ
+c
+java:S4488G"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ŸæÉüÿÿÿÿ
+c	java:S100U"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õ·Áá
+e
+java:S4488T"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ìÊşÿÿÿÿÿ

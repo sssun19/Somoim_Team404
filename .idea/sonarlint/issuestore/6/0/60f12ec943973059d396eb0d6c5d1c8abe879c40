@@ -1,9 +1,14 @@
 
-o
-java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(«üÎŒ
-W
-java:S4973$"<Strings and Boxed types should be compared using "equals()".(à²¡ıÿÿÿÿ
-W
-java:S4973,"<Strings and Boxed types should be compared using "equals()".(Ê÷¹Üúÿÿÿÿ
-R
-java:S49732"<Strings and Boxed types should be compared using "equals()".(¬âìá
+v
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(«üÎŒ8ãĞòô¯1
+m	java:S117R"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™÷›8äĞòô¯1
+r	java:S117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜‘úÿÿÿÿ8äĞòô¯1
+m	java:S117q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©‰ÈÎ8åĞòô¯1
+r	java:S117w"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ıßÅ¼ıÿÿÿÿ8åĞòô¯1
+^
+java:S4973&"<Strings and Boxed types should be compared using "equals()".(à²¡ıÿÿÿÿ8íĞòô¯1
+^
+java:S4973."<Strings and Boxed types should be compared using "equals()".(Ê÷¹Üúÿÿÿÿ8îĞòô¯1
+Y
+java:S49734"<Strings and Boxed types should be compared using "equals()".(¬âìá8ğĞòô¯1
+X	java:S125|"<This block of commented-out lines of code should be removed.(ãÜßã8°Ñòô¯1
