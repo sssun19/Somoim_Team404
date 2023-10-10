@@ -62,10 +62,10 @@
 - servlet-context.xml
 ```
 <!-- websocket handler -->
-<beans:bean id="replyEchochoHandler" class="test.com.moim.socket.ReplyEchoHandler">
+<beans:bean id="replyEchoHandler" class="test.com.moim.socket.ReplyEchoHandler">
 
 <websocket:handlers>
-	<websocket:mapping path="/replyEcho" handler="replyEchochoHandler"/>
+	<websocket:mapping path="/replyEcho" handler="replyEchoHandler"/>
 	<websocket:handshake-interceptors>
 		<beans:bean
 				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
@@ -100,37 +100,29 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 ```
 > 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 (이미지 전송을 원하면 BinaryWebSocketHandler 상속)<br/>
 
-- read.jsp
+- board 게시글.jsp
 ```
 <script>
-const ws = new WebSocket("ws://localhost:3004/replyEcho?bno=1234");
+function connect() {
+	const ws = new WebSocket("ws://localhost:8089/replyEcho?num=121");
+	console.log('connect success...');
 
-ws.onopen = function() {
-		console.log('Info: connection opened.');
-
-		function connect() {
-				console.log('connect success...');
-		}
-
-		setTimeout( function(){ connect(); }, 1000);
-
-		ws.onmessage = function (event) {
-				console.log(event.data+'\n');
-		};
+	ws.onopen = function() {
+			console.log('Info: connection opened.');
 	};
 
+	ws.onmessage = function (event) {
+			console.log(event.data+'\n');
+	};
 
-
-ws.onclose = function (event) { console.log('Info: connection closed.'); };
-ws.onerror = function(event) { console.log('Info: connection closed.'); };
-
-$('#btnSend').on('click', function(evt) {
-		evt.preventDefault();
-
-		if (socket.readyState !== 1) return;
-		let msg = $('input#msg').val();
-		ws.send(msg);
-	});
+	ws.onclose = function (event) { 
+			console.log('Info: connection closed.', event);
+			setTimeout( function(){ connect(); }, 1000); // 통신이 종료되면 1초마다 한번씩 재시도
+	};
+	
+	ws.onerror = function(err) { console.log('Error:', err); };
+	
+}
 
 </script>
 ```
