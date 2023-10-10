@@ -3,6 +3,7 @@
 멀티캠퍼스 파이널 프로젝트
 
 <h3>개발기간 : 2023.06.09 ~ 2023.07.28 (설계 및 테스트 포함)</h3>
+최적화 중(WebSocket 연동)
 
 ## info
 
@@ -635,6 +636,25 @@ function somoimbyme_selectAll(){
 		}
 	});
 }
+```
+
+
+# WebSocket 연동
+### 최적화
+
+- pom.xml
+```
+<!-- WebSocket -->
+<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-websocket</artifactId>
+		<version>4.2.4.RELEASE</version>
+</dependency>
+<dependency>
+		<groupId>javax.websocket</groupId>
+		<artifactId>javax.websocket-api</artifactId>
+		<version>1.1</version>
+</dependency>
 ```
 
 ---
