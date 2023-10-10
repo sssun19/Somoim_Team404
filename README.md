@@ -657,6 +657,33 @@ function somoimbyme_selectAll(){
 </dependency>
 ```
 
+- servlet-context.xml
+```
+<!-- websocket handler -->
+<beans:bean id="replyEchochoHandler" class="test.com.moim.socket.ReplyEchoHandler">
+
+<websocket:handlers>
+	<websocket:mapping path="/replyEcho" handler="replyEchochoHandler"/>
+	<websocket:handshake-interceptors>
+		<beans:bean
+				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"></beans:bean>
+	</websocket:handshake-interceptors>
+</websocket:handlers>
+
+</beans:bean>
+```
+- ReplyEchoHandler 클래스
+```
+package test.com.moim.socket;
+
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class ReplyEchoHandler extends TextWebSocketHandler {
+
+}
+```
+> 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 받기
+
 ---
 ## 마무리
 
