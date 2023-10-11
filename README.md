@@ -109,14 +109,14 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 }
 ```
 
-<br/>
+
 > 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 (이미지 전송을 원하면 BinaryWebSocketHandler 상속)<br/>
 > session 에 저장된 (접속한 모든 이용자의 세션) 정보들을 List 형태로 관리<br/>
 > session에 저장된 유저의 아이디를 가져와 senderId 에 할당. foreach 구문으로 모든 이용자에게 메세지 전송
+
 <br/>
 
 - board 게시글.jsp
-
 
 ```
 <script>
