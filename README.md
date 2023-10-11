@@ -44,8 +44,8 @@
 # WebSocket 연동
 ### 최적화
 
-<br/>
 - pom.xml
+
 ```
 <!-- WebSocket -->
 <dependency>
@@ -59,9 +59,11 @@
 		<version>1.1</version>
 </dependency>
 ```
-<br/>
+
 
 - servlet-context.xml
+
+
 ```
 <!-- websocket handler -->
 <beans:bean id="replyEchoHandler" class="test.com.moim.socket.ReplyEchoHandler">
@@ -77,9 +79,7 @@
 </beans:bean>
 ```
 
-<br/>
 - ReplyEchoHandler 클래스
-
 
 ```
 
@@ -108,6 +108,7 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 	}
 }
 ```
+
 <br/>
 > 이미지 전송이 아닌 단순 텍스트 전송이기 때문에 TextWebSocketHandler 클래스 상속 (이미지 전송을 원하면 BinaryWebSocketHandler 상속)<br/>
 > session 에 저장된 (접속한 모든 이용자의 세션) 정보들을 List 형태로 관리<br/>
@@ -115,6 +116,8 @@ public class ReplyEchoHandler extends TextWebSocketHandler {
 <br/>
 
 - board 게시글.jsp
+
+
 ```
 <script>
 function connect() {
@@ -155,6 +158,7 @@ function connect() {
 </script>
 
 ```
+
 <br/>
 
 💁 WebSocket 과 Socket 의 차이점
@@ -184,12 +188,14 @@ public class ReplyHandler {
 	}
 }
 ```
+
 <br/>
 
 > @ServerEndpoint annotation 으로 socket path 를 지정하여 handler 클래스와 매핑해준다<br/>
 > onOpen, onMessage 메서드(annotation)를 이용해 socket 이 열리거나 메세지 통신을 했을 때의 로직을 구현한다<br/>
 > **WebSocket 관련 메서드는 사용하지 않을 것**<br/>
 > 위 Socket 통신 구현은 일방적인 통신만 가능하도록 구현되어 있다.
+
 <br/>
 
 💁 WebSocket 통신은 웹 상에서 실시간 양방향 통신이 가능해서 btnSend 버튼을 눌러 메세지를 전송하면 모든 서버의 콘솔에 로그가 찍힌다.<br/>
@@ -210,7 +216,7 @@ Socket 으로도 양방향 통신이 가능하지만 서버와 클라이언트 �
 - som_title 칼럼에 UK 제약조건을 걸어 소모임 이름으로 중복 데이터가 들어오는 것을 방지했습니다.<br/>
 - category 를 구분해 소모임 페이지에서 카테고리별 조회가 가능하도록 구현했습니다.<br/>
  해당 로직은 jsp 파일에서 AJAX 비동기 통신을 이용했습니다.
-<br/>
+
 
 ```
 $(function() {
@@ -259,7 +265,7 @@ $(function() {
 	</c:if>
 </c:forEach>
 ```
-<br/>
+
 
 > controller 에서 model.addAttribute 메서드를 통해 "viewAll" 이라는 변수로 jsp 파일에 넘겨주었습니다.<br/>
 > jsp 파일에서는 해당 값을 받아와 forEach 구문으로 데이터를 조회해 파라미터로 넘어온 카테고리 값(선택한 카테고리 값)과 일치하는 카테고리의 소모임이 있다면 조회할 수 있도록 구현했습니다.<br/>
@@ -268,7 +274,7 @@ $(function() {
 
 <br/><br/>
 - som_title 칼럼을 이용해 select 조회로 키워드 검색 기능을 구현했습니다.
-<br/>
+
 
 #### controller
 
@@ -281,7 +287,7 @@ public String som_searchList(String searchKey, String searchWord, String categor
    return "board/som_selectAll2";
 }
 ```
-<br/>
+
 
 #### DAOimpl
 ```
@@ -321,7 +327,7 @@ public List<SomoimVO> searchList(String searchKey, String searchWord, String cat
    select * from somoim where som_title like #{searchWord} order by num desc
 </select>
 ```
-<br/>
+
 
 > MyBatis 를 이용했기 때문에 sqlMapper 를 작성했습니다.<br/>
 title 또는 area 값을 검색하기 때문에 Map 클래스를 이용해 동시에 두 값을 전달하였습니다.<br/>
@@ -337,6 +343,7 @@ now 변수에 Date 클래스를 이용해 현재 시간을 할당하고 schedule
 SOM_SCHEDULE_SELECTONE의 SQL 문은 다음과 같습니다.
 
 #### sqlMapper.xml
+
 ```
 <select id="SOM_SCHEDULE_SELECTONE" resultType="test.com.moim.board.model.Somoim_ScheduleVO">
 	select * from somoim_schedule where somoim_num=#{somoim_num}
@@ -344,6 +351,7 @@ SOM_SCHEDULE_SELECTONE의 SQL 문은 다음과 같습니다.
 ```
 
 #### controller
+
 ````
 @ResponseBody
 @RequestMapping(value = "/som_schedule_selectOne.do", method = RequestMethod.GET)
@@ -366,6 +374,7 @@ SOM_SCHEDULE_SELECTONE의 SQL 문은 다음과 같습니다.
 ````
 
 #### ajax 로직
+
 ```
 $.ajax({
 	url: 'som_schedule_selectOne.do',
