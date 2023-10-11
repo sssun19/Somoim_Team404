@@ -142,6 +142,41 @@ function connect() {
 
 ```
 
+💁 WebSocket 과 Socket 의 차이점
+
+- Socket 통신 구현
+
+```
+@ServerEndpoint("/replyEcho")
+public class ReplyHandler {
+
+	@OnOpen
+	public void onOpen(Session session){
+			System.out.println("websocket open...inclass : "+ session);
+	}
+
+	@OnMessage
+	public String onMessage(String message, Session session) throws IOException {
+			System.out.println("websocket onMessage... : "+ session);
+			String senderId = session.getId();
+
+			return senderId+":"+message;
+	}
+
+	@OnClose
+	public void onClose(Session session) {
+			System.out.println("afterConnectionClosed:" + session + " : ");
+	}
+}
+```
+> @ServerEndpoint annotation 으로 socket path 를 지정하여 handler 클래스와 매핑해준다<br/>
+> onOpen, onMessage 메서드(annotation)를 이용해 socket 이 열리거나 메세지 통신을 했을 때의 로직을 구현한다<br/>
+> **WebSocket 관련 메서드는 사용하지 않을 것**<br/>
+> 위 Socket 통신 구현은 일방적인 통신만 가능하도록 구현되어 있다.
+
+💁 WebSocket 통신은 웹 상에서 실시간 양방향 통신이 가능해서 btnSend 버튼을 눌러 메세지를 전송하면 모든 서버의 콘솔에 로그가 찍힌다.<br/>
+웹에서 웹소켓을 지원하기 때문에 웹 서버 개발에서 양방향 통신을 개발할 때는 WebSocket 을 사용하는 것이 바람직하다.<br/>
+Socket 으로도 양방향 통신이 가능하지만 서버와 클라이언트 측 로직을 모두 구현해야 하므로 까다롭다.
 
 ### DB 테이블 전체 구조
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/942359c6-0131-4f28-b43f-da84f2764f3a)
