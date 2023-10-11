@@ -44,6 +44,7 @@
 # WebSocket 연동
 ### 최적화
 
+
 - pom.xml
 ```
 <!-- WebSocket -->
@@ -58,6 +59,13 @@
 		<version>1.1</version>
 </dependency>
 ```
+
+
+
+
+
+
+
 
 - servlet-context.xml
 ```
