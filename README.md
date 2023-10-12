@@ -273,15 +273,14 @@ private String getId(WebSocketSession session) {
 </div>
 ```
 
-***댓글 작성***
+***댓글 작성*** <br/>
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/ecb5ec34-5f04-4587-b55f-49c7c99c525a)
 
-***콘솔창***
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/b4de9ed6-002a-4da0-8622-bd5701ea110c)
+***콘솔창*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/b99a88ba-0e12-4800-a004-38f02dfa7e59)
 
-***터미널***
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/44691be4-dae6-4191-92c8-2fcdde2864d5)
-
+***터미널*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/8d43c751-e223-484f-8f91-1bc414ecc19e)
 
 
 
