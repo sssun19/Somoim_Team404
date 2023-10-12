@@ -202,6 +202,7 @@ public class ReplyHandler {
 - 웹에서 웹소켓을 지원하기 때문에 웹 서버 개발에서 양방향 통신을 개발할 때는 WebSocket 을 사용하는 것이 바람직하다.<br/>
 - Socket 으로도 양방향 통신이 가능하지만 서버와 클라이언트 측 로직을 모두 구현해야 하므로 까다롭다.
 
+<br/> <br/>
 
 💁 WebSocket 실시간 양방향 통신으로 댓글 작성 알림 기능 구현 순서
 
@@ -271,6 +272,18 @@ private String getId(WebSocketSession session) {
 	</script>
 </div>
 ```
+
+***댓글 작성***
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/ecb5ec34-5f04-4587-b55f-49c7c99c525a)
+
+***콘솔창***
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/b4de9ed6-002a-4da0-8622-bd5701ea110c)
+
+***터미널***
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/44691be4-dae6-4191-92c8-2fcdde2864d5)
+
+
+
 
 ### DB 테이블 전체 구조
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/942359c6-0131-4f28-b43f-da84f2764f3a)
