@@ -210,9 +210,12 @@ public class ReplyHandler {
 3. 댓글 작성 시 WebSocket 에게 알리기
 4. 알림 받는 UI 생성
 5. Test 해보기
+<br/>
+<br/>
 
-- 2.사용자의 ID 별로 session 관리 (ReplyEchoHandler.java)
-> 유저의 아이디와 session 아이디가 필요하므로 key, value 를 가지는 Map 으로 관리한다.
+- 사용자의 ID 별로 session 관리 (ReplyEchoHandler.java)
+
+유저의 아이디와 session 아이디가 필요하므로 key, value 를 가지는 Map 으로 관리한다.
 
 ```
 Map<String, WebSocketSession> userSessions = new HashMap<>();
@@ -236,6 +239,9 @@ private String getId(WebSocketSession session) {
 			return loginUser.getUser_id();
 }
 ```
+
+> WebSocket session을 httpSession 변수에 할당. (웹소켓 세션은 사용자의 실제 ID가 아닌 웹 상의 session id를 가지고 있으므로 사용자의 ID 별로 세션을 관리하기 위함)<br/>
+> 유저의 ID를 관리하는 UserinfoVO 클래스에서 session id를 조회.
 
 
 - WebSocket 으로 알림 메세지 전송
