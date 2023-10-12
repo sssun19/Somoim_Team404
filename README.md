@@ -198,9 +198,73 @@ public class ReplyHandler {
 
 <br/>
 
-💁 WebSocket 통신은 웹 상에서 실시간 양방향 통신이 가능해서 btnSend 버튼을 눌러 메세지를 전송하면 모든 서버의 콘솔에 로그가 찍힌다.<br/>
-웹에서 웹소켓을 지원하기 때문에 웹 서버 개발에서 양방향 통신을 개발할 때는 WebSocket 을 사용하는 것이 바람직하다.<br/>
-Socket 으로도 양방향 통신이 가능하지만 서버와 클라이언트 측 로직을 모두 구현해야 하므로 까다롭다.
+- WebSocket 통신은 웹 상에서 실시간 양방향 통신이 가능해서 btnSend 버튼을 눌러 메세지를 전송하면 모든 서버의 콘솔에 로그가 찍힌다.<br/>
+- 웹에서 웹소켓을 지원하기 때문에 웹 서버 개발에서 양방향 통신을 개발할 때는 WebSocket 을 사용하는 것이 바람직하다.<br/>
+- Socket 으로도 양방향 통신이 가능하지만 서버와 클라이언트 측 로직을 모두 구현해야 하므로 까다롭다.
+
+
+💁 WebSocket 실시간 양방향 통신으로 댓글 작성 알림 기능 구현 순서
+
+1. WebSocket 전역 연결(모든 페이지에서 websocket 알림을 받을 수 있도록 하기 위함)
+2. Server 에서는 로그인 사용자의 ID 별로 SocketSession 관리가 필요함. (ID 별로 관리해야 알림을 받을 수신자에게만 따로 보낼 수 있기 때문)
+3. 댓글 작성 시 WebSocket 에게 알리기
+4. 알림 받는 UI 생성
+5. Test 해보기
+
+- 2.사용자의 ID 별로 session 관리 (ReplyEchoHandler.java)
+> 유저의 아이디와 session 아이디가 필요하므로 key, value 를 가지는 Map 으로 관리한다.
+
+```
+Map<String, WebSocketSession> userSessions = new HashMap<>();
+
+@Override
+public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+	...
+	String senderId = getId(session);
+
+	userSessions.put(senderId, session);
+}
+
+
+private String getId(WebSocketSession session) {
+	Map<String, Object> httpSession = session.getAttributes();
+	UserinfoVO loginUser = (UserinfoVO) httpSession.get(SessionNames.LOGIN);
+
+	if (loginUser == null) {
+		return session.getId();
+	} else
+			return loginUser.getUser_id();
+}
+```
+
+
+- WebSocket 으로 알림 메세지 전송
+
+```
+<div>
+<input type="text" value="test!!">
+<button type="submit" onclick="sendBtn()">테스트 버튼</button>
+
+	<script>
+		function sendBtn() {
+			console.log('댓글 작성 버튼 눌렀음.');
+			console.log('reply.js::socket>>', socket);
+
+			if (socket) {
+				// websocket 에 전송 포맷 (reply, 댓글작성자, 게시글작성자, wnum)
+				let user_id = `${user_id}`;
+				let writer_id = `${vo2.user_id}`;
+				let wnum = ${vo2.num};
+
+				let socketMsg = "reply," + user_id +", "+ writer_id + ", "+ wnum;
+				console.log(socketMsg);
+				socket.send(socketMsg);
+			} else return;
+		}
+
+	</script>
+</div>
+```
 
 ### DB 테이블 전체 구조
 ![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/942359c6-0131-4f28-b43f-da84f2764f3a)
