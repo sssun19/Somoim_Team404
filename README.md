@@ -245,7 +245,20 @@ private String getId(WebSocketSession session) {
 > 유저의 ID를 관리하는 UserinfoVO 클래스에서 session id를 조회.
 
 
-- WebSocket 으로 알림 메세지 전송
+***댓글 작성*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/ecb5ec34-5f04-4587-b55f-49c7c99c525a)
+
+***콘솔창*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/b99a88ba-0e12-4800-a004-38f02dfa7e59)
+
+***터미널*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/8d43c751-e223-484f-8f91-1bc414ecc19e)
+
+
+<br/>
+
+- WebSocket 으로 알림 메세지 전송<br/>
+jsp 파일
 
 ```
 <div>
@@ -273,14 +286,40 @@ private String getId(WebSocketSession session) {
 </div>
 ```
 
-***댓글 작성*** <br/>
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/ecb5ec34-5f04-4587-b55f-49c7c99c525a)
+controller 파일
 
-***콘솔창*** <br/>
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/b99a88ba-0e12-4800-a004-38f02dfa7e59)
+```
+@Override
+protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+	System.out.println("handleTextMessage >>>" + session + " : " + message);
+	String senderId = getId(session);
 
-***터미널*** <br/>
-![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/8d43c751-e223-484f-8f91-1bc414ecc19e)
+	String msg = message.getPayload();
+	String[] strs = msg.split(",");
+
+	if (strs != null && strs.length == 4) {
+		String cmd = strs[0];
+		String replyWriter = strs[1];
+		String boardWriter = strs[2];
+		String wnum = strs[3];
+
+		WebSocketSession boardWriterSession = userSessions.get(boardWriter);
+		if ("reply".equals(cmd) && boardWriterSession != null) {
+			TextMessage tmpMsg = new TextMessage(replyWriter+" 님이" + wnum + "번 게시글에 댓글을 달았습니다.");
+			boardWriterSession.sendMessage(tmpMsg);
+		}
+	}
+}
+```
+
+- 전달 받은 message 를 콤마 기준으로 나누어 String 배열로 받는다. <br/>
+- 배열 인덱스로 각 변수에 할당한다. <br/>
+- userSessions 배열에 게시글 작성자(알림 수신자) boardWriter 가 있는지 key 값으로 조회한다. boardWriterSession 이 null 이 아니면 (현재 알림 수신자가 접속한 상황이라면) 해당 수신자 session 에 알림 메세지를 전송한다.
+
+
+***알림 메세지 받기*** <br/>
+![image](https://github.com/sssun19/Somoim_Team404/assets/125242481/8475ea1a-3b36-45fd-ab3a-f7f3eda5d42e)
+
 
 
 
