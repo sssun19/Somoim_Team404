@@ -17,31 +17,32 @@
     <title>Document</title>
 </head>
 
-<script>
-    $(document).ready( function(){
-        $('#btnSend').on('click', function(evt) {
-            evt.preventDefault();
+<%--<script>--%>
+<%--    $(document).ready( function(){--%>
+<%--        $('#sendBtn').on('click', function(evt) {--%>
+<%--            console.log("눌렸다");--%>
+<%--            evt.preventDefault();--%>
 
-            if (socket.readyState !== 1) return;
-            let msg = $('input#msg').val();
-            socket.send(msg);
-        });
+<%--            if (socket.readyState !== 1) return;--%>
+<%--            let msg = $('input#msg').val();--%>
+<%--            socket.send(msg);--%>
+<%--        });--%>
 
-        connect();
-    });
+<%--        connect();--%>
+<%--    });--%>
 
-</script>
+<%--</script>--%>
 
 <script>
 
     let socket = null;
 
     function connect() {
-        const ws = new WebSocket("ws://localhost:8089/replyEcho?num=121");
+        const ws = new WebSocket("ws://localhost:8089/replyEcho");
         socket = ws;
         console.log('connect success...');
 
-        ws.onopen = function() {
+        ws.onopen = function () {
             console.log('Info: connection opened.');
         };
 
@@ -51,13 +52,12 @@
 
         ws.onclose = function (event) {
             console.log('Info: connection closed.', event);
-            setTimeout( function(){ connect(); }, 1000); // 통신이 종료되면 1초마다 한번씩 재시도
+            //setTimeout( function(){ connect(); }, 1000); // 통신이 종료되면 1초마다 한번씩 재시도
         };
 
         ws.onerror = function(err) { console.log('Error:', err); };
 
     }
-
 
 </script>
 
@@ -418,7 +418,7 @@
             <div class="join_commnets_insert_section" style="width: 90%;">
                 <div class="comments_user_profile" style="margin-right: 1.5%">
                     <div class="commnets_user_profile_img">
-                        <div class="profile" style="background-color: red; ">
+                        <div class="profile" style="background-color: #ff0000; ">
 
                             <%--                    파트 게시글 작성자 이미지 프로필 사진 --%>
                             <img style="  object-fit: cover; width: 100%; height: 100%; border-radius: 50%;"
@@ -437,13 +437,42 @@
                 <%--                <input type="hidden" name="som_member_num" value="#{vo2.som_member_num}">--%>
 
                 <button style="margin-left: 10px; width: 80px; height:40px;  font-size: 0.7rem; text-align: center;  justify-content: center;" type="submit">댓글 작성</button>
+
             </div>
         </form>
+
+        <div>
+
+        <input type="text" value="test!!" id="msg">
+        <button type="submit" onclick="sendBtn()" id="sendBtn">테스트 버튼</button>
+
+            <script>
+                function sendBtn() {
+                    console.log('댓글 작성 버튼 눌렀음.');
+                    console.log('reply.js::socket>>', socket);
+
+                    if (socket) {
+                        // websocket 에 전송 (reply, 댓글작성자, 게시글작성자, wnum)
+                        let user_id = `${user_id}`;
+                        let writer_id = `${vo2.user_id}`;
+                        let wnum = ${vo2.num};
+
+                        let socketMsg = "reply," + user_id +","+ writer_id + ","+ wnum;
+                        console.log(socketMsg);
+                        socket.send(socketMsg);
+                    } else return;
+                }
+
+                connect();
+
+            </script>
+        </div>
+
     </div>
 </div>
 
 <div class="well">
-    <input type="text" id="msg" value="1212" class="form-control"/>
+    <input type="text" id="msg2" value="1212" class="form-control"/>
     <button id="btnSend" class="btn btn-primary">Send Message</button>
 </div>
 

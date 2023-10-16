@@ -39,8 +39,6 @@ q
 Asrc/main/java/test/com/moim/userinfo/service/UserinfoService.java,f\0\f057c08bf20cfa5e1c13ef815f03b9bf6b7c8ae5
 k
 ;src/main/java/test/com/moim/userinfo/model/UserinfoDAO.java,9\8\98426429188acbafa34ec653f32f950abda5aa4f
-`
-0src/main/webapp/WEB-INF/views/userinfo/login.jsp,c\2\c226bbb5718a889c231d6f80bf2b4457da50c1dd
 e
 5src/main/webapp/WEB-INF/views/community/selectOne.jsp,5\1\51d8064ad082f95155e66087138df63876e5b41f
 x
@@ -67,8 +65,6 @@ W
 'src/main/webapp/resources/css/board.css,7\3\732b25c4fc672147994adeb6a07ae7fd3a83f508
 l
 <src/main/webapp/WEB-INF/views/board/join_schedule_insert.jsp,d\6\d655aaa9566e18b508652d02ce9dbb0e452a949c
-U
-%src/main/webapp/resources/js/board.js,3\6\36021f02a89304ce1b4911b660e9dfc9eb89c828
 k
 ;src/main/java/test/com/moim/board/service/BoardService.java,f\7\f791789c9e36dc1c19836338d30875087da61837
 m
@@ -85,8 +81,6 @@ b
 2src/main/webapp/WEB-INF/views/point/selectAll.html,8\b\8bd25ab1c0dba75b9eb8f9e9cc13b80232b7b568
 f
 6src/main/webapp/WEB-INF/views/mypage/mypage_update.jsp,c\f\cf70a368b91b1890490a1800d842092d87d37f91
-j
-:src/main/java/test/com/moim/userinfo/model/UserinfoVO.java,8\3\83143ab027ee82f2d8eb1d8f3bf32d836e9ff399
 <
 onandoff.sql,6\2\62f3cc2f33cfb456081e336ab2d8e20322db90eb
 f
@@ -109,8 +103,6 @@ m
 =src/main/java/test/com/moim/member/service/MemberService.java,e\e\ee5c972efbbbf88d1cdf5c8ba8ee98450a2559e8
 e
 5src/main/webapp/WEB-INF/views/board/som_selectOne.jsp,1\6\16e0a48ea5038ec3a3293190f5f0ce9bd4ba3556
-w
-Gsrc/main/java/test/com/moim/member/controller/MemberRestController.java,f\9\f93bfde36f7caf1cc8121a625793c591787420dc
 f
 6src/main/java/test/com/moim/member/model/MemberVO.java,8\9\8997650ebb1d198e2030c4669756246629a1c086
 s
