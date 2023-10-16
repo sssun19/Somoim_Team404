@@ -67,6 +67,7 @@
 ```
 <!-- websocket handler -->
 <beans:bean id="replyEchoHandler" class="test.com.moim.socket.ReplyEchoHandler">
+</beans:bean>
 
 <websocket:handlers>
 	<websocket:mapping path="/replyEcho" handler="replyEchoHandler"/>
@@ -76,7 +77,6 @@
 	</websocket:handshake-interceptors>
 </websocket:handlers>
 
-</beans:bean>
 ```
 
 - ReplyEchoHandler 클래스
